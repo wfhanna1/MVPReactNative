@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
-
 export default class HomeScreen extends React.Component {
   render() {
     return (
@@ -29,7 +28,7 @@ export default class HomeScreen extends React.Component {
         </View>
       </View>
     );
-    }
+  }
 }
 
 const styles = StyleSheet.create({
@@ -43,4 +42,4 @@ const styles = StyleSheet.create({
     title: {
       fontSize: 40,
     }
-  });
+});

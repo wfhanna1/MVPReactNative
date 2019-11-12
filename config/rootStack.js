@@ -5,8 +5,6 @@ import LoadingScreen from '../screens/LoadingScreen';
 import RecentGamesScreen from '../screens/RecentGamesScreen';
 import RecordMatchScreen from '../screens/RecordMatchScreen';
 
-
-
 const RootStack = createStackNavigator(
     {
       Home: HomeScreen,
