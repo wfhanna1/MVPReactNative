@@ -1,27 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { createAppContainer } from 'react-navigation';
+import RootStack from './config/rootStack';
 
-function App() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.title}>
-          The Office MVP
-        </Text>
-      </View>
-    );
-}
+const AppContainer = createAppContainer(RootStack);
 
-export default App;
-
-const styles = StyleSheet.create({
-  container: {
-    paddingTop: '40%',
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  title: {
-    fontSize: 40,
+export default class App extends React.Component {
+  render() {
+    return <AppContainer />;
   }
-});
+}
