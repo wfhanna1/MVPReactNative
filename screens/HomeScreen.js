@@ -6,7 +6,7 @@ class HomeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>
-          Players Screen
+          Top Player
         </Text>
         <View style={styles.container}>
           <Button
@@ -25,10 +25,15 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'flex-start',
       alignItems: 'center',
-      backgroundColor: '#F5FCFF',
+      backgroundColor: 'white',
     },
     title: {
-      fontSize: 40,
+      fontSize: 45,
+      fontFamily: "KlinicSlab-Book",
+      color: "#B73491",
+      fontWeight: "500",
+      lineHeight: 54,
+      letterSpacing: -1.46
     }
 });
 
