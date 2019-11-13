@@ -6,7 +6,7 @@ export default class HomeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>
-          The Office MVP
+          Players Screen
         </Text>
         <View style={styles.container}>
         <Button
