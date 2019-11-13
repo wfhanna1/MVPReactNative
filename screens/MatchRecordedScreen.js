@@ -1,18 +1,21 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
 
-function App() {
+export default class MatchRecordedScreen extends React.Component {
+  render() {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>
-          The Office MVP
+          Match Recorded!
         </Text>
-        <Text>Recent Games</Text>
+        <Button
+        title="Home Screen"
+        onPress={() => this.props.navigation.navigate('Home')}
+      />
       </View>
     );
+  }
 }
-
-export default App;
 
 const styles = StyleSheet.create({
   container: {
