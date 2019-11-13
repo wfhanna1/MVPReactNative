@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* FoosballTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* FoosballTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
@@ -45,6 +44,14 @@
 		A750DA49237B651C00235609 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A750DA39237B651C00235609 /* EvilIcons.ttf */; };
 		A750DA4A237B651C00235609 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A750DA3A237B651C00235609 /* SimpleLineIcons.ttf */; };
 		A750DA4B237B651C00235609 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A750DA3B237B651C00235609 /* MaterialIcons.ttf */; };
+		A7F7251F237C9476001E6085 /* KlinicSlab-BookItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = A7F72517237C9475001E6085 /* KlinicSlab-BookItalic.otf */; };
+		A7F72520237C9476001E6085 /* KlinicSlab-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = A7F72518237C9475001E6085 /* KlinicSlab-MediumItalic.otf */; };
+		A7F72521237C9476001E6085 /* KlinicSlab-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = A7F72519237C9475001E6085 /* KlinicSlab-Book.otf */; };
+		A7F72522237C9476001E6085 /* KlinicSlab-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = A7F7251A237C9475001E6085 /* KlinicSlab-Light.otf */; };
+		A7F72523237C9476001E6085 /* KlinicSlab-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = A7F7251B237C9476001E6085 /* KlinicSlab-BoldItalic.otf */; };
+		A7F72524237C9476001E6085 /* KlinicSlab-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = A7F7251C237C9476001E6085 /* KlinicSlab-LightItalic.otf */; };
+		A7F72525237C9476001E6085 /* KlinicSlab-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = A7F7251D237C9476001E6085 /* KlinicSlab-Medium.otf */; };
+		A7F72526237C9476001E6085 /* KlinicSlab-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A7F7251E237C9476001E6085 /* KlinicSlab-Bold.otf */; };
 		B4549F91B7E4B5AD217D67EC /* libPods-FoosballTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D27FE36F4AC2BA7A8C0FC5A /* libPods-FoosballTests.a */; };
 		C1D92EFAF6364925A69981BE /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 01C4918A203A4E12A4F74EC6 /* MaterialIcons.ttf */; };
 		C4C51CF960554D7A9B13695C /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1FDEF4F85B954027BBEB430B /* Fontisto.ttf */; };
@@ -126,6 +133,14 @@
 		A750DA39237B651C00235609 /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = EvilIcons.ttf; sourceTree = "<group>"; };
 		A750DA3A237B651C00235609 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
 		A750DA3B237B651C00235609 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
+		A7F72517237C9475001E6085 /* KlinicSlab-BookItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "KlinicSlab-BookItalic.otf"; path = "../../../../MVP-Assets/Font-KlinicSlab/KlinicSlab-BookItalic.otf"; sourceTree = "<group>"; };
+		A7F72518237C9475001E6085 /* KlinicSlab-MediumItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "KlinicSlab-MediumItalic.otf"; path = "../../../../MVP-Assets/Font-KlinicSlab/KlinicSlab-MediumItalic.otf"; sourceTree = "<group>"; };
+		A7F72519237C9475001E6085 /* KlinicSlab-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "KlinicSlab-Book.otf"; path = "../../../../MVP-Assets/Font-KlinicSlab/KlinicSlab-Book.otf"; sourceTree = "<group>"; };
+		A7F7251A237C9475001E6085 /* KlinicSlab-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "KlinicSlab-Light.otf"; path = "../../../../MVP-Assets/Font-KlinicSlab/KlinicSlab-Light.otf"; sourceTree = "<group>"; };
+		A7F7251B237C9476001E6085 /* KlinicSlab-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "KlinicSlab-BoldItalic.otf"; path = "../../../../MVP-Assets/Font-KlinicSlab/KlinicSlab-BoldItalic.otf"; sourceTree = "<group>"; };
+		A7F7251C237C9476001E6085 /* KlinicSlab-LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "KlinicSlab-LightItalic.otf"; path = "../../../../MVP-Assets/Font-KlinicSlab/KlinicSlab-LightItalic.otf"; sourceTree = "<group>"; };
+		A7F7251D237C9476001E6085 /* KlinicSlab-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "KlinicSlab-Medium.otf"; path = "../../../../MVP-Assets/Font-KlinicSlab/KlinicSlab-Medium.otf"; sourceTree = "<group>"; };
+		A7F7251E237C9476001E6085 /* KlinicSlab-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "KlinicSlab-Bold.otf"; path = "../../../../MVP-Assets/Font-KlinicSlab/KlinicSlab-Bold.otf"; sourceTree = "<group>"; };
 		AA2949D5F4F80D81932A13B7 /* Pods-Foosball.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Foosball.debug.xcconfig"; path = "Target Support Files/Pods-Foosball/Pods-Foosball.debug.xcconfig"; sourceTree = "<group>"; };
 		B3F2D847CD7DF06A44ED605B /* Pods-Foosball-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Foosball-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-Foosball-tvOSTests/Pods-Foosball-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C517A9709390472FB865C42F /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/native-base/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
@@ -298,6 +313,14 @@
 		A750DA2B237B651C00235609 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				A7F7251E237C9476001E6085 /* KlinicSlab-Bold.otf */,
+				A7F7251B237C9476001E6085 /* KlinicSlab-BoldItalic.otf */,
+				A7F72519237C9475001E6085 /* KlinicSlab-Book.otf */,
+				A7F72517237C9475001E6085 /* KlinicSlab-BookItalic.otf */,
+				A7F7251A237C9475001E6085 /* KlinicSlab-Light.otf */,
+				A7F7251C237C9476001E6085 /* KlinicSlab-LightItalic.otf */,
+				A7F7251D237C9476001E6085 /* KlinicSlab-Medium.otf */,
+				A7F72518237C9475001E6085 /* KlinicSlab-MediumItalic.otf */,
 				A750DA2C237B651C00235609 /* Fontisto.ttf */,
 				A750DA2D237B651C00235609 /* Octicons.ttf */,
 				A750DA2E237B651C00235609 /* Feather.ttf */,
@@ -460,10 +483,13 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				A7F72525237C9476001E6085 /* KlinicSlab-Medium.otf in Resources */,
 				A750DA46237B651C00235609 /* FontAwesome5_Regular.ttf in Resources */,
 				A750DA49237B651C00235609 /* EvilIcons.ttf in Resources */,
 				A750DA42237B651C00235609 /* AntDesign.ttf in Resources */,
 				A750DA4B237B651C00235609 /* MaterialIcons.ttf in Resources */,
+				A7F72524237C9476001E6085 /* KlinicSlab-LightItalic.otf in Resources */,
+				A7F72520237C9476001E6085 /* KlinicSlab-MediumItalic.otf in Resources */,
 				A750DA4A237B651C00235609 /* SimpleLineIcons.ttf in Resources */,
 				A750DA43237B651C00235609 /* Foundation.ttf in Resources */,
 				C8CF885C8CD5400AB12D26B9 /* AntDesign.ttf in Resources */,
@@ -474,9 +500,11 @@
 				E3B859386D694DCB8EAC7F28 /* EvilIcons.ttf in Resources */,
 				A660FB00D65E46C0ABA8027B /* Feather.ttf in Resources */,
 				A750DA3C237B651C00235609 /* Fontisto.ttf in Resources */,
+				A7F7251F237C9476001E6085 /* KlinicSlab-BookItalic.otf in Resources */,
 				7C193052F16042D3B36543B8 /* FontAwesome.ttf in Resources */,
 				43324F5351E644A1AC287914 /* FontAwesome5_Brands.ttf in Resources */,
 				C7088F34C3BD46B9A8A71C2A /* FontAwesome5_Regular.ttf in Resources */,
+				A7F72522237C9476001E6085 /* KlinicSlab-Light.otf in Resources */,
 				C652F3706B53472F99CBBDB0 /* FontAwesome5_Solid.ttf in Resources */,
 				C4C51CF960554D7A9B13695C /* Fontisto.ttf in Resources */,
 				5136C517AE8B470BBF32B843 /* Foundation.ttf in Resources */,
@@ -489,11 +517,14 @@
 				A750DA3F237B651C00235609 /* Entypo.ttf in Resources */,
 				DC8C338416FA4969A44CC588 /* Octicons.ttf in Resources */,
 				745FFB73B5DE42E9A99F8196 /* Roboto_medium.ttf in Resources */,
+				A7F72526237C9476001E6085 /* KlinicSlab-Bold.otf in Resources */,
 				5CA7EF10654044348A70436A /* Roboto.ttf in Resources */,
 				21544D2A2500498EB036B486 /* rubicon-icon-font.ttf in Resources */,
 				E5C3964D502343BB94DD165D /* SimpleLineIcons.ttf in Resources */,
 				A750DA41237B651C00235609 /* MaterialCommunityIcons.ttf in Resources */,
+				A7F72523237C9476001E6085 /* KlinicSlab-BoldItalic.otf in Resources */,
 				A750DA48237B651C00235609 /* Zocial.ttf in Resources */,
+				A7F72521237C9476001E6085 /* KlinicSlab-Book.otf in Resources */,
 				5B7BC303C77A4BCE93B6E67A /* Zocial.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
