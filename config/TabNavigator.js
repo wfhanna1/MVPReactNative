@@ -1,15 +1,8 @@
-//import React from 'react';
-//import { Text, View } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
-//import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
-//import { createStackNavigator } from 'react-navigation-stack';
-//import MatchRecordedScreen from '../screens/MatchRecordedScreen';
-//import LoadingScreen from '../screens/LoadingScreen';
-//import RecordMatchScreen from '../screens/RecordMatchScreen';
 import HomeScreen from '../screens/HomeScreen';
 import RecentGamesScreen from '../screens/RecentGamesScreen';
-
+//import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 
 const TabNavigator = createBottomTabNavigator({
     Players: { screen: HomeScreen },
@@ -23,21 +16,6 @@ const TabNavigator = createBottomTabNavigator({
   }
 );
 
-//TODO - remove if React Navigation Stack Navigator isn't needed
-/*const RootStack = createStackNavigator(
-    {
-      Home: HomeScreen,
-      MatchRecorded: MatchRecordedScreen,
-      Loading: LoadingScreen,
-      RecentGames: RecentGamesScreen,
-      RecordMatch: RecordMatchScreen
-    },
-    {
-      initialRouteName: 'Home',
-    }
-  );*/
-  //export default RootStack;
-  
   export default createAppContainer(TabNavigator);
 
   //TODO - remove this if createBottomTabNavigator is used instead

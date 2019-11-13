@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
-export default class HomeScreen extends React.Component {
+class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
@@ -9,22 +9,10 @@ export default class HomeScreen extends React.Component {
           Players Screen
         </Text>
         <View style={styles.container}>
-        <Button
-        title="Match Recorded Page"
-        onPress={() => this.props.navigation.navigate('MatchRecorded')}
-      />
-      <Button
-        title="Loading Page"
-        onPress={() => this.props.navigation.navigate('Loading')}
-      />
-      <Button
-        title="Recent Games Screen"
-        onPress={() => this.props.navigation.navigate('RecentGames')}
-      />
-      <Button
-        title="Record Match Screen"
-        onPress={() => this.props.navigation.navigate('RecordMatch')}
-      />
+          <Button
+            title="Games Screen"
+            onPress={() => this.props.navigation.navigate('Games')}
+          />
         </View>
       </View>
     );
@@ -43,3 +31,5 @@ const styles = StyleSheet.create({
       fontSize: 40,
     }
 });
+
+export default HomeScreen;

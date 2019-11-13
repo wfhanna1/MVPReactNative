@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
 
 export default class RecentGames extends React.Component {
   render() {
@@ -8,6 +8,12 @@ export default class RecentGames extends React.Component {
         <Text style={styles.title}>
           Games Screen
         </Text>
+        <View style={styles.container}>
+          <Button
+            title="Players Screen"
+            onPress={() => this.props.navigation.navigate('Players')}
+          />
+        </View>
       </View>
     );
   }
