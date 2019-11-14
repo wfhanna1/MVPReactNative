@@ -1,20 +1,43 @@
+import React from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
-import HomeScreen from '../screens/HomeScreen';
-import RecentGamesScreen from '../screens/RecentGamesScreen';
+import Players from '../screens/HomeScreen';
+import Games from '../screens/RecentGamesScreen';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-const TabNavigator = createBottomTabNavigator({
-    Players: { screen: HomeScreen },
-    Games: { screen: RecentGamesScreen },
-  },
+const Tab = createBottomTabNavigator(
   {
+    Players,
+    Games
+  }, {
     tabBarOptions: {
+      style: {
+        backgroundColor: "#F0F0F0",
+        borderTopColor: "transparent"
+      },
       labelStyle: {
         fontSize: 13,
-        fontFamily: "Times New Roman"
-      }
-    }
-  }
-);
+        margin: -5
+      },
+      activeTintColor: '#B73491',
+      inactiveTintColor: '#9B9B9B',
+      showIcon: true,
+    },
+    defaultNavigationOptions: ({ navigation }) => ({
+        tabBarIcon: ({ tintColor }) => {
+          const { routeName } = navigation.state;
+          let IconComponent = Icon;
+          let iconName;
+          if (routeName === 'Players') {
+            iconName = `trophy`;
+          } else if (routeName === 'Games') {
+            iconName = `gamepad`;
+          }
 
-export default createAppContainer(TabNavigator);
+          return <IconComponent name={iconName} size={30} color={tintColor} />;
+        },
+      }),
+  }
+)
+
+export default createAppContainer(Tab);
