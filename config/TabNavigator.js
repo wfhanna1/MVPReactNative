@@ -13,11 +13,12 @@ const Tab = createBottomTabNavigator(
     tabBarOptions: {
       style: {
         backgroundColor: "#F0F0F0",
-        borderTopColor: "transparent"
+        borderTopColor: "transparent",
+        height: 55 
       },
       labelStyle: {
         fontSize: 13,
-        margin: -5
+        margin: -10
       },
       activeTintColor: '#B73491',
       inactiveTintColor: '#9B9B9B',
