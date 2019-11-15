@@ -27,7 +27,6 @@ const Tab = createBottomTabNavigator(
     defaultNavigationOptions: ({ navigation }) => ({
         tabBarIcon: ({ tintColor }) => {
           const { routeName } = navigation.state;
-          let IconComponent = Icon;
           let iconName;
           if (routeName === 'Players') {
             iconName = `trophy`;
@@ -35,7 +34,7 @@ const Tab = createBottomTabNavigator(
             iconName = `gamepad`;
           }
 
-          return <IconComponent name={iconName} size={30} color={tintColor} />;
+          return <Icon name={iconName} size={30} color={tintColor} />;
         },
       }),
   }
