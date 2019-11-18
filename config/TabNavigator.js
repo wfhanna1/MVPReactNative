@@ -13,11 +13,12 @@ const Tab = createBottomTabNavigator(
     tabBarOptions: {
       style: {
         backgroundColor: "#F0F0F0",
-        borderTopColor: "transparent"
+        borderTopColor: "transparent",
+        height: 55 
       },
       labelStyle: {
         fontSize: 13,
-        margin: -5
+        margin: -10
       },
       activeTintColor: '#B73491',
       inactiveTintColor: '#9B9B9B',
@@ -26,7 +27,6 @@ const Tab = createBottomTabNavigator(
     defaultNavigationOptions: ({ navigation }) => ({
         tabBarIcon: ({ tintColor }) => {
           const { routeName } = navigation.state;
-          let IconComponent = Icon;
           let iconName;
           if (routeName === 'Players') {
             iconName = `trophy`;
@@ -34,7 +34,7 @@ const Tab = createBottomTabNavigator(
             iconName = `gamepad`;
           }
 
-          return <IconComponent name={iconName} size={30} color={tintColor} />;
+          return <Icon name={iconName} size={30} color={tintColor} />;
         },
       }),
   }

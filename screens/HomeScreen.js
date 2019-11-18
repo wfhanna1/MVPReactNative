@@ -1,31 +1,43 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, ImageBackground } from 'react-native';
+import { View, Button, Text } from 'native-base';
 
-class HomeScreen extends React.Component {
+export default class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>
-          Top Player
-        </Text>
-        <View style={styles.container}>
-          <Button
-            title="Games Screen"
-            onPress={() => this.props.navigation.navigate('Games')}
-          />
-        </View>
+        <ImageBackground style={styles.background} source={require('../assets/icons/Pattern-Fill.png')}>
+          <View style={styles.child}>
+            <Text style={styles.title}>
+              Top Player
+            </Text>
+            <View>
+              <Button
+                onPress={() => this.props.navigation.navigate('Games')}
+              ><Text>Games</Text></Button>
+            </View>
+          </View>
+        </ImageBackground>
       </View>
+
     );
   }
 }
 
 const styles = StyleSheet.create({
     container: {
-      paddingTop: '40%',
-      flex: 1,
+      display: 'flex',
       justifyContent: 'flex-start',
+      alignItems: 'flex-start'
+    },
+    background: {
+      width: '100%',
+      height: '100%',
+    },
+    child: {
+      flex: 1,
       alignItems: 'center',
-      backgroundColor: 'white',
+      justifyContent: 'center' 
     },
     title: {
       fontSize: 45,
@@ -33,8 +45,6 @@ const styles = StyleSheet.create({
       color: "#B73491",
       fontWeight: "500",
       lineHeight: 54,
-      letterSpacing: -1.46
+      letterSpacing: -1.46,
     }
 });
-
-export default HomeScreen;

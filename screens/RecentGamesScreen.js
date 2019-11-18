@@ -1,19 +1,23 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, ImageBackground } from 'react-native';
+import { View, Button, Text } from 'native-base';
 
 export default class RecentGames extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>
-          Recent Games
-        </Text>
-        <View style={styles.container}>
-          <Button
-            title="Players Screen"
-            onPress={() => this.props.navigation.navigate('Players')}
-          />
-        </View>
+        <ImageBackground style={styles.background} source={require('../assets/icons/Pattern-Fill.png')}>
+          <View style={styles.child}>
+            <Text style={styles.title}>
+              Recent Games
+            </Text>
+            <View>
+              <Button 
+                onPress={() => this.props.navigation.navigate('Players')}
+              ><Text>Players</Text></Button>
+            </View>
+          </View>
+        </ImageBackground>
       </View>
     );
   }
@@ -21,11 +25,18 @@ export default class RecentGames extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: '40%',
-    flex: 1,
+    display: 'flex',
     justifyContent: 'flex-start',
+    alignItems: 'flex-start'
+  },
+  background: {
+    width: '100%',
+    height: '100%',
+  },
+  child: {
+    flex: 1,
     alignItems: 'center',
-    backgroundColor: 'white',
+    justifyContent: 'center' 
   },
   title: {
     fontSize: 45,
