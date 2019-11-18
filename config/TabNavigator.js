@@ -14,7 +14,7 @@ const Tab = createBottomTabNavigator(
       style: {
         backgroundColor: "#F0F0F0",
         borderTopColor: "transparent",
-        height: 55 
+        height: 55
       },
       labelStyle: {
         fontSize: 13,

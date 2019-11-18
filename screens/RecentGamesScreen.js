@@ -1,49 +1,18 @@
-import React from 'react';
-import { StyleSheet, ImageBackground } from 'react-native';
-import { View, Button, Text } from 'native-base';
+import React, { Component } from 'react';
+import { Container } from 'native-base';
+import HeaderLg from '../components/HeaderLarge';
+import HeadingTitle from '../components/TopPlayer';
+import BgImage from '../components/backgroundImage';
 
-export default class RecentGames extends React.Component {
+export default class RecentGames extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <ImageBackground style={styles.background} source={require('../assets/icons/Pattern-Fill.png')}>
-          <View style={styles.child}>
-            <Text style={styles.title}>
-              Recent Games
-            </Text>
-            <View>
-              <Button 
-                onPress={() => this.props.navigation.navigate('Players')}
-              ><Text>Players</Text></Button>
-            </View>
-          </View>
-        </ImageBackground>
-      </View>
+      <Container>
+        <BgImage>
+        <HeaderLg onPress={() => this.props.navigation.navigate('Players')}/>
+        <HeadingTitle title="Recent Games" />
+        </BgImage>
+      </Container>
     );
   }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    display: 'flex',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start'
-  },
-  background: {
-    width: '100%',
-    height: '100%',
-  },
-  child: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center' 
-  },
-  title: {
-    fontSize: 45,
-    fontFamily: "KlinicSlab-Book",
-    color: "#B73491",
-    fontWeight: "500",
-    lineHeight: 54,
-    letterSpacing: -1.46
-  }
-});
+};
