@@ -9,8 +9,8 @@ export default class RecentGames extends Component {
     return (
       <Container>
         <BgImage>
-        <HeaderLg onPress={() => this.props.navigation.navigate('Players')}/>
-        <HeadingTitle title="Recent Games" />
+          <HeaderLg />
+          <HeadingTitle title="Recent Games" />
         </BgImage>
       </Container>
     );

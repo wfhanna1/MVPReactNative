@@ -1,9 +1,26 @@
 import React from 'react';
-import { createAppContainer } from 'react-navigation';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
-import Players from '../screens/HomeScreen';
+import PlayersScreen from '../screens/HomeScreen';
 import Games from '../screens/RecentGamesScreen';
+import RecordMatchScreen from '../screens/RecordMatchScreen';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { createStackNavigator } from 'react-navigation-stack';
+
+const Players = createStackNavigator({
+  Players: {
+    screen: PlayersScreen,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  RecordMatch: {
+    screen: RecordMatchScreen,
+    navigationOptions: {
+      header: null,
+    },
+  }
+});
 
 const Tab = createBottomTabNavigator(
   {

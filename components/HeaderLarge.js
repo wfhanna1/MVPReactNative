@@ -13,7 +13,7 @@ const HeaderLg = ({ onPress, children, style, ...props }) => {
         <View style={styles.container}>
           <Text style={styles.title}>Office MVP</Text>
           <RecordMatchButton />
-          <AddNewPlayerButton onPress={onPress}/>
+          <AddNewPlayerButton />
         </View>
       </ImageBackground>
   );

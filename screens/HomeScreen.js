@@ -9,7 +9,7 @@ export default class HomeScreen extends Component {
     return (
       <Container>
         <BgImage>
-          <HeaderLg onPress={() => this.props.navigation.navigate('Games')}/>
+          <HeaderLg />
           <HeadingTitle title="Top Player" />
         </BgImage>
       </Container>
