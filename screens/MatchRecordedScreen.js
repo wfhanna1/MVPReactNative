@@ -1,31 +1,33 @@
-import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet } from 'react-native'
+import { Container, Text, Button } from 'native-base';
+import HeaderSm from '../components/HeaderSmall';
+import BgImage from '../components/backgroundImage';
+import { withNavigation } from 'react-navigation';
 
-export default class MatchRecordedScreen extends React.Component {
+class RecordMatchScreen extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.title}>
-          Match Recorded!
-        </Text>
-        <Button
-        title="Home Screen"
-        onPress={() => this.props.navigation.navigate('Home')}
-      />
-      </View>
+      <Container>
+        <BgImage>
+          <HeaderSm style={styles.title} headerTitle='Match Recorded!'/>
+        </BgImage>
+      </Container>
     );
   }
-}
+};
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: '40%',
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    alignItems: 'center'
   },
-  title: {
-    fontSize: 40,
+  input: {
+    borderBottomColor: 'red',
+    width: '80%'
+  },
+  text: {
+    marginTop: 30
   }
 });
+
+export default (withNavigation(RecordMatchScreen));

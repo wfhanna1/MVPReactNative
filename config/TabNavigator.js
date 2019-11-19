@@ -29,10 +29,7 @@ const Players = createStackNavigator({
     },
   },
   MatchRecorded: {
-    screen: MatchRecordedScreen,
-    navigationOptions: {
-      header: null,
-    },
+    screen: MatchRecordedScreen
   }
 });
 

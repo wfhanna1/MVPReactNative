@@ -11,7 +11,7 @@ export default class RecordMatchScreen extends Component {
     return (
       <Container>
         <BgImage>
-          <HeaderSm style={styles.title}/>
+          <HeaderSm style={styles.title} headerTitle='Add New Player'/>
           <Text>Full Name</Text>
           <View style={styles.container}>
           <Item style={styles.input}>

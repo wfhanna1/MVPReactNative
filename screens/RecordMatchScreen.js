@@ -5,13 +5,15 @@ import HeaderSm from '../components/HeaderSmall';
 import GrayHeading from '../components/GrayHeading';
 import BgImage from '../components/backgroundImage';
 import AddNewPlayerButton from '../components/AddNewPlayerButton';
+import RecordMatchButton from '../components/RecordMatchButton';
+import { withNavigation } from 'react-navigation';
 
-export default class RecordMatchScreen extends Component {
+class RecordMatchScreen extends Component {
   render() {
     return (
       <Container>
         <BgImage>
-          <HeaderSm style={styles.title}/>
+          <HeaderSm style={styles.title} headerTitle='Record Match'/>
           <Text>Choose a game</Text>
           <View style={styles.container}>
           <Item style={styles.input}>
@@ -27,6 +29,7 @@ export default class RecordMatchScreen extends Component {
           </View>
           <AddNewPlayerButton />
           <GrayHeading title={'Match Players'}/>
+          <RecordMatchButton onPress={() => this.props.navigation.navigate('MatchRecorded')}/>
         </BgImage>
       </Container>
     );
@@ -35,16 +38,15 @@ export default class RecordMatchScreen extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    display: 'flex',
-    alignItems: 'center',
-    width: '100%'
+    alignItems: 'center'
   },
   input: {
     borderBottomColor: 'red',
     width: '80%'
-
   },
   text: {
     marginTop: 30
   }
 });
+
+export default (withNavigation(RecordMatchScreen));
