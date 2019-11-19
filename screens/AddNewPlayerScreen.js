@@ -12,17 +12,17 @@ export default class RecordMatchScreen extends Component {
       <Container>
         <BgImage>
           <HeaderSm style={styles.title}/>
-          <Text>Choose a game</Text>
+          <Text>Full Name</Text>
           <View style={styles.container}>
           <Item style={styles.input}>
-            <Input placeholder='Foosball' />
+            <Input placeholder='Max Power' />
           </Item>
           </View>
-          <Text style={styles.text}>Who played?</Text>
+          <Text style={styles.text}>Email Address</Text>
           <View style={styles.container}>
           <Item style={styles.input}>
-            <Input placeholder='Search by name or email' />
-            <Icon active type='FontAwesome' name='plus-circle' onPress={() => alert(':)')} />
+            <Input placeholder='Max.Power@insight.com' />
+            <Icon active onPress={() => alert(':)')} />
           </Item>
           </View>
           <AddNewPlayerButton />

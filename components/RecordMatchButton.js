@@ -5,11 +5,14 @@ import LinearGradient from 'react-native-linear-gradient';
 import { withNavigation } from 'react-navigation';
 
 class RecordMatchButton extends Component {
+  constructor(props){
+    super(props)
+  }
   render() {
     return (
       <View style={styles.boxShadow}>
       <LinearGradient start={{x: 0, y: 0}} end={{x:1, y:0}} locations={[0,0.7]} colors={['#983794', '#4B285F']} style={styles.linearGradient}>
-        <Button rounded style={styles.button} onPress={() => this.props.navigation.navigate('RecordMatch')} >
+        <Button rounded style={styles.button} onPress={this.props.onPress} >
           <Text style={styles.text}>Record Match</Text>
         </Button>
         </LinearGradient>
@@ -28,7 +31,6 @@ const styles = StyleSheet.create ({
   },
   linearGradient: {
     borderRadius: 50,
-   
   },
   text: {
     fontSize: 25,
