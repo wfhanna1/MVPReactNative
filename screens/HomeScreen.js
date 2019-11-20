@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, StyleSheet } from 'react-native'
+import { ScrollView } from 'react-native'
 import HeaderLg from '../components/HeaderLarge';
 import HeadingTitle from '../components/TopPlayer';
 import BgImage from '../components/backgroundImage';
@@ -11,18 +11,11 @@ class HomeScreen extends Component {
         <ScrollView>
         <BgImage>
           <HeaderLg />
-          <HeadingTitle style={styles.heading} title="Top Player" />
+          <HeadingTitle title="Top Player" />
         </BgImage>
         </ScrollView>
-      
     );
   }
 };
 
-const styles = StyleSheet.create({
-  heading: {
-    marginTop: -30,
-    color: 'blue'
-  }
-});
 export default (withNavigation(HomeScreen));

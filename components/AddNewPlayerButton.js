@@ -6,7 +6,7 @@ import { withNavigation } from 'react-navigation';
 class AddNewPlayerButton extends Component {
   render() {
     return (
-      <Button style={styles.button} transparent onPress={() => this.props.navigation.navigate('AddNewPlayer')}>
+      <Button transparent onPress={() => this.props.navigation.navigate('AddNewPlayer')}>
         <Text style={styles.text}>Add new player&nbsp;
           <Icon type='FontAwesome' name='plus-circle' style={styles.icon} />
         </Text>
@@ -16,9 +16,6 @@ class AddNewPlayerButton extends Component {
 }
 
 const styles = StyleSheet.create ({
-  button: {
-    alignSelf: 'center'
-  },
   text: {
     color: '#4166AA',
     fontSize: 16

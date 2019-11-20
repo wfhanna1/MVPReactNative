@@ -10,7 +10,7 @@ class RecordMatchButton extends Component {
   }
   render() {
     return (
-      <View style={styles.boxShadow}>
+      <View style={styles.container}>
       <LinearGradient start={{x: 0, y: 0}} end={{x:1, y:0}} locations={[0,0.7]} colors={['#983794', '#4B285F']} style={styles.linearGradient}>
         <Button rounded style={styles.button} onPress={this.props.onPress} >
           <Text style={styles.text}>Record Match</Text>
@@ -22,7 +22,7 @@ class RecordMatchButton extends Component {
 }
 
 const styles = StyleSheet.create ({
-  boxShadow: {
+  container: {
     alignItems: 'center',
     shadowColor: 'rgba(0,0,0,0.3)',
     shadowOffset: { width: 0, height: 1 },
@@ -35,8 +35,8 @@ const styles = StyleSheet.create ({
     width: 195
   },
   text: {
-    fontSize: 25,
     fontFamily: 'KlinicSlab-Book',
+    fontSize: 25,
     fontWeight: '500',
     letterSpacing: -0.8,
     marginTop: 8,
