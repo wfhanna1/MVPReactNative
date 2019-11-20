@@ -1,16 +1,19 @@
-import React from 'react'
-import { ImageBackground } from 'react-native'
+import React from 'react';
+import { ImageBackground } from 'react-native';
 
-const BgImage = ({ children, style, ...props }) => {
+const bgPattern = require('../assets/icons/Pattern-Fill.png');
+
+export default function BgImage({ children, style }) {
   return (
-      <ImageBackground
-        source={require('../assets/icons/Pattern-Fill.png')}
-        style={{flex: 1, width: null, height: null, ...style}}
-        {...props}>
-        {children}
-      </ImageBackground>
+    <ImageBackground
+      source={bgPattern}
+      style={
+      {
+        flex: 1, width: null, height: null, ...style
+      }
+       }
+    >
+      {children}
+    </ImageBackground>
   );
 }
-
-export default BgImage;
-

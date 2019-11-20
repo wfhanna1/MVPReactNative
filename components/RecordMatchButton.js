@@ -1,27 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Button, Text, View } from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
 import { withNavigation } from 'react-navigation';
 
-class RecordMatchButton extends Component {
-  constructor(props){
-    super(props)
-  }
-  render() {
-    return (
-      <View style={styles.container}>
-      <LinearGradient start={{x: 0, y: 0}} end={{x:1, y:0}} locations={[0,0.7]} colors={['#983794', '#4B285F']} style={styles.linearGradient}>
-        <Button rounded style={styles.button} onPress={this.props.onPress} >
+function RecordMatchButton({ onPress }) {
+  return (
+    <View style={styles.container}>
+      <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} locations={[0, 0.7]} colors={['#983794', '#4B285F']} style={styles.linearGradient}>
+        <Button rounded style={styles.button} onPress={onPress}>
           <Text style={styles.text}>Record Match</Text>
         </Button>
-        </LinearGradient>
-      </View>
-    );
-  }
+      </LinearGradient>
+    </View>
+  );
 }
 
-const styles = StyleSheet.create ({
+const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     shadowColor: 'rgba(0,0,0,0.3)',

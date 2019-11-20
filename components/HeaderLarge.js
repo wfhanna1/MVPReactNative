@@ -1,23 +1,29 @@
-import React, { Component } from 'react';
-import { View, StyleSheet, Text, ImageBackground} from 'react-native';
-import RecordMatchButton from '../components/RecordMatchButton';
-import AddNewPlayerButton from '../components/AddNewPlayerButton';
+import React from 'react';
+import {
+  View,
+  StyleSheet,
+  Text,
+  ImageBackground
+} from 'react-native';
 import { withNavigation } from 'react-navigation';
+import RecordMatchButton from './RecordMatchButton';
+import AddNewPlayerButton from './AddNewPlayerButton';
 
-class HeaderLg extends Component {
-  render() {
-    return (
-      <ImageBackground
-        source={require('../assets/icons/Header-Background-Large2x.png')}
-        style={{width: '100%', height: 225}}>
-        <View style={styles.container}>
-          <Text style={styles.title}>Office MVP</Text>
-          <RecordMatchButton onPress={() => this.props.navigation.navigate('RecordMatch')}/>
-          <AddNewPlayerButton />
-        </View>
-      </ImageBackground>
-    );
-  }
+const headerImageLg = require('../assets/icons/Header-Background-Large2x.png');
+
+function HeaderLg({ navigation }) {
+  return (
+    <ImageBackground
+      source={headerImageLg}
+      style={{ width: '100%', height: 225 }}
+    >
+      <View style={styles.container}>
+        <Text style={styles.title}>Office MVP</Text>
+        <RecordMatchButton onPress={() => navigation.navigate('RecordMatch')} />
+        <AddNewPlayerButton />
+      </View>
+    </ImageBackground>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -28,7 +34,6 @@ const styles = StyleSheet.create({
     fontSize: 75,
     color: '#FFFFFF',
     marginTop: '-20%'
-   
   },
   container: {
     alignItems: 'center',

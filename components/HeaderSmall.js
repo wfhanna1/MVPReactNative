@@ -1,18 +1,24 @@
-import React, { Component } from 'react';
-import { View, StyleSheet, Text, ImageBackground} from 'react-native';
+import React from 'react';
+import {
+  View,
+  StyleSheet,
+  Text,
+  ImageBackground
+} from 'react-native';
 
-class HeaderSm extends Component {
-  render() {
-    return (
-      <ImageBackground
-        source={require('../assets/icons/Header-Background-Small.png')}
-        style={{width: '100%', height: 170}}>
-        <View style={styles.container}>
-          <Text style={styles.title}>{this.props.headerTitle}</Text>
-        </View>
-      </ImageBackground>
-    )
-  };
+const headerImageSm = require('../assets/icons/Header-Background-Small.png');
+
+function HeaderSm({ headerTitle }) {
+  return (
+    <ImageBackground
+      source={headerImageSm}
+      style={{ width: '100%', height: 170 }}
+    >
+      <View style={styles.container}>
+        <Text style={styles.title}>{headerTitle}</Text>
+      </View>
+    </ImageBackground>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -23,7 +29,6 @@ const styles = StyleSheet.create({
     fontSize: 45,
     color: '#FFFFFF',
     marginTop: '-35%'
-   
   },
   container: {
     alignItems: 'center',

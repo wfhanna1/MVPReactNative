@@ -1,46 +1,46 @@
-import React, { Component } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native'
-import { Container, Text, Item, Input, Icon, Form } from 'native-base';
+import React from 'react';
+import { ScrollView, StyleSheet, View } from 'react-native';
+import {
+  Text, Item, Input, Icon, Form
+} from 'native-base';
+import { withNavigation } from 'react-navigation';
 import HeaderSm from '../components/HeaderSmall';
 import GrayHeading from '../components/GrayHeading';
 import BgImage from '../components/backgroundImage';
 import AddNewPlayerButton from '../components/AddNewPlayerButton';
 import RecordMatchButton from '../components/RecordMatchButton';
-import { withNavigation } from 'react-navigation';
 
-class RecordMatchScreen extends Component {
-  render() {
-    return (
-        <ScrollView>
-        <BgImage>
-          <HeaderSm style={styles.title} headerTitle='Record Match'/>
-          <View style={styles.parent}>
-            <Form>
+function RecordMatchScreen({ navigation }) {
+  return (
+    <ScrollView>
+      <BgImage>
+        <HeaderSm style={styles.title} headerTitle="Record Match" />
+        <View style={styles.parent}>
+          <Form>
             <View style={styles.container}>
               <Text style={styles.text}>Choose a game</Text>
               <Item style={styles.item}>
-                <Input style={styles.input} placeholder='Foosball' />
+                <Input style={styles.input} placeholder="Foosball" />
               </Item>
             </View>
             <View style={styles.container}>
               <Text style={styles.text}>Who played?</Text>
               <Item style={styles.item}>
-                <Input style={styles.input} placeholder='Search by name or email' />
-                <Icon active style={styles.icon} type='FontAwesome' name='plus-circle' onPress={() => alert(':)')} />
+                <Input style={styles.input} placeholder="Search by name or email" />
+                <Icon active style={styles.icon} type="FontAwesome" name="plus-circle" />
               </Item>
             </View>
-            </Form>
-          </View>
-          <View style={styles.button}>
-           <AddNewPlayerButton />
-          </View>
-          <GrayHeading title={'Match Players'}/>
-          <RecordMatchButton onPress={() => this.props.navigation.navigate('MatchRecorded')}/>
-        </BgImage>
-        </ScrollView>
-    );
-  }
-};
+          </Form>
+        </View>
+        <View style={styles.button}>
+          <AddNewPlayerButton />
+        </View>
+        <GrayHeading title="Match Players" />
+        <RecordMatchButton onPress={() => navigation.navigate('MatchRecorded')} />
+      </BgImage>
+    </ScrollView>
+  );
+}
 
 const styles = StyleSheet.create({
   parent: {
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   },
   item: {
     borderBottomColor: '#B73491',
-    borderBottomWidth:2,
+    borderBottomWidth: 2,
     width: '80%'
   },
   input: {
