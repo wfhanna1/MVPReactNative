@@ -17,9 +17,8 @@ export default class HeadingTitle extends Component {
 
 const styles = StyleSheet.create ({
   title: {
-    position: 'absolute',
+      marginTop: '7%',
       width: '100%',
-      marginTop: '70%',
       textAlign: 'center',
       fontSize: 45,
       fontFamily: "KlinicSlab-Book",

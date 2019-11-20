@@ -7,7 +7,7 @@ class AddNewPlayerButton extends Component {
   render() {
     return (
       <Button style={styles.button} transparent onPress={() => this.props.navigation.navigate('AddNewPlayer')}>
-        <Text style={styles.text}>Add new player{' '}
+        <Text style={styles.text}>Add new player&nbsp;
           <Icon type='FontAwesome' name='plus-circle' style={styles.icon} />
         </Text>
       </Button>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container } from 'native-base';
+import { ScrollView } from 'react-native';
 import HeaderLg from '../components/HeaderLarge';
 import HeadingTitle from '../components/TopPlayer';
 import BgImage from '../components/backgroundImage';
@@ -7,12 +7,12 @@ import BgImage from '../components/backgroundImage';
 export default class RecentGames extends Component {
   render() {
     return (
-      <Container>
+      <ScrollView>
         <BgImage>
           <HeaderLg />
           <HeadingTitle title="Recent Games" />
         </BgImage>
-      </Container>
+      </ScrollView>
     );
   }
 };

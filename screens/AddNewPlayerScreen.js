@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native'
 import { Container, Text, Header, Content, Item, Input, Icon } from 'native-base';
 import HeaderSm from '../components/HeaderSmall';
-import GrayHeading from '../components/GrayHeading';
 import BgImage from '../components/backgroundImage';
-import AddNewPlayerButton from '../components/AddNewPlayerButton';
 
 export default class RecordMatchScreen extends Component {
   render() {
@@ -25,8 +23,6 @@ export default class RecordMatchScreen extends Component {
             <Icon active onPress={() => alert(':)')} />
           </Item>
           </View>
-          <AddNewPlayerButton />
-          <GrayHeading title={'Match Players'}/>
         </BgImage>
       </Container>
     );

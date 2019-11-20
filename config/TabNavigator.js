@@ -1,5 +1,5 @@
 import React from 'react';
-import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import PlayersScreen from '../screens/HomeScreen';
 import Games from '../screens/RecentGamesScreen';
@@ -29,7 +29,10 @@ const Players = createStackNavigator({
     },
   },
   MatchRecorded: {
-    screen: MatchRecordedScreen
+    screen: MatchRecordedScreen,
+    navigationOptions: {
+      header: null,
+    },
   }
 });
 

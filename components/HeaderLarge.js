@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Text, ImageBackground} from 'react-native';
 import RecordMatchButton from '../components/RecordMatchButton';
+import AddNewPlayerButton from '../components/AddNewPlayerButton';
 import { withNavigation } from 'react-navigation';
 
 class HeaderLg extends Component {
@@ -12,6 +13,7 @@ class HeaderLg extends Component {
         <View style={styles.container}>
           <Text style={styles.title}>Office MVP</Text>
           <RecordMatchButton onPress={() => this.props.navigation.navigate('RecordMatch')}/>
+          <AddNewPlayerButton />
         </View>
       </ImageBackground>
     );

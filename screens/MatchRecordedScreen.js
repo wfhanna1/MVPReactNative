@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native'
-import { Container, Text, Button } from 'native-base';
+import { StyleSheet, ScrollView } from 'react-native'
 import HeaderSm from '../components/HeaderSmall';
 import BgImage from '../components/backgroundImage';
 import { withNavigation } from 'react-navigation';
@@ -8,11 +7,11 @@ import { withNavigation } from 'react-navigation';
 class RecordMatchScreen extends Component {
   render() {
     return (
-      <Container>
+      <ScrollView>
         <BgImage>
           <HeaderSm style={styles.title} headerTitle='Match Recorded!'/>
         </BgImage>
-      </Container>
+        </ScrollView>
     );
   }
 };

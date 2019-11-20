@@ -24,7 +24,7 @@ class RecordMatchButton extends Component {
 const styles = StyleSheet.create ({
   boxShadow: {
     alignItems: 'center',
-    shadowColor: '#rgba(0,0,0,0.3)',
+    shadowColor: 'rgba(0,0,0,0.3)',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.8,
     shadowRadius: 1,
@@ -32,7 +32,7 @@ const styles = StyleSheet.create ({
   },
   linearGradient: {
     borderRadius: 50,
-    width: 195,
+    width: 195
   },
   text: {
     fontSize: 25,
@@ -46,8 +46,7 @@ const styles = StyleSheet.create ({
   button: {
     alignItems: 'center',
     backgroundColor: 'transparent',
-    height: 54,
-    
+    height: 54
   }
 });
 
