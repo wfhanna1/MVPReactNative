@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
-import { Button, Text, Icon } from 'native-base';
+import { Button, Text, Icon, View } from 'native-base';
 import { withNavigation } from 'react-navigation';
 
 class AddNewPlayerButton extends Component {
-  constructor(props) {
-    super(props)
-  }
   render() {
     return (
-      <Button transparent onPress={this.props.onPress}>
-        <Text style={styles.link}>Add new player{' '}
+      <Button transparent onPress={() => this.props.navigation.navigate('AddNewPlayer')}>
+        <Text style={styles.text}>Add new player&nbsp;
           <Icon type='FontAwesome' name='plus-circle' style={styles.icon} />
         </Text>
       </Button>
@@ -19,7 +16,7 @@ class AddNewPlayerButton extends Component {
 }
 
 const styles = StyleSheet.create ({
-  link: {
+  text: {
     color: '#4166AA',
     fontSize: 16
   },

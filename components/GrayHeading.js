@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import { Text } from 'native-base';
 
-export default class HeadingTitle extends Component {
+export default class GrayHeading extends Component {
   constructor(props) {
     super(props)
   }
@@ -17,14 +17,11 @@ export default class HeadingTitle extends Component {
 
 const styles = StyleSheet.create ({
   title: {
-      marginTop: '7%',
-      width: '100%',
       textAlign: 'center',
       fontSize: 45,
       fontFamily: "KlinicSlab-Book",
-      color: "#B73491",
+      color: "#6E645F",
       fontWeight: "500",
-      lineHeight: 54,
       letterSpacing: -1.46,
   }
 });

@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
-import { Container } from 'native-base';
+import { ScrollView } from 'react-native'
 import HeaderLg from '../components/HeaderLarge';
 import HeadingTitle from '../components/TopPlayer';
 import BgImage from '../components/backgroundImage';
+import { withNavigation } from 'react-navigation';
 
-export default class HomeScreen extends Component {
+class HomeScreen extends Component {
   render() {
     return (
-      <Container>
+        <ScrollView>
         <BgImage>
-          <HeaderLg onPress={() => this.props.navigation.navigate('Games')}/>
+          <HeaderLg />
           <HeadingTitle title="Top Player" />
         </BgImage>
-      </Container>
+        </ScrollView>
     );
   }
 };
+
+export default (withNavigation(HomeScreen));
