@@ -8,6 +8,7 @@ import Games from '../screens/RecentGamesScreen';
 import RecordMatchScreen from '../screens/RecordMatchScreen';
 import AddNewPlayerScreen from '../screens/AddNewPlayerScreen';
 import MatchRecordedScreen from '../screens/MatchRecordedScreen';
+import LoadingScreen from '../screens/LoadingScreen';
 
 const Players = createStackNavigator({
   Players: {
@@ -30,6 +31,12 @@ const Players = createStackNavigator({
   },
   MatchRecorded: {
     screen: MatchRecordedScreen,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  Loading: {
+    screen: LoadingScreen,
     navigationOptions: {
       header: null,
     },
