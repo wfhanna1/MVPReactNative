@@ -1,14 +1,14 @@
 import React from 'react'
-import { BackgroundImage } from 'react-native'
+import { ImageBackground } from 'react-native'
 
-const BgImage = ({ source, children, style, ...props }) => {
+const BgImage = ({ children, style, ...props }) => {
   return (
-      <BackgroundImage
-        source={source}
+      <ImageBackground
+        source={require('../assets/icons/Pattern-Fill.png')}
         style={{flex: 1, width: null, height: null, ...style}}
         {...props}>
         {children}
-      </BackgroundImage>
+      </ImageBackground>
   );
 }
 
