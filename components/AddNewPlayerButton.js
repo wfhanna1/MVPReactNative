@@ -1,21 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Button, Text, Icon, View } from 'native-base';
+import { Button, Text, Icon } from 'native-base';
 import { withNavigation } from 'react-navigation';
 
-class AddNewPlayerButton extends Component {
-  render() {
-    return (
-      <Button transparent onPress={() => this.props.navigation.navigate('AddNewPlayer')}>
-        <Text style={styles.text}>Add new player&nbsp;
-          <Icon type='FontAwesome' name='plus-circle' style={styles.icon} />
-        </Text>
-      </Button>
-    );
-  }
+function AddNewPlayerButton({ navigation }) {
+  return (
+    <Button transparent onPress={() => navigation.navigate('AddNewPlayer')}>
+      <Text style={styles.text}>
+        Add new player&nbsp;
+        <Icon type="FontAwesome" name="plus-circle" style={styles.icon} />
+      </Text>
+    </Button>
+  );
 }
 
-const styles = StyleSheet.create ({
+const styles = StyleSheet.create({
   text: {
     color: '#4166AA',
     fontSize: 16
