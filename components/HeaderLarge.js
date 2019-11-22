@@ -1,9 +1,6 @@
 import React from 'react';
 import {
-  View,
-  StyleSheet,
-  Text,
-  ImageBackground
+  View, StyleSheet, Text, ImageBackground
 } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import RecordMatchButton from './RecordMatchButton';
@@ -19,7 +16,7 @@ function HeaderLg({ navigation }) {
     >
       <View style={styles.container}>
         <Text style={styles.title}>Office MVP</Text>
-        <RecordMatchButton onPress={() => navigation.navigate('RecordMatch')} />
+        <RecordMatchButton title="Record Match" onPress={() => navigation.navigate('RecordMatch')} />
         <AddNewPlayerButton />
       </View>
     </ImageBackground>

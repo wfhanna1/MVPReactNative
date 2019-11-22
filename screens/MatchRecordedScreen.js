@@ -6,11 +6,11 @@ import BgImage from '../components/backgroundImage';
 
 function RecordMatchScreen() {
   return (
-    <ScrollView>
-      <BgImage>
+    <BgImage>
+      <ScrollView>
         <HeaderSm style={styles.title} headerTitle="Match Recorded!" />
-      </BgImage>
-    </ScrollView>
+      </ScrollView>
+    </BgImage>
   );
 }
 

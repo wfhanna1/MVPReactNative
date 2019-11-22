@@ -18,7 +18,6 @@ export default function LoadingScreen() {
           <Text style={styles.title}>Office MVP</Text>
         </View>
       </View>
-
     </ImageBackground>
   );
 }

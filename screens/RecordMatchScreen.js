@@ -9,14 +9,14 @@ import GrayHeading from '../components/GrayHeading';
 import BgImage from '../components/backgroundImage';
 import AddNewPlayerButton from '../components/AddNewPlayerButton';
 import RecordMatchButton from '../components/RecordMatchButton';
-import MatchPlayers from '../components/MatchPlayers';
+import PlayerMatched from '../components/PlayerMatched';
 
 function RecordMatchScreen({ navigation }) {
   const [toggleMatchedPlayers, setToggleMatchedPlayers] = useState(false);
 
   return (
-    <ScrollView>
-      <BgImage>
+    <BgImage>
+      <ScrollView>
         <HeaderSm style={styles.title} headerTitle="Record Match" />
         <View style={styles.parent}>
           <Form>
@@ -42,14 +42,13 @@ function RecordMatchScreen({ navigation }) {
           {toggleMatchedPlayers ? (
             <View>
               <GrayHeading title="Match Players" />
-              <MatchPlayers />
-              <MatchPlayers />
-              <MatchPlayers />
-              <MatchPlayers />
-              <MatchPlayers />
-              <MatchPlayers />
-              <MatchPlayers />
-              <RecordMatchButton onPress={() => navigation.navigate('MatchRecorded')} />
+              <PlayerMatched />
+              <PlayerMatched />
+              <PlayerMatched />
+              <PlayerMatched />
+              <PlayerMatched />
+              <PlayerMatched />
+              <RecordMatchButton title="Record Match" onPress={() => navigation.navigate('MatchRecorded')} />
               <Button
                 style={styles.cancelButton}
                 transparent
@@ -61,8 +60,8 @@ function RecordMatchScreen({ navigation }) {
           )
             : null}
         </View>
-      </BgImage>
-    </ScrollView>
+      </ScrollView>
+    </BgImage>
   );
 }
 
@@ -111,7 +110,7 @@ const styles = StyleSheet.create({
     fontWeight: '300',
     color: '#4166AA',
     fontSize: 16,
-    marginLeft: -17
+    marginLeft: -17,
   },
 });
 

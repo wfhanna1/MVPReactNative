@@ -4,7 +4,7 @@ import { Text, Button } from 'native-base';
 
 const playerImage = require('../assets/icons/Profile-Image-Example.png');
 
-export default function MatchPlayers() {
+export default function PlayerMatched() {
   return (
     <View>
       <View style={styles.playerComponent}>
