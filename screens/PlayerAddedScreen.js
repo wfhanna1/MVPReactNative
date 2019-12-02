@@ -5,7 +5,7 @@ import { withNavigation } from 'react-navigation';
 import HeaderSm from '../components/HeaderSmall';
 import BgImage from '../components/backgroundImage';
 import RecordMatchButton from '../components/RecordMatchButton';
-import AddNewPlayerButton from '../components/AddNewPlayerButton'
+import AddNewPlayerButton from '../components/AddNewPlayerButton';
 
 const playerImage = require('../assets/icons/Profile-Image-Example.png');
 
