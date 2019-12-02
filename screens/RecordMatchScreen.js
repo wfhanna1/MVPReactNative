@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import {
-  Text, Item, Input, Icon, Form
+  Text, Item, Input, Icon, Form, Button
 } from 'native-base';
 import { withNavigation } from 'react-navigation';
 import HeaderSm from '../components/HeaderSmall';
@@ -9,8 +9,11 @@ import GrayHeading from '../components/GrayHeading';
 import BgImage from '../components/backgroundImage';
 import AddNewPlayerButton from '../components/AddNewPlayerButton';
 import RecordMatchButton from '../components/RecordMatchButton';
+import MatchPlayers from '../components/MatchPlayers';
 
 function RecordMatchScreen({ navigation }) {
+  const [toggleMatchedPlayers, setToggleMatchedPlayers] = useState(false);
+
   return (
     <ScrollView>
       <BgImage>
@@ -27,7 +30,7 @@ function RecordMatchScreen({ navigation }) {
               <Text style={styles.text}>Who played?</Text>
               <Item style={styles.item}>
                 <Input style={styles.input} placeholder="Search by name or email" />
-                <Icon active style={styles.icon} type="FontAwesome" name="plus-circle" />
+                <Icon active style={styles.icon} type="FontAwesome" name="plus-circle" onPress={() => setToggleMatchedPlayers(!toggleMatchedPlayers)} />
               </Item>
             </View>
           </Form>
@@ -35,8 +38,29 @@ function RecordMatchScreen({ navigation }) {
         <View style={styles.button}>
           <AddNewPlayerButton />
         </View>
-        <GrayHeading title="Match Players" />
-        <RecordMatchButton onPress={() => navigation.navigate('MatchRecorded')} />
+        <View>
+          {toggleMatchedPlayers ? (
+            <View>
+              <GrayHeading title="Match Players" />
+              <MatchPlayers />
+              <MatchPlayers />
+              <MatchPlayers />
+              <MatchPlayers />
+              <MatchPlayers />
+              <MatchPlayers />
+              <MatchPlayers />
+              <RecordMatchButton onPress={() => navigation.navigate('MatchRecorded')} />
+              <Button
+                style={styles.cancelButton}
+                transparent
+                onPress={() => setToggleMatchedPlayers(!toggleMatchedPlayers)}
+              >
+                <Text style={styles.cancelText}>Cancel</Text>
+              </Button>
+            </View>
+          )
+            : null}
+        </View>
       </BgImage>
     </ScrollView>
   );
@@ -76,8 +100,19 @@ const styles = StyleSheet.create({
   button: {
     marginTop: '1%',
     marginBottom: '6%',
-    marginLeft: '8%'
-  }
+    marginLeft: '8%',
+    alignSelf: 'center'
+  },
+  cancelButton: {
+    alignSelf: 'center'
+  },
+  cancelText: {
+    letterSpacing: -0.52,
+    fontWeight: '300',
+    color: '#4166AA',
+    fontSize: 16,
+    marginLeft: -17
+  },
 });
 
 export default (withNavigation(RecordMatchScreen));

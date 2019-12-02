@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Text } from 'native-base';
 
-export default function HeadingTitle({ title }) {
+export default function ColorHeading({ title }) {
   return (
     <Text style={styles.title}>
       {title}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ScrollView } from 'react-native';
 import HeaderLg from '../components/HeaderLarge';
-import HeadingTitle from '../components/TopPlayer';
+import ColorHeading from '../components/ColorHeading';
 import BgImage from '../components/backgroundImage';
 
 export default function RecentGames() {
@@ -9,7 +9,7 @@ export default function RecentGames() {
     <ScrollView>
       <BgImage>
         <HeaderLg />
-        <HeadingTitle title="Recent Games" />
+        <ColorHeading title="Recent Games" />
       </BgImage>
     </ScrollView>
   );
