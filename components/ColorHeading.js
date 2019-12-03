@@ -13,6 +13,7 @@ export default function ColorHeading({ title }) {
 const styles = StyleSheet.create({
   title: {
     marginTop: '7%',
+    marginBottom: '2%',
     width: '100%',
     textAlign: 'center',
     fontSize: 45,

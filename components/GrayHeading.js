@@ -18,5 +18,6 @@ const styles = StyleSheet.create({
     color: '#6E645F',
     fontWeight: '500',
     letterSpacing: -1.46,
+    marginBottom: '4%'
   }
 });

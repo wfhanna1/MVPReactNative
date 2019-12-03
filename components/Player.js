@@ -4,16 +4,19 @@ import { Text } from 'native-base';
 
 const playerImage = require('../assets/icons/Profile-Image-Example.png');
 
-export default function Player() {
+export default function Player({ name, points, rank }) {
   return (
     <View>
       <View style={styles.playerComponent}>
-        <Text style={styles.number}>1</Text>
+        <Text style={styles.number}>{rank}</Text>
         <Image style={styles.picture} source={playerImage} />
         <View>
           <Text style={styles.game}>Foosball</Text>
-          <Text style={styles.name}>Player Name</Text>
-          <Text style={styles.points}>Points: 2,438</Text>
+          <Text style={styles.name}>{name}</Text>
+          <Text style={styles.points}>
+            Points:&nbsp;
+            {points}
+          </Text>
         </View>
       </View>
     </View>
@@ -33,22 +36,22 @@ const styles = StyleSheet.create({
     letterSpacing: -1.46,
   },
   playerComponent: {
-    margin: '4%',
-    width: '60%',
-    alignSelf: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-around'
+    marginLeft: '7%',
+    marginBottom: '7%',
+    flexDirection: 'row'
   },
   number: {
     fontFamily: 'KlinicSlab-Book',
     fontSize: 45,
     fontWeight: '500',
-    color: '#B73491'
+    color: '#6E645F'
   },
   picture: {
     height: 75,
     resizeMode: 'contain',
-    marginTop: -10
+    width: '30%',
+    marginTop: -10,
+    marginLeft: '4%'
 
   },
   game: {
