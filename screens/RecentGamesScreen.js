@@ -2,6 +2,7 @@ import React from 'react';
 import {
   ScrollView, View, StyleSheet, Text
 } from 'react-native';
+
 import HeaderLg from '../components/HeaderLarge';
 import ColorHeading from '../components/ColorHeading';
 import BgImage from '../components/backgroundImage';
