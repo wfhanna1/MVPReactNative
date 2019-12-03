@@ -6,11 +6,12 @@ import BgImage from '../components/backgroundImage';
 
 export default function RecentGames() {
   return (
-    <ScrollView>
-      <BgImage>
+    <BgImage>
+      <ScrollView>
         <HeaderLg />
         <ColorHeading title="Recent Games" />
-      </BgImage>
-    </ScrollView>
+      </ScrollView>
+    </BgImage>
+
   );
 }

@@ -9,7 +9,7 @@ export default function BgImage({ children, style }) {
       source={bgPattern}
       style={
       {
-        flex: 1, width: null, height: null, ...style
+        flex: 1, width: null, minHeight: null, ...style
       }
        }
     >
