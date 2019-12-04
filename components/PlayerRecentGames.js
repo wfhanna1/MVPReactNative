@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Image, View } from 'react-native';
 import { Text } from 'native-base';
 
-const playerImage = require('../assets/icons/Profile-Image-Example.png');
+const playerImage = require('../assets/icons/Default-user.png');
 
 export default function PlayerRecentGames() {
   return (

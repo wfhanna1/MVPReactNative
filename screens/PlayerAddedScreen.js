@@ -7,7 +7,7 @@ import BgImage from '../components/backgroundImage';
 import RecordMatchButton from '../components/RecordMatchButton';
 import AddNewPlayerButton from '../components/AddNewPlayerButton';
 
-const playerImage = require('../assets/icons/Profile-Image-Example.png');
+const playerImage = require('../assets/icons/Default-user.png');
 
 function PlayerAddedScreen({ navigation }) {
   return (
