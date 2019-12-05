@@ -80,20 +80,6 @@
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
 			remoteInfo = "Foosball-tvOS";
 		};
-		A750651B23834A75003266C1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A750651423834A75003266C1 /* SRSRadialGradient.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = SRSRadialGradient;
-		};
-		A750651D23834A75003266C1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A750651423834A75003266C1 /* SRSRadialGradient.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 47413E2820DBB5D000CCDA85;
-			remoteInfo = "SRSRadialGradien-tvOS";
-		};
 		A7F7252C23833961001E6085 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A7F725272383395B001E6085 /* BVLinearGradient.xcodeproj */;
@@ -146,7 +132,6 @@
 		91EA47C64E069B76956306AB /* Pods-FoosballTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoosballTests.debug.xcconfig"; path = "Target Support Files/Pods-FoosballTests/Pods-FoosballTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A1C0A01A58114601A290E306 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/native-base/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		A6C2BDC64ACE24D6BEFDEBA1 /* Pods-Foosball-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Foosball-tvOS.release.xcconfig"; path = "Target Support Files/Pods-Foosball-tvOS/Pods-Foosball-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		A750651423834A75003266C1 /* SRSRadialGradient.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SRSRadialGradient.xcodeproj; path = "../node_modules/react-native-radial-gradient/ios/SRSRadialGradient.xcodeproj"; sourceTree = "<group>"; };
 		A750DA2C237B651C00235609 /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
 		A750DA2D237B651C00235609 /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
 		A750DA2E237B651C00235609 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
@@ -310,7 +295,6 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				A750651423834A75003266C1 /* SRSRadialGradient.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -346,8 +330,6 @@
 		A750651523834A75003266C1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A750651C23834A75003266C1 /* libSRSRadialGradient.a */,
-				A750651E23834A75003266C1 /* libSRSRadialGradien-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -516,10 +498,6 @@
 					ProductGroup = A7F725282383395B001E6085 /* Products */;
 					ProjectRef = A7F725272383395B001E6085 /* BVLinearGradient.xcodeproj */;
 				},
-				{
-					ProductGroup = A750651523834A75003266C1 /* Products */;
-					ProjectRef = A750651423834A75003266C1 /* SRSRadialGradient.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
@@ -532,20 +510,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		A750651C23834A75003266C1 /* libSRSRadialGradient.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libSRSRadialGradient.a;
-			remoteRef = A750651B23834A75003266C1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A750651E23834A75003266C1 /* libSRSRadialGradien-tvOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libSRSRadialGradien-tvOS.a";
-			remoteRef = A750651D23834A75003266C1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		A7F7252D23833961001E6085 /* libBVLinearGradient.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
