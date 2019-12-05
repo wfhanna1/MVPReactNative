@@ -1,27 +1,44 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {
+  StyleSheet, ImageBackground, Image, View, Text
+} from 'react-native';
 
-function App() {
-    return (
+const bgImage = require('../assets/icons/Wave-Background.png');
+const trophyImage = require('../assets/icons/Icon-Trophy-Large.png');
+
+export default function LoadingScreen() {
+  return (
+    <ImageBackground
+      source={bgImage}
+      style={{ display: 'flex', height: '100%', width: '100%' }}
+    >
       <View style={styles.container}>
-        <Text style={styles.title}>
-          (Place icon here)
-        </Text>
+        <View>
+          <Image source={trophyImage} style={styles.trophy} />
+          <Text style={styles.title}>Office MVP</Text>
+        </View>
       </View>
-    );
+    </ImageBackground>
+  );
 }
-
-export default App;
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: '40%',
-    flex: 1,
-    justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
   },
+  trophy: {
+    aspectRatio: 0.65,
+    resizeMode: 'contain',
+    marginTop: '40%'
+  },
+
   title: {
-    fontSize: 40,
+    fontFamily: 'KlinicSlab-Book',
+    fontWeight: '500',
+    letterSpacing: -1.4,
+    fontSize: 45,
+    color: '#FFFFFF',
+    marginTop: '-30%',
+    alignSelf: 'center',
   }
 });
