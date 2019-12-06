@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text } from 'react-native';
-//import { Text } from 'native-base';
+import { StyleSheet } from 'react-native';
+import { Text } from 'native-base';
 
 export default function ColorHeading({ title }) {
   return (
