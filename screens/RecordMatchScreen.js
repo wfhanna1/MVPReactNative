@@ -6,6 +6,7 @@ import {
 } from 'native-base';
 import useQuery from '../hooks/useQuery';
 import gamesQuery from '../queries/games';
+import findPlayersQuery from '../queries/findPlayers';
 
 import LoadingScreen from './LoadingScreen';
 import HeaderSm from '../components/HeaderSmall';
@@ -17,6 +18,7 @@ import PlayerMatched from '../components/PlayerMatched';
 
 function RecordMatchScreen({ navigation }) {
   const [games, gamesLoading] = useQuery(gamesQuery());
+  const [findPlayers, findPlayersLoading] = useQuery(findPlayersQuery());
   const [toggleMatchedPlayers, setToggleMatchedPlayers] = useState(false);
   const [selected, setSelected] = useState(undefined);
 
@@ -43,7 +45,7 @@ function RecordMatchScreen({ navigation }) {
                   onValueChange={setSelected}
                 >
                   {games.map((item, index) => (
-                    <Picker.Item label={item.name} value={`key${index}`} key={item.id} />
+                    <Item label={item.name} value={`key${index}`} key={item.id} />
                   ))}
                 </Picker>
               </Item>
@@ -64,12 +66,6 @@ function RecordMatchScreen({ navigation }) {
           {toggleMatchedPlayers ? (
             <View>
               <GrayHeading title="Match Players" />
-              <PlayerMatched />
-              <PlayerMatched />
-              <PlayerMatched />
-              <PlayerMatched />
-              <PlayerMatched />
-              <PlayerMatched />
               <RecordMatchButton title="Record Match" onPress={() => navigation.navigate('MatchRecorded')} />
               <Button
                 style={styles.cancelButton}
