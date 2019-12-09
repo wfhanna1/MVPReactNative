@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
-import {
-  Text, Item, Input, Icon, Form, Button
-} from 'native-base';
 import { withNavigation } from 'react-navigation';
+import {
+  Text, Picker, Item, Input, Icon, Form, Button
+} from 'native-base';
+import useQuery from '../hooks/useQuery';
+import gamesQuery from '../queries/games';
+
+import LoadingScreen from './LoadingScreen';
 import HeaderSm from '../components/HeaderSmall';
 import GrayHeading from '../components/GrayHeading';
 import BgImage from '../components/backgroundImage';
@@ -12,7 +16,15 @@ import RecordMatchButton from '../components/RecordMatchButton';
 import PlayerMatched from '../components/PlayerMatched';
 
 function RecordMatchScreen({ navigation }) {
+  const [games, gamesLoading] = useQuery(gamesQuery());
   const [toggleMatchedPlayers, setToggleMatchedPlayers] = useState(false);
+  const [selected, setSelected] = useState(undefined);
+
+  if (!games || gamesLoading) {
+    return (
+      <LoadingScreen />
+    );
+  }
 
   return (
     <BgImage>
@@ -23,7 +35,17 @@ function RecordMatchScreen({ navigation }) {
             <View style={styles.container}>
               <Text style={styles.text}>Choose a game</Text>
               <Item style={styles.item}>
-                <Input style={styles.input} placeholder="Foosball" />
+                <Picker
+                  mode="dropdown"
+                  placeholder="Foosball"
+                  placeholderStyle={styles.input}
+                  selectedValue={selected}
+                  onValueChange={setSelected}
+                >
+                  {games.map((item, index) => (
+                    <Picker.Item label={item.name} value={`key${index}`} key={item.id} />
+                  ))}
+                </Picker>
               </Item>
             </View>
             <View style={styles.container}>
@@ -82,7 +104,8 @@ const styles = StyleSheet.create({
     fontWeight: '300',
     marginBottom: -10,
     marginLeft: '-1%',
-    marginTop: '-4%'
+    marginTop: '-4%',
+    width: '100%'
   },
   text: {
     fontFamily: 'KlinicSlab-Book',

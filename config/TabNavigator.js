@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import PlayersScreen from '../screens/HomeScreen';
-import Games from '../screens/RecentGamesScreen';
+import GamesScreen from '../screens/RecentGamesScreen';
 import RecordMatchScreen from '../screens/RecordMatchScreen';
 import AddNewPlayerScreen from '../screens/AddNewPlayerScreen';
 import MatchRecordedScreen from '../screens/MatchRecordedScreen';
@@ -14,6 +14,45 @@ import PlayerAddedScreen from '../screens/PlayerAddedScreen';
 const Players = createStackNavigator({
   Players: {
     screen: PlayersScreen,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  RecordMatch: {
+    screen: RecordMatchScreen,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  AddNewPlayer: {
+    screen: AddNewPlayerScreen,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  MatchRecorded: {
+    screen: MatchRecordedScreen,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  Loading: {
+    screen: LoadingScreen,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  PlayerAdded: {
+    screen: PlayerAddedScreen,
+    navigationOptions: {
+      header: null
+    }
+  }
+});
+
+const Games = createStackNavigator({
+  Games: {
+    screen: GamesScreen,
     navigationOptions: {
       header: null,
     },
