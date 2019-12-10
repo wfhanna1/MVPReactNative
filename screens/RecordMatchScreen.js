@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import {
-  Text, Picker, Item, Input, Icon, Form, Button
+  Text, Item, Input, Icon, Form, Button
 } from 'native-base';
+import RNPickerSelect from 'react-native-picker-select';
 import useQuery from '../hooks/useQuery';
 import gamesQuery from '../queries/games';
 import findPlayersQuery from '../queries/findPlayers';
-
 import LoadingScreen from './LoadingScreen';
 import HeaderSm from '../components/HeaderSmall';
 import GrayHeading from '../components/GrayHeading';
@@ -36,19 +36,19 @@ function RecordMatchScreen({ navigation }) {
           <Form>
             <View style={styles.container}>
               <Text style={styles.text}>Choose a game</Text>
-              <Item style={styles.item}>
-                <Picker
-                  mode="dropdown"
-                  placeholder="Foosball"
-                  placeholderStyle={styles.input}
-                  selectedValue={selected}
-                  onValueChange={setSelected}
-                >
-                  {games.map((item, index) => (
-                    <Item label={item.name} value={`key${index}`} key={item.id} />
+              <View style={styles.input}>
+                <RNPickerSelect
+                  style={{ ...pickerSelectStyles }}
+                  placeholder={{
+                    label: 'Foosball',
+                    value: null,
+                  }}
+                  onValueChange={(value) => setSelected(value)}
+                  items={games.map((item) => (
+                    { label: item.name, value: item.name, key: item.id }
                   ))}
-                </Picker>
-              </Item>
+                />
+              </View>
             </View>
             <View style={styles.container}>
               <Text style={styles.text}>Who played?</Text>
@@ -130,6 +130,23 @@ const styles = StyleSheet.create({
     color: '#4166AA',
     fontSize: 16,
     marginLeft: -17,
+  },
+});
+
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+    alignItems: 'center',
+    fontSize: 16,
+    fontWeight: '300',
+    paddingTop: 16,
+    borderBottomWidth: 2,
+    height: 50,
+    width: '80%',
+    paddingHorizontal: 10,
+    marginTop: 12,
+    marginLeft: '12%',
+    borderBottomColor: '#B73491',
+    color: 'black',
   },
 });
 
