@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
+import { withNavigation } from 'react-navigation';
 import {
   Text, Item, Input, Icon, Form, Button
 } from 'native-base';
-import { withNavigation } from 'react-navigation';
+import RNPickerSelect from 'react-native-picker-select';
+import useQuery from '../hooks/useQuery';
+import gamesQuery from '../queries/games';
+import findPlayersQuery from '../queries/findPlayers';
+import LoadingScreen from './LoadingScreen';
 import HeaderSm from '../components/HeaderSmall';
 import GrayHeading from '../components/GrayHeading';
 import BgImage from '../components/backgroundImage';
@@ -12,7 +17,16 @@ import RecordMatchButton from '../components/RecordMatchButton';
 import PlayerMatched from '../components/PlayerMatched';
 
 function RecordMatchScreen({ navigation }) {
+  const [games, gamesLoading] = useQuery(gamesQuery());
+  const [findPlayers, findPlayersLoading] = useQuery(findPlayersQuery());
   const [toggleMatchedPlayers, setToggleMatchedPlayers] = useState(false);
+  const [selected, setSelected] = useState(undefined);
+
+  if (!games || gamesLoading) {
+    return (
+      <LoadingScreen />
+    );
+  }
 
   return (
     <BgImage>
@@ -22,9 +36,19 @@ function RecordMatchScreen({ navigation }) {
           <Form>
             <View style={styles.container}>
               <Text style={styles.text}>Choose a game</Text>
-              <Item style={styles.item}>
-                <Input style={styles.input} placeholder="Foosball" />
-              </Item>
+              <View style={styles.input}>
+                <RNPickerSelect
+                  style={{ ...pickerSelectStyles }}
+                  placeholder={{
+                    label: 'Foosball',
+                    value: null,
+                  }}
+                  onValueChange={(value) => setSelected(value)}
+                  items={games.map((item) => (
+                    { label: item.name, value: item.name, key: item.id }
+                  ))}
+                />
+              </View>
             </View>
             <View style={styles.container}>
               <Text style={styles.text}>Who played?</Text>
@@ -42,12 +66,6 @@ function RecordMatchScreen({ navigation }) {
           {toggleMatchedPlayers ? (
             <View>
               <GrayHeading title="Match Players" />
-              <PlayerMatched />
-              <PlayerMatched />
-              <PlayerMatched />
-              <PlayerMatched />
-              <PlayerMatched />
-              <PlayerMatched />
               <RecordMatchButton title="Record Match" onPress={() => navigation.navigate('MatchRecorded')} />
               <Button
                 style={styles.cancelButton}
@@ -82,7 +100,8 @@ const styles = StyleSheet.create({
     fontWeight: '300',
     marginBottom: -10,
     marginLeft: '-1%',
-    marginTop: '-4%'
+    marginTop: '-4%',
+    width: '100%'
   },
   text: {
     fontFamily: 'KlinicSlab-Book',
@@ -111,6 +130,23 @@ const styles = StyleSheet.create({
     color: '#4166AA',
     fontSize: 16,
     marginLeft: -17,
+  },
+});
+
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+    alignItems: 'center',
+    fontSize: 16,
+    fontWeight: '300',
+    paddingTop: 16,
+    borderBottomWidth: 2,
+    height: 50,
+    width: '80%',
+    paddingHorizontal: 10,
+    marginTop: 12,
+    marginLeft: '12%',
+    borderBottomColor: '#B73491',
+    color: 'black',
   },
 });
 
