@@ -796,7 +796,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.insight.mvpios;
 				PRODUCT_NAME = Foosball;
-				PROVISIONING_PROFILE_SPECIFIER = MVPiOS;
+				PROVISIONING_PROFILE_SPECIFIER = MVP;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -819,7 +819,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.insight.mvpios;
 				PRODUCT_NAME = Foosball;
-				PROVISIONING_PROFILE_SPECIFIER = MVPiOS;
+				PROVISIONING_PROFILE_SPECIFIER = MVP;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
