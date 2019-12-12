@@ -1,11 +1,8 @@
 import insightMVPUrl from './config';
 
 
-export default function findPlayers(searchQuery) {
-  if (!searchQuery) {
-    return {};
-  }
+export default function findPlayers() {
   return {
-    url: `${insightMVPUrl}/Players/find?q=${searchQuery}`
+    url: `${insightMVPUrl}/Players`
   };
 }

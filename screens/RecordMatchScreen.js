@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import {
-  Text, Item, Input, Icon, Form, Button
+  Item, Input, Icon, Form, Button
 } from 'native-base';
+import Autocomplete from 'react-native-autocomplete-input';
 import RNPickerSelect from 'react-native-picker-select';
 import useQuery from '../hooks/useQuery';
 import gamesQuery from '../queries/games';
@@ -14,23 +15,37 @@ import GrayHeading from '../components/GrayHeading';
 import BgImage from '../components/backgroundImage';
 import AddNewPlayerButton from '../components/AddNewPlayerButton';
 import RecordMatchButton from '../components/RecordMatchButton';
-import PlayerMatched from '../components/PlayerMatched';
+
 
 function RecordMatchScreen({ navigation }) {
   const [games, gamesLoading] = useQuery(gamesQuery());
   const [findPlayers, findPlayersLoading] = useQuery(findPlayersQuery());
+  const [query, setQuery] = useState('');
+  const [playerSelected, setPlayerSelected] = useState(query);
   const [toggleMatchedPlayers, setToggleMatchedPlayers] = useState(false);
-  const [selected, setSelected] = useState(undefined);
+  const [gameSelected, setGameSelected] = useState(undefined);
 
-  if (!games || gamesLoading) {
+  if (!games || gamesLoading || findPlayersLoading) {
     return (
       <LoadingScreen />
     );
   }
 
+  const filterPlayers = () => {
+    if (query === '') {
+      return [];
+    }
+    const regex = new RegExp(`${query.trim()}`, 'i');
+    const playerResults = findPlayers.filter((player) => player.fullName.search(regex) >= 0);
+    return playerResults;
+  };
+
+  const playersFound = filterPlayers(query);
+  //const comp = (a, b) => a.toLowerCase().trim() === b.toLowerCase().trim();
+
   return (
     <BgImage>
-      <ScrollView>
+      <ScrollView keyboardShouldPersistTaps="always">
         <HeaderSm style={styles.title} headerTitle="Record Match" />
         <View style={styles.parent}>
           <Form>
@@ -43,7 +58,7 @@ function RecordMatchScreen({ navigation }) {
                     label: 'Foosball',
                     value: null,
                   }}
-                  onValueChange={(value) => setSelected(value)}
+                  onValueChange={(value) => setGameSelected(value)}
                   items={games.map((item) => (
                     { label: item.name, value: item.name, key: item.id }
                   ))}
@@ -52,10 +67,31 @@ function RecordMatchScreen({ navigation }) {
             </View>
             <View style={styles.container}>
               <Text style={styles.text}>Who played?</Text>
-              <Item style={styles.item}>
-                <Input style={styles.input} placeholder="Search by name or email" />
+              <View style={styles.item}>
                 <Icon active style={styles.icon} type="FontAwesome" name="plus-circle" onPress={() => setToggleMatchedPlayers(!toggleMatchedPlayers)} />
-              </Item>
+                <Autocomplete
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  inputContainerStyle={styles.autocompleteInput}
+                  listContainerStyle={styles.autocompleteList}
+                  data={playersFound}
+                  defaultValue={query}
+                  value={query}
+                  onChangeText={(text) => setQuery(text)}
+                  placeholder="Search by name or email"
+                  renderItem={({ item }) => (
+                    <TouchableOpacity onPress={() => {
+                      setQuery('');
+                      setPlayerSelected(item.fullName);
+                    }}
+                    >
+                      <Text style={styles.itemText}>
+                        {item.fullName}
+                      </Text>
+                    </TouchableOpacity>
+                  )}
+                />
+              </View>
             </View>
           </Form>
         </View>
@@ -75,8 +111,9 @@ function RecordMatchScreen({ navigation }) {
                 <Text style={styles.cancelText}>Cancel</Text>
               </Button>
             </View>
-          )
-            : null}
+          ) : (
+            <GrayHeading title="Match Players" />
+          )}
         </View>
       </ScrollView>
     </BgImage>
@@ -84,12 +121,29 @@ function RecordMatchScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  parent: {
-    marginTop: '-10%'
-  },
   container: {
     alignItems: 'center',
     marginTop: '3%'
+  },
+  autocompleteInput: {
+    borderWidth: 0
+  },
+  descriptionContainer: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  itemText: {
+    fontSize: 15,
+    paddingTop: 5,
+    paddingBottom: 5,
+    margin: 2,
+  },
+  infoText: {
+    textAlign: 'center',
+    fontSize: 16,
+  },
+  parent: {
+    marginTop: '-10%'
   },
   item: {
     borderBottomColor: '#B73491',
@@ -114,12 +168,17 @@ const styles = StyleSheet.create({
   icon: {
     color: '#4166AA',
     fontSize: 15,
+    position: 'absolute',
+    marginTop: 15,
+    marginLeft: '95%',
+    zIndex: 10
   },
   button: {
     marginTop: '1%',
     marginBottom: '6%',
     marginLeft: '8%',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    zIndex: -1
   },
   cancelButton: {
     alignSelf: 'center'
@@ -130,7 +189,7 @@ const styles = StyleSheet.create({
     color: '#4166AA',
     fontSize: 16,
     marginLeft: -17,
-  },
+  }
 });
 
 const pickerSelectStyles = StyleSheet.create({
@@ -141,10 +200,10 @@ const pickerSelectStyles = StyleSheet.create({
     paddingTop: 16,
     borderBottomWidth: 2,
     height: 50,
-    width: '80%',
+    width: '78%',
     paddingHorizontal: 10,
     marginTop: 12,
-    marginLeft: '12%',
+    marginLeft: '11%',
     borderBottomColor: '#B73491',
     color: 'black',
   },
