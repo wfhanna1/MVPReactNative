@@ -16,7 +16,8 @@ module.exports = {
 			"ObjectExpression": "always",
 			"ObjectPattern": { "multiline": true },
 			"ImportDeclaration": "never"
-		}]
+		}],
+		"max-len": "off"
 	},
 	globals: {
 	fetch: false
