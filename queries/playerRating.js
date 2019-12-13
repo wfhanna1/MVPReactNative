@@ -1,7 +1,6 @@
 import insightMVPUrl from './config';
 
-export default function playerRating(id) {
-  console.log('id', id);
+export default function playerRating (id) {
   if (!id) {
     return {};
   }
