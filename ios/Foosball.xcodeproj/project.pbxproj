@@ -782,18 +782,11 @@
 			baseConfigurationReference = AA2949D5F4F80D81932A13B7 /* Pods-Foosball.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-<<<<<<< Updated upstream
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = GAQ2528ADM;
-=======
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = "";
->>>>>>> Stashed changes
 				INFOPLIST_FILE = Foosball/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -803,11 +796,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.insight.mvpios;
 				PRODUCT_NAME = Foosball;
-<<<<<<< Updated upstream
 				PROVISIONING_PROFILE_SPECIFIER = MVP;
-=======
-				PROVISIONING_PROFILE_SPECIFIER = "";
->>>>>>> Stashed changes
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -817,16 +806,10 @@
 			baseConfigurationReference = 0006D55D9B2E5D7ECCE10A32 /* Pods-Foosball.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-<<<<<<< Updated upstream
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = GAQ2528ADM;
-=======
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
->>>>>>> Stashed changes
 				INFOPLIST_FILE = Foosball/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -836,11 +819,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.insight.mvpios;
 				PRODUCT_NAME = Foosball;
-<<<<<<< Updated upstream
 				PROVISIONING_PROFILE_SPECIFIER = MVP;
-=======
-				PROVISIONING_PROFILE_SPECIFIER = "";
->>>>>>> Stashed changes
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
