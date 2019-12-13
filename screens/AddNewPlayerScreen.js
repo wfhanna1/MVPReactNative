@@ -33,11 +33,25 @@ function RecordMatchScreen ({ navigation }) {
     });
   };
 
+  const ErrorMessage = (props) => {
+    const { errors } = props;
+    const errorsText = errors.filter((item) => Boolean(item)).join(" and ");
+    if (errorsText) {
+      return (
+        <View style={styles.errorMessages}>
+          <Text>{`Please fix ${errorsText}.`}</Text>
+        </View>
+      );
+    }
+    return null;
+  };
+
   return (
     <BgImage>
       <HeaderSm style={styles.title} headerTitle="Add New Player" />
       <View style={styles.parent}>
         <Form>
+          <ErrorMessage errors={[navigation.getParam("nameError"), navigation.getParam("emailError")]} />
           <View style={styles.container}>
             <Text style={styles.text}>Full Name</Text>
             <Item style={styles.item}>
