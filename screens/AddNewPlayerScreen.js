@@ -29,8 +29,8 @@ function RecordMatchScreen ({ navigation }) {
     }
 
     return navigation.setParams({
-      nameError: name && name.trim().length > 0 ? false : "name error",
-      emailError: email && emailRegex.test(email.trim()) ? false : "email error"
+      nameError: name && name.trim().length > 0 ? false : "enter your name",
+      emailError: email && emailRegex.test(email.trim()) ? false : "enter a valid email"
     });
   };
 
@@ -40,7 +40,7 @@ function RecordMatchScreen ({ navigation }) {
     if (errorsText) {
       return (
         <View style={styles.errorMessages}>
-          <Text>{`Please fix ${errorsText}.`}</Text>
+          <Text>{`Please ${errorsText}.`}</Text>
         </View>
       );
     }
@@ -53,7 +53,6 @@ function RecordMatchScreen ({ navigation }) {
     };
     ImagePicker.launchImageLibrary(options, (response) => {
       if (response.uri) {
-        console.log(response);
         navigation.setParams({
           selectedProfileImage: response.uri
         });
@@ -66,7 +65,6 @@ function RecordMatchScreen ({ navigation }) {
       <HeaderSm style={styles.title} headerTitle="Add New Player" />
       <View style={styles.parent}>
         <Form>
-          <ErrorMessage errors={[navigation.getParam("nameError"), navigation.getParam("emailError")]} />
           <View style={styles.container}>
             <Text style={styles.text}>Full Name</Text>
             <Item style={styles.item}>
@@ -105,6 +103,7 @@ function RecordMatchScreen ({ navigation }) {
             </Button>
           </View>
           <View style={styles.container}>
+            <ErrorMessage errors={[navigation.getParam("nameError"), navigation.getParam("emailError")]} />
             <RecordMatchButton
               title="Add Player"
               onPress={onSubmit}
@@ -184,6 +183,11 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "red",
     color: "red"
+  },
+  errorMessages: {
+    backgroundColor: "rgba(256,0,0,0.2)",
+    padding: 10,
+    marginBottom: 20
   }
 });
 
