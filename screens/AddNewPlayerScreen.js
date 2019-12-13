@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, View, Image } from "react-native";
 import { Text, Item, Input, Form, Button } from "native-base";
 import { withNavigation } from "react-navigation";
+import ImagePicker from "react-native-image-picker";
 import HeaderSm from "../components/HeaderSmall";
 import BgImage from "../components/backgroundImage";
 import RecordMatchButton from "../components/RecordMatchButton";
@@ -46,6 +47,20 @@ function RecordMatchScreen ({ navigation }) {
     return null;
   };
 
+  const handleChoosePhoto = () => {
+    const options = {
+      noData: true
+    };
+    ImagePicker.launchImageLibrary(options, (response) => {
+      if (response.uri) {
+        console.log(response);
+        navigation.setParams({
+          selectedProfileImage: response.uri
+        });
+      }
+    });
+  };
+
   return (
     <BgImage>
       <HeaderSm style={styles.title} headerTitle="Add New Player" />
@@ -78,8 +93,14 @@ function RecordMatchScreen ({ navigation }) {
           </View>
           <View style={styles.container2}>
             <Text style={styles.profText}>Profile Pic</Text>
-            <Image style={styles.profile} source={profileImage} />
-            <Button transparent>
+            <Image
+              style={styles.profile}
+              source={navigation.getParam("selectedProfileImage") ? {
+                uri: navigation.getParam("selectedProfileImage")
+              } : profileImage}
+            />
+            {/* source={profileImage} /> */}
+            <Button transparent onPress={handleChoosePhoto}>
               <Text style={styles.profileButton}>Add/Update</Text>
             </Button>
           </View>
@@ -128,7 +149,8 @@ const styles = StyleSheet.create({
   },
   profile: {
     height: 80,
-    resizeMode: "contain"
+    width: 80,
+    resizeMode: "cover"
   },
   profText: {
     fontFamily: "KlinicSlab-Book",
