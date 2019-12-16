@@ -7,6 +7,8 @@ module.exports = {
 	rules: {
 		"no-use-before-define": "off",
 		"react/jsx-filename-extension": "off",
+		"react/jsx-indent": "off",
+		"react/jsx-indent-props": "off",
 		"react/prop-types": "off",
 		"comma-dangle": ["error", "never"],
 		strict: ["error", "global"],
@@ -17,7 +19,10 @@ module.exports = {
 			"ObjectPattern": { "multiline": true },
 			"ImportDeclaration": "never"
 		}],
-		"max-len": "off"
+		"max-len": "off",
+		"no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
+		"no-tabs": "off",
+		"indent": ["error", "tab"]
 	},
 	globals: {
 	fetch: false
