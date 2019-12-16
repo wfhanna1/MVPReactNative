@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ScrollView, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import {
@@ -9,7 +9,6 @@ import RNPickerSelect from 'react-native-picker-select';
 import useQuery from '../hooks/useQuery';
 import gamesQuery from '../queries/games';
 import findPlayersQuery from '../queries/findPlayers';
-import playerRatingQuery from '../queries/playerRating';
 import recordMatchQuery from '../queries/recordMatch';
 import LoadingScreen from './LoadingScreen';
 import HeaderSm from '../components/HeaderSmall';
@@ -21,19 +20,20 @@ import PlayerMatched from '../components/PlayerMatched';
 
 
 function RecordMatchScreen ({ navigation }) {
+
   const [games, gamesLoading] = useQuery(gamesQuery());
   const [findPlayers, findPlayersLoading] = useQuery(findPlayersQuery()); //<--- this executes successfully on load & returns player names & IDs of all players.  This API does not return player's score information.
-  const [playerRating, playerRatingLoading] = useQuery(playerRatingQuery(playerSelectedId)); //<-- this only executes succesfully if 'playerSelectedId' is hardcoded with a number.  playerSelectedId IS getting successfully updated to a valid value (from the autocomplete onPress), but API does not get re-executed for some reason.
   const [recordMatch, recordMatchLoading] = useQuery(recordMatchQuery(null));
 
   const [query, setQuery] = useState('');
   const [playerSelected, setPlayerSelected] = useState(query);
-  const [playerSelectedId, setPlayerSelectedId] = useState("");
+
   const [gameSelected, setGameSelected] = useState(undefined);
   const [toggleMatchedPlayers, setToggleMatchedPlayers] = useState(false);
   const [matchedPlayersArray, setMatchedPlayersArray] = useState([]);
 
-  if (!games || gamesLoading || findPlayersLoading || playerRatingLoading) {
+
+  if (!games || gamesLoading || findPlayersLoading) {
     return (
       <LoadingScreen />
     );
@@ -50,9 +50,8 @@ function RecordMatchScreen ({ navigation }) {
 
   const playersFound = filterPlayers(query);
 
-
-  const onAddItem = () => {
-    const list = matchedPlayersArray.concat(<PlayerMatched points={playerRating.score} name={playerSelected} />); // <--- playerRating will contain the selected Player's score that's needed in this player component.
+  const onAddItem = async () => {
+    const list = matchedPlayersArray.concat(<PlayerMatched name={playerSelected} />);
     setMatchedPlayersArray(list);
     return list;
   };
@@ -77,7 +76,7 @@ function RecordMatchScreen ({ navigation }) {
                   onValueChange={(value) => setGameSelected(value)}
                   items={games.map((item) => (
                     {
-                      label: item.name, value: item.name, key: item.id 
+                      label: item.name, value: item.name, key: item.id
                     }
                   ))}
                 />
@@ -102,7 +101,6 @@ function RecordMatchScreen ({ navigation }) {
                       onAddItem();
                       setQuery("");
                       setPlayerSelected(item.fullName);
-                      setPlayerSelectedId(item.id);  //<-- playerSelectedId is successfully updated to the the id value of the player the user selects
                     }}
                     >
                       <Text style={styles.itemText}>
