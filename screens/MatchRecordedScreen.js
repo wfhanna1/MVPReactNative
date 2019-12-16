@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, ScrollView } from 'react-native';
-import { withNavigation } from 'react-navigation';
+import { withNavigation, NavigationContext } from 'react-navigation';
 import ColorHeading from '../components/ColorHeading';
 import GrayHeading from '../components/GrayHeading';
 import PlayerMatchRecorded from '../components/PlayerMatchRecorded';
@@ -8,7 +8,10 @@ import PlayerMatchRecorded from '../components/PlayerMatchRecorded';
 import HeaderSm from '../components/HeaderSmall';
 import BgImage from '../components/backgroundImage';
 
-function RecordMatchScreen() {
+function RecordMatchScreen({ navigation }) {
+  let navigationContext = navigation.state.params || {};
+
+
   return (
     <BgImage>
       <ScrollView>
