@@ -6,6 +6,7 @@ import ImagePicker from "react-native-image-picker";
 import HeaderSm from "../components/HeaderSmall";
 import BgImage from "../components/backgroundImage";
 import RecordMatchButton from "../components/RecordMatchButton";
+import useQuery from "../hooks/useQuery";
 
 const profileImage = require("../assets/icons/Profile-Pic-Example.png");
 
@@ -25,7 +26,18 @@ function RecordMatchScreen ({ navigation }) {
     const email = navigation.getParam("email");
 
     if (formValid()) {
-      navigation.navigate("PlayerAdded");
+      const [responseData, isLoading, error] = useQuery("https://insightmvp-dev.azurewebsites.net/api/Players/", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          fullName: navigation.getParam("name"),
+          emailAddress: navigation.getParam("email"),
+          profilePhoto: navigation.getParam("selectedProfileImage").toString()
+        })
+      }).then((response) => response && navigation.navigate("PlayerAdded"));
     }
 
     return navigation.setParams({
