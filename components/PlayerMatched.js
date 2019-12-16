@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { StyleSheet, Image, View } from 'react-native';
 import { Text, Button } from 'native-base';
-
+ 
 const playerImage = require('../assets/icons/Default-user.png');
 
-export default function PlayerMatched({ name }) {
+export default function PlayerMatched({ name, playerId }) {
 
   const [isWinner, setIsWinner] = useState(false);
   const [isLoser, setIsLoser] = useState(false);
@@ -18,7 +18,6 @@ export default function PlayerMatched({ name }) {
           <Button transparent><Text style={styles.buttonText}>Remove</Text></Button>
         </View>
         <Button transparent onPress={() => setIsWinner(!isWinner)}><Text style={isWinner ? styles.winnerSelected : styles.unselected}>W</Text></Button>
-
         <Button transparent onPress={() => setIsLoser(!isLoser)}><Text style={isLoser ? styles.loserSelected : styles.unselected}>L</Text></Button>
       </View>
     </View>

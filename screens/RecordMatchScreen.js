@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ScrollView, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import { withNavigation } from 'react-navigation';
+import { withNavigation, NavigationContext } from 'react-navigation';
 import {
   Item, Input, Icon, Form, Button
 } from 'native-base';
@@ -9,7 +9,6 @@ import RNPickerSelect from 'react-native-picker-select';
 import useQuery from '../hooks/useQuery';
 import gamesQuery from '../queries/games';
 import findPlayersQuery from '../queries/findPlayers';
-import recordMatchQuery from '../queries/recordMatch';
 import LoadingScreen from './LoadingScreen';
 import HeaderSm from '../components/HeaderSmall';
 import GrayHeading from '../components/GrayHeading';
@@ -18,20 +17,24 @@ import AddNewPlayerButton from '../components/AddNewPlayerButton';
 import RecordMatchButton from '../components/RecordMatchButton';
 import PlayerMatched from '../components/PlayerMatched';
 
-
 function RecordMatchScreen ({ navigation }) {
 
+  const navigationContext = navigation.state.params || {};
+
+  if (!navigationContext.hasOwnProperty('register')) {
+    Object.defineProperty(navigationContext, 'register', {
+      value: {},
+      writable: true
+    });
+  }
+
   const [games, gamesLoading] = useQuery(gamesQuery());
-  const [findPlayers, findPlayersLoading] = useQuery(findPlayersQuery()); //<--- this executes successfully on load & returns player names & IDs of all players.  This API does not return player's score information.
-  const [recordMatch, recordMatchLoading] = useQuery(recordMatchQuery(null));
+  const [findPlayers, findPlayersLoading] = useQuery(findPlayersQuery());
 
   const [query, setQuery] = useState('');
   const [playerSelected, setPlayerSelected] = useState(query);
-
   const [gameSelected, setGameSelected] = useState(undefined);
-  const [toggleMatchedPlayers, setToggleMatchedPlayers] = useState(false);
   const [matchedPlayersArray, setMatchedPlayersArray] = useState([]);
-
 
   if (!games || gamesLoading || findPlayersLoading) {
     return (
@@ -50,8 +53,8 @@ function RecordMatchScreen ({ navigation }) {
 
   const playersFound = filterPlayers(query);
 
-  const onAddItem = async () => {
-    const list = matchedPlayersArray.concat(<PlayerMatched name={playerSelected} />);
+  const onAddItem = async (playerId) => {
+    const list = matchedPlayersArray.concat(<PlayerMatched name={playerSelected} playerId={playerId} />);
     setMatchedPlayersArray(list);
     return list;
   };
@@ -70,13 +73,13 @@ function RecordMatchScreen ({ navigation }) {
                     ...pickerSelectStyles
                   }}
                   placeholder={{
-                    label: "Foosball",
+                    label: "Choose a game:",
                     value: null
                   }}
                   onValueChange={(value) => setGameSelected(value)}
                   items={games.map((item) => (
                     {
-                      label: item.name, value: item.name, key: item.id
+                      label: item.name, value: item.id, key: item.id
                     }
                   ))}
                 />
@@ -85,7 +88,7 @@ function RecordMatchScreen ({ navigation }) {
             <View style={styles.container}>
               <Text style={styles.text}>Who played?</Text>
               <View style={styles.item}>
-                <Icon active style={styles.icon} type="FontAwesome" name="plus-circle" onPress={() => setToggleMatchedPlayers(!toggleMatchedPlayers)} />
+                <Icon active style={styles.icon} type="FontAwesome" name="plus-circle" />
                 <Autocomplete
                   autoCapitalize="none"
                   autoCorrect={false}
@@ -98,7 +101,7 @@ function RecordMatchScreen ({ navigation }) {
                   placeholder="Search by name or email"
                   renderItem={({ item }) => (
                     <TouchableOpacity onPress={() => {
-                      onAddItem();
+                      onAddItem(item.id);
                       setQuery("");
                       setPlayerSelected(item.fullName);
                     }}
@@ -118,7 +121,22 @@ function RecordMatchScreen ({ navigation }) {
           <View style={styles.matchedContainer}>
             <GrayHeading title="Match Players" />
             {matchedPlayersArray}
-            <RecordMatchButton title="Record Match" onPress={() => navigation.navigate("MatchRecorded")} />
+            <RecordMatchButton
+              title="Record Match"
+              onPress={() => navigation.navigate("MatchRecorded", {
+                ...navigationContext,
+                recordMatch: {
+                  ...navigationContext.register,
+                  players: matchedPlayersArray.map((item) => ([
+                    {
+                      playerId: item.playerId,
+                      isWinner: true
+                    }
+                  ])),
+                  gameId: gameSelected
+                }
+              })}
+            />
             <Button
               style={styles.cancelButton}
               transparent

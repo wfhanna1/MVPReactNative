@@ -2,13 +2,16 @@ import React from 'react';
 import {
   View, StyleSheet, Text, ImageBackground
 } from 'react-native';
-import { withNavigation } from 'react-navigation';
+import { withNavigation, NavigationContext } from 'react-navigation';
 import RecordMatchButton from './RecordMatchButton';
 import AddNewPlayerButton from './AddNewPlayerButton';
 
 const headerImageLg = require('../assets/icons/Header-Background-Large2x.png');
 
 function HeaderLg({ navigation }) {
+
+  const navigationContext = navigation.state.params || {};
+
   return (
     <ImageBackground
       source={headerImageLg}
@@ -16,7 +19,15 @@ function HeaderLg({ navigation }) {
     >
       <View style={styles.container}>
         <Text style={styles.title}>Office MVP</Text>
-        <RecordMatchButton title="Record Match" onPress={() => navigation.navigate('RecordMatch')} />
+        <RecordMatchButton
+          title="Record Match"
+          onPress={() => navigation.navigate("RecordMatch", {
+            ...navigationContext,
+            recordMatch: {
+              ...navigationContext.recordMatch
+            }
+          })}
+        />
         <AddNewPlayerButton />
       </View>
     </ImageBackground>
