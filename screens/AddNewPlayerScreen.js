@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, View, Image } from "react-native";
 import { Text, Item, Input, Form, Button } from "native-base";
 import { withNavigation } from "react-navigation";
+import ImagePicker from "react-native-image-picker";
 import HeaderSm from "../components/HeaderSmall";
 import BgImage from "../components/backgroundImage";
 import RecordMatchButton from "../components/RecordMatchButton";
@@ -28,8 +29,34 @@ function RecordMatchScreen ({ navigation }) {
     }
 
     return navigation.setParams({
-      nameError: name && name.trim().length > 0 ? false : "name error",
-      emailError: email && emailRegex.test(email.trim()) ? false : "email error"
+      nameError: name && name.trim().length > 0 ? false : "enter your name",
+      emailError: email && emailRegex.test(email.trim()) ? false : "enter a valid email"
+    });
+  };
+
+  const ErrorMessage = (props) => {
+    const { errors } = props;
+    const errorsText = errors.filter((item) => Boolean(item)).join(" and ");
+    if (errorsText) {
+      return (
+        <View style={styles.errorMessages}>
+          <Text>{`Please ${errorsText}.`}</Text>
+        </View>
+      );
+    }
+    return null;
+  };
+
+  const handleChoosePhoto = () => {
+    const options = {
+      noData: true
+    };
+    ImagePicker.launchImageLibrary(options, (response) => {
+      if (response.uri) {
+        navigation.setParams({
+          selectedProfileImage: response.uri
+        });
+      }
     });
   };
 
@@ -64,12 +91,19 @@ function RecordMatchScreen ({ navigation }) {
           </View>
           <View style={styles.container2}>
             <Text style={styles.profText}>Profile Pic</Text>
-            <Image style={styles.profile} source={profileImage} />
-            <Button transparent>
+            <Image
+              style={styles.profile}
+              source={navigation.getParam("selectedProfileImage") ? {
+                uri: navigation.getParam("selectedProfileImage")
+              } : profileImage}
+            />
+            {/* source={profileImage} /> */}
+            <Button transparent onPress={handleChoosePhoto}>
               <Text style={styles.profileButton}>Add/Update</Text>
             </Button>
           </View>
           <View style={styles.container}>
+            <ErrorMessage errors={[navigation.getParam("nameError"), navigation.getParam("emailError")]} />
             <RecordMatchButton
               title="Add Player"
               onPress={onSubmit}
@@ -114,7 +148,8 @@ const styles = StyleSheet.create({
   },
   profile: {
     height: 80,
-    resizeMode: "contain"
+    width: 80,
+    resizeMode: "cover"
   },
   profText: {
     fontFamily: "KlinicSlab-Book",
@@ -148,6 +183,11 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "red",
     color: "red"
+  },
+  errorMessages: {
+    backgroundColor: "rgba(256, 0, 0, 0.2)",
+    padding: 10,
+    marginBottom: 20
   }
 });
 
