@@ -1,21 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Image, View } from 'react-native';
 import { Text, Button } from 'native-base';
 
 const playerImage = require('../assets/icons/Default-user.png');
 
-export default function PlayerMatched({ name, points }) {
+export default function PlayerMatched({ name }) {
+
+  const [isWinner, setIsWinner] = useState(false);
+  const [isLoser, setIsLoser] = useState(false);
+
   return (
     <View>
       <View style={styles.playerComponent}>
         <Image style={styles.picture} source={playerImage} />
         <View style={styles.stats}>
           <Text style={styles.name}>{name}</Text>
-          <Text style={styles.points}>{points}</Text>
           <Button transparent><Text style={styles.buttonText}>Remove</Text></Button>
         </View>
-        <Button transparent><Text style={styles.outcome}>W</Text></Button>
-        <Button transparent><Text style={styles.outcome}>L</Text></Button>
+        <Button transparent onPress={() => setIsWinner(!isWinner)}><Text style={isWinner ? styles.winnerSelected : styles.unselected}>W</Text></Button>
+
+        <Button transparent onPress={() => setIsLoser(!isLoser)}><Text style={isLoser ? styles.loserSelected : styles.unselected}>L</Text></Button>
       </View>
     </View>
   );
@@ -60,9 +64,19 @@ const styles = StyleSheet.create({
     marginLeft: -17,
     alignSelf: 'flex-start'
   },
-  outcome: {
+  winnerSelected: {
+    color: '#399D60',
+    fontSize: 25,
+    fontWeight: "bold"
+  },
+  loserSelected: {
+    color: '#B73491',
+    fontSize: 25,
+    fontWeight: "bold"
+  },
+  unselected: {
     color: '#6E645F',
     fontSize: 25,
-    fontWeight: '300',
+    fontWeight: '300'
   }
 });
