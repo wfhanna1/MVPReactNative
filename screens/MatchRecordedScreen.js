@@ -9,7 +9,9 @@ import HeaderSm from '../components/HeaderSmall';
 import BgImage from '../components/backgroundImage';
 
 function RecordMatchScreen({ navigation }) {
-  let navigationContext = navigation.state.params || {};
+  const navigationContext = navigation.state.params || {};
+
+  console.log('match recorded navigation', navigationContext.recordMatch);
 
 
   return (

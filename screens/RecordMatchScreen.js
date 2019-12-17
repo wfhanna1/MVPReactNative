@@ -35,6 +35,17 @@ function RecordMatchScreen ({ navigation }) {
   const [playerSelected, setPlayerSelected] = useState(query);
   const [gameSelected, setGameSelected] = useState(undefined);
   const [matchedPlayersArray, setMatchedPlayersArray] = useState([]);
+  const [matchedPlayersArrayData, setMatchedPlayersArrayData] = useState([]);
+
+  const [color, setColor] = useState('');
+  function handleChildClick (color) {
+    setColor(color);
+  }
+
+  console.log('color', color);
+
+  console.log('matched players array', matchedPlayersArray);
+  console.log('matched players array Data', matchedPlayersArrayData);
 
   if (!games || gamesLoading || findPlayersLoading) {
     return (
@@ -53,10 +64,12 @@ function RecordMatchScreen ({ navigation }) {
 
   const playersFound = filterPlayers(query);
 
-  const onAddItem = async (playerId) => {
-    const list = matchedPlayersArray.concat(<PlayerMatched name={playerSelected} playerId={playerId} />);
+  const onAddItem = async (playerId, color) => {
+    const list = matchedPlayersArray.concat(<PlayerMatched name={playerSelected} playerId={playerId} color={color} onChildClick={handleChildClick} />);
     setMatchedPlayersArray(list);
-    return list;
+    const listData = matchedPlayersArrayData.concat(playerId);
+    setMatchedPlayersArrayData(listData);
+    return [list, listData];
   };
 
   return (
@@ -123,16 +136,16 @@ function RecordMatchScreen ({ navigation }) {
             {matchedPlayersArray}
             <RecordMatchButton
               title="Record Match"
-              onPress={() => navigation.navigate("MatchRecorded", {
+              onPress={async () => navigation.navigate("MatchRecorded", {
                 ...navigationContext,
                 recordMatch: {
-                  ...navigationContext.register,
-                  players: matchedPlayersArray.map((item) => ([
+                  ...navigationContext.recordMatch,
+                  players: matchedPlayersArrayData.map((item) => (
                     {
-                      playerId: item.playerId,
+                      playerId: item,
                       isWinner: true
                     }
-                  ])),
+                  )),
                   gameId: gameSelected
                 }
               })}
