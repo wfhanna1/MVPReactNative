@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ScrollView, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import { withNavigation, NavigationContext } from 'react-navigation';
+import { withNavigation } from 'react-navigation';
 import {
   Item, Input, Icon, Form, Button
 } from 'native-base';
@@ -32,20 +32,9 @@ function RecordMatchScreen ({ navigation }) {
   const [findPlayers, findPlayersLoading] = useQuery(findPlayersQuery());
 
   const [query, setQuery] = useState('');
-  const [playerSelected, setPlayerSelected] = useState(query);
   const [gameSelected, setGameSelected] = useState(undefined);
   const [matchedPlayersArray, setMatchedPlayersArray] = useState([]);
   const [matchedPlayersArrayData, setMatchedPlayersArrayData] = useState([]);
-
-  const [color, setColor] = useState('');
-  function handleChildClick (color) {
-    setColor(color);
-  }
-
-  console.log('color', color);
-
-  console.log('matched players array', matchedPlayersArray);
-  console.log('matched players array Data', matchedPlayersArrayData);
 
   if (!games || gamesLoading || findPlayersLoading) {
     return (
@@ -64,13 +53,12 @@ function RecordMatchScreen ({ navigation }) {
 
   const playersFound = filterPlayers(query);
 
-  const onAddItem = async (playerId, color) => {
-    const list = matchedPlayersArray.concat(<PlayerMatched name={playerSelected} playerId={playerId} color={color} onChildClick={handleChildClick} />);
+  function onAddItem (playerId, playerName) {
+    const list = matchedPlayersArray.concat(<PlayerMatched name={playerName} playerId={playerId} color={color} onChildClick={handleChildClick} />);
     setMatchedPlayersArray(list);
     const listData = matchedPlayersArrayData.concat(playerId);
     setMatchedPlayersArrayData(listData);
-    return [list, listData];
-  };
+  }
 
   return (
     <BgImage>
@@ -114,9 +102,8 @@ function RecordMatchScreen ({ navigation }) {
                   placeholder="Search by name or email"
                   renderItem={({ item }) => (
                     <TouchableOpacity onPress={() => {
-                      onAddItem(item.id);
-                      setQuery("");
-                      setPlayerSelected(item.fullName);
+                      onAddItem(item.id, item.fullName);
+                      setQuery('');
                     }}
                     >
                       <Text style={styles.itemText}>
@@ -136,14 +123,14 @@ function RecordMatchScreen ({ navigation }) {
             {matchedPlayersArray}
             <RecordMatchButton
               title="Record Match"
-              onPress={async () => navigation.navigate("MatchRecorded", {
+              onPress={() => navigation.navigate("MatchRecorded", {
                 ...navigationContext,
                 recordMatch: {
                   ...navigationContext.recordMatch,
                   players: matchedPlayersArrayData.map((item) => (
                     {
                       playerId: item,
-                      isWinner: true
+                      isWinner: false
                     }
                   )),
                   gameId: gameSelected

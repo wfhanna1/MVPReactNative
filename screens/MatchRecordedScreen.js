@@ -1,18 +1,25 @@
 import React from 'react';
-import { StyleSheet, ScrollView } from 'react-native';
-import { withNavigation, NavigationContext } from 'react-navigation';
+import { StyleSheet, ScrollView, Text } from 'react-native';
+import { withNavigation } from 'react-navigation';
+import useQuery from '../hooks/useQuery';
+import recordMatchQuery from '../queries/recordMatch';
+import LoadingScreen from './LoadingScreen';
 import ColorHeading from '../components/ColorHeading';
 import GrayHeading from '../components/GrayHeading';
 import PlayerMatchRecorded from '../components/PlayerMatchRecorded';
-
 import HeaderSm from '../components/HeaderSmall';
 import BgImage from '../components/backgroundImage';
 
 function RecordMatchScreen({ navigation }) {
+
   const navigationContext = navigation.state.params || {};
+  const [recordMatch, recordMatchLoading, recordMatchError] = useQuery(recordMatchQuery(navigationContext.recordMatch));
 
-  console.log('match recorded navigation', navigationContext.recordMatch);
-
+  if (recordMatchLoading) {
+    return (
+      <LoadingScreen />
+    );
+  }
 
   return (
     <BgImage>
