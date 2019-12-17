@@ -3,7 +3,7 @@ import {
   View, StyleSheet, Text, ImageBackground
 } from 'react-native';
 import { withNavigation } from 'react-navigation';
-import RecordMatchButton from './RecordMatchButton';
+import ButtonPrimary from './ButtonPrimary';
 import AddNewPlayerButton from './AddNewPlayerButton';
 
 const headerImageLg = require('../assets/icons/Header-Background-Large2x.png');
@@ -16,7 +16,7 @@ function HeaderLg({ navigation }) {
     >
       <View style={styles.container}>
         <Text style={styles.title}>Office MVP</Text>
-        <RecordMatchButton title="Record Match" onPress={() => navigation.navigate('RecordMatch')} />
+        <ButtonPrimary title="Record Match" onPress={() => navigation.navigate('RecordMatch')} />
         <AddNewPlayerButton />
       </View>
     </ImageBackground>
