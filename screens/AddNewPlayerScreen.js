@@ -30,7 +30,7 @@ function AddNewPlayerScreen ({ navigation }) {
 
 	const onSubmit = () => {
 		if (formValid()) {
-			if (!addPlayer.loading && !addPlayer.error) {
+			if (addPlayer) {
 				navigation.navigate("PlayerAdded");
 			}
 		}
