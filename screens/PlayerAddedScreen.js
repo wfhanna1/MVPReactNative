@@ -10,6 +10,7 @@ import AddNewPlayerButton from "../components/AddNewPlayerButton";
 const defaultProfilePhoto = require("../assets/icons/Default-user.png");
 
 function PlayerAddedScreen ({ navigation }) {
+	console.log("Player ID: ", navigation.getParam("id"));
 	return (
 		<BgImage>
 			<HeaderSm style={styles.title} headerTitle="Player Added!" />

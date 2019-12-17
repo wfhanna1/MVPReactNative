@@ -11,7 +11,7 @@ import addPlayerQuery from "../queries/addPlayer";
 
 const defaultProfilePhoto = require("../assets/icons/Profile-Pic-Example.png");
 
-const emailRegex = RegExp(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/);
+const emailRegex = RegExp(/^.+\@.+\..+$/);
 
 function AddNewPlayerScreen ({ navigation }) {
 	const [name, setName] = useState(undefined);
