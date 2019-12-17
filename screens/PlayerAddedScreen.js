@@ -7,14 +7,19 @@ import BgImage from "../components/backgroundImage";
 import ButtonPrimary from "../components/ButtonPrimary";
 import AddNewPlayerButton from "../components/AddNewPlayerButton";
 
-const defaultProfileImage = require("../assets/icons/Default-user.png");
+const defaultProfilePhoto = require("../assets/icons/Default-user.png");
 
 function PlayerAddedScreen ({ navigation }) {
 	return (
 		<BgImage>
 			<HeaderSm style={styles.title} headerTitle="Player Added!" />
 			<View style={styles.container}>
-				<Image style={styles.picture} source={navigation.getParam("profilePhoto") || defaultProfileImage} />
+				<Image
+					style={styles.picture}
+					source={navigation.getParam("profilePhoto") ? {
+						uri: navigation.getParam("profilePhoto")
+					} : defaultProfilePhoto}
+				/>
 				<View style={styles.subContainer1}>
 					<Text style={styles.name}>{navigation.getParam("name")}</Text>
 					<Text style={styles.game}>{navigation.getParam("email")}</Text>
@@ -43,6 +48,7 @@ const styles = StyleSheet.create({
 	},
 	picture: {
 		height: "35%",
+		width: "100%",
 		resizeMode: "contain"
 	},
 	name: {
