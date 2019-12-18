@@ -5,40 +5,47 @@ import { withNavigation } from "react-navigation";
 import ImagePicker from "react-native-image-picker";
 import HeaderSm from "../components/HeaderSmall";
 import BgImage from "../components/backgroundImage";
-import RecordMatchButton from "../components/RecordMatchButton";
+import ButtonPrimary from "../components/ButtonPrimary";
 import useQuery from "../hooks/useQuery";
 import addPlayerQuery from "../queries/addPlayer";
 
-const defaultProfileImage = require("../assets/icons/Profile-Pic-Example.png");
+const defaultProfilePhoto = require("../assets/icons/Profile-Pic-Example.png");
 
-const emailRegex = RegExp(
-	/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/
-);
+const emailRegex = RegExp(/^.+\@.+\..+$/);
 
 function AddNewPlayerScreen ({ navigation }) {
 	const [name, setName] = useState(undefined);
 	const [email, setEmail] = useState(undefined);
-	const [profileImage, setProfileImage] = useState(undefined);
+	const [profilePhoto, setProfilePhoto] = useState(undefined);
+	const [nameError, setNameError] = useState(undefined);
+	const [emailError, setEmailError] = useState(undefined);
 
 	const [addPlayer, addPlayerLoading] = useQuery(addPlayerQuery({
 		fullName: name,
 		emailAddress: email,
-		profilePhoto: profileImage
+		profilePhoto
 	}));
 
-	const formValid = () => (name ? name.trim().length > 0 : false) && (email ? emailRegex.test(email.trim()) : false);
+	const formValid = () => {
+		setNameError(name && name.trim().length > 0 ? false : "enter your name");
+		setEmailError(email && emailRegex.test(email.trim()) ? false : "enter a valid email");
+		return [nameError, emailError];
+	};
 
 	const onSubmit = () => {
-		if (formValid()) {
+		const errors = formValid();
+		if (errors.filter((item) => !!item)) {
 			if (addPlayer) {
-				navigation.navigate("PlayerAdded");
+				return navigation.navigate("PlayerAdded", {
+					id: addPlayer.id,
+					name,
+					email,
+					profilePhoto
+				});
 			}
 		}
 
-		return navigation.setParams({
-			nameError: name && name.trim().length > 0 ? false : "enter your name",
-			emailError: email && emailRegex.test(email.trim()) ? false : "enter a valid email"
-		});
+		return false;
 	};
 
 	const ErrorMessage = (props) => {
@@ -60,7 +67,7 @@ function AddNewPlayerScreen ({ navigation }) {
 		};
 		ImagePicker.launchImageLibrary(options, (response) => {
 			if (response.uri) {
-				setProfileImage(response.uri);
+				setProfilePhoto(response.uri);
 			}
 		});
 	};
@@ -74,7 +81,7 @@ function AddNewPlayerScreen ({ navigation }) {
 						<Text style={styles.text}>Full Name</Text>
 						<Item style={styles.item}>
 							<Input
-								style={navigation.getParam("nameError") ? styles.error : styles.input}
+								style={nameError ? styles.error : styles.input}
 								onChangeText={(nameVal) => setName(nameVal)}
 								placeholder="Max Power"
 							/>
@@ -84,7 +91,7 @@ function AddNewPlayerScreen ({ navigation }) {
 						<Text style={styles.text}>Email Address</Text>
 						<Item style={styles.item}>
 							<Input
-								style={navigation.getParam("emailError") ? styles.error : styles.input}
+								style={emailError ? styles.error : styles.input}
 								onChangeText={(emailVal) => setEmail(emailVal)}
 								placeholder="Max.Power@insight.com"
 							/>
@@ -94,18 +101,17 @@ function AddNewPlayerScreen ({ navigation }) {
 						<Text style={styles.profText}>Profile Pic</Text>
 						<Image
 							style={styles.profile}
-							source={profileImage ? {
-								uri: profileImage
-							} : defaultProfileImage}
+							source={profilePhoto ? {
+								uri: profilePhoto
+							} : defaultProfilePhoto}
 						/>
-						{/* source={profileImage} /> */}
 						<Button transparent onPress={handleChoosePhoto}>
 							<Text style={styles.profileButton}>Add/Update</Text>
 						</Button>
 					</View>
 					<View style={styles.container}>
-						<ErrorMessage errors={[navigation.getParam("nameError"), navigation.getParam("emailError")]} />
-						<RecordMatchButton
+						<ErrorMessage errors={[nameError, emailError]} />
+						<ButtonPrimary
 							title="Add Player"
 							onPress={onSubmit}
 						/>
