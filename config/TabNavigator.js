@@ -110,7 +110,9 @@ const Tab = createBottomTabNavigator(
 		},
 		defaultNavigationOptions: ({ navigation }) => ({
 			tabBarOnPress: ({ navigation, defaultHandler }) => {
-				defaultHandler();
+				if (navigation.state.routeName === "Games") {
+					return null;
+				} defaultHandler();
 			},
 			tabBarIcon: ({ tintColor }) => {
 				const { routeName } = navigation.state;
