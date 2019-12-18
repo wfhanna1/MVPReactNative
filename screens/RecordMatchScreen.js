@@ -35,6 +35,8 @@ function RecordMatchScreen ({ navigation }) {
   const [gameSelected, setGameSelected] = useState(undefined);
   const [matchedPlayersArray, setMatchedPlayersArray] = useState([]);
   const [matchedPlayersArrayData, setMatchedPlayersArrayData] = useState([]);
+  const [isWinner, setIsWinner] = useState(false);
+  console.log('isWinner', isWinner);
 
   if (!games || gamesLoading || findPlayersLoading) {
     return (
@@ -53,8 +55,13 @@ function RecordMatchScreen ({ navigation }) {
 
   const playersFound = filterPlayers(query);
 
+  function handleWinner () {
+    setIsWinner(!isWinner);
+    console.log('is winner?', isWinner);
+  }
+
   function onAddItem (playerId, playerName) {
-    const list = matchedPlayersArray.concat(<PlayerMatched name={playerName} playerId={playerId} color={color} onChildClick={handleChildClick} />);
+    const list = matchedPlayersArray.concat(<PlayerMatched name={playerName} playerId={playerId} onClickWinner={handleWinner} />);
     setMatchedPlayersArray(list);
     const listData = matchedPlayersArrayData.concat(playerId);
     setMatchedPlayersArrayData(listData);
@@ -104,6 +111,7 @@ function RecordMatchScreen ({ navigation }) {
                     <TouchableOpacity onPress={() => {
                       onAddItem(item.id, item.fullName);
                       setQuery('');
+                      //setIsWinner(!isWinner);
                     }}
                     >
                       <Text style={styles.itemText}>

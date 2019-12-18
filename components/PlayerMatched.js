@@ -4,9 +4,11 @@ import { Text, Button } from 'native-base';
 
 const playerImage = require('../assets/icons/Default-user.png');
 
-export default function PlayerMatched({ name }) {
+export default function PlayerMatched({ name, onClickWinner }) {
+  const [winColor, setWinColor] = useState(false);
+  const [loseColor, setLoseColor] = useState(false);
   const [isWinner, setIsWinner] = useState(false);
-  const [isLoser, setIsLoser] = useState(false);
+
 
   return (
     <View>
@@ -19,17 +21,18 @@ export default function PlayerMatched({ name }) {
         <Button
           transparent
           onPress={() => {
-            setIsWinner(!isWinner);
+            setWinColor(!winColor);
           }}
         >
-          <Text style={isWinner ? styles.winnerSelected : styles.unselected}>W</Text></Button>
+          <Text style={winColor ? styles.winnerSelected : styles.unselected}>W</Text></Button>
         <Button
           transparent
           onPress={() => {
-            setIsLoser(!isLoser);
+            setLoseColor(!loseColor);
+            onClickWinner();
           }}
         >
-          <Text style={isLoser ? styles.loserSelected : styles.unselected}>L{color}</Text></Button>
+          <Text style={loseColor ? styles.loserSelected : styles.unselected}>L</Text></Button>
       </View>
     </View>
   );
