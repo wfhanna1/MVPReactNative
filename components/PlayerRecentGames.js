@@ -18,49 +18,6 @@ export default function PlayerRecentGames (player) {
 	);
 }
 
-const foo = [
-	{
-		id: 1,
-		game: "foosball",
-		date: "0001-01-01T00:00:00",
-		teams: [
-			{
-				isWinner: true,
-				players: [
-					{
-						id: 123,
-						name: "Paul Woidke",
-						photo: "/path/to/photo.jpg",
-						points: 1111
-					},
-					{
-						id: 456,
-						name: "Jennifer Dougher",
-						photo: "/path/to/photo.jpg",
-						points: 3575
-					}
-				]
-			},
-			{
-				players: [
-					{
-						id: 789,
-						name: "Wasim Hannah",
-						photo: "/path/to/photo.jpg",
-						points: 2746
-					},
-					{
-						id: 234,
-						name: "Cory Ehler",
-						photo: "/path/to/photo.jpg",
-						points: 1611
-					}
-				]
-			}
-		]
-	}
-];
-
 const styles = StyleSheet.create({
 	playerComponent: {
 		alignItems: "center",
