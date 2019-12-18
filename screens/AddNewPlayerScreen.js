@@ -84,6 +84,7 @@ function AddNewPlayerScreen ({ navigation }) {
 								style={nameError ? styles.error : styles.input}
 								onChangeText={(nameVal) => setName(nameVal)}
 								placeholder="Max Power"
+								autoCapitalize="words"
 							/>
 						</Item>
 					</View>
@@ -94,6 +95,7 @@ function AddNewPlayerScreen ({ navigation }) {
 								style={emailError ? styles.error : styles.input}
 								onChangeText={(emailVal) => setEmail(emailVal)}
 								placeholder="Max.Power@insight.com"
+								autoCapitalize="none"
 							/>
 						</Item>
 					</View>
