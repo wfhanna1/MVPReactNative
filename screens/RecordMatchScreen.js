@@ -34,10 +34,6 @@ function RecordMatchScreen ({ navigation }) {
   const [query, setQuery] = useState("");
   const [gameSelected, setGameSelected] = useState(undefined);
   const [matchedPlayersArray, setMatchedPlayersArray] = useState([]);
-  const [isWinner, setIsWinner] = useState(false);
-  const [isLoser, setIsLoser] = useState(false);
-
-  console.log("isWinner", isWinner);
 
   if (!games || gamesLoading || findPlayersLoading) {
     return (
@@ -56,19 +52,26 @@ function RecordMatchScreen ({ navigation }) {
 
   const playersFound = filterPlayers(query);
 
-  function onAddItem (playerId, playerName) {
+  function onAddItem (player) {
     const list = matchedPlayersArray.concat({
-      playerName, playerId
+      fullName: player.fullName, id: player.id, isWinner: false
     });
     setMatchedPlayersArray(list);
   }
 
-  const handleWinner = () => {
-    setIsWinner(!isWinner);
-  };
-
-  const handleLoser = () => {
-    setIsLoser(!isLoser);
+  const setWinLossStatus = (playerWinLossStatus, winLoss) => {
+    const playerIndex = matchedPlayersArray.findIndex((player) => player.id === playerWinLossStatus.id);
+    const updatedPlayerList = matchedPlayersArray.map((player, index) => {
+      let result = player;
+      if (index === playerIndex) {
+        result = {
+          ...player,
+          isWinner: winLoss
+        };
+      }
+      return result;
+    });
+    setMatchedPlayersArray(updatedPlayerList);
   };
 
   return (
@@ -113,7 +116,7 @@ function RecordMatchScreen ({ navigation }) {
                   placeholder="Search by name or email"
                   renderItem={({ item }) => (
                     <TouchableOpacity onPress={() => {
-                      onAddItem(item.id, item.fullName);
+                      onAddItem(item);
                       setQuery("");
                     }}
                     >
@@ -131,7 +134,7 @@ function RecordMatchScreen ({ navigation }) {
           </View>
           <View style={styles.matchedContainer}>
             <GrayHeading title="Match Players" />
-            {matchedPlayersArray.map((name) => <PlayerMatched name={name.playerName} onClickWinner={handleWinner} onClickLoser={handleLoser} />)}
+            {matchedPlayersArray.map((player) => <PlayerMatched player={player} setWinLossStatus={setWinLossStatus} />)}
             <RecordMatchButton
               title="Record Match"
               onPress={() => navigation.navigate("MatchRecorded", {
@@ -140,8 +143,8 @@ function RecordMatchScreen ({ navigation }) {
                   ...navigationContext.recordMatch,
                   players: matchedPlayersArray.map((item) => (
                     {
-                      playerId: item.playerId,
-                      isWinner: isWinner && !isLoser
+                      playerId: item.id,
+                      isWinner: item.isWinnerf
                     }
                   )),
                   gameId: gameSelected

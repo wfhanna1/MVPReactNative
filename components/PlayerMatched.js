@@ -1,39 +1,34 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, Image, View } from "react-native";
 import { Text, Button } from "native-base";
 
 const playerImage = require("../assets/icons/Default-user.png");
 
-export default function PlayerMatched ({ name, onClickWinner, onClickLoser }) {
-  const [winColor, setWinColor] = useState(false);
-  const [loseColor, setLoseColor] = useState(false);
-
+export default function PlayerMatched ({ player, setWinLossStatus }) {
   return (
     <View>
       <View style={styles.playerComponent}>
         <Image style={styles.picture} source={playerImage} />
         <View style={styles.stats}>
-          <Text style={styles.name}>{name}</Text>
+          <Text style={styles.name}>{player.fullName}</Text>
           <Button transparent><Text style={styles.buttonText}>Remove</Text></Button>
         </View>
         <Button
           transparent
           onPress={() => {
-            setWinColor(!winColor);
-            onClickWinner();
+            setWinLossStatus(player, true);
           }}
         >
-          <Text style={winColor ? styles.winnerSelected : styles.unselected}>W</Text>
+          <Text style={player.isWinner ? styles.winnerSelected : styles.unselected}>W</Text>
 
         </Button>
         <Button
           transparent
           onPress={() => {
-            setLoseColor(!loseColor);
-            onClickLoser();
+            setWinLossStatus(player, false);
           }}
         >
-          <Text style={loseColor ? styles.loserSelected : styles.unselected}>L</Text>
+          <Text style={!player.isWinner ? styles.loserSelected : styles.unselected}>L</Text>
 
         </Button>
       </View>
