@@ -1,29 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import { ScrollView, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import { withNavigation } from 'react-navigation';
-import {
-  Item, Input, Icon, Form, Button
-} from 'native-base';
-import Autocomplete from 'react-native-autocomplete-input';
-import RNPickerSelect from 'react-native-picker-select';
-import useQuery from '../hooks/useQuery';
-import gamesQuery from '../queries/games';
-import findPlayersQuery from '../queries/findPlayers';
-import LoadingScreen from './LoadingScreen';
-import HeaderSm from '../components/HeaderSmall';
-import GrayHeading from '../components/GrayHeading';
-import BgImage from '../components/backgroundImage';
-import AddNewPlayerButton from '../components/AddNewPlayerButton';
-import RecordMatchButton from '../components/RecordMatchButton';
-import PlayerMatched from '../components/PlayerMatched';
+import React, { useState, useEffect } from "react";
+import { ScrollView, StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import { withNavigation } from "react-navigation";
+import { Icon, Form, Button } from "native-base";
+import Autocomplete from "react-native-autocomplete-input";
+import RNPickerSelect from "react-native-picker-select";
+import useQuery from "../hooks/useQuery";
+import gamesQuery from "../queries/games";
+import findPlayersQuery from "../queries/findPlayers";
+import LoadingScreen from "./LoadingScreen";
+import HeaderSm from "../components/HeaderSmall";
+import GrayHeading from "../components/GrayHeading";
+import BgImage from "../components/backgroundImage";
+import AddNewPlayerButton from "../components/AddNewPlayerButton";
+import RecordMatchButton from "../components/RecordMatchButton";
+import PlayerMatched from "../components/PlayerMatched";
 
 function RecordMatchScreen ({ navigation }) {
+  const navigationContext = navigation.state.params || {
+  };
 
-  const navigationContext = navigation.state.params || {};
+  if (!navigationContext.hasOwnProperty("register")) {
+    Object.defineProperty(navigationContext, "register", {
+      value: {
 
-  if (!navigationContext.hasOwnProperty('register')) {
-    Object.defineProperty(navigationContext, 'register', {
-      value: {},
+      },
       writable: true
     });
   }
@@ -31,12 +31,11 @@ function RecordMatchScreen ({ navigation }) {
   const [games, gamesLoading] = useQuery(gamesQuery());
   const [findPlayers, findPlayersLoading] = useQuery(findPlayersQuery());
 
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const [gameSelected, setGameSelected] = useState(undefined);
   const [matchedPlayersArray, setMatchedPlayersArray] = useState([]);
-  const [matchedPlayersArrayData, setMatchedPlayersArrayData] = useState([]);
   const [isWinner, setIsWinner] = useState(false);
-  console.log('isWinner', isWinner);
+  const [isLoser, setIsLoser] = useState(false);
 
   if (!games || gamesLoading || findPlayersLoading) {
     return (
@@ -55,16 +54,19 @@ function RecordMatchScreen ({ navigation }) {
 
   const playersFound = filterPlayers(query);
 
-  function handleWinner () {
+  const handleWinner = () => {
     setIsWinner(!isWinner);
-    console.log('is winner?', isWinner);
-  }
+  };
+
+  const handleLoser = () => {
+    setIsLoser(!isLoser);
+  };
 
   function onAddItem (playerId, playerName) {
-    const list = matchedPlayersArray.concat(<PlayerMatched name={playerName} playerId={playerId} onClickWinner={handleWinner} />);
+    const list = matchedPlayersArray.concat({
+      playerName, playerId
+    });
     setMatchedPlayersArray(list);
-    const listData = matchedPlayersArrayData.concat(playerId);
-    setMatchedPlayersArrayData(listData);
   }
 
   return (
@@ -110,8 +112,7 @@ function RecordMatchScreen ({ navigation }) {
                   renderItem={({ item }) => (
                     <TouchableOpacity onPress={() => {
                       onAddItem(item.id, item.fullName);
-                      setQuery('');
-                      //setIsWinner(!isWinner);
+                      setQuery("");
                     }}
                     >
                       <Text style={styles.itemText}>
@@ -128,17 +129,17 @@ function RecordMatchScreen ({ navigation }) {
           </View>
           <View style={styles.matchedContainer}>
             <GrayHeading title="Match Players" />
-            {matchedPlayersArray}
+            {matchedPlayersArray.map((name) => <PlayerMatched name={name.playerName} onClickWinner={handleWinner} onClickLoser={handleLoser} />)}
             <RecordMatchButton
               title="Record Match"
               onPress={() => navigation.navigate("MatchRecorded", {
                 ...navigationContext,
                 recordMatch: {
                   ...navigationContext.recordMatch,
-                  players: matchedPlayersArrayData.map((item) => (
+                  players: matchedPlayersArray.map((item) => (
                     {
-                      playerId: item,
-                      isWinner: false
+                      playerId: item.playerId,
+                      isWinner
                     }
                   )),
                   gameId: gameSelected
@@ -196,35 +197,35 @@ const styles = StyleSheet.create({
     width: "100%"
   },
   text: {
-    fontFamily: 'KlinicSlab-Book',
+    fontFamily: "KlinicSlab-Book",
     fontSize: 26,
-    fontWeight: '500',
+    fontWeight: "500",
     marginTop: 30,
-    alignSelf: 'flex-start',
-    marginLeft: '11%'
+    alignSelf: "flex-start",
+    marginLeft: "11%"
   },
   icon: {
-    color: '#4166AA',
+    color: "#4166AA",
     fontSize: 15,
-    position: 'absolute',
+    position: "absolute",
     marginTop: 15,
-    marginLeft: '95%',
+    marginLeft: "95%",
     zIndex: 10
   },
   button: {
-    marginLeft: '6%',
-    marginBottom: '2%',
+    marginLeft: "6%",
+    marginBottom: "2%",
     zIndex: -1
   },
   cancelButton: {
-    alignSelf: 'center'
+    alignSelf: "center"
   },
   cancelText: {
     letterSpacing: -0.52,
-    fontWeight: '300',
-    color: '#4166AA',
+    fontWeight: "300",
+    color: "#4166AA",
     fontSize: 16,
-    marginLeft: -17,
+    marginLeft: -17
   },
   matchedContainer: {
     zIndex: -1
@@ -233,19 +234,19 @@ const styles = StyleSheet.create({
 
 const pickerSelectStyles = StyleSheet.create({
   inputIOS: {
-    alignItems: 'center',
+    alignItems: "center",
     fontSize: 16,
-    fontWeight: '300',
+    fontWeight: "300",
     paddingTop: 16,
     borderBottomWidth: 2,
     height: 50,
-    width: '78%',
+    width: "78%",
     paddingHorizontal: 10,
     marginTop: 12,
-    marginLeft: '11%',
-    borderBottomColor: '#B73491',
-    color: 'black',
-  },
+    marginLeft: "11%",
+    borderBottomColor: "#B73491",
+    color: "black"
+  }
 });
 
 export default (withNavigation(RecordMatchScreen));

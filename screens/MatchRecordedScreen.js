@@ -1,18 +1,18 @@
-import React from 'react';
-import { StyleSheet, ScrollView, Text } from 'react-native';
-import { withNavigation } from 'react-navigation';
-import useQuery from '../hooks/useQuery';
-import recordMatchQuery from '../queries/recordMatch';
-import LoadingScreen from './LoadingScreen';
-import ColorHeading from '../components/ColorHeading';
-import GrayHeading from '../components/GrayHeading';
-import PlayerMatchRecorded from '../components/PlayerMatchRecorded';
-import HeaderSm from '../components/HeaderSmall';
-import BgImage from '../components/backgroundImage';
+import React from "react";
+import { StyleSheet, ScrollView, Text } from "react-native";
+import { withNavigation } from "react-navigation";
+import useQuery from "../hooks/useQuery";
+import recordMatchQuery from "../queries/recordMatch";
+import LoadingScreen from "./LoadingScreen";
+import ColorHeading from "../components/ColorHeading";
+import GrayHeading from "../components/GrayHeading";
+import PlayerMatchRecorded from "../components/PlayerMatchRecorded";
+import HeaderSm from "../components/HeaderSmall";
+import BgImage from "../components/backgroundImage";
 
-function RecordMatchScreen({ navigation }) {
-
-  const navigationContext = navigation.state.params || {};
+function RecordMatchScreen ({ navigation }) {
+  const navigationContext = navigation.state.params || {
+  };
   const [recordMatch, recordMatchLoading, recordMatchError] = useQuery(recordMatchQuery(navigationContext.recordMatch));
 
   if (recordMatchLoading) {
@@ -41,11 +41,11 @@ function RecordMatchScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center'
+    alignItems: "center"
   },
   input: {
-    borderBottomColor: 'red',
-    width: '80%'
+    borderBottomColor: "red",
+    width: "80%"
   },
   text: {
     marginTop: 30

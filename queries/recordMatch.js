@@ -1,9 +1,10 @@
-import insightMVPUrl from './config';
+import insightMVPUrl from "./config";
 
-export default function recordMatch(data) {
-  console.log('TEST', JSON.stringify(data));
+export default function recordMatch (data) {
   if (!data) {
-    return {};
+    return {
+
+    };
   }
   return {
     url: `${insightMVPUrl}/Matches/multiplayer`,

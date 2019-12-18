@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
-import { StyleSheet, Image, View } from 'react-native';
-import { Text, Button } from 'native-base';
+import React, { useState } from "react";
+import { StyleSheet, Image, View } from "react-native";
+import { Text, Button } from "native-base";
 
-const playerImage = require('../assets/icons/Default-user.png');
+const playerImage = require("../assets/icons/Default-user.png");
 
-export default function PlayerMatched({ name, onClickWinner }) {
+export default function PlayerMatched ({ name, onClickWinner, onClickLoser }) {
   const [winColor, setWinColor] = useState(false);
   const [loseColor, setLoseColor] = useState(false);
-  const [isWinner, setIsWinner] = useState(false);
-
 
   return (
     <View>
@@ -22,17 +20,22 @@ export default function PlayerMatched({ name, onClickWinner }) {
           transparent
           onPress={() => {
             setWinColor(!winColor);
+            onClickWinner();
           }}
         >
-          <Text style={winColor ? styles.winnerSelected : styles.unselected}>W</Text></Button>
+          <Text style={winColor ? styles.winnerSelected : styles.unselected}>W</Text>
+
+        </Button>
         <Button
           transparent
           onPress={() => {
             setLoseColor(!loseColor);
-            onClickWinner();
+            onClickLoser();
           }}
         >
-          <Text style={loseColor ? styles.loserSelected : styles.unselected}>L</Text></Button>
+          <Text style={loseColor ? styles.loserSelected : styles.unselected}>L</Text>
+
+        </Button>
       </View>
     </View>
   );
@@ -40,56 +43,56 @@ export default function PlayerMatched({ name, onClickWinner }) {
 
 const styles = StyleSheet.create({
   playerComponent: {
-    marginTop: '2%',
-    width: '100%',
-    alignSelf: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    marginTop: "2%",
+    width: "100%",
+    alignSelf: "center",
+    flexDirection: "row",
+    justifyContent: "space-around"
   },
   picture: {
     flex: 1,
     height: 75,
-    resizeMode: 'contain',
-    marginTop: '-2%'
+    resizeMode: "contain",
+    marginTop: "-2%"
   },
   stats: {
     flex: 1,
-    alignItems: 'flex-start',
+    alignItems: "flex-start"
   },
   name: {
-    fontFamily: 'KlinicSlab-Book',
+    fontFamily: "KlinicSlab-Book",
     fontSize: 26,
-    fontWeight: '500',
+    fontWeight: "500",
     letterSpacing: -0.63,
     marginBottom: -7
   },
   points: {
     fontSize: 16,
-    color: '#399D60',
+    color: "#399D60",
     letterSpacing: -0.7,
     marginBottom: -5
   },
   buttonText: {
     letterSpacing: -0.52,
-    fontWeight: '300',
-    color: '#4166AA',
+    fontWeight: "300",
+    color: "#4166AA",
     fontSize: 16,
     marginLeft: -17,
-    alignSelf: 'flex-start'
+    alignSelf: "flex-start"
   },
   winnerSelected: {
-    color: '#399D60',
+    color: "#399D60",
     fontSize: 25,
     fontWeight: "bold"
   },
   loserSelected: {
-    color: '#B73491',
+    color: "#B73491",
     fontSize: 25,
     fontWeight: "bold"
   },
   unselected: {
-    color: '#6E645F',
+    color: "#6E645F",
     fontSize: 25,
-    fontWeight: '300'
+    fontWeight: "300"
   }
 });
