@@ -37,6 +37,8 @@ function RecordMatchScreen ({ navigation }) {
   const [isWinner, setIsWinner] = useState(false);
   const [isLoser, setIsLoser] = useState(false);
 
+  console.log("isWinner", isWinner);
+
   if (!games || gamesLoading || findPlayersLoading) {
     return (
       <LoadingScreen />
@@ -54,6 +56,13 @@ function RecordMatchScreen ({ navigation }) {
 
   const playersFound = filterPlayers(query);
 
+  function onAddItem (playerId, playerName) {
+    const list = matchedPlayersArray.concat({
+      playerName, playerId
+    });
+    setMatchedPlayersArray(list);
+  }
+
   const handleWinner = () => {
     setIsWinner(!isWinner);
   };
@@ -61,13 +70,6 @@ function RecordMatchScreen ({ navigation }) {
   const handleLoser = () => {
     setIsLoser(!isLoser);
   };
-
-  function onAddItem (playerId, playerName) {
-    const list = matchedPlayersArray.concat({
-      playerName, playerId
-    });
-    setMatchedPlayersArray(list);
-  }
 
   return (
     <BgImage>
@@ -139,7 +141,7 @@ function RecordMatchScreen ({ navigation }) {
                   players: matchedPlayersArray.map((item) => (
                     {
                       playerId: item.playerId,
-                      isWinner
+                      isWinner: isWinner && !isLoser
                     }
                   )),
                   gameId: gameSelected

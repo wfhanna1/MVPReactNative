@@ -1,6 +1,7 @@
 import insightMVPUrl from "./config";
 
 export default function recordMatch (data) {
+  console.log("Inside API Query", data);
   if (!data) {
     return {
 
