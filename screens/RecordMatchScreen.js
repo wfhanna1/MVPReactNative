@@ -134,7 +134,7 @@ function RecordMatchScreen ({ navigation }) {
 					</View>
 					<View style={styles.matchedContainer}>
 						{matchedPlayersArray.length > 0 ? <GrayHeading title="Match Players" /> : null}
-						{matchedPlayersArray.map((player) => <PlayerMatched player={player} setWinLossStatus={setWinLossStatus} />)}
+						{matchedPlayersArray.reverse().map((player, index) => <PlayerMatched player={player} setWinLossStatus={setWinLossStatus} key={`player${index}`} />)}
 						<ButtonPrimary
 							title="Record Match"
 							onPress={() => navigation.navigate("MatchRecorded", {
