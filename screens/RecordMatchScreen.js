@@ -112,6 +112,7 @@ function RecordMatchScreen ({ navigation }) {
 									defaultValue={query}
 									value={query}
 									onChangeText={(text) => setQuery(text)}
+									returnKeyType="done"
 									placeholder="Search by name or email"
 									renderItem={({ item }) => (
 										<TouchableOpacity onPress={() => {
