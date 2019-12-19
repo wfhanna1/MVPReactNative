@@ -74,6 +74,11 @@ function RecordMatchScreen ({ navigation }) {
 		setMatchedPlayersArray(updatedPlayerList);
 	};
 
+	const removePlayer = (removePlayerId) => {
+		const updatedPlayerList = matchedPlayersArray.filter((player) => player.id !== removePlayerId);
+		setMatchedPlayersArray(updatedPlayerList);
+	};
+
 	return (
 		<BgImage>
 			<ScrollView keyboardShouldPersistTaps="always">
@@ -134,7 +139,7 @@ function RecordMatchScreen ({ navigation }) {
 					</View>
 					<View style={styles.matchedContainer}>
 						{matchedPlayersArray.length > 0 ? <GrayHeading title="Match Players" /> : null}
-						{matchedPlayersArray.reverse().map((player, index) => <PlayerMatched player={player} setWinLossStatus={setWinLossStatus} key={`player${index}`} />)}
+						{matchedPlayersArray.reverse().map((player, index) => <PlayerMatched player={player} setWinLossStatus={setWinLossStatus} removePlayer={removePlayer} key={`player${index}`} />)}
 						<ButtonPrimary
 							title="Record Match"
 							onPress={() => navigation.navigate("MatchRecorded", {
@@ -144,7 +149,7 @@ function RecordMatchScreen ({ navigation }) {
 									players: matchedPlayersArray.map((item) => (
 										{
 											playerId: item.id,
-											isWinner: item.isWinnerf
+											isWinner: item.isWinner
 										}
 									)),
 									gameId: gameSelected
