@@ -4,14 +4,22 @@ import { Text, Button } from "native-base";
 
 const playerImage = require("../assets/icons/Default-user.png");
 
-export default function PlayerMatched ({ player, setWinLossStatus }) {
+export default function PlayerMatched ({ player, setWinLossStatus, removePlayer }) {
 	return (
 		<View>
 			<View style={styles.playerComponent}>
 				<Image style={styles.picture} source={playerImage} />
 				<View style={styles.stats}>
 					<Text style={styles.name}>{player.fullName}</Text>
-					<Button transparent><Text style={styles.buttonText}>Remove</Text></Button>
+					<Button
+						transparent
+						onPress={() => {
+							removePlayer(player.id);
+						}}
+					>
+						<Text style={styles.buttonText}>Remove</Text>
+
+					</Button>
 				</View>
 				<Button
 					transparent
