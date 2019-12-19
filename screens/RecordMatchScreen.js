@@ -41,6 +41,11 @@ function RecordMatchScreen ({ navigation }) {
 		);
 	}
 
+	const onRecordMatch = () => {
+		setMatchedPlayersArray([]);
+		navigation.navigate("Players");
+	};
+
 	const filterPlayers = () => {
 		if (query === "") {
 			return [];
@@ -53,10 +58,12 @@ function RecordMatchScreen ({ navigation }) {
 	const playersFound = filterPlayers(query);
 
 	function onAddItem (player) {
-		const list = matchedPlayersArray.concat({
-			fullName: player.fullName, id: player.id, isWinner: false
-		});
-		setMatchedPlayersArray(list);
+		const addPlayer = {
+			fullName: player.fullName,
+			id: player.id,
+			isWinner: false
+		};
+		setMatchedPlayersArray([addPlayer, ...matchedPlayersArray]);
 	}
 
 	const setWinLossStatus = (playerWinLossStatus, winLoss) => {
@@ -139,7 +146,7 @@ function RecordMatchScreen ({ navigation }) {
 					</View>
 					<View style={styles.matchedContainer}>
 						{matchedPlayersArray.length > 0 ? <GrayHeading title="Match Players" /> : null}
-						{matchedPlayersArray.reverse().map((player, index) => <PlayerMatched player={player} setWinLossStatus={setWinLossStatus} removePlayer={removePlayer} key={`player${index}`} />)}
+						{matchedPlayersArray.map((player, index) => <PlayerMatched player={player} setWinLossStatus={setWinLossStatus} removePlayer={removePlayer} key={`player${index}`} />)}
 						<ButtonPrimary
 							title="Record Match"
 							onPress={() => navigation.navigate("MatchRecorded", {
@@ -159,7 +166,7 @@ function RecordMatchScreen ({ navigation }) {
 						<Button
 							style={styles.cancelButton}
 							transparent
-							onPress={() => navigation.navigate("Players") && setMatchedPlayersArray([])}
+							onPress={onRecordMatch}
 						>
 							<Text style={styles.cancelText}>Cancel</Text>
 						</Button>
