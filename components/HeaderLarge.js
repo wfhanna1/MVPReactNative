@@ -2,7 +2,6 @@ import React from "react";
 import { View, StyleSheet, Text, ImageBackground } from "react-native";
 import { withNavigation } from "react-navigation";
 import ButtonPrimary from "./ButtonPrimary";
-import AddNewPlayerButton from "./AddNewPlayerButton";
 
 const headerImageLg = require("../assets/icons/Header-Background-Large2x.png");
 
@@ -29,7 +28,6 @@ function HeaderLg ({ navigation }) {
 						}
 					})}
 				/>
-				<AddNewPlayerButton />
 			</View>
 		</ImageBackground>
 	);

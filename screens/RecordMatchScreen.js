@@ -130,7 +130,7 @@ function RecordMatchScreen ({ navigation }) {
 						</View>
 					</Form>
 					<View style={styles.button}>
-						<AddNewPlayerButton />
+						<AddNewPlayerButton screenHistory="Record Match" />
 					</View>
 					<View style={styles.matchedContainer}>
 						{matchedPlayersArray.length > 0 ? <GrayHeading title="Match Players" /> : null}

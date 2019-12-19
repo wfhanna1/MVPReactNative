@@ -1,9 +1,9 @@
 import React from "react";
 import { ScrollView } from "react-native";
-import { withNavigation } from "react-navigation";
 import useQuery from "../hooks/useQuery";
 import topPlayersQuery from "../queries/topPlayers";
 
+import AddNewPlayerButton from "../components/AddNewPlayerButton";
 import LoadingScreen from "./LoadingScreen";
 import HeaderLg from "../components/HeaderLarge";
 import ColorHeading from "../components/ColorHeading";
@@ -24,6 +24,7 @@ function HomeScreen () {
 		<ScrollView>
 			<BgImage>
 				<HeaderLg />
+				<AddNewPlayerButton screenHistory="Players" />
 				<ColorHeading title="Top Player" />
 				<Player
 					key={topPlayers[0].id}
@@ -45,4 +46,4 @@ function HomeScreen () {
 	);
 }
 
-export default (withNavigation(HomeScreen));
+export default (HomeScreen);
