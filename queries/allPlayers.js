@@ -1,7 +1,7 @@
-import insightMVPUrl from './config';
+import insightMVPUrl from "./config";
 
-export default function allPlayers() {
-  return {
-    url: `${insightMVPUrl}/Players`
-  };
+export default function allPlayers () {
+	return {
+		url: `${insightMVPUrl}/Players`
+	};
 }

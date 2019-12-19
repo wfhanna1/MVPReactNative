@@ -153,11 +153,7 @@ function RecordMatchScreen ({ navigation }) {
 						<Button
 							style={styles.cancelButton}
 							transparent
-<<<<<<< Updated upstream
-							onPress={() => setMatchedPlayersArray([])}
-=======
 							onPress={() => navigation.navigate("Players") && setMatchedPlayersArray([])}
->>>>>>> Stashed changes
 						>
 							<Text style={styles.cancelText}>Cancel</Text>
 						</Button>

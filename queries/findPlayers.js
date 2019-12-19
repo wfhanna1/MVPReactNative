@@ -1,8 +1,8 @@
-import insightMVPUrl from './config';
+import insightMVPUrl from "./config";
 
 
-export default function findPlayers() {
-  return {
-    url: `${insightMVPUrl}/Players`
-  };
+export default function findPlayers () {
+	return {
+		url: `${insightMVPUrl}/Players`
+	};
 }

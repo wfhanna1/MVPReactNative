@@ -9,7 +9,7 @@ const headerImageLg = require("../assets/icons/Header-Background-Large2x.png");
 function HeaderLg ({ navigation }) {
 	const navigationContext = navigation.state.params || {
 
-};
+	};
 
 	return (
 		<ImageBackground
