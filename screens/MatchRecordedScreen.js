@@ -11,45 +11,45 @@ import HeaderSm from "../components/HeaderSmall";
 import BgImage from "../components/backgroundImage";
 
 function RecordMatchScreen ({ navigation }) {
-  const navigationContext = navigation.state.params || {
-  };
-  const [recordMatch, recordMatchLoading, recordMatchError] = useQuery(recordMatchQuery(navigationContext.recordMatch));
+	const navigationContext = navigation.state.params || {
+	};
+	const [recordMatch, recordMatchLoading, recordMatchError] = useQuery(recordMatchQuery(navigationContext.recordMatch));
 
-  if (recordMatchLoading) {
-    return (
-      <LoadingScreen />
-    );
-  }
+	if (recordMatchLoading) {
+		return (
+			<LoadingScreen />
+		);
+	}
 
-  return (
-    <BgImage>
-      <ScrollView>
-        <HeaderSm style={styles.title} headerTitle="Match Recorded!" />
-        <ColorHeading title="Foosball Winners" />
-        <PlayerMatchRecorded name="Player Name" totalPoints="2,439" gamePoints="+200" />
-        <PlayerMatchRecorded name="Player Name" totalPoints="2,439" gamePoints="+200" />
-        <PlayerMatchRecorded name="Player Name" totalPoints="2,439" gamePoints="+200" />
-        <GrayHeading title="Foosball Losers" />
+	return (
+		<BgImage>
+			<ScrollView>
+				<HeaderSm style={styles.title} headerTitle="Match Recorded!" />
+				<ColorHeading title="Foosball Winners" />
+				<PlayerMatchRecorded name="Player Name" totalPoints="2,439" gamePoints="+200" />
+				<PlayerMatchRecorded name="Player Name" totalPoints="2,439" gamePoints="+200" />
+				<PlayerMatchRecorded name="Player Name" totalPoints="2,439" gamePoints="+200" />
+				<GrayHeading title="Foosball Losers" />
 
-        <PlayerMatchRecorded name="Player Name" totalPoints="2,439" gamePoints="-200" />
-        <PlayerMatchRecorded name="Player Name" totalPoints="2,439" gamePoints="-200" />
-        <PlayerMatchRecorded name="Player Name" totalPoints="2,439" gamePoints="-200" />
-      </ScrollView>
-    </BgImage>
-  );
+				<PlayerMatchRecorded name="Player Name" totalPoints="2,439" gamePoints="-200" />
+				<PlayerMatchRecorded name="Player Name" totalPoints="2,439" gamePoints="-200" />
+				<PlayerMatchRecorded name="Player Name" totalPoints="2,439" gamePoints="-200" />
+			</ScrollView>
+		</BgImage>
+	);
 }
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: "center"
-  },
-  input: {
-    borderBottomColor: "red",
-    width: "80%"
-  },
-  text: {
-    marginTop: 30
-  }
+	container: {
+		alignItems: "center"
+	},
+	input: {
+		borderBottomColor: "red",
+		width: "80%"
+	},
+	text: {
+		marginTop: 30
+	}
 });
 
 export default (withNavigation(RecordMatchScreen));
