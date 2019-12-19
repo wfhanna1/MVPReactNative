@@ -22,12 +22,9 @@ function AddNewPlayerScreen ({ navigation }) {
 	const [profilePhoto, setProfilePhoto] = useState(undefined);
 	const [nameError, setNameError] = useState(undefined);
 	const [emailError, setEmailError] = useState(undefined);
+	const [addPlayerObj, setPlayerObj] = useState(undefined);
 
-	const [addPlayer, addPlayerLoading] = useQuery(addPlayerQuery({
-		fullName: name,
-		emailAddress: email,
-		profilePhoto
-	}));
+	const [addPlayer, addPlayerLoading] = useQuery(addPlayerQuery(addPlayerObj));
 
 	const formValid = () => {
 		setNameError(name && name.trim().length > 0 ? false : "enter your name");
@@ -38,6 +35,11 @@ function AddNewPlayerScreen ({ navigation }) {
 	const onSubmit = () => {
 		const errors = formValid();
 		if (errors.filter((item) => !!item)) {
+			setPlayerObj({
+				fullName: name,
+				emailAddress: email,
+				profilePhoto
+			});
 			if (addPlayer) {
 				return navigation.navigate("PlayerAdded", {
 					id: addPlayer.id,
