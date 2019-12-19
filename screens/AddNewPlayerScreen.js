@@ -99,7 +99,7 @@ function AddNewPlayerScreen ({ navigation }) {
 							/>
 						</Item>
 					</View>
-					<View style={styles.container2}>
+					<View style={styles.photoContainer}>
 						<Text style={styles.profText}>Profile Pic</Text>
 						<Image
 							style={styles.profile}
@@ -139,10 +139,11 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		marginTop: "3%"
 	},
-	container2: {
+	photoContainer: {
 		alignItems: "center",
 		marginLeft: "-50%",
-		marginTop: "10%"
+		marginTop: "10%",
+		display: "none"
 	},
 	item: {
 		borderBottomColor: "#B73491",
