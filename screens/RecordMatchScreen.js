@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { ScrollView, StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { withNavigation } from "react-navigation";
 import { Icon, Form, Button } from "native-base";
@@ -133,7 +133,7 @@ function RecordMatchScreen ({ navigation }) {
 						<AddNewPlayerButton />
 					</View>
 					<View style={styles.matchedContainer}>
-						<GrayHeading title="Match Players" />
+						{matchedPlayersArray.length > 0 ? <GrayHeading title="Match Players" /> : null}
 						{matchedPlayersArray.map((player) => <PlayerMatched player={player} setWinLossStatus={setWinLossStatus} />)}
 						<ButtonPrimary
 							title="Record Match"
@@ -154,6 +154,7 @@ function RecordMatchScreen ({ navigation }) {
 						<Button
 							style={styles.cancelButton}
 							transparent
+							onPress={() => setMatchedPlayersArray([])}
 						>
 							<Text style={styles.cancelText}>Cancel</Text>
 						</Button>
