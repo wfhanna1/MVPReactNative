@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView } from "react-native";
+import { StyleSheet, ScrollView, View } from "react-native";
 import useQuery from "../hooks/useQuery";
 import topPlayersQuery from "../queries/topPlayers";
 
@@ -24,7 +24,9 @@ function HomeScreen () {
 		<ScrollView>
 			<BgImage>
 				<HeaderLg />
-				<AddNewPlayerButton screenHistory="Players" />
+				<View style={styles.buttonContainer}>
+				  <AddNewPlayerButton screenHistory="Players" />
+				</View>
 				<ColorHeading title="Top Player" />
 				<Player
 					key={topPlayers[0].id}
@@ -45,5 +47,14 @@ function HomeScreen () {
 		</ScrollView>
 	);
 }
+
+const styles = StyleSheet.create({
+	buttonContainer: {
+		height: 18,
+		marginTop: -15,
+		// marginBottom: -20,
+		alignItems: "center"
+	}
+});
 
 export default (HomeScreen);
