@@ -34,16 +34,47 @@ function RecordMatchScreen ({ navigation }) {
 	const [query, setQuery] = useState("");
 	const [gameSelected, setGameSelected] = useState(undefined);
 	const [matchedPlayersArray, setMatchedPlayersArray] = useState([]);
+	const [gameSelectError, setGameSelectError] = useState(undefined);
+	const [playersError, setPlayersError] = useState(undefined);
+	const [winnersError, setWinnersError] = useState(undefined);
 
-	if (!games || gamesLoading || findPlayersLoading) {
-		return (
-			<LoadingScreen />
-		);
-	}
+	const formValid = () => {
+		setGameSelectError(gameSelected ? false : "select your game");
+		setPlayersError(matchedPlayersArray && matchedPlayersArray.length > 0 ? false : "select players");
+		setWinnersError(matchedPlayersArray && matchedPlayersArray.filter((player) => player.isWinner).length > 0 ? false : "select at least 1 winner");
+		return [gameSelectError, playersError, winnersError];
+	};
+
+	const ErrorMessage = (props) => {
+		const { errors } = props;
+		const errorsText = errors.filter((item) => Boolean(item)).join(" and ");
+		if (errorsText) {
+			return (
+				<View style={styles.errorMessages}>
+					<Text>{`Please ${errorsText}.`}</Text>
+				</View>
+			);
+		}
+		return null;
+	};
 
 	const onRecordMatch = () => {
-		setMatchedPlayersArray([]);
-		navigation.navigate("Players");
+		formValid();
+		if (gameSelected && !gameSelectError && matchedPlayersArray && !playersError && !winnersError) {
+			navigation.navigate("MatchRecorded", {
+				...navigationContext,
+				recordMatch: {
+					...navigationContext.recordMatch,
+					players: matchedPlayersArray.map((item) => (
+						{
+							playerId: item.id,
+							isWinner: item.isWinner
+						}
+					)),
+					gameId: gameSelected
+				}
+			});
+		}
 	};
 
 	const filterPlayers = () => {
@@ -64,6 +95,7 @@ function RecordMatchScreen ({ navigation }) {
 			isWinner: false
 		};
 		setMatchedPlayersArray([addPlayer, ...matchedPlayersArray]);
+		setPlayersError(false);
 	}
 
 	const setWinLossStatus = (playerWinLossStatus, winLoss) => {
@@ -79,12 +111,19 @@ function RecordMatchScreen ({ navigation }) {
 			return result;
 		});
 		setMatchedPlayersArray(updatedPlayerList);
+		setWinnersError(false);
 	};
 
 	const removePlayer = (removePlayerId) => {
 		const updatedPlayerList = matchedPlayersArray.filter((player) => player.id !== removePlayerId);
 		setMatchedPlayersArray(updatedPlayerList);
 	};
+
+	if (!games || gamesLoading || findPlayersLoading) {
+		return (
+			<LoadingScreen />
+		);
+	}
 
 	return (
 		<BgImage>
@@ -95,26 +134,30 @@ function RecordMatchScreen ({ navigation }) {
 						<View style={styles.container}>
 							<Text style={styles.text}>Choose a game</Text>
 							<View style={styles.input}>
-								<RNPickerSelect
-									style={{
-										...pickerSelectStyles
-									}}
-									placeholder={{
-										label: "Choose a game:",
-										value: null
-									}}
-									onValueChange={(value) => setGameSelected(value)}
-									items={games.map((item) => (
-										{
-											label: item.name, value: item.id, key: item.id
-										}
-									))}
-								/>
+								<View style={gameSelectError ? styles.error : null}>
+									<RNPickerSelect
+										style={gameSelectError ? {
+											...pickerSelectStylesError
+										} : {
+											...pickerSelectStyles
+										}}
+										placeholder={{
+											label: "Choose a game:",
+											value: null
+										}}
+										onValueChange={(value) => { setGameSelected(value); setGameSelectError(false); }}
+										items={games.map((item) => (
+											{
+												label: item.name, value: item.id, key: item.id
+											}
+										))}
+									/>
+								</View>
 							</View>
 						</View>
 						<View style={styles.container}>
 							<Text style={styles.text}>Who played?</Text>
-							<View style={styles.item}>
+							<View style={playersError ? styles.playerError : styles.item}>
 								<Autocomplete
 									autoCapitalize="none"
 									autoCorrect={false}
@@ -123,7 +166,7 @@ function RecordMatchScreen ({ navigation }) {
 									data={playersFound}
 									defaultValue={query}
 									value={query}
-									onChangeText={(text) => setQuery(text)}
+									onChangeText={(text) => { setQuery(text); }}
 									returnKeyType="done"
 									placeholder="Search by name or email"
 									renderItem={({ item }) => (
@@ -147,26 +190,15 @@ function RecordMatchScreen ({ navigation }) {
 					<View style={styles.matchedContainer}>
 						{matchedPlayersArray.length > 0 ? <GrayHeading title="Match Players" /> : null}
 						{matchedPlayersArray.map((player, index) => <PlayerMatched player={player} setWinLossStatus={setWinLossStatus} removePlayer={removePlayer} key={`player${index}`} />)}
+						<ErrorMessage errors={[gameSelectError, playersError, winnersError]} />
 						<ButtonPrimary
 							title="Record Match"
-							onPress={() => navigation.navigate("MatchRecorded", {
-								...navigationContext,
-								recordMatch: {
-									...navigationContext.recordMatch,
-									players: matchedPlayersArray.map((item) => (
-										{
-											playerId: item.id,
-											isWinner: item.isWinner
-										}
-									)),
-									gameId: gameSelected
-								}
-							})}
+							onPress={onRecordMatch}
 						/>
 						<Button
 							style={styles.cancelButton}
 							transparent
-							onPress={onRecordMatch}
+							onPress={() => navigation.navigate("Players") && setMatchedPlayersArray([])}
 						>
 							<Text style={styles.cancelText}>Cancel</Text>
 						</Button>
@@ -247,6 +279,26 @@ const styles = StyleSheet.create({
 	},
 	matchedContainer: {
 		zIndex: -1
+	},
+	error: {
+		alignItems: "center",
+		width: "78%",
+		marginLeft: "11%",
+		borderWidth: 2,
+		borderColor: "red",
+		marginTop: 12
+	},
+	playerError: {
+		borderWidth: 2,
+		borderColor: "red",
+		borderBottomColor: "#B73491",
+		borderBottomWidth: 2,
+		width: "80%"
+	},
+	errorMessages: {
+		backgroundColor: "rgba(256, 0, 0, 0.2)",
+		padding: 10,
+		marginBottom: 20
 	}
 });
 
@@ -262,6 +314,21 @@ const pickerSelectStyles = StyleSheet.create({
 		paddingHorizontal: 10,
 		marginTop: 12,
 		marginLeft: "11%",
+		borderBottomColor: "#B73491",
+		color: "black"
+	}
+});
+
+const pickerSelectStylesError = StyleSheet.create({
+	inputIOS: {
+		alignItems: "center",
+		fontSize: 16,
+		fontWeight: "300",
+		paddingTop: 16,
+		paddingHorizontal: 8,
+		borderBottomWidth: 2,
+		height: 46,
+		width: "100%",
 		borderBottomColor: "#B73491",
 		color: "black"
 	}
