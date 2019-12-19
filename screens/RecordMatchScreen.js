@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ScrollView, StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { withNavigation } from "react-navigation";
-import { Icon, Form, Button } from "native-base";
+import { Form, Button } from "native-base";
 import Autocomplete from "react-native-autocomplete-input";
 import RNPickerSelect from "react-native-picker-select";
 import useQuery from "../hooks/useQuery";
@@ -103,7 +103,6 @@ function RecordMatchScreen ({ navigation }) {
 						<View style={styles.container}>
 							<Text style={styles.text}>Who played?</Text>
 							<View style={styles.item}>
-								<Icon active style={styles.icon} type="FontAwesome" name="plus-circle" />
 								<Autocomplete
 									autoCapitalize="none"
 									autoCorrect={false}
@@ -154,7 +153,7 @@ function RecordMatchScreen ({ navigation }) {
 						<Button
 							style={styles.cancelButton}
 							transparent
-							onPress={() => (matchedPlayersArray.length === 0 ? navigation.navigate("Players") : setMatchedPlayersArray([]))}
+							onPress={() => navigation.navigate("Players") && setMatchedPlayersArray([])}
 						>
 							<Text style={styles.cancelText}>Cancel</Text>
 						</Button>
