@@ -1,17 +1,20 @@
 import React from "react";
 import { StyleSheet, Image, View } from "react-native";
 import { Text } from "native-base";
+import useQuery from "../hooks/useQuery";
+import playerRatingQuery from "../queries/playerRating";
 
 const playerImage = require("../assets/icons/Default-user.png");
 
 export default function PlayerRecentGames (player) {
+	const [playerRating, playerRatingLoading] = useQuery(playerRatingQuery(player.id));
 	return (
 		<View>
 			<View style={styles.playerComponent}>
 				<Image style={styles.picture} source={playerImage} />
 				<View style={styles.stats}>
 					<Text style={styles.name}>{player.fullName || "Player Name"}</Text>
-					<Text style={styles.points}>{`Points: ${player.points.toLocaleString() || "2,438"}`}</Text>
+					<Text style={styles.points}>{`Points: ${playerRating ? Math.floor(playerRating.score).toLocaleString() : "0"}`}</Text>
 				</View>
 			</View>
 		</View>
