@@ -39,28 +39,15 @@ function RecordMatchScreen ({ navigation }) {
 	const [winnersError, setWinnersError] = useState(undefined);
 
 	const formValid = () => {
-		setGameSelectError(gameSelected ? false : "select your game");
-		setPlayersError(matchedPlayersArray && matchedPlayersArray.length > 0 ? false : "select players");
-		setWinnersError(matchedPlayersArray && matchedPlayersArray.filter((player) => player.isWinner).length > 0 ? false : "select at least 1 winner");
+		setGameSelectError(gameSelected ? false : "your game");
+		setPlayersError(matchedPlayersArray && matchedPlayersArray.length > 1 ? false : "at least 2 players");
+		setWinnersError(matchedPlayersArray && matchedPlayersArray.filter((player) => player.isWinner).length > 0 ? false : "at least 1 winner");
 		return [gameSelectError, playersError, winnersError];
-	};
-
-	const ErrorMessage = (props) => {
-		const { errors } = props;
-		const errorsText = errors.filter((item) => Boolean(item)).join(" and ");
-		if (errorsText) {
-			return (
-				<View style={styles.errorMessages}>
-					<Text>{`Please ${errorsText}.`}</Text>
-				</View>
-			);
-		}
-		return null;
 	};
 
 	const onRecordMatch = () => {
 		formValid();
-		if (gameSelected && !gameSelectError && matchedPlayersArray && !playersError && !winnersError) {
+		if (gameSelected && !gameSelectError && matchedPlayersArray && matchedPlayersArray.length > 1 && !playersError && matchedPlayersArray.filter((player) => player.isWinner).length > 0 && !winnersError) {
 			navigation.navigate("MatchRecorded", {
 				...navigationContext,
 				recordMatch: {
@@ -117,6 +104,19 @@ function RecordMatchScreen ({ navigation }) {
 	const removePlayer = (removePlayerId) => {
 		const updatedPlayerList = matchedPlayersArray.filter((player) => player.id !== removePlayerId);
 		setMatchedPlayersArray(updatedPlayerList);
+	};
+
+	const ErrorMessage = (props) => {
+		const { errors } = props;
+		const errorsText = errors.filter((item) => Boolean(item)).join(" and ");
+		if (errorsText) {
+			return (
+				<View style={styles.errorMessages}>
+					<Text>{`Please select ${errorsText}.`}</Text>
+				</View>
+			);
+		}
+		return null;
 	};
 
 	if (!games || gamesLoading || findPlayersLoading) {
