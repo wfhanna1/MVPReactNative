@@ -154,7 +154,7 @@ function RecordMatchScreen ({ navigation }) {
 						<Button
 							style={styles.cancelButton}
 							transparent
-							onPress={() => setMatchedPlayersArray([])}
+							onPress={() => (matchedPlayersArray.length === 0 ? navigation.navigate("Players") : setMatchedPlayersArray([]))}
 						>
 							<Text style={styles.cancelText}>Cancel</Text>
 						</Button>
