@@ -90,6 +90,9 @@ function AddNewPlayerScreen ({ navigation }) {
 								onChangeText={(nameVal) => setName(nameVal)}
 								placeholder="Max Power"
 								autoCapitalize="words"
+								textContentType="name"
+								autoCompleteType="name"
+								returnKeyType="done"
 							/>
 						</Item>
 					</View>
@@ -101,6 +104,10 @@ function AddNewPlayerScreen ({ navigation }) {
 								onChangeText={(emailVal) => setEmail(emailVal)}
 								placeholder="Max.Power@insight.com"
 								autoCapitalize="none"
+								textContentType="emailAddress"
+								autoCompleteType="email"
+								keyboardType="email-address"
+								returnKeyType="done"
 							/>
 						</Item>
 					</View>
