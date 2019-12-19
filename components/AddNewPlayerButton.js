@@ -3,9 +3,30 @@ import { StyleSheet } from "react-native";
 import { Button, Text, Icon } from "native-base";
 import { withNavigation } from "react-navigation";
 
-function AddNewPlayerButton ({ navigation }) {
+function AddNewPlayerButton ({ navigation, screenHistory }) {
+	const navigationContext = navigation.state.params || {
+	};
+
+	if (!navigationContext.hasOwnProperty("screenHistory")) {
+		Object.defineProperty(navigationContext, "screenHistory", {
+			value: {
+
+			},
+			writable: true
+		});
+	}
+
 	return (
-		<Button transparent onPress={() => navigation.navigate("AddNewPlayer")}>
+		<Button
+			transparent
+			onPress={() => navigation.navigate("AddNewPlayer", {
+			  ...navigationContext,
+	        screenHistory: {
+					...navigationContext.screenHistory,
+					screenHistory
+				}
+			})}
+		>
 			<Text style={styles.text}>
         Add new player&nbsp;
 				<Icon type="FontAwesome" name="plus-circle" style={styles.icon} />
