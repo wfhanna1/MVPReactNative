@@ -159,7 +159,6 @@ function RecordMatchScreen ({ navigation }) {
 							<Text style={styles.text}>Who played?</Text>
 							<View style={playersError ? styles.playerError : styles.item}>
 								<Autocomplete
-									autoCapitalize="none"
 									autoCorrect={false}
 									inputContainerStyle={styles.autocompleteInput}
 									listContainerStyle={styles.autocompleteList}
@@ -167,6 +166,9 @@ function RecordMatchScreen ({ navigation }) {
 									defaultValue={query}
 									value={query}
 									onChangeText={(text) => { setQuery(text); }}
+									autoCapitalize="words"
+									textContentType="name"
+									autoCompleteType="name"
 									returnKeyType="done"
 									placeholder="Search by name or email"
 									renderItem={({ item }) => (
