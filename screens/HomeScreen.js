@@ -23,7 +23,7 @@ function HomeScreen () {
 	return (
 		<ScrollView>
 			<BgImage>
-				<HeaderLg />
+				<HeaderLg title="Office MVP" />
 				<View style={styles.buttonContainer}>
 				  <AddNewPlayerButton screenHistory="Players" />
 				</View>
@@ -52,7 +52,6 @@ const styles = StyleSheet.create({
 	buttonContainer: {
 		height: 18,
 		marginTop: -15,
-		// marginBottom: -20,
 		alignItems: "center"
 	}
 });

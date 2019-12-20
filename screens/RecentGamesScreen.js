@@ -20,7 +20,7 @@ export default function RecentGames () {
 	return (
 		<BgImage>
 			<ScrollView>
-				<HeaderLg />
+				<HeaderLg headerTitle="Office MVP" />
 				<ColorHeading title="Recent Games" />
 
 				{recentMatches.map((recentmatch) => (

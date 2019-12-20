@@ -1,14 +1,14 @@
 import React from "react";
-import { StyleSheet, ScrollView, Text } from "react-native";
+import { StyleSheet, View, ScrollView, Text, ImageBackground } from "react-native";
 import { withNavigation } from "react-navigation";
 import useQuery from "../hooks/useQuery";
 import recordMatchQuery from "../queries/recordMatch";
 import LoadingScreen from "./LoadingScreen";
 import ColorHeading from "../components/ColorHeading";
-import GrayHeading from "../components/GrayHeading";
-import PlayerMatchRecorded from "../components/PlayerMatchRecorded";
-import HeaderSm from "../components/HeaderSmall";
 import BgImage from "../components/backgroundImage";
+import ButtonPrimary from "../components/ButtonPrimary";
+
+const headerImageLg = require("../assets/icons/Header-Background-Large2x.png");
 
 function RecordMatchScreen ({ navigation }) {
 	const navigationContext = navigation.state.params || {
@@ -23,25 +23,46 @@ function RecordMatchScreen ({ navigation }) {
 
 	return (
 		<BgImage>
-			<ScrollView>
-				<HeaderSm style={styles.title} headerTitle="Match Recorded!" />
-				<ColorHeading title="Foosball Winners" />
-				<PlayerMatchRecorded name="Player Name" totalPoints="2,439" gamePoints="+200" />
-				<PlayerMatchRecorded name="Player Name" totalPoints="2,439" gamePoints="+200" />
-				<PlayerMatchRecorded name="Player Name" totalPoints="2,439" gamePoints="+200" />
-				<GrayHeading title="Foosball Losers" />
-
-				<PlayerMatchRecorded name="Player Name" totalPoints="2,439" gamePoints="-200" />
-				<PlayerMatchRecorded name="Player Name" totalPoints="2,439" gamePoints="-200" />
-				<PlayerMatchRecorded name="Player Name" totalPoints="2,439" gamePoints="-200" />
-			</ScrollView>
+			<ImageBackground
+				source={headerImageLg}
+				style={{
+					width: "100%", height: 225
+				}}
+			>
+				<ScrollView>
+					<View style={styles.container}>
+				  <Text style={styles.title}>Office MVP</Text>
+					</View>
+				</ScrollView>
+			</ImageBackground>
+			<View style={styles.headingContainer}>
+				<ColorHeading title="Match Recorded!" />
+			</View>
+			<ButtonPrimary
+				title="Back to Home"
+				onPress={() => navigation.push("Players")}
+			/>
 		</BgImage>
 	);
 }
 
 const styles = StyleSheet.create({
 	container: {
-		alignItems: "center"
+		alignItems: "center",
+		justifyContent: "center",
+		marginTop: "30%"
+	},
+	headingContainer: {
+		marginTop: 23,
+		marginBottom: 12
+	},
+	title: {
+		fontFamily: "KlinicSlab-Book",
+		fontWeight: "400",
+		letterSpacing: -2.4,
+		fontSize: 75,
+		color: "#FFFFFF",
+		marginTop: "-20%"
 	},
 	input: {
 		borderBottomColor: "red",
