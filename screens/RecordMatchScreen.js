@@ -19,6 +19,7 @@ function RecordMatchScreen ({ navigation }) {
 	const navigationContext = navigation.state.params || {
 	};
 
+	console.log("Record Match Screen======", navigationContext);
 	if (!navigationContext.hasOwnProperty("register")) {
 		Object.defineProperty(navigationContext, "register", {
 			value: {

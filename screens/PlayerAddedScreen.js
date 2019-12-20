@@ -12,7 +12,7 @@ const defaultProfilePhoto = require("../assets/icons/Default-user.png");
 function PlayerAddedScreen ({ navigation }) {
 	const navigationContext = navigation.state.params || {
 	};
-	console.log("player added screen nav context", navigationContext);
+	console.log("player added screen nav context matchedPLayers", navigationContext.matchedPlayers);
 	return (
 		<BgImage>
 			<HeaderSm style={styles.title} headerTitle="Player Added!" />
@@ -27,7 +27,12 @@ function PlayerAddedScreen ({ navigation }) {
 					<Text style={styles.name}>{navigation.getParam("name")}</Text>
 					<Text style={styles.game}>{navigation.getParam("email")}</Text>
 				</View>
-				<ButtonPrimary title="Record Match" onPress={() => navigation.navigate("RecordMatch")} />
+				<ButtonPrimary
+					title="Record Match"
+					onPress={() => navigation.navigate("RecordMatch", {
+						...navigationContext
+					})}
+				/>
 				<View style={styles.subContainer2}>
 					<AddNewPlayerButton />
 				</View>
