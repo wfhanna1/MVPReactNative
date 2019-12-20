@@ -29,13 +29,34 @@ target 'Foosball' do
   pod 'ReactCommon/jscallinvoker', :path => "../node_modules/react-native/ReactCommon"
   pod 'ReactCommon/turbomodule/core', :path => "../node_modules/react-native/ReactCommon"
   pod 'Yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
-  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
   pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  pod 'SRSRadialGradient', :path => '../node_modules/react-native-radial-gradient'
+  
+
+
+
+  # post_install do |installer|
+  #   installer.pods_project.targets.each do |target|
+
+  #     # The following is needed to ensure the "archive" step works in XCode.
+  #     # It removes React & Yoga from the Pods project, as it is already included in the main project.
+  #     # Without this, you'd see errors when you archive like:
+  #     # "Multiple commands produce ... libReact.a"
+  #     # "Multiple commands produce ... libyoga.a"
+
+  #     targets_to_ignore = %w(BVLinearGradient)
+      
+  #     if targets_to_ignore.include? target.name
+  #       target.remove_from_project
+  #     end
+
+  #   end
+  # end
+  
+  pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
 
   target 'FoosballTests' do
     inherit! :search_paths

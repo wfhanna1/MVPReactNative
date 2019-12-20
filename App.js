@@ -1,6 +1,6 @@
-import React from 'react';
-import TabNavigator from './config/TabNavigator';
+import React from "react";
+import TabNavigator from "./config/TabNavigator";
 
-export default function App() {
-  return <TabNavigator />;
+export default function App () {
+	return <TabNavigator />;
 }

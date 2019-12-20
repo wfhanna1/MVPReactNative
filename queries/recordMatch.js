@@ -1,8 +1,13 @@
 import insightMVPUrl from "./config";
 
-export default function addPlayer (data) {
+export default function recordMatch (data) {
+	if (!data) {
+		return {
+
+		};
+	}
 	return {
-		url: `${insightMVPUrl}/Players`,
+		url: `${insightMVPUrl}/Matches/multiplayer`,
 		options: {
 			method: "POST",
 			headers: {
@@ -10,7 +15,6 @@ export default function addPlayer (data) {
 				"Content-Type": "application/json"
 			},
 			body: JSON.stringify(data || {
-
 			})
 		}
 	};

@@ -4,18 +4,20 @@ import { Text } from "native-base";
 
 const playerImage = require("../assets/icons/Default-user.png");
 
-export default function Player ({ name, points, rank }) {
+export default function PlayerMatchRecorded ({ name, totalPoints, gamePoints }) {
 	return (
 		<View>
 			<View style={styles.playerComponent}>
-				<Text style={styles.number}>{rank}</Text>
 				<Image style={styles.picture} source={playerImage} />
 				<View>
-					<Text style={styles.game}>Foosball</Text>
 					<Text style={styles.name}>{name}</Text>
-					<Text style={styles.points}>
+					<Text style={styles.totalPoints}>
             Points:&nbsp;
-						{points}
+						{totalPoints}
+            &nbsp;
+            &nbsp;
+
+						<Text style={styles.gamePoints}>{gamePoints}</Text>
 					</Text>
 				</View>
 			</View>
@@ -67,9 +69,15 @@ const styles = StyleSheet.create({
 		letterSpacing: -0.63,
 		marginBottom: -7
 	},
-	points: {
+	totalPoints: {
 		fontSize: 16,
 		color: "#399D60",
 		letterSpacing: -0.7
+	},
+	gamePoints: {
+		fontSize: 16,
+		color: "#EB1E45",
+		fontWeight: "bold",
+		letterSpacing: -0.57
 	}
 });
