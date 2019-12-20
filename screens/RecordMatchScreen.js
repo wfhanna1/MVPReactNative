@@ -142,7 +142,7 @@ function RecordMatchScreen ({ navigation }) {
 											...pickerSelectStyles
 										}}
 										placeholder={{
-											label: "Choose a game:",
+											label: "Game Name",
 											value: null
 										}}
 										onValueChange={(value) => { setGameSelected(value); setGameSelectError(false); }}
@@ -161,7 +161,6 @@ function RecordMatchScreen ({ navigation }) {
 								<Autocomplete
 									autoCorrect={false}
 									inputContainerStyle={styles.autocompleteInput}
-									listContainerStyle={styles.autocompleteList}
 									data={playersFound}
 									defaultValue={query}
 									value={query}
@@ -307,7 +306,6 @@ const styles = StyleSheet.create({
 const pickerSelectStyles = StyleSheet.create({
 	inputIOS: {
 		alignItems: "center",
-		fontSize: 16,
 		fontWeight: "300",
 		paddingTop: 16,
 		borderBottomWidth: 2,
@@ -324,7 +322,6 @@ const pickerSelectStyles = StyleSheet.create({
 const pickerSelectStylesError = StyleSheet.create({
 	inputIOS: {
 		alignItems: "center",
-		fontSize: 16,
 		fontWeight: "300",
 		paddingTop: 16,
 		paddingHorizontal: 8,

@@ -89,6 +89,7 @@ function AddNewPlayerScreen ({ navigation }) {
 								style={nameError ? styles.error : styles.input}
 								onChangeText={(nameVal) => setName(nameVal)}
 								placeholder="Max Power"
+								placeholderTextColor="#c2c2c2"
 								autoCapitalize="words"
 								textContentType="name"
 								autoCompleteType="name"
@@ -103,6 +104,7 @@ function AddNewPlayerScreen ({ navigation }) {
 								style={emailError ? styles.error : styles.input}
 								onChangeText={(emailVal) => setEmail(emailVal)}
 								placeholder="Max.Power@insight.com"
+								placeholderTextColor="#c2c2c2"
 								autoCapitalize="none"
 								textContentType="emailAddress"
 								autoCompleteType="email"
