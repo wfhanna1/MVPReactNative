@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { withNavigation } from "react-navigation";
 import { Form, Button } from "native-base";
@@ -37,6 +37,13 @@ function RecordMatchScreen ({ navigation }) {
 	const [gameSelectError, setGameSelectError] = useState(undefined);
 	const [playersError, setPlayersError] = useState(undefined);
 	const [winnersError, setWinnersError] = useState(undefined);
+	const formerMatchedPlayersArray = navigationContext.matchedPlayers;
+
+	useEffect(() => {
+		if (formerMatchedPlayersArray) {
+			setMatchedPlayersArray(formerMatchedPlayersArray);
+		}
+	}, []);
 
 	const formValid = () => {
 		setGameSelectError(gameSelected ? false : "your game");
@@ -186,7 +193,7 @@ function RecordMatchScreen ({ navigation }) {
 						</View>
 					</Form>
 					<View style={styles.button}>
-						<AddNewPlayerButton screenHistory="Record Match" />
+						<AddNewPlayerButton screenHistory="Record Match" arrayData={matchedPlayersArray} />
 					</View>
 					<View style={styles.matchedContainer}>
 						{matchedPlayersArray.length > 0 ? <GrayHeading title="Match Players" /> : null}

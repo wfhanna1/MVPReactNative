@@ -3,9 +3,11 @@ import { StyleSheet } from "react-native";
 import { Button, Text, Icon } from "native-base";
 import { withNavigation } from "react-navigation";
 
-function AddNewPlayerButton ({ navigation, screenHistory }) {
+function AddNewPlayerButton ({ navigation, screenHistory, arrayData }) {
 	const navigationContext = navigation.state.params || {
 	};
+
+	console.log("inside new player button prop array data", arrayData);
 
 	if (!navigationContext.hasOwnProperty("screenHistory")) {
 		Object.defineProperty(navigationContext, "screenHistory", {
@@ -24,7 +26,8 @@ function AddNewPlayerButton ({ navigation, screenHistory }) {
 	        screenHistory: {
 					...navigationContext.screenHistory,
 					screenHistory
-				}
+				},
+				matchedPlayers: arrayData
 			})}
 		>
 			<Text style={styles.text}>

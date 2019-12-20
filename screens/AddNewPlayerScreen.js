@@ -16,6 +16,7 @@ const emailRegex = RegExp(/^.+\@.+\..+$/);
 function AddNewPlayerScreen ({ navigation }) {
 	const navigationContext = navigation.state.params || {
 	};
+
 	const previousScreen = navigationContext.screenHistory.screenHistory;
 	const [name, setName] = useState(undefined);
 	const [email, setEmail] = useState(undefined);
@@ -42,6 +43,7 @@ function AddNewPlayerScreen ({ navigation }) {
 			});
 			if (addPlayer) {
 				return navigation.navigate("PlayerAdded", {
+					...navigationContext,
 					id: addPlayer.id,
 					name,
 					email,
