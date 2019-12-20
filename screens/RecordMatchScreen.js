@@ -7,7 +7,7 @@ import RNPickerSelect from "react-native-picker-select";
 import useQuery from "../hooks/useQuery";
 import gamesQuery from "../queries/games";
 import findPlayersQuery from "../queries/findPlayers";
-import LoadingScreen from "./LoadingScreen";
+import BlankScreen from "./BlankScreen";
 import HeaderSm from "../components/HeaderSmall";
 import GrayHeading from "../components/GrayHeading";
 import BgImage from "../components/backgroundImage";
@@ -121,7 +121,7 @@ function RecordMatchScreen ({ navigation }) {
 
 	if (!games || gamesLoading || findPlayersLoading) {
 		return (
-			<LoadingScreen />
+			<BlankScreen />
 		);
 	}
 

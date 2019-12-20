@@ -6,14 +6,14 @@ import BgImage from "../components/backgroundImage";
 import PlayerRecentGames from "../components/PlayerRecentGames";
 import useQuery from "../hooks/useQuery";
 import recentMatchesQuery from "../queries/recentMatches";
-import LoadingScreen from "./LoadingScreen";
+import BlankScreen from "./BlankScreen";
 
 export default function RecentGames () {
 	const [recentMatches, recentMatchesLoading] = useQuery(recentMatchesQuery());
 
 	if (!recentMatches || recentMatchesLoading) {
 		return (
-			<LoadingScreen />
+			<BlankScreen />
 		);
 	}
 
