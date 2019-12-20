@@ -75,5 +75,7 @@
 	<string>For taking a photo.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>For saving a photo.</string>
+	<key>UIUserInterfaceStyle</key>
+    <string>Light</string>
 </dict>
 </plist>
