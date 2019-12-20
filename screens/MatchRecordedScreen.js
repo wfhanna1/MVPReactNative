@@ -1,39 +1,57 @@
-import React from "react";
-import { StyleSheet, ScrollView, Text } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, ScrollView } from "react-native";
 import { withNavigation } from "react-navigation";
 import useQuery from "../hooks/useQuery";
 import recordMatchQuery from "../queries/recordMatch";
-import LoadingScreen from "./LoadingScreen";
+import gamesQuery from "../queries/games";
+import findPlayersQuery from "../queries/findPlayers";
+import playerRatingQuery from "../queries/playerRating";
+import BlankScreen from "./BlankScreen";
 import ColorHeading from "../components/ColorHeading";
 import GrayHeading from "../components/GrayHeading";
 import PlayerMatchRecorded from "../components/PlayerMatchRecorded";
 import HeaderSm from "../components/HeaderSmall";
 import BgImage from "../components/backgroundImage";
+import playerRating from "../queries/playerRating";
 
 function RecordMatchScreen ({ navigation }) {
 	const navigationContext = navigation.state.params || {
 	};
 	const [recordMatch, recordMatchLoading, recordMatchError] = useQuery(recordMatchQuery(navigationContext.recordMatch));
+	const [game, gameLoading] = useQuery(gamesQuery(navigation.getParam("recordMatch").gameId));
+	// const [player, playerLoading] = useQuery(findPlayersQuery(navigation.getParam("recordMatch").players[0].playerId));
+	const [players, playersLoading] = useQuery(findPlayersQuery());
+	// const [player, setPlayers] = useState([]);
+	// const [playerRating, playerRatingLoading] = useQuery(playerRatingQuery(navigation.getParam("recordMatch").players[0].playerId));
+	const [playerRatings, playerRatingsLoading] = useQuery(playerRatingQuery());
 
-	if (recordMatchLoading) {
+	if (!game || gameLoading || !players || playersLoading || !playerRatings || playerRatingsLoading) {
 		return (
-			<LoadingScreen />
+			<BlankScreen />
 		);
 	}
+
+	const winners = navigation.getParam("recordMatch").players.filter((item) => item.isWinner);
+	const losers = navigation.getParam("recordMatch").players.filter((item) => !item.isWinner);
+	const winData = [];
+	const loseData = [];
+	winners.forEach((item) => {
+		const addPlayer = players.filter((match) => match.id === item.playerId)[0];
+		winData.push(addPlayer);
+	});
+	losers.forEach((item) => {
+		const addPlayer = players.filter((match) => match.id === item.playerId)[0];
+		loseData.push(addPlayer);
+	});
 
 	return (
 		<BgImage>
 			<ScrollView>
 				<HeaderSm style={styles.title} headerTitle="Match Recorded!" />
-				<ColorHeading title="Foosball Winners" />
-				<PlayerMatchRecorded name="Player Name" totalPoints="2,439" gamePoints="+200" />
-				<PlayerMatchRecorded name="Player Name" totalPoints="2,439" gamePoints="+200" />
-				<PlayerMatchRecorded name="Player Name" totalPoints="2,439" gamePoints="+200" />
-				<GrayHeading title="Foosball Losers" />
-
-				<PlayerMatchRecorded name="Player Name" totalPoints="2,439" gamePoints="-200" />
-				<PlayerMatchRecorded name="Player Name" totalPoints="2,439" gamePoints="-200" />
-				<PlayerMatchRecorded name="Player Name" totalPoints="2,439" gamePoints="-200" />
+				<ColorHeading title={`${game.name} Winners`} />
+				{winData.map((player, index) => <PlayerMatchRecorded name={`${player.fullName}`} totalPoints={Math.floor(playerRatings.filter((item) => item.playerId === winData[index].id)[0].score)} gamePoints={`+${game.kFactor}`} />)}
+				<GrayHeading title={`${game.name} Losers`} />
+				{loseData.map((player, index) => <PlayerMatchRecorded name={`${player.fullName}`} totalPoints={Math.floor(playerRatings.filter((item) => item.playerId === winData[index].id)[0].score)} gamePoints={`+${game.kFactor}`} />)}
 			</ScrollView>
 		</BgImage>
 	);
