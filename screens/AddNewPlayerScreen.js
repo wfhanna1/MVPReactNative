@@ -17,7 +17,6 @@ function AddNewPlayerScreen ({ navigation }) {
 	const navigationContext = navigation.state.params || {
 	};
 
-	console.log("add new player screen navContext?", navigationContext);
 	const previousScreen = navigationContext.screenHistory.screenHistory;
 	const [name, setName] = useState(undefined);
 	const [email, setEmail] = useState(undefined);

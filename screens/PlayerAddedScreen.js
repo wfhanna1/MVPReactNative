@@ -12,7 +12,8 @@ const defaultProfilePhoto = require("../assets/icons/Default-user.png");
 function PlayerAddedScreen ({ navigation }) {
 	const navigationContext = navigation.state.params || {
 	};
-	console.log("player added screen nav context matchedPLayers", navigationContext.matchedPlayers);
+	const matchedPlayersData = navigationContext.matchedPlayers;
+
 	return (
 		<BgImage>
 			<HeaderSm style={styles.title} headerTitle="Player Added!" />
@@ -29,8 +30,8 @@ function PlayerAddedScreen ({ navigation }) {
 				</View>
 				<ButtonPrimary
 					title="Record Match"
-					onPress={() => navigation.navigate("RecordMatch", {
-						...navigationContext
+					onPress={() => navigation.push("RecordMatch", {
+						matchedPlayers: matchedPlayersData
 					})}
 				/>
 				<View style={styles.subContainer2}>
