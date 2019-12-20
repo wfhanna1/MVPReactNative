@@ -43,7 +43,7 @@ function AddNewPlayerScreen ({ navigation }) {
 				profilePhoto
 			});
 			if (addPlayer) {
-				return navigation.navigate("PlayerAdded", {
+				return navigation.push("PlayerAdded", {
 					...navigationContext.arrayData, // <--- trying to add this to the PlayerAdded screen to pass back to Record Match & repopulate list
 					id: addPlayer.id,
 					name,
