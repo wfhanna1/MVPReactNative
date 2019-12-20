@@ -234,7 +234,7 @@ const styles = StyleSheet.create({
 		fontSize: 16
 	},
 	parent: {
-		marginTop: "-10%"
+		marginTop: "-18%"
 	},
 	item: {
 		borderBottomColor: "#B73491",
