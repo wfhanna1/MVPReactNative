@@ -10,6 +10,9 @@ import AddNewPlayerButton from "../components/AddNewPlayerButton";
 const defaultProfilePhoto = require("../assets/icons/Default-user.png");
 
 function PlayerAddedScreen ({ navigation }) {
+	const navigationContext = navigation.state.params || {
+	};
+	console.log("player added screen nav context", navigationContext);
 	return (
 		<BgImage>
 			<HeaderSm style={styles.title} headerTitle="Player Added!" />

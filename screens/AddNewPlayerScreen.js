@@ -16,6 +16,8 @@ const emailRegex = RegExp(/^.+\@.+\..+$/);
 function AddNewPlayerScreen ({ navigation }) {
 	const navigationContext = navigation.state.params || {
 	};
+
+	console.log("add new player screen arraydata?", navigationContext.arrayData);
 	const previousScreen = navigationContext.screenHistory.screenHistory;
 	const [name, setName] = useState(undefined);
 	const [email, setEmail] = useState(undefined);
@@ -42,6 +44,7 @@ function AddNewPlayerScreen ({ navigation }) {
 			});
 			if (addPlayer) {
 				return navigation.navigate("PlayerAdded", {
+					...navigationContext.arrayData, // <--- trying to add this to the PlayerAdded screen to pass back to Record Match & repopulate list
 					id: addPlayer.id,
 					name,
 					email,

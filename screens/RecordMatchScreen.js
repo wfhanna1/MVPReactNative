@@ -38,6 +38,8 @@ function RecordMatchScreen ({ navigation }) {
 	const [playersError, setPlayersError] = useState(undefined);
 	const [winnersError, setWinnersError] = useState(undefined);
 
+	console.log("matched players array", matchedPlayersArray);
+
 	const formValid = () => {
 		setGameSelectError(gameSelected ? false : "your game");
 		setPlayersError(matchedPlayersArray && matchedPlayersArray.length > 1 ? false : "at least 2 players");
@@ -187,7 +189,7 @@ function RecordMatchScreen ({ navigation }) {
 						</View>
 					</Form>
 					<View style={styles.button}>
-						<AddNewPlayerButton screenHistory="Record Match" />
+						<AddNewPlayerButton screenHistory="Record Match" arrayData={matchedPlayersArray} />
 					</View>
 					<View style={styles.matchedContainer}>
 						{matchedPlayersArray.length > 0 ? <GrayHeading title="Match Players" /> : null}
