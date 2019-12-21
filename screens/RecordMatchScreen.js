@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { withNavigation } from "react-navigation";
 import { Form, Button } from "native-base";
@@ -37,6 +37,13 @@ function RecordMatchScreen ({ navigation }) {
 	const [gameSelectError, setGameSelectError] = useState(undefined);
 	const [playersError, setPlayersError] = useState(undefined);
 	const [winnersError, setWinnersError] = useState(undefined);
+	const formerMatchedPlayersArray = navigationContext.matchedPlayers;
+
+	useEffect(() => {
+		if (formerMatchedPlayersArray) {
+			setMatchedPlayersArray(formerMatchedPlayersArray);
+		}
+	}, []);
 
 	const formValid = () => {
 		setGameSelectError(gameSelected ? false : "your game");
@@ -142,7 +149,7 @@ function RecordMatchScreen ({ navigation }) {
 											...pickerSelectStyles
 										}}
 										placeholder={{
-											label: "Choose a game:",
+											label: "Game Name",
 											value: null
 										}}
 										onValueChange={(value) => { setGameSelected(value); setGameSelectError(false); }}
@@ -161,7 +168,6 @@ function RecordMatchScreen ({ navigation }) {
 								<Autocomplete
 									autoCorrect={false}
 									inputContainerStyle={styles.autocompleteInput}
-									listContainerStyle={styles.autocompleteList}
 									data={playersFound}
 									defaultValue={query}
 									value={query}
@@ -187,7 +193,7 @@ function RecordMatchScreen ({ navigation }) {
 						</View>
 					</Form>
 					<View style={styles.button}>
-						<AddNewPlayerButton screenHistory="Record Match" />
+						<AddNewPlayerButton screenHistory="Record Match" arrayData={matchedPlayersArray} />
 					</View>
 					<View style={styles.matchedContainer}>
 						{matchedPlayersArray.length > 0 ? <GrayHeading title="Match Players" /> : null}
@@ -307,7 +313,6 @@ const styles = StyleSheet.create({
 const pickerSelectStyles = StyleSheet.create({
 	inputIOS: {
 		alignItems: "center",
-		fontSize: 16,
 		fontWeight: "300",
 		paddingTop: 16,
 		borderBottomWidth: 2,
@@ -324,7 +329,6 @@ const pickerSelectStyles = StyleSheet.create({
 const pickerSelectStylesError = StyleSheet.create({
 	inputIOS: {
 		alignItems: "center",
-		fontSize: 16,
 		fontWeight: "300",
 		paddingTop: 16,
 		paddingHorizontal: 8,

@@ -10,6 +10,10 @@ import AddNewPlayerButton from "../components/AddNewPlayerButton";
 const defaultProfilePhoto = require("../assets/icons/Default-user.png");
 
 function PlayerAddedScreen ({ navigation }) {
+	const navigationContext = navigation.state.params || {
+	};
+	const matchedPlayersData = navigationContext.matchedPlayers;
+
 	return (
 		<BgImage>
 			<HeaderSm style={styles.title} headerTitle="Player Added!" />
@@ -24,7 +28,12 @@ function PlayerAddedScreen ({ navigation }) {
 					<Text style={styles.name}>{navigation.getParam("name")}</Text>
 					<Text style={styles.game}>{navigation.getParam("email")}</Text>
 				</View>
-				<ButtonPrimary title="Record Match" onPress={() => navigation.navigate("RecordMatch")} />
+				<ButtonPrimary
+					title="Record Match"
+					onPress={() => navigation.push("RecordMatch", {
+						matchedPlayers: matchedPlayersData
+					})}
+				/>
 				<View style={styles.subContainer2}>
 					<AddNewPlayerButton />
 				</View>

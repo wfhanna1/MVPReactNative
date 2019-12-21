@@ -1,7 +1,12 @@
 import insightMVPUrl from "./config";
 
-export default function games () {
+export default function games (id) {
+	if (!id) {
+		return {
+			url: `${insightMVPUrl}/Games`
+		};
+	}
 	return {
-		url: `${insightMVPUrl}/Games`
+		url: `${insightMVPUrl}/Games/${id}`
 	};
 }
