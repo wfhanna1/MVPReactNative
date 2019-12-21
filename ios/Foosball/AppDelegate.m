@@ -12,7 +12,7 @@
 #import <React/RCTRootView.h>
 #import <AppCenterReactNative.h>
 #import <AppCenterReactNativeAnalytics.h>
-#import <AppCenterReactNativeCrashes.h>
+#import <AppCenterReactNativeCrashes.h> 
 
 @implementation AppDelegate
 

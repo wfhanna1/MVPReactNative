@@ -10,6 +10,9 @@
     "lint": "eslint *.js **/*.js"
   },
   "dependencies": {
+    "appcenter": "2.6.1",
+    "appcenter-analytics": "2.6.1",
+    "appcenter-crashes": "2.6.1",
     "native-base": "^2.13.8",
     "react": "16.9.0",
     "react-native": "0.61.4",
