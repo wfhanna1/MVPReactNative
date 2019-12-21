@@ -11,7 +11,7 @@ export default function Player ({ name, points, rank }) {
 				<Text style={styles.number}>{rank}</Text>
 				<Image style={styles.picture} source={playerImage} />
 				<View>
-					<Text style={styles.game}>Foosball</Text>
+					<Text style={styles.game}>In All Games</Text>
 					<Text style={styles.name}>{name}</Text>
 					<Text style={styles.points}>
             Points:&nbsp;
