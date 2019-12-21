@@ -13,6 +13,7 @@ import PlayerMatchRecorded from "../components/PlayerMatchRecorded";
 import HeaderSm from "../components/HeaderSmall";
 import BgImage from "../components/backgroundImage";
 import playerRating from "../queries/playerRating";
+import ButtonPrimary from "../components/ButtonPrimary";
 
 function RecordMatchScreen ({ navigation }) {
 	const navigationContext = navigation.state.params || {
@@ -52,6 +53,10 @@ function RecordMatchScreen ({ navigation }) {
 				{winData.map((player, index) => <PlayerMatchRecorded name={`${player.fullName}`} totalPoints={Math.floor(playerRatings.filter((item) => item.playerId === winData[index].id)[0].score)} gamePoints={`+${game.kFactor}`} />)}
 				<GrayHeading title={`${game.name} Losers`} />
 				{loseData.map((player, index) => <PlayerMatchRecorded name={`${player.fullName}`} totalPoints={Math.floor(playerRatings.filter((item) => item.playerId === winData[index].id)[0].score)} gamePoints={`-${game.kFactor}`} />)}
+				<ButtonPrimary
+					title="Back to Home"
+					onPress={() => navigation.popToTop("Players")}
+				/>
 			</ScrollView>
 		</BgImage>
 	);
