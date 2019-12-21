@@ -51,7 +51,7 @@ function RecordMatchScreen ({ navigation }) {
 				<ColorHeading title={`${game.name} Winners`} />
 				{winData.map((player, index) => <PlayerMatchRecorded name={`${player.fullName}`} totalPoints={Math.floor(playerRatings.filter((item) => item.playerId === winData[index].id)[0].score)} gamePoints={`+${game.kFactor}`} />)}
 				<GrayHeading title={`${game.name} Losers`} />
-				{loseData.map((player, index) => <PlayerMatchRecorded name={`${player.fullName}`} totalPoints={Math.floor(playerRatings.filter((item) => item.playerId === winData[index].id)[0].score)} gamePoints={`+${game.kFactor}`} />)}
+				{loseData.map((player, index) => <PlayerMatchRecorded name={`${player.fullName}`} totalPoints={Math.floor(playerRatings.filter((item) => item.playerId === winData[index].id)[0].score)} gamePoints={`-${game.kFactor}`} />)}
 			</ScrollView>
 		</BgImage>
 	);
