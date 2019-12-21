@@ -19,6 +19,7 @@
 		2DCD954D1E0B4F2C00145EB5 /* FoosballTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* FoosballTests.m */; };
 		62628DFAA64CBF553FE72C8F /* libPods-Foosball-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F974B126A8F35C2175626268 /* libPods-Foosball-tvOS.a */; };
 		76011E3CA85C88CB8334FAB1 /* libPods-FoosballTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A638D9A32FF793388A22A28B /* libPods-FoosballTests.a */; };
+		A0D751A223ADC8B00071E79F /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0D7519F23ADC8B00071E79F /* AppCenter-Config.plist */; };
 		A79A757F239ADDB8006C2667 /* KlinicSlab-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = A79A7577239ADDB8006C2667 /* KlinicSlab-LightItalic.otf */; };
 		A79A7580239ADDB8006C2667 /* KlinicSlab-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = A79A7578239ADDB8006C2667 /* KlinicSlab-Book.otf */; };
 		A79A7582239ADDB8006C2667 /* KlinicSlab-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A79A757A239ADDB8006C2667 /* KlinicSlab-Bold.otf */; };
@@ -83,6 +84,7 @@
 		80E455F6BECF4DAA93AFAF90 /* Roboto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto.ttf; path = "../node_modules/native-base/Fonts/Roboto.ttf"; sourceTree = "<group>"; };
 		91EA47C64E069B76956306AB /* Pods-FoosballTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoosballTests.debug.xcconfig"; path = "Target Support Files/Pods-FoosballTests/Pods-FoosballTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9C22CF3623A2492AA39A6435 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
+		A0D7519F23ADC8B00071E79F /* AppCenter-Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "AppCenter-Config.plist"; path = "Foosball/AppCenter-Config.plist"; sourceTree = "<group>"; };
 		A638D9A32FF793388A22A28B /* libPods-FoosballTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FoosballTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6C2BDC64ACE24D6BEFDEBA1 /* Pods-Foosball-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Foosball-tvOS.release.xcconfig"; path = "Target Support Files/Pods-Foosball-tvOS/Pods-Foosball-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		A79A7577239ADDB8006C2667 /* KlinicSlab-LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "KlinicSlab-LightItalic.otf"; path = "../assets/fonts/KlinicSlab-LightItalic.otf"; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 		13B07FAE1A68108700A75B9A /* Foosball */ = {
 			isa = PBXGroup;
 			children = (
+				A0D7519F23ADC8B00071E79F /* AppCenter-Config.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -438,6 +441,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A79A7585239ADDB8006C2667 /* KlinicSlab-MediumItalic.otf in Resources */,
+				A0D751A223ADC8B00071E79F /* AppCenter-Config.plist in Resources */,
 				A79A7582239ADDB8006C2667 /* KlinicSlab-Bold.otf in Resources */,
 				A79A757F239ADDB8006C2667 /* KlinicSlab-LightItalic.otf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
