@@ -10,7 +10,7 @@ export default function PlayerRecentGames (player) {
 	const [playerRating, playerRatingLoading] = useQuery(playerRatingQuery(player.id));
 	return (
 		<View style={styles.playerComponent}>
-			<Image style={styles.picture} source={playerImage} />
+			<Image style={player.isWinner ? styles.pictureWinner : styles.picture} source={playerImage} />
 			<View style={styles.stats}>
 				<Text style={styles.name}>{player.fullName || "Player Name"}</Text>
 				<Text style={styles.points}>{playerRatingLoading ? "..." : `Points: ${playerRating ? Math.floor(playerRating.score).toLocaleString() : "0"}`}</Text>
@@ -28,6 +28,14 @@ const styles = StyleSheet.create({
 		height: 75,
 		width: 75,
 		resizeMode: "contain"
+	},
+	pictureWinner: {
+		height: 75,
+		width: 75,
+		resizeMode: "contain",
+		borderColor: "#399D60",
+		borderWidth: 3,
+		borderRadius: 100
 	},
 	stats: {
 		alignItems: "center",
