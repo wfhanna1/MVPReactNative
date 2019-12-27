@@ -9,13 +9,11 @@ const playerImage = require("../assets/icons/Default-user.png");
 export default function PlayerRecentGames (player) {
 	const [playerRating, playerRatingLoading] = useQuery(playerRatingQuery(player.id));
 	return (
-		<View>
-			<View style={styles.playerComponent}>
-				<Image style={styles.picture} source={playerImage} />
-				<View style={styles.stats}>
-					<Text style={styles.name}>{player.fullName || "Player Name"}</Text>
-					<Text style={styles.points}>{`Points: ${playerRating ? Math.floor(playerRating.score).toLocaleString() : "0"}`}</Text>
-				</View>
+		<View style={styles.playerComponent}>
+			<Image style={styles.picture} source={playerImage} />
+			<View style={styles.stats}>
+				<Text style={styles.name}>{player.fullName || "Player Name"}</Text>
+				<Text style={styles.points}>{playerRatingLoading ? "..." : `Points: ${playerRating ? Math.floor(playerRating.score).toLocaleString() : "0"}`}</Text>
 			</View>
 		</View>
 	);
