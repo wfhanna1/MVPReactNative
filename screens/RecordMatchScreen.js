@@ -197,7 +197,7 @@ function RecordMatchScreen ({ navigation }) {
 					</View>
 					<View style={styles.matchedContainer}>
 						{matchedPlayersArray.length > 0 ? <GrayHeading title="Match Players" /> : null}
-						{matchedPlayersArray.map((player, index) => <PlayerMatched player={player} setWinLossStatus={setWinLossStatus} removePlayer={removePlayer} key={`player${index}`} />)}
+						{matchedPlayersArray.map((player) => <PlayerMatched player={player} setWinLossStatus={setWinLossStatus} removePlayer={removePlayer} key={player.playerId} />)}
 						<ErrorMessage errors={[gameSelectError, playersError, winnersError]} />
 						<ButtonPrimary
 							title="Record Match"
