@@ -27,7 +27,7 @@ export default function RecentGames () {
 				</View>
 				<ColorHeading title="Recent Games" style={styles.header} />
 				{recentMatches.map((recentMatch) => (
-					<View style={styles.wrapper}>
+					<View style={styles.wrapper} key={recentMatch.matchId}>
 						<View>
 							<Text style={styles.game}>{recentMatch.gameName}</Text>
 							<Text style={styles.date}>
@@ -41,7 +41,7 @@ export default function RecentGames () {
 						</View>
 						<View style={styles.container}>
 							{recentMatch.players.filter(({ isWinner }) => isWinner).map((player) => (
-								<PlayerRecentGames fullName={player.fullName} id={player.playerId} isWinner={player.isWinner} />
+								<PlayerRecentGames fullName={player.fullName} key={player.playerId} id={player.playerId} isWinner={player.isWinner} />
 							))}
 							<Text style={styles.versusContainer}>
 								<Text style={styles.line}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
@@ -49,7 +49,7 @@ export default function RecentGames () {
 								<Text style={styles.line}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
 							</Text>
 							{recentMatch.players.filter(({ isWinner }) => !isWinner).map((player) => (
-								<PlayerRecentGames fullName={player.fullName} id={player.playerId} />
+								<PlayerRecentGames fullName={player.fullName} key={player.playerId} id={player.playerId} isWinner={player.isWinner} />
 							))}
 						</View>
 					</View>

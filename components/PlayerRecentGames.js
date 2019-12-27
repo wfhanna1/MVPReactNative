@@ -8,6 +8,7 @@ const playerImage = require("../assets/icons/Default-user.png");
 
 export default function PlayerRecentGames (player) {
 	const [playerRating, playerRatingLoading] = useQuery(playerRatingQuery(player.id));
+
 	return (
 		<View style={styles.playerComponent}>
 			<Image style={player.isWinner ? styles.pictureWinner : styles.picture} source={playerImage} />

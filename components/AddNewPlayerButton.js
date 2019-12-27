@@ -7,8 +7,6 @@ function AddNewPlayerButton ({ navigation, screenHistory, arrayData }) {
 	const navigationContext = navigation.state.params || {
 	};
 
-	console.log("inside new player button prop array data", arrayData);
-
 	if (!navigationContext.hasOwnProperty("screenHistory")) {
 		Object.defineProperty(navigationContext, "screenHistory", {
 			value: {
