@@ -68,6 +68,20 @@ function AddNewPlayerScreen ({ navigation }) {
 		return null;
 	};
 
+	const ButtonLoading = () => {
+		if (addPlayerLoading) {
+			return (
+				<Text>Loading...</Text>
+			);
+		}
+		return (
+			<ButtonPrimary
+				title="Add Player"
+				onPress={onSubmit}
+			/>
+		);
+	};
+
 	const handleChoosePhoto = () => {
 		const options = {
 			noData: true
@@ -129,10 +143,7 @@ function AddNewPlayerScreen ({ navigation }) {
 					</View>
 					<View style={styles.container}>
 						<ErrorMessage errors={[nameError, emailError]} />
-						<ButtonPrimary
-							title="Add Player"
-							onPress={onSubmit}
-						/>
+						<ButtonLoading />
 						<Button
 							style={styles.cancelButton}
 							transparent

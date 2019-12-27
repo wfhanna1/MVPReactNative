@@ -23,38 +23,28 @@ export default function RecentGames () {
 				<HeaderLg />
 				<ColorHeading title="Recent Games" />
 
-				{recentMatches.map((recentmatch) => (
+				{recentMatches.map((recentMatch) => (
 					<View style={styles.wrapper}>
 						<View style={styles.wrapper}>
-							<Text style={styles.game}>{recentmatch.match.game.name}</Text>
+							<Text style={styles.game}>{recentMatch.gameName}</Text>
 							<Text style={styles.date}>
 								{new Intl.DateTimeFormat("en-GB", {
 									year: "numeric",
 									month: "short",
 									day: "2-digit",
 									weekday: "short"
-								}).format(new Date(recentmatch.match.date))}
+								}).format(new Date(recentMatch.gameDate))}
 							</Text>
 						</View>
 						<View style={styles.container}>
-							{/* {recentMatches.players.map((player) => (
-								<PlayerRecentGames fullName={player.fullName} id={player.id} />
-							))} */}
-							<PlayerRecentGames fullName={recentmatch.player.fullName} id={recentmatch.player.id} />
-							<PlayerRecentGames fullName={recentmatch.player.fullName} id={recentmatch.player.id} />
+							{recentMatch.players.filter(({ isWinner }) => isWinner).map((player) => (
+								<PlayerRecentGames fullName={player.fullName} id={player.playerId} />
+							))}
 							<Text style={styles.versus}>-------vs-------</Text>
-							<PlayerRecentGames fullName={recentmatch.player.fullName} id={recentmatch.player.id} />
-							<PlayerRecentGames fullName={recentmatch.player.fullName} id={recentmatch.player.id} />
+							{recentMatch.players.filter(({ isWinner }) => !isWinner).map((player) => (
+								<PlayerRecentGames fullName={player.fullName} id={player.playerId} />
+							))}
 						</View>
-						{/* <View style={styles.wrapper}>
-							<Text style={styles.game}>Mario Kart</Text>
-							<Text style={styles.date}>Fri, Oct 04 2019</Text>
-						</View>
-						<View style={styles.container}>
-							<PlayerRecentGames />
-							<Text style={styles.versus}>vs</Text>
-							<PlayerRecentGames />
-						</View> */}
 					</View>
 				))}
 			</ScrollView>
