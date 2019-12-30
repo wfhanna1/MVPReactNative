@@ -12,6 +12,28 @@ import BlankScreen from "./BlankScreen";
 export default function RecentGames () {
 	const [recentMatches, recentMatchesLoading] = useQuery(recentMatchesQuery());
 
+	const LosersList = (props) => {
+		const { losers } = props;
+		return losers.length ? losers.map((player) => (
+			<PlayerRecentGames fullName={player.fullName} key={player.playerId} id={player.playerId} isWinner={player.isWinner} />
+		)) : <Text style={styles.tieGame}>It's a tie! Everyone wins!</Text>;
+	};
+
+	const Versus = (props) => {
+		const { losers } = props;
+		if (losers.length) {
+			return (
+				<Text style={styles.versusContainer}>
+					<Text style={styles.line}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
+					<Text style={styles.versus}>vs</Text>
+					<Text style={styles.line}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
+				</Text>
+			);
+		}
+
+		return null;
+	};
+
 	if (!recentMatches || recentMatchesLoading) {
 		return (
 			<BlankScreen />
@@ -43,14 +65,8 @@ export default function RecentGames () {
 							{recentMatch.players.filter(({ isWinner }) => isWinner).map((player) => (
 								<PlayerRecentGames fullName={player.fullName} key={player.playerId} id={player.playerId} isWinner={player.isWinner} />
 							))}
-							<Text style={styles.versusContainer}>
-								<Text style={styles.line}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
-								<Text style={styles.versus}>vs</Text>
-								<Text style={styles.line}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
-							</Text>
-							{recentMatch.players.filter(({ isWinner }) => !isWinner).map((player) => (
-								<PlayerRecentGames fullName={player.fullName} key={player.playerId} id={player.playerId} isWinner={player.isWinner} />
-							))}
+							<Versus losers={recentMatch.players.filter(({ isWinner }) => !isWinner)} />
+							<LosersList losers={recentMatch.players.filter(({ isWinner }) => !isWinner)} />
 						</View>
 					</View>
 				))}
@@ -104,5 +120,14 @@ const styles = StyleSheet.create({
 		textDecorationLine: "line-through",
 		textDecorationStyle: "solid",
 		color: "#B73491"
+	},
+	tieGame: {
+		fontFamily: "KlinicSlab-Medium",
+		fontSize: 28,
+		color: "#399D60",
+		letterSpacing: -1.14,
+		width: "100%",
+		textAlign: "center",
+		marginTop: 10
 	}
 });
