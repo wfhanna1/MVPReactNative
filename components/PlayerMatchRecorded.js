@@ -1,11 +1,10 @@
 import React from "react";
-import { StyleSheet, Image, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Text } from "native-base";
+import PlayerImage from "./PlayerImage";
 import useQuery from "../hooks/useQuery";
 import findPlayersQuery from "../queries/findPlayers";
 import playerRatingQuery from "../queries/playerRating";
-
-const playerImage = require("../assets/icons/Default-user.png");
 
 export default function PlayerMatchRecorded (playerData) {
 	const [player, playerLoading] = useQuery(findPlayersQuery(playerData.id));
@@ -14,7 +13,9 @@ export default function PlayerMatchRecorded (playerData) {
 	return (
 		<View>
 			<View style={styles.playerComponent}>
-				<Image style={styles.picture} source={playerImage} />
+				<View style={styles.picture}>
+					<PlayerImage fullName={player ? player.fullName : false} isWinner={playerData.isWinner} />
+				</View>
 				<View>
 					<Text style={styles.name}>{playerLoading ? "..." : `${player ? player.fullName : "Player Name"}`}</Text>
 					<Text style={styles.totalPoints}>
@@ -59,7 +60,6 @@ const styles = StyleSheet.create({
 		width: "30%",
 		marginTop: -10,
 		marginLeft: "4%"
-
 	},
 	game: {
 		fontSize: 16,
