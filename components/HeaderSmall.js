@@ -11,7 +11,8 @@ function HeaderSm ({ headerTitle }) {
 		<ImageBackground
 			source={headerImageSm}
 			style={{
-				width: "100%", height: 170
+				width: "100%",
+				height: 170
 			}}
 		>
 			<View style={styles.container}>

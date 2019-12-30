@@ -32,9 +32,9 @@ function RecordMatchScreen ({ navigation }) {
 			<ScrollView>
 				<HeaderSm style={styles.title} headerTitle="Match Recorded!" />
 				<ColorHeading title={`${game.name} Winners`} />
-				{winners.map((player) => <PlayerMatchRecorded id={player.playerId} gamePoints={`+${game.kFactor}`} />)}
+				{winners.map((player) => <PlayerMatchRecorded id={player.playerId} gamePoints={`+${game.kFactor}`} isWinner />)}
 				<GrayHeading title={`${game.name} Losers`} />
-				{losers.map((player) => <PlayerMatchRecorded id={player.playerId} gamePoints={`-${game.kFactor}`} />)}
+				{losers.map((player) => <PlayerMatchRecorded id={player.playerId} gamePoints={`-${game.kFactor}`} isWinner={false} />)}
 				<ButtonPrimary
 					title="Back to Home"
 					onPress={() => navigation.popToTop("Players")}
