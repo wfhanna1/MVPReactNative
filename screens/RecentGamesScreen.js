@@ -21,7 +21,13 @@ export default function RecentGames () {
 
 	const Versus = (props) => {
 		const { losers } = props;
-		if (losers.length) {
+		const { winners } = props;
+
+		if (losers.length === 1 && winners.length === 1) {
+			return (
+			     <Text style={[styles.versus, styles.versusPadding]}>vs</Text>
+			);
+		} if ((losers.length >= 2 && winners.length) || (winners.length >= 2 && losers.length)) {
 			return (
 				<Text style={styles.versusContainer}>
 					<Text style={styles.line}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
@@ -30,7 +36,6 @@ export default function RecentGames () {
 				</Text>
 			);
 		}
-
 		return null;
 	};
 
@@ -50,7 +55,7 @@ export default function RecentGames () {
 				<ColorHeading title="Recent Games" style={styles.header} />
 				{recentMatches.map((recentMatch) => (
 					<View style={styles.wrapper} key={recentMatch.matchId}>
-						<View>
+						<View style={styles.gameDateWrapper}>
 							<Text style={styles.game}>{recentMatch.gameName}</Text>
 							<Text style={styles.date}>
 								{new Intl.DateTimeFormat("en-GB", {
@@ -65,7 +70,7 @@ export default function RecentGames () {
 							{recentMatch.players.filter(({ isWinner }) => isWinner).map((player) => (
 								<PlayerRecentGames fullName={player.fullName} key={player.playerId} id={player.playerId} isWinner={player.isWinner} />
 							))}
-							<Versus losers={recentMatch.players.filter(({ isWinner }) => !isWinner)} />
+							<Versus losers={recentMatch.players.filter(({ isWinner }) => !isWinner)} winners={recentMatch.players.filter(({ isWinner }) => isWinner)} />
 							<LosersList losers={recentMatch.players.filter(({ isWinner }) => !isWinner)} />
 						</View>
 					</View>
@@ -84,6 +89,10 @@ const styles = StyleSheet.create({
 	wrapper: {
 		alignItems: "center",
 		marginBottom: 20
+	},
+	gameDateWrapper: {
+		alignItems: "center",
+		marginTop: 8
 	},
 	game: {
 		fontFamily: "KlinicSlab-Medium",
@@ -111,8 +120,11 @@ const styles = StyleSheet.create({
 	versus: {
 		fontFamily: "KlinicSlab-Medium",
 		fontSize: 45,
-		color: "#B73491",
-		marginHorizontal: 50
+		color: "#B73491"
+	},
+	versusPadding: {
+		paddingBottom: 40,
+		margin: 0
 	},
 	line: {
 		textAlign: "center",

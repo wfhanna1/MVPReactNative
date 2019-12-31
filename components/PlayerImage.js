@@ -26,7 +26,8 @@ const styles = StyleSheet.create({
 		width: 75,
 		borderWidth: 5,
 		borderColor: "#BEBEBB",
-		borderRadius: 100
+		borderRadius: 100,
+		marginBottom: 5
 	},
 	initialsContainerLarge: {
 		height: 130,
@@ -40,7 +41,8 @@ const styles = StyleSheet.create({
 		width: 75,
 		borderWidth: 5,
 		borderColor: "#399D60",
-		borderRadius: 100
+		borderRadius: 100,
+		marginBottom: 5
 	},
 	initialsContainerWinnerLarge: {
 		height: 130,
