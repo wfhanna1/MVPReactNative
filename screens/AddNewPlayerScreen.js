@@ -17,7 +17,6 @@ function AddNewPlayerScreen ({ navigation }) {
 	const navigationContext = navigation.state.params || {
 	};
 
-	const previousScreen = navigationContext.screenHistory.screenHistory;
 	const [name, setName] = useState(undefined);
 	const [email, setEmail] = useState(undefined);
 	const [profilePhoto, setProfilePhoto] = useState(undefined);
@@ -147,7 +146,7 @@ function AddNewPlayerScreen ({ navigation }) {
 						<Button
 							style={styles.cancelButton}
 							transparent
-							onPress={() => (previousScreen === "Players" ? navigation.navigate("Players") : navigation.navigate("RecordMatch"))}
+							onPress={() => (navigation.goBack())}
 						>
 							<Text style={styles.cancelText}>Cancel</Text>
 						</Button>

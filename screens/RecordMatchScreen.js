@@ -16,6 +16,7 @@ import ButtonPrimary from "../components/ButtonPrimary";
 import PlayerMatched from "../components/PlayerMatched";
 
 function RecordMatchScreen ({ navigation }) {
+	console.log("navigation", navigation);
 	const navigationContext = navigation.state.params || {
 	};
 
@@ -193,7 +194,7 @@ function RecordMatchScreen ({ navigation }) {
 						</View>
 					</Form>
 					<View style={styles.button}>
-						<AddNewPlayerButton screenHistory="Record Match" arrayData={matchedPlayersArray} />
+						<AddNewPlayerButton arrayData={matchedPlayersArray} />
 					</View>
 					<View style={styles.matchedContainer}>
 						{matchedPlayersArray.length > 0 ? <GrayHeading title="Match Players" /> : null}
@@ -206,7 +207,7 @@ function RecordMatchScreen ({ navigation }) {
 						<Button
 							style={styles.cancelButton}
 							transparent
-							onPress={() => navigation.navigate("Players") && setMatchedPlayersArray([])}
+							onPress={() => navigation.goBack() && setMatchedPlayersArray([])}
 						>
 							<Text style={styles.cancelText}>Cancel</Text>
 						</Button>
