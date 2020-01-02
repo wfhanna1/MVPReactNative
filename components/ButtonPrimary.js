@@ -19,7 +19,7 @@ function ButtonPrimary ({ onPress, title }) {
 				style={styles.linearGradient}
 			>
 				<Button rounded style={styles.button} onPress={onPress}>
-					<Text style={styles.text}>{title}</Text>
+					<Text uppercase={false} style={styles.text}>{title}</Text>
 				</Button>
 			</LinearGradient>
 		</View>
@@ -42,9 +42,8 @@ const styles = StyleSheet.create({
 		width: 195
 	},
 	text: {
-		fontFamily: "KlinicSlab-Book",
+		fontFamily: "KlinicSlab-Medium",
 		fontSize: 25,
-		fontWeight: "500",
 		letterSpacing: -0.8,
 		marginTop: 8,
 		width: "100%",

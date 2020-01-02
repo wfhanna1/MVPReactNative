@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
 	title: {
 		textAlign: "center",
 		fontSize: 45,
-		fontFamily: "KlinicSlab-Book",
+		fontFamily: "KlinicSlab-Medium",
 		color: "#6E645F",
 		fontWeight: "500",
 		letterSpacing: -1.46,

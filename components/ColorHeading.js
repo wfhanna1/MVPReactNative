@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
 		width: "100%",
 		textAlign: "center",
 		fontSize: 45,
-		fontFamily: "KlinicSlab-Book",
+		fontFamily: "KlinicSlab-Medium",
 		color: "#B73491",
 		fontWeight: "500",
 		lineHeight: 54,
