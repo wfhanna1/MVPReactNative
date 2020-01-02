@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { withNavigation } from "react-navigation";
-import { Form, Button } from "native-base";
 import Autocomplete from "react-native-autocomplete-input";
 import RNPickerSelect from "react-native-picker-select";
+import { Form, Button } from "native-base";
+
 import useQuery from "../hooks/useQuery";
 import gamesQuery from "../queries/games";
 import findPlayersQuery from "../queries/findPlayers";
+
 import BlankScreen from "./BlankScreen";
 import HeaderSm from "../components/HeaderSmall";
-import GrayHeading from "../components/GrayHeading";
 import BgImage from "../components/backgroundImage";
+import GrayHeading from "../components/GrayHeading";
 import AddNewPlayerButton from "../components/AddNewPlayerButton";
 import ButtonPrimary from "../components/ButtonPrimary";
 import PlayerMatched from "../components/PlayerMatched";

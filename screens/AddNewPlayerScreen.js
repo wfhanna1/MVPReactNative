@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Image } from "react-native";
-import { Text, Item, Input, Form, Button } from "native-base";
 import { withNavigation } from "react-navigation";
 import ImagePicker from "react-native-image-picker";
+import { Text, Item, Input, Form, Button } from "native-base";
+
+import useQuery from "../hooks/useQuery";
+import addPlayerQuery from "../queries/addPlayer";
+
 import HeaderSm from "../components/HeaderSmall";
 import BgImage from "../components/backgroundImage";
 import ButtonPrimary from "../components/ButtonPrimary";
-import useQuery from "../hooks/useQuery";
-import addPlayerQuery from "../queries/addPlayer";
 
 const defaultProfilePhoto = require("../assets/icons/Profile-Pic-Example.png");
 

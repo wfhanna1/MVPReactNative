@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import { StyleSheet, ScrollView, View, RefreshControl } from "react-native";
+
 import useQuery from "../hooks/useQuery";
 import topPlayersQuery from "../queries/topPlayers";
 import updateTopPlayers from "../queries/updateTopPlayers";
 
-import AddNewPlayerButton from "../components/AddNewPlayerButton";
 import LoadingScreen from "./LoadingScreen";
 import HeaderLg from "../components/HeaderLarge";
+import BgImage from "../components/backgroundImage";
 import ColorHeading from "../components/ColorHeading";
 import GrayHeading from "../components/GrayHeading";
+import AddNewPlayerButton from "../components/AddNewPlayerButton";
 import Player from "../components/Player";
-import BgImage from "../components/backgroundImage";
 
 function HomeScreen () {
 	const [topPlayers, topPlayersLoading] = useQuery(topPlayersQuery());
