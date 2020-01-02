@@ -1,7 +1,8 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { Text } from "native-base";
 import { withNavigation } from "react-navigation";
+import { Text } from "native-base";
+
 import HeaderSm from "../components/HeaderSmall";
 import BgImage from "../components/backgroundImage";
 import ButtonPrimary from "../components/ButtonPrimary";

@@ -1,16 +1,30 @@
-import React from "react";
-import { ScrollView, View, StyleSheet, Text } from "react-native";
-import HeaderLg from "../components/HeaderLarge";
-import ColorHeading from "../components/ColorHeading";
-import AddNewPlayerButton from "../components/AddNewPlayerButton";
-import BgImage from "../components/backgroundImage";
-import PlayerRecentGames from "../components/PlayerRecentGames";
+import React, { useState } from "react";
+import { ScrollView, View, StyleSheet, Text, RefreshControl } from "react-native";
+
 import useQuery from "../hooks/useQuery";
 import recentMatchesQuery from "../queries/recentMatches";
+import updateRecentGames from "../queries/updateRecentMatches";
+
 import BlankScreen from "./BlankScreen";
+import HeaderLg from "../components/HeaderLarge";
+import BgImage from "../components/backgroundImage";
+import ColorHeading from "../components/ColorHeading";
+import AddNewPlayerButton from "../components/AddNewPlayerButton";
+import PlayerRecentGames from "../components/PlayerRecentGames";
 
 export default function RecentGames () {
 	const [recentMatches, recentMatchesLoading] = useQuery(recentMatchesQuery());
+	const [recentMatchesData, setRecentMatchesData] = useState(false);
+	const [refreshing, setRefreshing] = useState(false);
+
+	const onRefresh = React.useCallback(() => {
+		setRefreshing(true);
+
+		updateRecentGames().then((data) => {
+			setRecentMatchesData(data);
+			setRefreshing(false);
+		});
+	}, [refreshing]);
 
 	const LosersList = (props) => {
 		const { losers } = props;
@@ -46,38 +60,44 @@ export default function RecentGames () {
 	}
 
 	return (
-		<BgImage>
-			<ScrollView>
-				<HeaderLg />
-				<View style={styles.buttonContainer}>
+		<View>
+			<HeaderLg />
+			<ScrollView
+				refreshControl={
+					<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+				}
+			>
+				<BgImage>
+					<View style={styles.buttonContainer}>
 				  <AddNewPlayerButton />
-				</View>
-				<ColorHeading title="Recent Games" style={styles.header} />
-				{recentMatches.map((recentMatch) => (
-					<View style={styles.wrapper} key={recentMatch.matchId}>
-						<View style={styles.gameDateWrapper}>
-							<Text style={styles.game}>{recentMatch.gameName}</Text>
-							<Text style={styles.date}>
-								{new Intl.DateTimeFormat("en-GB", {
-									year: "numeric",
-									month: "short",
-									day: "2-digit",
-									weekday: "short"
-								}).format(new Date(recentMatch.gameDate))}
-							</Text>
-						</View>
-						<View style={styles.container}>
-							{recentMatch.players.filter(({ isWinner }) => isWinner).map((player) => (
-								<PlayerRecentGames fullName={player.fullName} key={player.playerId} id={player.playerId} isWinner={player.isWinner} />
-							))}
-							<Versus losers={recentMatch.players.filter(({ isWinner }) => !isWinner)} winners={recentMatch.players.filter(({ isWinner }) => isWinner)} />
-							<LosersList losers={recentMatch.players.filter(({ isWinner }) => !isWinner)} />
-							<View style={styles.gameSeparator} />
-						</View>
 					</View>
-				))}
+					<ColorHeading title="Recent Games" style={styles.header} />
+					{(recentMatchesData || recentMatches).map((recentMatch) => (
+						<View style={styles.wrapper} key={recentMatch.matchId}>
+							<View style={styles.gameDateWrapper}>
+								<Text style={styles.game}>{recentMatch.gameName}</Text>
+								<Text style={styles.date}>
+									{new Intl.DateTimeFormat("en-GB", {
+										year: "numeric",
+										month: "short",
+										day: "2-digit",
+										weekday: "short"
+									}).format(new Date(recentMatch.gameDate))}
+								</Text>
+							</View>
+							<View style={styles.container}>
+								{recentMatch.players.filter(({ isWinner }) => isWinner).map((player) => (
+									<PlayerRecentGames fullName={player.fullName} key={player.playerId} id={player.playerId} isWinner={player.isWinner} />
+								))}
+								<Versus losers={recentMatch.players.filter(({ isWinner }) => !isWinner)} winners={recentMatch.players.filter(({ isWinner }) => isWinner)} />
+								<LosersList losers={recentMatch.players.filter(({ isWinner }) => !isWinner)} />
+								<View style={styles.gameSeparator} />
+							</View>
+						</View>
+					))}
+				</BgImage>
 			</ScrollView>
-		</BgImage>
+		</View>
 	);
 }
 

@@ -1,16 +1,18 @@
 import React from "react";
 import { StyleSheet, ScrollView } from "react-native";
 import { withNavigation } from "react-navigation";
+
 import useQuery from "../hooks/useQuery";
 import recordMatchQuery from "../queries/recordMatch";
 import gamesQuery from "../queries/games";
+
 import BlankScreen from "./BlankScreen";
-import ColorHeading from "../components/ColorHeading";
-import GrayHeading from "../components/GrayHeading";
-import PlayerMatchRecorded from "../components/PlayerMatchRecorded";
 import HeaderSm from "../components/HeaderSmall";
 import BgImage from "../components/backgroundImage";
+import ColorHeading from "../components/ColorHeading";
+import GrayHeading from "../components/GrayHeading";
 import ButtonPrimary from "../components/ButtonPrimary";
+import PlayerMatchRecorded from "../components/PlayerMatchRecorded";
 
 function RecordMatchScreen ({ navigation }) {
 	const navigationContext = navigation.state.params || {
