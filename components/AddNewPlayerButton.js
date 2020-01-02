@@ -15,7 +15,7 @@ function AddNewPlayerButton ({ navigation, arrayData }) {
 				matchedPlayers: arrayData
 			})}
 		>
-			<Text style={styles.text}>
+			<Text uppercase={false} style={styles.text}>
         Add new player&nbsp;
 				<Icon type="FontAwesome" name="plus-circle" style={styles.icon} />
 			</Text>
