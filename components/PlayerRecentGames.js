@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
 	playerComponent: {
 		alignItems: "center",
 		minWidth: 140,
-	  marginHorizontal: 5
+	  marginHorizontal: 13
 	},
 	stats: {
 		alignItems: "center",

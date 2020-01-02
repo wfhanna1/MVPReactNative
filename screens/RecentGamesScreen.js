@@ -72,6 +72,7 @@ export default function RecentGames () {
 							))}
 							<Versus losers={recentMatch.players.filter(({ isWinner }) => !isWinner)} winners={recentMatch.players.filter(({ isWinner }) => isWinner)} />
 							<LosersList losers={recentMatch.players.filter(({ isWinner }) => !isWinner)} />
+							<View style={styles.gameSeparator} />
 						</View>
 					</View>
 				))}
@@ -87,12 +88,10 @@ const styles = StyleSheet.create({
 		alignItems: "center"
 	},
 	wrapper: {
-		alignItems: "center",
-		marginBottom: 20
+		alignItems: "center"
 	},
 	gameDateWrapper: {
-		alignItems: "center",
-		marginTop: 8
+		alignItems: "center"
 	},
 	game: {
 		fontFamily: "KlinicSlab-Medium",
@@ -106,7 +105,7 @@ const styles = StyleSheet.create({
 		letterSpacing: -0.57,
 		fontWeight: "bold",
 		marginTop: -10,
-		marginBottom: 8
+		marginBottom: 10
 	},
 	container: {
 		flexDirection: "row",
@@ -120,7 +119,9 @@ const styles = StyleSheet.create({
 	versus: {
 		fontFamily: "KlinicSlab-Medium",
 		fontSize: 45,
-		color: "#B73491"
+		color: "#B73491",
+		position: "absolute",
+		top: 15
 	},
 	versusPadding: {
 		paddingBottom: 40,
@@ -132,6 +133,12 @@ const styles = StyleSheet.create({
 		textDecorationLine: "line-through",
 		textDecorationStyle: "solid",
 		color: "#B73491"
+	},
+	gameSeparator: {
+		width: "90%",
+		borderBottomWidth: 3,
+		borderBottomColor: "#BEBEBB",
+	  marginVertical: 30
 	},
 	tieGame: {
 		fontFamily: "KlinicSlab-Medium",
