@@ -50,7 +50,6 @@ const styles = StyleSheet.create({
 	picture: {
 		marginTop: -10,
 		marginHorizontal: "4%"
-
 	},
 	game: {
 		fontSize: 16,
@@ -59,9 +58,8 @@ const styles = StyleSheet.create({
 		letterSpacing: -0.57
 	},
 	name: {
-		fontFamily: "KlinicSlab-Book",
+		fontFamily: "KlinicSlab-Medium",
 		fontSize: 26,
-		fontWeight: "500",
 		letterSpacing: -0.63,
 		marginBottom: -7
 	},

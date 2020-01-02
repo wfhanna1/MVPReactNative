@@ -16,7 +16,6 @@ import ButtonPrimary from "../components/ButtonPrimary";
 import PlayerMatched from "../components/PlayerMatched";
 
 function RecordMatchScreen ({ navigation }) {
-	console.log("navigation", navigation);
 	const navigationContext = navigation.state.params || {
 	};
 
@@ -150,7 +149,7 @@ function RecordMatchScreen ({ navigation }) {
 											...pickerSelectStyles
 										}}
 										placeholder={{
-											label: "Game Name",
+											label: "Game name",
 											value: null
 										}}
 										onValueChange={(value) => { setGameSelected(value); setGameSelectError(false); }}
@@ -256,7 +255,7 @@ const styles = StyleSheet.create({
 		width: "100%"
 	},
 	text: {
-		fontFamily: "KlinicSlab-Book",
+		fontFamily: "KlinicSlab-Medium",
 		fontSize: 26,
 		fontWeight: "500",
 		marginTop: 30,
@@ -324,6 +323,12 @@ const pickerSelectStyles = StyleSheet.create({
 		marginLeft: "11%",
 		borderBottomColor: "#B73491",
 		color: "black"
+	},
+	inputAndroid: {
+		marginTop: 10,
+		marginBottom: -20,
+		marginLeft: 40,
+	  width: "47%"
 	}
 });
 

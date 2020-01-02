@@ -137,7 +137,7 @@ function AddNewPlayerScreen ({ navigation }) {
 							} : defaultProfilePhoto}
 						/>
 						<Button transparent onPress={handleChoosePhoto}>
-							<Text style={styles.profileButton}>Add/Update</Text>
+							<Text uppercase={false} style={styles.profileButton}>Add/Update</Text>
 						</Button>
 					</View>
 					<View style={styles.container}>
@@ -148,7 +148,7 @@ function AddNewPlayerScreen ({ navigation }) {
 							transparent
 							onPress={() => (navigation.goBack())}
 						>
-							<Text style={styles.cancelText}>Cancel</Text>
+							<Text uppercase={false} style={styles.cancelText}>Cancel</Text>
 						</Button>
 					</View>
 				</Form>
@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
 		resizeMode: "cover"
 	},
 	profText: {
-		fontFamily: "KlinicSlab-Book",
+		fontFamily: "KlinicSlab-Medium",
 		fontSize: 26,
 		color: "#222222",
 		fontWeight: "500",
@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
 		color: "#4166AA"
 	},
 	text: {
-		fontFamily: "KlinicSlab-Book",
+		fontFamily: "KlinicSlab-Medium",
 		fontSize: 26,
 		fontWeight: "500",
 		marginTop: 30,
