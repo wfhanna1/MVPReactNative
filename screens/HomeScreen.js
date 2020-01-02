@@ -25,7 +25,7 @@ function HomeScreen () {
 			<BgImage>
 				<HeaderLg />
 				<View style={styles.buttonContainer}>
-				  <AddNewPlayerButton screenHistory="Players" />
+				  <AddNewPlayerButton />
 				</View>
 				<ColorHeading title="Top Player" />
 				<Player

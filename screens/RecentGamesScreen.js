@@ -45,7 +45,7 @@ export default function RecentGames () {
 			<ScrollView>
 				<HeaderLg />
 				<View style={styles.buttonContainer}>
-				  <AddNewPlayerButton screenHistory="Players" />
+				  <AddNewPlayerButton />
 				</View>
 				<ColorHeading title="Recent Games" style={styles.header} />
 				{recentMatches.map((recentMatch) => (
