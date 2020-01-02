@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, ScrollView, View, RefreshControl } from "react-native";
 import useQuery from "../hooks/useQuery";
 import topPlayersQuery from "../queries/topPlayers";
+import updateTopPlayers from "../queries/updateTopPlayers";
 
 import AddNewPlayerButton from "../components/AddNewPlayerButton";
 import LoadingScreen from "./LoadingScreen";
@@ -10,12 +11,6 @@ import ColorHeading from "../components/ColorHeading";
 import GrayHeading from "../components/GrayHeading";
 import Player from "../components/Player";
 import BgImage from "../components/backgroundImage";
-
-import insightMVPUrl from "../queries/config";
-
-function updateTopPlayers () {
-	return fetch(`${insightMVPUrl}/Ratings/topPlayers`).then((response) => response.json());
-}
 
 function HomeScreen () {
 	const [topPlayers, topPlayersLoading] = useQuery(topPlayersQuery());

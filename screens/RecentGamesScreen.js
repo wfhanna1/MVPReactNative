@@ -1,19 +1,15 @@
 import React, { useState } from "react";
 import { ScrollView, View, StyleSheet, Text, RefreshControl } from "react-native";
+import useQuery from "../hooks/useQuery";
+import recentMatchesQuery from "../queries/recentMatches";
+import updateRecentGames from "../queries/updateRecentMatches";
+
 import HeaderLg from "../components/HeaderLarge";
 import ColorHeading from "../components/ColorHeading";
 import AddNewPlayerButton from "../components/AddNewPlayerButton";
 import BgImage from "../components/backgroundImage";
 import PlayerRecentGames from "../components/PlayerRecentGames";
-import useQuery from "../hooks/useQuery";
-import recentMatchesQuery from "../queries/recentMatches";
 import BlankScreen from "./BlankScreen";
-
-import insightMVPUrl from "../queries/config";
-
-function updateRecentGames () {
-	return fetch(`${insightMVPUrl}/Matches/recent`).then((response) => response.json());
-}
 
 export default function RecentGames () {
 	const [recentMatches, recentMatchesLoading] = useQuery(recentMatchesQuery());
