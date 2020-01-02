@@ -24,9 +24,10 @@ const styles = StyleSheet.create({
 	initialsContainer: {
 		height: 75,
 		width: 75,
-		borderWidth: 5,
+		borderWidth: 3,
 		borderColor: "#BEBEBB",
-		borderRadius: 100
+		borderRadius: 100,
+		marginBottom: 5
 	},
 	initialsContainerLarge: {
 		height: 130,
@@ -38,9 +39,10 @@ const styles = StyleSheet.create({
 	initialsContainerWinner: {
 		height: 75,
 		width: 75,
-		borderWidth: 5,
+		borderWidth: 3,
 		borderColor: "#399D60",
-		borderRadius: 100
+		borderRadius: 100,
+		marginBottom: 5
 	},
 	initialsContainerWinnerLarge: {
 		height: 130,
@@ -58,8 +60,8 @@ const styles = StyleSheet.create({
 		height: 75,
 		color: "#BEBEBB",
 		textAlign: "center",
-		marginHorizontal: -5,
-		marginVertical: 15
+		marginHorizontal: -3,
+		marginVertical: 17
 	},
 	initialsTextLarge: {
 		fontFamily: "KlinicSlab-Book",

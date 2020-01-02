@@ -24,7 +24,8 @@ export default function PlayerRecentGames (playerData) {
 const styles = StyleSheet.create({
 	playerComponent: {
 		alignItems: "center",
-		margin: 5
+		minWidth: 140,
+	  marginHorizontal: 13
 	},
 	stats: {
 		alignItems: "center",
