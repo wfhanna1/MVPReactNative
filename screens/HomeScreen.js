@@ -33,10 +33,42 @@ function HomeScreen () {
 		);
 	}
 
+	console.log("topPlayers", topPlayers);
+
+	if (!topPlayers.length && !topPlayersData.length) {
+		return (
+			<View>
+				<HeaderLg />
+				<ScrollView
+					refreshControl={
+						<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+					}
+				>
+					<BgImage>
+						<View style={styles.buttonContainer}>
+							<AddNewPlayerButton />
+						</View>
+						<ColorHeading title="Top Player" />
+						<GrayHeading title="Ranked Players" />
+						{(topPlayersData || topPlayers).slice(1).map((item, index) => (
+							<Player
+								key={item.id}
+								rank={index + 2}
+								name={item.player[0].fullName}
+								points={Math.floor(item.average)}
+							/>
+						))}
+					</BgImage>
+				</ScrollView>
+			</View>
+		);
+	}
+
 	return (
 		<View>
 			<HeaderLg />
 			<ScrollView
+				style={styles.scrollView}
 				refreshControl={
 					<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
 				}
@@ -72,6 +104,9 @@ const styles = StyleSheet.create({
 		height: 18,
 		marginTop: -15,
 		alignItems: "center"
+	},
+	scrollView: {
+		marginBottom: 225
 	}
 });
 
