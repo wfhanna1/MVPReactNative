@@ -8,7 +8,6 @@ import BgImage from "../components/backgroundImage";
 import ButtonPrimary from "../components/ButtonPrimary";
 import AddNewPlayerButton from "../components/AddNewPlayerButton";
 import PlayerImage from "../components/PlayerImage";
-import ResponsiveSize from "../config/getScreenDimensions";
 
 function PlayerAddedScreen ({ navigation }) {
 	const navigationContext = navigation.state.params || {

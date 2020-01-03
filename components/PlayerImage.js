@@ -53,20 +53,25 @@ const styles = StyleSheet.create({
 		borderRadius: 100
 	},
 	initialsText: {
-		fontFamily: "KlinicSlab-Book",
+		fontFamily: "KlinicSlab-Bold",
 		fontSize: ResponsiveSize(10.4),
-		fontWeight: "bold",
 		letterSpacing: -0.63,
 		height: 75,
 		color: "#BEBEBB",
 		textAlign: "center",
 		marginHorizontal: -3,
-		marginVertical: 17
+		...Platform.select({
+			ios: {
+				marginVertical: 17
+			},
+			android: {
+				marginVertical: 10
+			}
+		})
 	},
 	initialsTextLarge: {
-		fontFamily: "KlinicSlab-Book",
+		fontFamily: "KlinicSlab-Bold",
 		fontSize: 72,
-		fontWeight: "bold",
 		letterSpacing: -0.63,
 		width: 130,
 		height: 130,
