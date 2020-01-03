@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Platform } from "react-native";
 import { Button, Text, View } from "native-base";
 import LinearGradient from "react-native-linear-gradient";
 import { withNavigation } from "react-navigation";
@@ -46,7 +46,11 @@ const styles = StyleSheet.create({
 		fontFamily: "KlinicSlab-Medium",
 		fontSize: ResponsiveSize(15),
 		letterSpacing: -0.8,
-		marginTop: 8,
+		...Platform.select({
+			ios: {
+				marginTop: 8
+			}
+		}),
 		width: "100%",
 		textAlign: "center"
 	},
