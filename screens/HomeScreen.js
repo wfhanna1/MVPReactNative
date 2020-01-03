@@ -37,6 +37,7 @@ function HomeScreen () {
 		<View>
 			<HeaderLg />
 			<ScrollView
+				style={styles.scrollView}
 				refreshControl={
 					<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
 				}
@@ -72,6 +73,9 @@ const styles = StyleSheet.create({
 		height: 18,
 		marginTop: -15,
 		alignItems: "center"
+	},
+	scrollView: {
+		marginBottom: 225
 	}
 });
 

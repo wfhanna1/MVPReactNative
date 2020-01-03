@@ -30,7 +30,7 @@ export default function RecentGames () {
 		const { losers } = props;
 		return losers.length ? losers.map((player) => (
 			<PlayerRecentGames fullName={player.fullName} key={player.playerId} id={player.playerId} isWinner={player.isWinner} />
-		)) : <Text style={styles.tieGame}>It's a tie! Everyone wins!</Text>;
+		)) : <Text style={styles.tieGame}>It&apos;s a tie! Everyone wins!</Text>;
 	};
 
 	const Versus = (props) => {
@@ -65,6 +65,7 @@ export default function RecentGames () {
 		<View>
 			<HeaderLg />
 			<ScrollView
+				style={styles.scrollView}
 				refreshControl={
 					<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
 				}
@@ -173,5 +174,8 @@ const styles = StyleSheet.create({
 		width: "100%",
 		textAlign: "center",
 		marginTop: 10
+	},
+	scrollView: {
+		marginBottom: 225
 	}
 });
