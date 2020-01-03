@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet } from "react-native";
 import { Text } from "native-base";
+import ResponsiveSize from "../config/getScreenDimensions";
 
 export default function ColorHeading ({ title }) {
 	return (
@@ -16,7 +17,7 @@ const styles = StyleSheet.create({
 		marginBottom: "2%",
 		width: "100%",
 		textAlign: "center",
-		fontSize: 45,
+		fontSize: ResponsiveSize(8.3),
 		fontFamily: "KlinicSlab-Medium",
 		color: "#B73491",
 		fontWeight: "500",

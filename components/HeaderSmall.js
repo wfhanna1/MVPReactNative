@@ -3,6 +3,7 @@ import { View,
 	StyleSheet,
 	Text,
 	ImageBackground } from "react-native";
+import ResponsiveSize from "../config/getScreenDimensions";
 
 const headerImageSm = require("../assets/icons/Header-Background-Small.png");
 
@@ -12,7 +13,7 @@ function HeaderSm ({ headerTitle }) {
 			source={headerImageSm}
 			style={{
 				width: "100%",
-				height: 170
+				height: ResponsiveSize(2.2)
 			}}
 		>
 			<View style={styles.container}>
@@ -27,7 +28,7 @@ const styles = StyleSheet.create({
 		fontFamily: "KlinicSlab-Book",
 		fontWeight: "400",
 		letterSpacing: -2.4,
-		fontSize: 45,
+		fontSize: ResponsiveSize(8.3),
 		color: "#FFFFFF",
 		marginTop: "-35%"
 	},

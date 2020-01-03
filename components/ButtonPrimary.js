@@ -1,8 +1,9 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Platform } from "react-native";
 import { Button, Text, View } from "native-base";
 import LinearGradient from "react-native-linear-gradient";
 import { withNavigation } from "react-navigation";
+import ResponsiveSize from "../config/getScreenDimensions";
 
 function ButtonPrimary ({ onPress, title }) {
 	return (
@@ -39,20 +40,24 @@ const styles = StyleSheet.create({
 	},
 	linearGradient: {
 		borderRadius: 50,
-		width: 195
+		width: ResponsiveSize(1.9)
 	},
 	text: {
 		fontFamily: "KlinicSlab-Medium",
-		fontSize: 25,
+		fontSize: ResponsiveSize(15),
 		letterSpacing: -0.8,
-		marginTop: 8,
+		...Platform.select({
+			ios: {
+				marginTop: 8
+			}
+		}),
 		width: "100%",
 		textAlign: "center"
 	},
 	button: {
 		alignItems: "center",
 		backgroundColor: "transparent",
-		height: 54
+		height: ResponsiveSize(6.9)
 	}
 });
 

@@ -16,6 +16,7 @@ import GrayHeading from "../components/GrayHeading";
 import AddNewPlayerButton from "../components/AddNewPlayerButton";
 import ButtonPrimary from "../components/ButtonPrimary";
 import PlayerMatched from "../components/PlayerMatched";
+import ResponsiveSize from "../config/getScreenDimensions";
 
 function RecordMatchScreen ({ navigation }) {
 	const navigationContext = navigation.state.params || {
@@ -284,7 +285,7 @@ const styles = StyleSheet.create({
 		letterSpacing: -0.52,
 		fontWeight: "300",
 		color: "#4166AA",
-		fontSize: 16,
+		fontSize: ResponsiveSize(23.4),
 		marginLeft: -17
 	},
 	matchedContainer: {

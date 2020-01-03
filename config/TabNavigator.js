@@ -10,6 +10,7 @@ import AddNewPlayerScreen from "../screens/AddNewPlayerScreen";
 import MatchRecordedScreen from "../screens/MatchRecordedScreen";
 import LoadingScreen from "../screens/LoadingScreen";
 import PlayerAddedScreen from "../screens/PlayerAddedScreen";
+import ResponsiveSize from "./getScreenDimensions";
 
 const Players = createStackNavigator({
 	Players: {
@@ -117,7 +118,7 @@ const Tab = createBottomTabNavigator(
 				} else if (routeName === "Games") {
 					iconName = "gamepad";
 				}
-				return <Icon name={iconName} size={30} color={tintColor} />;
+				return <Icon name={iconName} size={ResponsiveSize(12.5)} color={tintColor} />;
 			}
 		})
 	}
