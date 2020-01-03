@@ -1,21 +1,21 @@
 import React from "react";
-import { StyleSheet, Image, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Text } from "native-base";
+import PlayerImage from "./PlayerImage";
 import useQuery from "../hooks/useQuery";
+import findPlayersQuery from "../queries/findPlayers";
 import playerRatingQuery from "../queries/playerRating";
 
-const playerImage = require("../assets/icons/Default-user.png");
+export default function PlayerRecentGames (playerData) {
+	const [player, playerLoading] = useQuery(findPlayersQuery(playerData.id));
+	const [playerRating, playerRatingLoading] = useQuery(playerRatingQuery(playerData.id));
 
-export default function PlayerRecentGames (player) {
-	const [playerRating, playerRatingLoading] = useQuery(playerRatingQuery(player.id));
 	return (
-		<View>
-			<View style={styles.playerComponent}>
-				<Image style={styles.picture} source={playerImage} />
-				<View style={styles.stats}>
-					<Text style={styles.name}>{player.fullName || "Player Name"}</Text>
-					<Text style={styles.points}>{`Points: ${playerRating ? Math.floor(playerRating.score).toLocaleString() : "0"}`}</Text>
-				</View>
+		<View style={styles.playerComponent}>
+			<PlayerImage fullName={playerData.fullName} isWinner={playerData.isWinner} />
+			<View style={styles.stats}>
+				<Text style={styles.name}>{playerData.fullName ? playerData.fullName : playerLoading ? "..." : player ? player.fullName : "Player Name"}</Text>
+				<Text style={styles.points}>{playerRatingLoading ? "..." : `Points: ${playerRating ? Math.floor(playerRating.score).toLocaleString() : "0"}`}</Text>
 			</View>
 		</View>
 	);
@@ -24,12 +24,8 @@ export default function PlayerRecentGames (player) {
 const styles = StyleSheet.create({
 	playerComponent: {
 		alignItems: "center",
-		margin: 5
-	},
-	picture: {
-		height: 75,
-		width: 75,
-		resizeMode: "contain"
+		minWidth: 140,
+	  marginHorizontal: 13
 	},
 	stats: {
 		alignItems: "center",

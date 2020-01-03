@@ -1,14 +1,15 @@
 import React from "react";
-import { StyleSheet, Image, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Text, Button } from "native-base";
-
-const playerImage = require("../assets/icons/Default-user.png");
+import PlayerImage from "./PlayerImage";
 
 export default function PlayerMatched ({ player, setWinLossStatus, removePlayer }) {
 	return (
 		<View>
 			<View style={styles.playerComponent}>
-				<Image style={styles.picture} source={playerImage} />
+				<View style={styles.picture}>
+					<PlayerImage fullName={player.fullName} />
+				</View>
 				<View style={styles.stats}>
 					<Text style={styles.name}>{player.fullName}</Text>
 					<Button
@@ -54,9 +55,8 @@ const styles = StyleSheet.create({
 	},
 	picture: {
 		flex: 1,
-		height: 75,
-		resizeMode: "contain",
-		marginTop: "-2%"
+		marginTop: "-2%",
+		marginLeft: "7%"
 	},
 	stats: {
 		flex: 1,

@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { withNavigation } from "react-navigation";
-import { Form, Button } from "native-base";
 import Autocomplete from "react-native-autocomplete-input";
 import RNPickerSelect from "react-native-picker-select";
+import { Form, Button } from "native-base";
+
 import useQuery from "../hooks/useQuery";
 import gamesQuery from "../queries/games";
 import findPlayersQuery from "../queries/findPlayers";
+
 import BlankScreen from "./BlankScreen";
 import HeaderSm from "../components/HeaderSmall";
-import GrayHeading from "../components/GrayHeading";
 import BgImage from "../components/backgroundImage";
+import GrayHeading from "../components/GrayHeading";
 import AddNewPlayerButton from "../components/AddNewPlayerButton";
 import ButtonPrimary from "../components/ButtonPrimary";
 import PlayerMatched from "../components/PlayerMatched";
@@ -149,7 +151,7 @@ function RecordMatchScreen ({ navigation }) {
 											...pickerSelectStyles
 										}}
 										placeholder={{
-											label: "Game Name",
+											label: "Game name",
 											value: null
 										}}
 										onValueChange={(value) => { setGameSelected(value); setGameSelectError(false); }}
@@ -193,11 +195,11 @@ function RecordMatchScreen ({ navigation }) {
 						</View>
 					</Form>
 					<View style={styles.button}>
-						<AddNewPlayerButton screenHistory="Record Match" arrayData={matchedPlayersArray} />
+						<AddNewPlayerButton arrayData={matchedPlayersArray} />
 					</View>
 					<View style={styles.matchedContainer}>
 						{matchedPlayersArray.length > 0 ? <GrayHeading title="Match Players" /> : null}
-						{matchedPlayersArray.map((player, index) => <PlayerMatched player={player} setWinLossStatus={setWinLossStatus} removePlayer={removePlayer} key={`player${index}`} />)}
+						{matchedPlayersArray.map((player) => <PlayerMatched player={player} setWinLossStatus={setWinLossStatus} removePlayer={removePlayer} key={player.playerId} />)}
 						<ErrorMessage errors={[gameSelectError, playersError, winnersError]} />
 						<ButtonPrimary
 							title="Record Match"
@@ -206,7 +208,7 @@ function RecordMatchScreen ({ navigation }) {
 						<Button
 							style={styles.cancelButton}
 							transparent
-							onPress={() => navigation.navigate("Players") && setMatchedPlayersArray([])}
+							onPress={() => navigation.goBack() && setMatchedPlayersArray([])}
 						>
 							<Text style={styles.cancelText}>Cancel</Text>
 						</Button>
@@ -255,7 +257,7 @@ const styles = StyleSheet.create({
 		width: "100%"
 	},
 	text: {
-		fontFamily: "KlinicSlab-Book",
+		fontFamily: "KlinicSlab-Medium",
 		fontSize: 26,
 		fontWeight: "500",
 		marginTop: 30,
@@ -323,6 +325,12 @@ const pickerSelectStyles = StyleSheet.create({
 		marginLeft: "11%",
 		borderBottomColor: "#B73491",
 		color: "black"
+	},
+	inputAndroid: {
+		marginTop: 10,
+		marginBottom: -20,
+		marginLeft: 40,
+	  width: "47%"
 	}
 });
 

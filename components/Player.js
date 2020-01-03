@@ -1,20 +1,21 @@
 import React from "react";
-import { StyleSheet, Image, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Text } from "native-base";
-
-const playerImage = require("../assets/icons/Default-user.png");
+import PlayerImage from "./PlayerImage";
 
 export default function Player ({ name, points, rank }) {
 	return (
 		<View>
 			<View style={styles.playerComponent}>
 				<Text style={styles.number}>{rank}</Text>
-				<Image style={styles.picture} source={playerImage} />
+				<View style={styles.picture}>
+					<PlayerImage fullName={name} />
+				</View>
 				<View>
 					<Text style={styles.game}>In All Games</Text>
 					<Text style={styles.name}>{name}</Text>
 					<Text style={styles.points}>
-            Points:&nbsp;
+						Points:&nbsp;
 						{points}
 					</Text>
 				</View>
@@ -47,12 +48,8 @@ const styles = StyleSheet.create({
 		color: "#6E645F"
 	},
 	picture: {
-		height: 75,
-		resizeMode: "contain",
-		width: "30%",
 		marginTop: -10,
-		marginLeft: "4%"
-
+		marginHorizontal: "4%"
 	},
 	game: {
 		fontSize: 16,
@@ -61,9 +58,8 @@ const styles = StyleSheet.create({
 		letterSpacing: -0.57
 	},
 	name: {
-		fontFamily: "KlinicSlab-Book",
+		fontFamily: "KlinicSlab-Medium",
 		fontSize: 26,
-		fontWeight: "500",
 		letterSpacing: -0.63,
 		marginBottom: -7
 	},

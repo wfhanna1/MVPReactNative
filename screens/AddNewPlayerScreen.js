@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Image } from "react-native";
-import { Text, Item, Input, Form, Button } from "native-base";
 import { withNavigation } from "react-navigation";
 import ImagePicker from "react-native-image-picker";
+import { Text, Item, Input, Form, Button } from "native-base";
+
+import useQuery from "../hooks/useQuery";
+import addPlayerQuery from "../queries/addPlayer";
+
 import HeaderSm from "../components/HeaderSmall";
 import BgImage from "../components/backgroundImage";
 import ButtonPrimary from "../components/ButtonPrimary";
-import useQuery from "../hooks/useQuery";
-import addPlayerQuery from "../queries/addPlayer";
 
 const defaultProfilePhoto = require("../assets/icons/Profile-Pic-Example.png");
 
@@ -17,7 +19,6 @@ function AddNewPlayerScreen ({ navigation }) {
 	const navigationContext = navigation.state.params || {
 	};
 
-	const previousScreen = navigationContext.screenHistory.screenHistory;
 	const [name, setName] = useState(undefined);
 	const [email, setEmail] = useState(undefined);
 	const [profilePhoto, setProfilePhoto] = useState(undefined);
@@ -66,6 +67,20 @@ function AddNewPlayerScreen ({ navigation }) {
 			);
 		}
 		return null;
+	};
+
+	const ButtonLoading = () => {
+		if (addPlayerLoading) {
+			return (
+				<Text>Loading...</Text>
+			);
+		}
+		return (
+			<ButtonPrimary
+				title="Add Player"
+				onPress={onSubmit}
+			/>
+		);
 	};
 
 	const handleChoosePhoto = () => {
@@ -124,21 +139,18 @@ function AddNewPlayerScreen ({ navigation }) {
 							} : defaultProfilePhoto}
 						/>
 						<Button transparent onPress={handleChoosePhoto}>
-							<Text style={styles.profileButton}>Add/Update</Text>
+							<Text uppercase={false} style={styles.profileButton}>Add/Update</Text>
 						</Button>
 					</View>
 					<View style={styles.container}>
 						<ErrorMessage errors={[nameError, emailError]} />
-						<ButtonPrimary
-							title="Add Player"
-							onPress={onSubmit}
-						/>
+						<ButtonLoading />
 						<Button
 							style={styles.cancelButton}
 							transparent
-							onPress={() => (previousScreen === "Players" ? navigation.navigate("Players") : navigation.navigate("RecordMatch"))}
+							onPress={() => (navigation.goBack())}
 						>
-							<Text style={styles.cancelText}>Cancel</Text>
+							<Text uppercase={false} style={styles.cancelText}>Cancel</Text>
 						</Button>
 					</View>
 				</Form>
@@ -178,7 +190,7 @@ const styles = StyleSheet.create({
 		resizeMode: "cover"
 	},
 	profText: {
-		fontFamily: "KlinicSlab-Book",
+		fontFamily: "KlinicSlab-Medium",
 		fontSize: 26,
 		color: "#222222",
 		fontWeight: "500",
@@ -188,7 +200,7 @@ const styles = StyleSheet.create({
 		color: "#4166AA"
 	},
 	text: {
-		fontFamily: "KlinicSlab-Book",
+		fontFamily: "KlinicSlab-Medium",
 		fontSize: 26,
 		fontWeight: "500",
 		marginTop: 30,

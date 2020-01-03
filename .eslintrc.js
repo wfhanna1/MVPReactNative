@@ -22,7 +22,8 @@ module.exports = {
 		"max-len": "off",
 		"no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
 		"no-tabs": "off",
-		"indent": ["error", "tab"]
+		"indent": ["error", "tab"],
+		"no-nested-ternary": "off"
 	},
 	globals: {
 	fetch: false
