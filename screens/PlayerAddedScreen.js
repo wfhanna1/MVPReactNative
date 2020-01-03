@@ -8,6 +8,7 @@ import BgImage from "../components/backgroundImage";
 import ButtonPrimary from "../components/ButtonPrimary";
 import AddNewPlayerButton from "../components/AddNewPlayerButton";
 import PlayerImage from "../components/PlayerImage";
+import ResponsiveSize from "../config/getScreenDimensions";
 
 function PlayerAddedScreen ({ navigation }) {
 	const navigationContext = navigation.state.params || {
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
 		height: "35%"
 	},
 	name: {
-		fontFamily: "KlinicSlab-Book",
+		fontFamily: "KlinicSlab-Medium",
 		fontSize: 26,
 		fontWeight: "500",
 		letterSpacing: -0.63,

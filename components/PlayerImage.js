@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, Platform } from "react-native";
 import ResponsiveSize from "../config/getScreenDimensions";
 
 const defaultPlayerImage = require("../assets/icons/Default-user.png");
@@ -73,7 +73,14 @@ const styles = StyleSheet.create({
 		color: "#BEBEBB",
 		textAlign: "center",
 		marginHorizontal: -7,
-		marginVertical: 30
+		...Platform.select({
+			ios: {
+				marginVertical: 22
+			},
+			android: {
+				marginVertical: 10
+			}
+		})
 	},
 	picture: {
 		height: 75,
