@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import { Text } from "native-base";
 import PlayerImage from "./PlayerImage";
+import ResponsiveSize from "../config/getScreenDimensions";
 
 export default function Player ({ name, points, rank }) {
 	return (
@@ -25,17 +26,6 @@ export default function Player ({ name, points, rank }) {
 }
 
 const styles = StyleSheet.create({
-	title: {
-		marginTop: "7%",
-		width: "100%",
-		textAlign: "center",
-		fontSize: 45,
-		fontFamily: "KlinicSlab-Book",
-		color: "#B73491",
-		fontWeight: "500",
-		lineHeight: 54,
-		letterSpacing: -1.46
-	},
 	playerComponent: {
 		marginLeft: "7%",
 		marginBottom: "7%",
@@ -43,7 +33,7 @@ const styles = StyleSheet.create({
 	},
 	number: {
 		fontFamily: "KlinicSlab-Book",
-		fontSize: 45,
+		fontSize: ResponsiveSize(8.3),
 		fontWeight: "500",
 		color: "#6E645F"
 	},
@@ -52,19 +42,19 @@ const styles = StyleSheet.create({
 		marginHorizontal: "4%"
 	},
 	game: {
-		fontSize: 16,
+		fontSize: ResponsiveSize(23.4),
 		fontWeight: "bold",
 		color: "#6E645F",
 		letterSpacing: -0.57
 	},
 	name: {
 		fontFamily: "KlinicSlab-Medium",
-		fontSize: 26,
+		fontSize: ResponsiveSize(14.4),
 		letterSpacing: -0.63,
 		marginBottom: -7
 	},
 	points: {
-		fontSize: 16,
+		fontSize: ResponsiveSize(23.4),
 		color: "#399D60",
 		letterSpacing: -0.7
 	}

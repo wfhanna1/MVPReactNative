@@ -10,6 +10,7 @@ import addPlayerQuery from "../queries/addPlayer";
 import HeaderSm from "../components/HeaderSmall";
 import BgImage from "../components/backgroundImage";
 import ButtonPrimary from "../components/ButtonPrimary";
+import ResponsiveSize from "../config/getScreenDimensions";
 
 const defaultProfilePhoto = require("../assets/icons/Profile-Pic-Example.png");
 
@@ -171,7 +172,7 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		marginLeft: "-50%",
 		marginTop: "10%",
-		display: "none"
+	  display: "none"
 	},
 	item: {
 		borderBottomColor: "#B73491",
@@ -185,23 +186,24 @@ const styles = StyleSheet.create({
 		marginTop: "-4%"
 	},
 	profile: {
-		height: 80,
-		width: 80,
+		height: ResponsiveSize(4.7),
+		width: ResponsiveSize(4.7),
 		resizeMode: "cover"
 	},
 	profText: {
 		fontFamily: "KlinicSlab-Medium",
-		fontSize: 26,
+		fontSize: ResponsiveSize(14.4),
 		color: "#222222",
 		fontWeight: "500",
 		letterSpacing: -0.63
 	},
 	profileButton: {
-		color: "#4166AA"
+		color: "#4166AA",
+		fontSize: ResponsiveSize(24)
 	},
 	text: {
 		fontFamily: "KlinicSlab-Medium",
-		fontSize: 26,
+		fontSize: ResponsiveSize(14.4),
 		fontWeight: "500",
 		marginTop: 30,
 		alignSelf: "flex-start",
@@ -214,7 +216,7 @@ const styles = StyleSheet.create({
 		letterSpacing: -0.52,
 		fontWeight: "300",
 		color: "#4166AA",
-		fontSize: 16,
+		fontSize: ResponsiveSize(23.4),
 		marginLeft: -17
 	},
 	error: {

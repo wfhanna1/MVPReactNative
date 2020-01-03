@@ -5,6 +5,7 @@ import PlayerImage from "./PlayerImage";
 import useQuery from "../hooks/useQuery";
 import findPlayersQuery from "../queries/findPlayers";
 import playerRatingQuery from "../queries/playerRating";
+import ResponsiveSize from "../config/getScreenDimensions";
 
 export default function PlayerRecentGames (playerData) {
 	const [player, playerLoading] = useQuery(findPlayersQuery(playerData.id));
@@ -24,7 +25,7 @@ export default function PlayerRecentGames (playerData) {
 const styles = StyleSheet.create({
 	playerComponent: {
 		alignItems: "center",
-		minWidth: 140,
+		minWidth: ResponsiveSize(2.68),
 	  marginHorizontal: 13
 	},
 	stats: {
@@ -32,14 +33,14 @@ const styles = StyleSheet.create({
 		marginBottom: 10
 	},
 	name: {
-		fontFamily: "KlinicSlab-Book",
-		fontSize: 26,
+		fontFamily: "KlinicSlab-Medium",
+		fontSize: ResponsiveSize(14.4),
 		fontWeight: "500",
 		letterSpacing: -0.63,
 		marginBottom: -7
 	},
 	points: {
-		fontSize: 16,
+		fontSize: ResponsiveSize(23.4),
 		color: "#399D60",
 		letterSpacing: -0.7,
 		marginBottom: -5

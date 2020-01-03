@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { Button, Text, Icon } from "native-base";
 import { withNavigation } from "react-navigation";
+import ResponsiveSize from "../config/getScreenDimensions";
 
 function AddNewPlayerButton ({ navigation, arrayData }) {
 	const navigationContext = navigation.state.params || {
@@ -26,7 +27,7 @@ function AddNewPlayerButton ({ navigation, arrayData }) {
 const styles = StyleSheet.create({
 	text: {
 		color: "#4166AA",
-		fontSize: 16
+		fontSize: ResponsiveSize(23.44)
 	},
 	icon: {
 		color: "#4166AA",

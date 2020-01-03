@@ -11,6 +11,7 @@ import BgImage from "../components/backgroundImage";
 import ColorHeading from "../components/ColorHeading";
 import AddNewPlayerButton from "../components/AddNewPlayerButton";
 import PlayerRecentGames from "../components/PlayerRecentGames";
+import ResponsiveSize from "../config/getScreenDimensions";
 
 export default function RecentGames () {
 	const [recentMatches, recentMatchesLoading] = useQuery(recentMatchesQuery());
@@ -117,13 +118,13 @@ const styles = StyleSheet.create({
 	},
 	game: {
 		fontFamily: "KlinicSlab-Medium",
-		fontSize: 35,
+		fontSize: ResponsiveSize(10.7),
 		color: "#222222",
 		letterSpacing: -1.14
 	},
 	date: {
 		color: "#6E645F",
-		fontSize: 16,
+		fontSize: ResponsiveSize(23.4),
 		letterSpacing: -0.57,
 		fontWeight: "bold",
 		marginTop: -10,
@@ -143,7 +144,7 @@ const styles = StyleSheet.create({
 	},
 	versus: {
 		fontFamily: "KlinicSlab-Medium",
-		fontSize: 45,
+		fontSize: ResponsiveSize(8.3),
 		color: "#B73491",
 		position: "absolute",
 		top: 15
