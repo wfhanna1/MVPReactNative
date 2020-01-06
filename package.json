@@ -13,6 +13,7 @@
     "appcenter": "2.6.1",
     "appcenter-analytics": "2.6.1",
     "appcenter-crashes": "2.6.1",
+    "exif-js": "^2.3.0",
     "intl": "^1.2.5",
     "native-base": "^2.13.8",
     "react": "16.9.0",
