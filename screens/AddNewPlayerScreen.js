@@ -88,11 +88,19 @@ function AddNewPlayerScreen ({ navigation }) {
 		const options = {
 			noData: true
 		};
-		ImagePicker.launchImageLibrary(options, (response) => {
-			if (response.uri) {
-				setProfilePhoto(response.uri);
-			}
+		ImagePicker.openPicker({
+			width: 300,
+			height: 400,
+			cropping: true
+		}).then((image) => {
+			console.log(image);
 		});
+		// ImagePicker.launchImageLibrary(options, (response) => {
+		// 	if (response.uri) {
+		// 		// setProfilePhoto(response.uri);
+		// 		console.log("Image: ", response.uri);
+		// 	}
+		// });
 	};
 
 	return (
@@ -171,8 +179,7 @@ const styles = StyleSheet.create({
 	photoContainer: {
 		alignItems: "center",
 		marginLeft: "-50%",
-		marginTop: "10%",
-	  display: "none"
+		marginTop: "10%"
 	},
 	item: {
 		borderBottomColor: "#B73491",
