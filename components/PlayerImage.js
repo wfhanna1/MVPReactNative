@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, Platform } from "react-native";
 import ResponsiveSize from "../config/getScreenDimensions";
 
 const defaultPlayerImage = require("../assets/icons/Default-user.png");
@@ -53,27 +53,39 @@ const styles = StyleSheet.create({
 		borderRadius: 100
 	},
 	initialsText: {
-		fontFamily: "KlinicSlab-Book",
+		fontFamily: "KlinicSlab-Bold",
 		fontSize: ResponsiveSize(10.4),
-		fontWeight: "bold",
 		letterSpacing: -0.63,
 		height: 75,
 		color: "#BEBEBB",
 		textAlign: "center",
 		marginHorizontal: -3,
-		marginVertical: 17
+		...Platform.select({
+			ios: {
+				marginVertical: 17
+			},
+			android: {
+				marginVertical: 10
+			}
+		})
 	},
 	initialsTextLarge: {
-		fontFamily: "KlinicSlab-Book",
+		fontFamily: "KlinicSlab-Bold",
 		fontSize: 72,
-		fontWeight: "bold",
 		letterSpacing: -0.63,
 		width: 130,
 		height: 130,
 		color: "#BEBEBB",
 		textAlign: "center",
 		marginHorizontal: -7,
-		marginVertical: 30
+		...Platform.select({
+			ios: {
+				marginVertical: 22
+			},
+			android: {
+				marginVertical: 10
+			}
+		})
 	},
 	picture: {
 		height: 75,

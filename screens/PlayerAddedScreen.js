@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
 		height: "35%"
 	},
 	name: {
-		fontFamily: "KlinicSlab-Book",
+		fontFamily: "KlinicSlab-Medium",
 		fontSize: 26,
 		fontWeight: "500",
 		letterSpacing: -0.63,
