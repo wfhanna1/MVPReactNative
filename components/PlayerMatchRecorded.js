@@ -19,8 +19,8 @@ export default function PlayerMatchRecorded (playerData) {
 				</View>
 				<View>
 					<Text style={styles.name}>{playerLoading ? "..." : `${player ? player.fullName : "Player Name"}`}</Text>
-					<Text style={styles.totalPoints}>
-						<Text style={styles.points}>{playerRatingLoading ? "..." : `Points: ${playerRating ? Math.floor(playerRating.score).toLocaleString() : "0"}`}</Text>
+					<Text>
+						<Text style={styles.totalPoints}>{playerRatingLoading ? "..." : `Points: ${playerRating ? Math.floor(playerRating.score).toLocaleString() : "0"}`}</Text>
 						<Text style={pointsColor === "red" ? styles.gamePoints : [styles.gamePoints, styles.greenGamePoints]}>
 							&nbsp;&nbsp;
 							{playerData.gamePoints}
