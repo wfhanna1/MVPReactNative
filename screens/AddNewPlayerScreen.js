@@ -14,7 +14,7 @@ import ResponsiveSize from "../config/getScreenDimensions";
 
 const defaultProfilePhoto = require("../assets/icons/Profile-Pic-Example.png");
 
-const emailRegex = RegExp(/^.+\@.+\..+$/);
+const emailRegex = RegExp(/^.+@.+\..+$/);
 
 function AddNewPlayerScreen ({ navigation }) {
 	const navigationContext = navigation.state.params || {
@@ -37,7 +37,7 @@ function AddNewPlayerScreen ({ navigation }) {
 
 	const onSubmit = () => {
 		const errors = formValid();
-		if (errors.filter((item) => !!item)) {
+		if (!errors.filter((item) => !!item).length) {
 			setPlayerObj({
 				fullName: name,
 				emailAddress: email,
@@ -85,22 +85,20 @@ function AddNewPlayerScreen ({ navigation }) {
 	};
 
 	const handleChoosePhoto = () => {
-		const options = {
-			noData: true
-		};
 		ImagePicker.openPicker({
-			width: 300,
+			width: 400,
 			height: 400,
-			cropping: true
+			cropping: true,
+			cropperCircleOverlay: true,
+			compressImageMaxWidth: 100,
+			compressImageMaxHeight: 100,
+			compressImageQuality: 0.25,
+			includeBase64: true
 		}).then((image) => {
-			console.log(image);
+			if (image && image.mime && image.data) {
+				setProfilePhoto(`data:${image.mime};base64,${image.data}`);
+			}
 		});
-		// ImagePicker.launchImageLibrary(options, (response) => {
-		// 	if (response.uri) {
-		// 		// setProfilePhoto(response.uri);
-		// 		console.log("Image: ", response.uri);
-		// 	}
-		// });
 	};
 
 	return (
@@ -179,7 +177,8 @@ const styles = StyleSheet.create({
 	photoContainer: {
 		alignItems: "center",
 		marginLeft: "-50%",
-		marginTop: "10%"
+		marginTop: "10%",
+		borderRadius: 100
 	},
 	item: {
 		borderBottomColor: "#B73491",

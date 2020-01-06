@@ -89,7 +89,8 @@ function RecordMatchScreen ({ navigation }) {
 		const addPlayer = {
 			fullName: player.fullName,
 			id: player.id,
-			isWinner: false
+			isWinner: false,
+			profilePhoto: player.profilePhoto
 		};
 		setMatchedPlayersArray([addPlayer, ...matchedPlayersArray]);
 		setPlayersError(false);

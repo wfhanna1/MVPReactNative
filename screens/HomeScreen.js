@@ -26,6 +26,7 @@ function HomeScreen () {
 					rank={1}
 					name={(topPlayersData || topPlayers)[0].player[0].fullName}
 					points={Math.floor((topPlayersData || topPlayers)[0].average)}
+					profilePhoto={(topPlayersData || topPlayers)[0].profilePhoto}
 				/>
 			);
 		}
@@ -70,6 +71,7 @@ function HomeScreen () {
 							rank={index + 2}
 							name={item.player[0].fullName}
 							points={Math.floor(item.average)}
+							profilePhoto={item.player[0].profilePhoto}
 						/>
 					))}
 				</BgImage>

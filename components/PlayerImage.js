@@ -5,6 +5,16 @@ import ResponsiveSize from "../config/getScreenDimensions";
 const defaultPlayerImage = require("../assets/icons/Default-user.png");
 
 function PlayerImage (playerData) {
+	if (playerData.profilePhoto) {
+		return (
+			<Image
+				style={playerData.large ? (playerData.isWinner ? styles.initialsContainerWinnerLarge : styles.initialsContainerLarge) : (playerData.isWinner ? styles.initialsContainerWinner : styles.initialsContainer)}
+				source={playerData.profilePhoto ? {
+					uri: playerData.profilePhoto
+				} : defaultPlayerImage}
+			/>
+		);
+	}
 	if (playerData.fullName) {
 		const nameData = playerData.fullName.toString().toUpperCase().split(" ");
 		const initials = nameData.map((word) => word.charAt(0)).join("");

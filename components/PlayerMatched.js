@@ -8,7 +8,7 @@ export default function PlayerMatched ({ player, setWinLossStatus, removePlayer 
 		<View>
 			<View style={styles.playerComponent}>
 				<View style={styles.picture}>
-					<PlayerImage fullName={player.fullName} />
+					<PlayerImage profilePhoto={player.profilePhoto} fullName={player.fullName} />
 				</View>
 				<View style={styles.stats}>
 					<Text style={styles.name}>{player.fullName}</Text>

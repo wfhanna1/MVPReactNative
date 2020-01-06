@@ -10,11 +10,17 @@ export default function PlayerMatchRecorded (playerData) {
 	const [player, playerLoading] = useQuery(findPlayersQuery(playerData.id));
 	const [playerRating, playerRatingLoading] = useQuery(playerRatingQuery(playerData.id));
 
+	if (!player || playerLoading) {
+		return (
+			<Text>Loading...</Text>
+		);
+	}
+
 	return (
 		<View>
 			<View style={styles.playerComponent}>
 				<View style={styles.picture}>
-					<PlayerImage fullName={player ? player.fullName : false} isWinner={playerData.isWinner} />
+					<PlayerImage profilePhoto={player.profilePhoto} fullName={player ? player.fullName : false} isWinner={playerData.isWinner} />
 				</View>
 				<View>
 					<Text style={styles.name}>{playerLoading ? "..." : `${player ? player.fullName : "Player Name"}`}</Text>

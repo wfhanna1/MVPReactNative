@@ -91,7 +91,7 @@ export default function RecentGames () {
 							</View>
 							<View style={styles.container}>
 								{recentMatch.players.filter(({ isWinner }) => isWinner).map((player) => (
-									<PlayerRecentGames fullName={player.fullName} key={player.playerId} id={player.playerId} isWinner={player.isWinner} />
+									<PlayerRecentGames fullName={player.fullName} key={player.playerId} id={player.playerId} isWinner={player.isWinner} profilePhoto={player.profilePhoto} />
 								))}
 								<Versus losers={recentMatch.players.filter(({ isWinner }) => !isWinner)} winners={recentMatch.players.filter(({ isWinner }) => isWinner)} />
 								<LosersList losers={recentMatch.players.filter(({ isWinner }) => !isWinner)} />

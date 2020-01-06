@@ -19,7 +19,7 @@ function PlayerAddedScreen ({ navigation }) {
 			<HeaderSm style={styles.title} headerTitle="Player Added!" />
 			<View style={styles.container}>
 				<View style={styles.picture}>
-					<PlayerImage fullName={(navigation.getParam("name") ? navigation.getParam("name") : false)} large />
+					<PlayerImage profilePhoto={navigation.getParam("profilePhoto")} fullName={(navigation.getParam("name") ? navigation.getParam("name") : false)} large />
 				</View>
 				<View style={styles.subContainer1}>
 					<Text style={styles.name}>{navigation.getParam("name")}</Text>
