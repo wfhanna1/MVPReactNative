@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Image } from "react-native";
 import { withNavigation } from "react-navigation";
-import ImagePicker from "react-native-image-picker";
+import ImagePicker from "react-native-image-crop-picker";
 import { Text, Item, Input, Form, Button } from "native-base";
 
 import useQuery from "../hooks/useQuery";
