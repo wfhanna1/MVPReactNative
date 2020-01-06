@@ -13,8 +13,6 @@ import GrayHeading from "../components/GrayHeading";
 import AddNewPlayerButton from "../components/AddNewPlayerButton";
 import Player from "../components/Player";
 
-import ImageTools from "../utilities/ImageTools";
-
 function HomeScreen () {
 	const [topPlayers, topPlayersLoading] = useQuery(topPlayersQuery());
 	const [topPlayersData, setTopPlayersData] = useState(false);
