@@ -8,7 +8,7 @@ export default function Player ({ name, points, rank }) {
 	return (
 		<View>
 			<View style={styles.playerComponent}>
-				<Text style={styles.number}>{rank}</Text>
+				<Text style={rank === 1 ? [styles.number, styles.numberOne] : styles.number}>{rank}</Text>
 				<View style={styles.picture}>
 					<PlayerImage fullName={name} />
 				</View>
@@ -31,8 +31,11 @@ const styles = StyleSheet.create({
 		marginBottom: "7%",
 		flexDirection: "row"
 	},
+	numberOne: {
+		color: "#B73491"
+	},
 	number: {
-		fontFamily: "KlinicSlab-Book",
+		fontFamily: "KlinicSlab-Medium",
 		fontSize: ResponsiveSize(8.3),
 		fontWeight: "500",
 		color: "#6E645F"

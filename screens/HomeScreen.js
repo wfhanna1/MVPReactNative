@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, ScrollView, View, RefreshControl } from "react-native";
+import { StyleSheet, ScrollView, View, RefreshControl, StatusBar } from "react-native";
 
 import useQuery from "../hooks/useQuery";
 import topPlayersQuery from "../queries/topPlayers";
@@ -33,8 +33,6 @@ function HomeScreen () {
 		);
 	}
 
-	console.log("topPlayers", topPlayers);
-
 	if (!topPlayers.length && !topPlayersData.length) {
 		return (
 			<View>
@@ -66,6 +64,7 @@ function HomeScreen () {
 
 	return (
 		<View>
+		 <StatusBar barStyle="light-content" translucent />
 			<HeaderLg />
 			<ScrollView
 				style={styles.scrollView}
