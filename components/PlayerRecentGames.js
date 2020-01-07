@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 import { Text } from "native-base";
 import PlayerImage from "./PlayerImage";
@@ -10,12 +10,20 @@ import ResponsiveSize from "../config/getScreenDimensions";
 export default function PlayerRecentGames (playerData) {
 	const [player, playerLoading] = useQuery(findPlayersQuery(playerData.id));
 	const [playerRating, playerRatingLoading] = useQuery(playerRatingQuery(playerData.id));
+	const [playerName, setPlayerName] = useState(playerData.fullName);
+
+	useEffect(() => {
+		if (playerName.length >= 17) {
+			const truncatedName = `${playerName.substring(0, 12)}...`;
+			setPlayerName(truncatedName);
+		}
+	}, []);
 
 	return (
 		<View style={styles.playerComponent}>
 			<PlayerImage profilePhoto={playerData.profilePhoto ? playerData.profilePhoto : player ? player.profilePhoto : false} fullName={playerData.fullName} isWinner={playerData.isWinner} />
 			<View style={styles.stats}>
-				<Text style={styles.name}>{playerData.fullName ? playerData.fullName : playerLoading ? "..." : player ? player.fullName : "Player Name"}</Text>
+				<Text style={styles.name}>{playerName || (playerLoading ? "..." : player ? playerName : "Player Name")}</Text>
 				<Text style={styles.points}>{playerRatingLoading ? "..." : `Points: ${playerRating ? Math.floor(playerRating.score).toLocaleString() : "0"}`}</Text>
 			</View>
 		</View>
