@@ -13,7 +13,7 @@ export default function PlayerRecentGames (playerData) {
 	const [playerName, setPlayerName] = useState(playerData.fullName);
 
 	useEffect(() => {
-		if (playerName.length >= 17) {
+		if (playerName.length >= 16) {
 			const truncatedName = `${playerName.substring(0, 12)}...`;
 			setPlayerName(truncatedName);
 		}
