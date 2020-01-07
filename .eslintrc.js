@@ -2,7 +2,9 @@ module.exports = {
 	extends: "airbnb",
 	parser: "babel-eslint",
 	env: {
-		jest: true,
+		browser: true,
+		es6: true,
+		jest: true
 	},
 	rules: {
 		"no-use-before-define": "off",
@@ -26,9 +28,6 @@ module.exports = {
 		"no-nested-ternary": "off"
 	},
 	globals: {
-	fetch: false
-	},
-	env: {
-		es6: true
+		fetch: false
 	}
 }

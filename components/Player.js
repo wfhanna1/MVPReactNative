@@ -4,13 +4,13 @@ import { Text } from "native-base";
 import PlayerImage from "./PlayerImage";
 import ResponsiveSize from "../config/getScreenDimensions";
 
-export default function Player ({ name, points, rank }) {
+export default function Player ({ name, points, rank, profilePhoto }) {
 	return (
 		<View>
 			<View style={styles.playerComponent}>
 				<Text style={rank === 1 ? [styles.number, styles.numberOne] : styles.number}>{rank}</Text>
 				<View style={styles.picture}>
-					<PlayerImage fullName={name} />
+					<PlayerImage profilePhoto={profilePhoto} fullName={name} />
 				</View>
 				<View>
 					<Text style={styles.game}>In All Games</Text>

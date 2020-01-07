@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Image } from "react-native";
 import { withNavigation } from "react-navigation";
-import ImagePicker from "react-native-image-picker";
+import ImagePicker from "react-native-image-crop-picker";
 import { Text, Item, Input, Form, Button } from "native-base";
 
 import useQuery from "../hooks/useQuery";
@@ -14,7 +14,7 @@ import ResponsiveSize from "../config/getScreenDimensions";
 
 const defaultProfilePhoto = require("../assets/icons/Profile-Pic-Example.png");
 
-const emailRegex = RegExp(/^.+\@.+\..+$/);
+const emailRegex = RegExp(/^.+@.+\..+$/);
 
 function AddNewPlayerScreen ({ navigation }) {
 	const navigationContext = navigation.state.params || {
@@ -37,7 +37,7 @@ function AddNewPlayerScreen ({ navigation }) {
 
 	const onSubmit = () => {
 		const errors = formValid();
-		if (errors.filter((item) => !!item)) {
+		if (!errors.filter((item) => !!item).length) {
 			setPlayerObj({
 				fullName: name,
 				emailAddress: email,
@@ -85,12 +85,18 @@ function AddNewPlayerScreen ({ navigation }) {
 	};
 
 	const handleChoosePhoto = () => {
-		const options = {
-			noData: true
-		};
-		ImagePicker.launchImageLibrary(options, (response) => {
-			if (response.uri) {
-				setProfilePhoto(response.uri);
+		ImagePicker.openPicker({
+			width: 400,
+			height: 400,
+			cropping: true,
+			cropperCircleOverlay: true,
+			compressImageMaxWidth: 100,
+			compressImageMaxHeight: 100,
+			compressImageQuality: 0.25,
+			includeBase64: true
+		}).then((image) => {
+			if (image && image.mime && image.data) {
+				setProfilePhoto(`data:${image.mime};base64,${image.data}`);
 			}
 		});
 	};
@@ -172,7 +178,7 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		marginLeft: "-50%",
 		marginTop: "10%",
-	  display: "none"
+		borderRadius: 100
 	},
 	item: {
 		borderBottomColor: "#B73491",

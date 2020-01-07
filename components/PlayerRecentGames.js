@@ -21,7 +21,7 @@ export default function PlayerRecentGames (playerData) {
 
 	return (
 		<View style={styles.playerComponent}>
-			<PlayerImage fullName={playerData.fullName} isWinner={playerData.isWinner} />
+			<PlayerImage profilePhoto={playerData.profilePhoto ? playerData.profilePhoto : player ? player.profilePhoto : false} fullName={playerData.fullName} isWinner={playerData.isWinner} />
 			<View style={styles.stats}>
 				<Text style={styles.name}>{playerName || (playerLoading ? "..." : player ? playerName : "Player Name")}</Text>
 				<Text style={styles.points}>{playerRatingLoading ? "..." : `Points: ${playerRating ? Math.floor(playerRating.score).toLocaleString() : "0"}`}</Text>

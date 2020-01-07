@@ -57,6 +57,7 @@ target 'Foosball' do
   # end
   
   pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
+  pod 'QBImagePickerController', :path => '../node_modules/react-native-image-crop-picker/ios/QBImagePicker/QBImagePickerController.podspec'
 
   target 'FoosballTests' do
     inherit! :search_paths
