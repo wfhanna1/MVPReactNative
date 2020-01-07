@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { StyleSheet, ScrollView, View, RefreshControl, StatusBar } from "react-native";
+import { StyleSheet, ScrollView, View, RefreshControl, StatusBar, TouchableOpacity, Text } from "react-native";
+import CodePush from "react-native-code-push";
 
 import useQuery from "../hooks/useQuery";
 import topPlayersQuery from "../queries/topPlayers";
@@ -17,6 +18,13 @@ function HomeScreen () {
 	const [topPlayers, topPlayersLoading] = useQuery(topPlayersQuery());
 	const [topPlayersData, setTopPlayersData] = useState(false);
 	const [refreshing, setRefreshing] = useState(false);
+
+	const onCheckForUpdate = () => {
+		CodePush.sync({
+			updateDialog: true,
+			installMode: CodePush.InstallMode.IMMEDIATE
+		});
+	};
 
 	const TopPlayer = () => {
 		if (topPlayers.length || topPlayersData.length) {
@@ -75,6 +83,9 @@ function HomeScreen () {
 						/>
 					))}
 				</BgImage>
+				<TouchableOpacity onPress={onCheckForUpdate}>
+					<Text>Check for updates</Text>
+				</TouchableOpacity>
 			</ScrollView>
 		</View>
 	);
@@ -87,7 +98,7 @@ const styles = StyleSheet.create({
 		alignItems: "center"
 	},
 	scrollView: {
-		marginBottom: 225
+		marginBottom: 275
 	}
 });
 
