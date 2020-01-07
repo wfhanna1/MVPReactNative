@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, ScrollView, View, RefreshControl, StatusBar, TouchableOpacity, Text } from "react-native";
+import { StyleSheet, ScrollView, View, RefreshControl, StatusBar } from "react-native";
 import CodePush from "react-native-code-push";
 
 import useQuery from "../hooks/useQuery";
@@ -37,22 +37,27 @@ function HomeScreen () {
 	const onRefresh = React.useCallback(() => {
 		setRefreshing(true);
 
+		CodePush.sync({
+			updateDialog: true,
+			installMode: CodePush.InstallMode.IMMEDIATE
+		});
+
 		updateTopPlayers().then((data) => {
 			setTopPlayersData(data);
 			setRefreshing(false);
 		});
 	}, [refreshing]);
 
+	CodePush.sync({
+		updateDialog: true,
+		installMode: CodePush.InstallMode.IMMEDIATE
+	});
+
 	if ((!topPlayers || topPlayersLoading)) {
 		return (
 			<LoadingScreen />
 		);
 	}
-
-	CodePush.sync({
-		updateDialog: true,
-		installMode: CodePush.InstallMode.IMMEDIATE
-	});
 
 	return (
 		<View>

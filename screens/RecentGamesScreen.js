@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ScrollView, View, StyleSheet, Text, RefreshControl } from "react-native";
+import CodePush from "react-native-code-push";
 
 import useQuery from "../hooks/useQuery";
 import recentMatchesQuery from "../queries/recentMatches";
@@ -20,6 +21,11 @@ export default function RecentGames () {
 
 	const onRefresh = React.useCallback(() => {
 		setRefreshing(true);
+
+		CodePush.sync({
+			updateDialog: true,
+			installMode: CodePush.InstallMode.IMMEDIATE
+		});
 
 		updateRecentGames().then((data) => {
 			setRecentMatchesData(data);
@@ -55,6 +61,11 @@ export default function RecentGames () {
 		}
 		return null;
 	};
+
+	CodePush.sync({
+		updateDialog: true,
+		installMode: CodePush.InstallMode.IMMEDIATE
+	});
 
 	if (!recentMatches || recentMatchesLoading) {
 		return (
