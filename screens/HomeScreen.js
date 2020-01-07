@@ -19,13 +19,6 @@ function HomeScreen () {
 	const [topPlayersData, setTopPlayersData] = useState(false);
 	const [refreshing, setRefreshing] = useState(false);
 
-	const onCheckForUpdate = () => {
-		CodePush.sync({
-			updateDialog: true,
-			installMode: CodePush.InstallMode.IMMEDIATE
-		});
-	};
-
 	const TopPlayer = () => {
 		if (topPlayers.length || topPlayersData.length) {
 			return (
@@ -56,6 +49,11 @@ function HomeScreen () {
 		);
 	}
 
+	CodePush.sync({
+		updateDialog: true,
+		installMode: CodePush.InstallMode.IMMEDIATE
+	});
+
 	return (
 		<View>
 		 <StatusBar barStyle="light-content" translucent />
@@ -83,9 +81,6 @@ function HomeScreen () {
 						/>
 					))}
 				</BgImage>
-				<TouchableOpacity onPress={onCheckForUpdate}>
-					<Text>Check for updates</Text>
-				</TouchableOpacity>
 			</ScrollView>
 		</View>
 	);
@@ -98,7 +93,7 @@ const styles = StyleSheet.create({
 		alignItems: "center"
 	},
 	scrollView: {
-		marginBottom: 275
+		marginBottom: 250
 	}
 });
 
