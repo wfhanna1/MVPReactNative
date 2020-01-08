@@ -10,6 +10,7 @@ import AddNewPlayerScreen from "../screens/AddNewPlayerScreen";
 import MatchRecordedScreen from "../screens/MatchRecordedScreen";
 import LoadingScreen from "../screens/LoadingScreen";
 import PlayerAddedScreen from "../screens/PlayerAddedScreen";
+import ProfileScreen from "../screens/ProfileScreen";
 import ResponsiveSize from "./getScreenDimensions";
 
 const Players = createStackNavigator({
@@ -27,6 +28,12 @@ const Players = createStackNavigator({
 	},
 	AddNewPlayer: {
 		screen: AddNewPlayerScreen,
+		navigationOptions: {
+			header: null
+		}
+	},
+	ProfileScreen: {
+		screen: ProfileScreen,
 		navigationOptions: {
 			header: null
 		}

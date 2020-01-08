@@ -18,7 +18,7 @@ function RecordMatchScreen ({ navigation }) {
 	const navigationContext = navigation.state.params || {
 	};
 	const [recordMatch, recordMatchLoading] = useQuery(recordMatchQuery(navigationContext.recordMatch));
-	const [game, gameLoading] = useQuery(gamesQuery(navigation.getParam("recordMatch").gameId));
+	const [game, gameLoading] = useQuery(gamesQuery(navigationContext.recordMatch.gameId));
 	const points = recordMatch;
 
 	if (!recordMatch || recordMatchLoading || !game || gameLoading) {
@@ -27,8 +27,8 @@ function RecordMatchScreen ({ navigation }) {
 		);
 	}
 
-	const winners = navigation.getParam("recordMatch").players.filter((item) => item.isWinner);
-	const losers = navigation.getParam("recordMatch").players.filter((item) => !item.isWinner);
+	const winners = navigationContext.recordMatch.players.filter((item) => item.isWinner);
+	const losers = navigationContext.recordMatch.players.filter((item) => !item.isWinner);
 
 	return (
 		<BgImage>
