@@ -6,8 +6,6 @@ import PlayerImage from "./PlayerImage";
 import ResponsiveSize from "../config/getScreenDimensions";
 
 function Player ({ navigation, id, name, points, rank, profilePhoto }) {
-	console.log("ID:", id);
-
 	return (
 		<View>
 			<TouchableOpacity
