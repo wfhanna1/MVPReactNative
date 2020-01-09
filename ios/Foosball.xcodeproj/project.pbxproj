@@ -805,6 +805,7 @@
 				DEVELOPMENT_TEAM = GAQ2528ADM;
 				INFOPLIST_FILE = Foosball/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.5;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -828,6 +829,7 @@
 				DEVELOPMENT_TEAM = GAQ2528ADM;
 				INFOPLIST_FILE = Foosball/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.5;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
