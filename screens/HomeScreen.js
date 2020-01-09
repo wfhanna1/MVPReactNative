@@ -24,6 +24,7 @@ function HomeScreen () {
 			return (
 				<Player
 					key={(topPlayersData || topPlayers)[0].id}
+					id={(topPlayersData || topPlayers)[0].id}
 					rank={1}
 					name={(topPlayersData || topPlayers)[0].player[0].fullName}
 					points={Math.floor((topPlayersData || topPlayers)[0].average)}
@@ -79,6 +80,7 @@ function HomeScreen () {
 					{(topPlayersData || topPlayers).slice(1).map((item, index) => (
 						<Player
 							key={item.id}
+							id={item.id}
 							rank={index + 2}
 							name={item.player[0].fullName}
 							points={Math.floor(item.average)}

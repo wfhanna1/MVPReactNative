@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "native-base";
+import { withNavigation } from "react-navigation";
 import PlayerImage from "./PlayerImage";
 import useQuery from "../hooks/useQuery";
 import findPlayersQuery from "../queries/findPlayers";
 import playerRatingQuery from "../queries/playerRating";
 import ResponsiveSize from "../config/getScreenDimensions";
 
-export default function PlayerRecentGames (playerData) {
+function PlayerRecentGames (playerData) {
+	const { navigation } = playerData;
 	const [player, playerLoading] = useQuery(findPlayersQuery(playerData.id));
 	const [playerRating, playerRatingLoading] = useQuery(playerRatingQuery(playerData.id));
 	const [playerName, setPlayerName] = useState(playerData.fullName);
@@ -20,13 +22,18 @@ export default function PlayerRecentGames (playerData) {
 	}, []);
 
 	return (
-		<View style={styles.playerComponent}>
+		<TouchableOpacity
+			onPress={() => navigation.navigate("ProfileScreen", {
+				id: playerData.id
+			})}
+			style={styles.playerComponent}
+		>
 			<PlayerImage profilePhoto={playerData.profilePhoto ? playerData.profilePhoto : player ? player.profilePhoto : false} fullName={playerData.fullName} isWinner={playerData.isWinner} />
 			<View style={styles.stats}>
 				<Text style={styles.name}>{playerName || (playerLoading ? "..." : player ? playerName : "Player Name")}</Text>
 				<Text style={styles.points}>{playerRatingLoading ? "..." : `Points: ${playerRating ? Math.floor(playerRating.score).toLocaleString() : "0"}`}</Text>
 			</View>
-		</View>
+		</TouchableOpacity>
 	);
 }
 
@@ -54,3 +61,5 @@ const styles = StyleSheet.create({
 		marginBottom: -5
 	}
 });
+
+export default withNavigation(PlayerRecentGames);

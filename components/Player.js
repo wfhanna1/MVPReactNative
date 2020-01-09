@@ -1,13 +1,19 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
 import { Text } from "native-base";
+import { withNavigation } from "react-navigation";
 import PlayerImage from "./PlayerImage";
 import ResponsiveSize from "../config/getScreenDimensions";
 
-export default function Player ({ name, points, rank, profilePhoto }) {
+function Player ({ navigation, id, name, points, rank, profilePhoto }) {
 	return (
 		<View>
-			<View style={styles.playerComponent}>
+			<TouchableOpacity
+				onPress={() => navigation.navigate("ProfileScreen", {
+					id
+				})}
+				style={styles.playerComponent}
+			>
 				<Text style={rank === 1 ? [styles.number, styles.numberOne] : styles.number}>{rank}</Text>
 				<View style={styles.picture}>
 					<PlayerImage profilePhoto={profilePhoto} fullName={name} />
@@ -20,7 +26,7 @@ export default function Player ({ name, points, rank, profilePhoto }) {
 						{points}
 					</Text>
 				</View>
-			</View>
+			</TouchableOpacity>
 		</View>
 	);
 }
@@ -62,3 +68,5 @@ const styles = StyleSheet.create({
 		letterSpacing: -0.7
 	}
 });
+
+export default (withNavigation(Player));

@@ -1,12 +1,14 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
 import { Text } from "native-base";
+import { withNavigation } from "react-navigation";
 import PlayerImage from "./PlayerImage";
 import useQuery from "../hooks/useQuery";
 import findPlayersQuery from "../queries/findPlayers";
 import playerRatingQuery from "../queries/playerRating";
 
-export default function PlayerMatchRecorded (playerData) {
+function PlayerMatchRecorded (playerData) {
+	const { navigation } = playerData;
 	const [player, playerLoading] = useQuery(findPlayersQuery(playerData.id));
 	const [playerRating, playerRatingLoading] = useQuery(playerRatingQuery(playerData.id));
 	const { pointsColor } = playerData;
@@ -19,7 +21,12 @@ export default function PlayerMatchRecorded (playerData) {
 
 	return (
 		<View>
-			<View style={styles.playerComponent}>
+			<TouchableOpacity
+				onPress={() => navigation.navigate("ProfileScreen", {
+					id: playerData.id
+				})}
+				style={styles.playerComponent}
+			>
 				<View style={styles.picture}>
 					<PlayerImage profilePhoto={player.profilePhoto} fullName={player ? player.fullName : false} isWinner={playerData.isWinner} />
 				</View>
@@ -33,7 +40,7 @@ export default function PlayerMatchRecorded (playerData) {
 						</Text>
 					</Text>
 				</View>
-			</View>
+			</TouchableOpacity>
 		</View>
 	);
 }
@@ -96,3 +103,5 @@ const styles = StyleSheet.create({
 		color: "#399D60"
 	}
 });
+
+export default withNavigation(PlayerMatchRecorded);
