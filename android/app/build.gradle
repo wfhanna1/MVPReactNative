@@ -153,7 +153,7 @@ android {
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
-			resValue "string", "CodePushDeploymentKey", '"ab9rsQnCjev0EhF5S0D6anqsGNsK33aOI9uJI"'
+//			resValue "string", "CodePushDeploymentKey", '"ab9rsQnCjev0EhF5S0D6anqsGNsK33aOI9uJI"'
         }
         release {
             // Caution! In production, you need to generate your own keystore file.
@@ -161,7 +161,7 @@ android {
             signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-			resValue "string", "CodePushDeploymentKey", '"XgG4FHeJod9OSJdzqdOqUcTxMwQPK6poRa0Ci"'
+//			resValue "string", "CodePushDeploymentKey", '"XgG4FHeJod9OSJdzqdOqUcTxMwQPK6poRa0Ci"'
         }
     }
     // applicationVariants are e.g. debug, release
