@@ -81,6 +81,7 @@ project.ext.react = [
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
+apply from: "../../node_modules/react-native-code-push/android/codepush.gradle"
 
 /**
  * Set this to true to create two separate APKs instead of one:
@@ -153,7 +154,13 @@ android {
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
-			resValue "string", "CodePushDeploymentKey", '"ab9rsQnCjev0EhF5S0D6anqsGNsK33aOI9uJI"'
+			resValue "string", "CodePushDeploymentKey", '"6n1V3Mh94mfmxbWk5vPqcTMsSEh2bmiSM9JuA"'
+        }
+        releaseStaging {
+            resValue "string", "CodePushDeploymentKey", '"KGPRk5JOQ0SbE13DYQamh_RvgU0qG1fdDqSrv"'
+            // Note: It is a good idea to provide matchingFallbacks for the new buildType you create to prevent build issues
+            // Add the following line if not already there
+            matchingFallbacks = ['release']
         }
         release {
             // Caution! In production, you need to generate your own keystore file.
@@ -161,7 +168,7 @@ android {
             signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-			resValue "string", "CodePushDeploymentKey", '"XgG4FHeJod9OSJdzqdOqUcTxMwQPK6poRa0Ci"'
+			resValue "string", "CodePushDeploymentKey", '"LCQkWUvRqcaRvQx6eoBlchBcsdJ2xQLmPFHn1"'
         }
     }
     // applicationVariants are e.g. debug, release
