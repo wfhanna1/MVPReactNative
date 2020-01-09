@@ -80,7 +80,7 @@ function ProfileScreen ({ navigation }) {
 					title="Updating..."
 				/>
 			);
-		} if (playerUpdated && !updatePlayerError) {
+		} if (playerUpdated) {
 			return (
 				<ButtonPrimary
 					title="Done"

@@ -77,6 +77,12 @@ const Games = createStackNavigator({
 			header: null
 		}
 	},
+	ProfileScreen: {
+		screen: ProfileScreen,
+		navigationOptions: {
+			header: null
+		}
+	},
 	MatchRecorded: {
 		screen: MatchRecordedScreen,
 		navigationOptions: {
