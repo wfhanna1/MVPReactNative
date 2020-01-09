@@ -2,7 +2,9 @@ module.exports = {
 	extends: "airbnb",
 	parser: "babel-eslint",
 	env: {
-		jest: true,
+		browser: true,
+		es6: true,
+		jest: true
 	},
 	rules: {
 		"no-use-before-define": "off",
@@ -23,12 +25,10 @@ module.exports = {
 		"no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
 		"no-tabs": "off",
 		"indent": ["error", "tab"],
-		"no-nested-ternary": "off"
+		"no-nested-ternary": "off",
+		"no-prototype-builtins": "off"
 	},
 	globals: {
-	fetch: false
-	},
-	env: {
-		es6: true
+		fetch: false
 	}
 }

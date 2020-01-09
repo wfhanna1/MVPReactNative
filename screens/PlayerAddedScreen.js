@@ -19,11 +19,11 @@ function PlayerAddedScreen ({ navigation }) {
 			<HeaderSm style={styles.title} headerTitle="Player Added!" />
 			<View style={styles.container}>
 				<View style={styles.picture}>
-					<PlayerImage fullName={(navigation.getParam("name") ? navigation.getParam("name") : false)} large />
+					<PlayerImage profilePhoto={navigationContext.profilePhoto} fullName={(navigationContext.name ? navigationContext.name : false)} large />
 				</View>
 				<View style={styles.subContainer1}>
-					<Text style={styles.name}>{navigation.getParam("name")}</Text>
-					<Text style={styles.game}>{navigation.getParam("email")}</Text>
+					<Text style={styles.name}>{navigationContext.name}</Text>
+					<Text style={styles.game}>{navigationContext.email}</Text>
 				</View>
 				<ButtonPrimary
 					title="Record Match"
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
 		height: "35%"
 	},
 	name: {
-		fontFamily: "KlinicSlab-Book",
+		fontFamily: "KlinicSlab-Medium",
 		fontSize: 26,
 		fontWeight: "500",
 		letterSpacing: -0.63,

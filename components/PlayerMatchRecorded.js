@@ -1,32 +1,46 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
 import { Text } from "native-base";
+import { withNavigation } from "react-navigation";
 import PlayerImage from "./PlayerImage";
 import useQuery from "../hooks/useQuery";
 import findPlayersQuery from "../queries/findPlayers";
 import playerRatingQuery from "../queries/playerRating";
 
-export default function PlayerMatchRecorded (playerData) {
+function PlayerMatchRecorded (playerData) {
+	const { navigation } = playerData;
 	const [player, playerLoading] = useQuery(findPlayersQuery(playerData.id));
 	const [playerRating, playerRatingLoading] = useQuery(playerRatingQuery(playerData.id));
+	const { pointsColor } = playerData;
+
+	if (!player || playerLoading) {
+		return (
+			<Text>Loading...</Text>
+		);
+	}
 
 	return (
 		<View>
-			<View style={styles.playerComponent}>
+			<TouchableOpacity
+				onPress={() => navigation.navigate("ProfileScreen", {
+					id: playerData.id
+				})}
+				style={styles.playerComponent}
+			>
 				<View style={styles.picture}>
-					<PlayerImage fullName={player ? player.fullName : false} isWinner={playerData.isWinner} />
+					<PlayerImage profilePhoto={player.profilePhoto} fullName={player ? player.fullName : false} isWinner={playerData.isWinner} />
 				</View>
 				<View>
 					<Text style={styles.name}>{playerLoading ? "..." : `${player ? player.fullName : "Player Name"}`}</Text>
-					<Text style={styles.totalPoints}>
-						<Text style={styles.points}>{playerRatingLoading ? "..." : `Points: ${playerRating ? Math.floor(playerRating.score).toLocaleString() : "0"}`}</Text>
-						<Text style={styles.gamePoints}>
+					<Text>
+						<Text style={styles.totalPoints}>{playerRatingLoading ? "..." : `Points: ${playerRating ? Math.floor(playerRating.score).toLocaleString() : "0"}`}</Text>
+						<Text style={pointsColor === "red" ? styles.gamePoints : [styles.gamePoints, styles.greenGamePoints]}>
 							&nbsp;&nbsp;
 							{playerData.gamePoints}
 						</Text>
 					</Text>
 				</View>
-			</View>
+			</TouchableOpacity>
 		</View>
 	);
 }
@@ -84,5 +98,10 @@ const styles = StyleSheet.create({
 		color: "#EB1E45",
 		fontWeight: "bold",
 		letterSpacing: -0.57
+	},
+	greenGamePoints: {
+		color: "#399D60"
 	}
 });
+
+export default withNavigation(PlayerMatchRecorded);

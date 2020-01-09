@@ -1,16 +1,22 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
 import { Text } from "native-base";
+import { withNavigation } from "react-navigation";
 import PlayerImage from "./PlayerImage";
 import ResponsiveSize from "../config/getScreenDimensions";
 
-export default function Player ({ name, points, rank }) {
+function Player ({ navigation, id, name, points, rank, profilePhoto }) {
 	return (
 		<View>
-			<View style={styles.playerComponent}>
-				<Text style={styles.number}>{rank}</Text>
+			<TouchableOpacity
+				onPress={() => navigation.navigate("ProfileScreen", {
+					id
+				})}
+				style={styles.playerComponent}
+			>
+				<Text style={rank === 1 ? [styles.number, styles.numberOne] : styles.number}>{rank}</Text>
 				<View style={styles.picture}>
-					<PlayerImage fullName={name} />
+					<PlayerImage profilePhoto={profilePhoto} fullName={name} />
 				</View>
 				<View>
 					<Text style={styles.game}>In All Games</Text>
@@ -20,7 +26,7 @@ export default function Player ({ name, points, rank }) {
 						{points}
 					</Text>
 				</View>
-			</View>
+			</TouchableOpacity>
 		</View>
 	);
 }
@@ -31,8 +37,11 @@ const styles = StyleSheet.create({
 		marginBottom: "7%",
 		flexDirection: "row"
 	},
+	numberOne: {
+		color: "#B73491"
+	},
 	number: {
-		fontFamily: "KlinicSlab-Book",
+		fontFamily: "KlinicSlab-Medium",
 		fontSize: ResponsiveSize(8.3),
 		fontWeight: "500",
 		color: "#6E645F"
@@ -59,3 +68,5 @@ const styles = StyleSheet.create({
 		letterSpacing: -0.7
 	}
 });
+
+export default (withNavigation(Player));

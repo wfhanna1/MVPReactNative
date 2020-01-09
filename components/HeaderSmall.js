@@ -2,7 +2,8 @@ import React from "react";
 import { View,
 	StyleSheet,
 	Text,
-	ImageBackground } from "react-native";
+	ImageBackground,
+	Platform } from "react-native";
 import ResponsiveSize from "../config/getScreenDimensions";
 
 const headerImageSm = require("../assets/icons/Header-Background-Small.png");
@@ -30,7 +31,14 @@ const styles = StyleSheet.create({
 		letterSpacing: -2.4,
 		fontSize: ResponsiveSize(8.3),
 		color: "#FFFFFF",
-		marginTop: "-35%"
+		...Platform.select({
+			ios: {
+				marginTop: "-35%"
+			},
+			android: {
+				marginTop: "-40%"
+			}
+		})
 	},
 	container: {
 		alignItems: "center",

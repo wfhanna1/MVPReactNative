@@ -4,9 +4,12 @@ import { withNavigation } from "react-navigation";
 import ImagePicker from "react-native-image-crop-picker";
 import { Text, Item, Input, Form, Button } from "native-base";
 
+import { ScrollView } from "react-native-gesture-handler";
 import useQuery from "../hooks/useQuery";
-import addPlayerQuery from "../queries/addPlayer";
+import findPlayersQuery from "../queries/findPlayers";
+import updatePlayerQuery from "../queries/updatePlayer";
 
+import BlankScreen from "./BlankScreen";
 import HeaderSm from "../components/HeaderSmall";
 import BgImage from "../components/backgroundImage";
 import ButtonPrimary from "../components/ButtonPrimary";
@@ -16,7 +19,7 @@ const defaultProfilePhoto = require("../assets/icons/Profile-Pic-Example.png");
 
 const emailRegex = RegExp(/^.+@.+\..+$/);
 
-function AddNewPlayerScreen ({ navigation }) {
+function ProfileScreen ({ navigation }) {
 	const navigationContext = navigation.state.params || {
 	};
 
@@ -25,32 +28,32 @@ function AddNewPlayerScreen ({ navigation }) {
 	const [profilePhoto, setProfilePhoto] = useState(undefined);
 	const [nameError, setNameError] = useState(undefined);
 	const [emailError, setEmailError] = useState(undefined);
-	const [addPlayerObj, setPlayerObj] = useState(undefined);
+	const [playerUpdated, setPlayerUpdated] = useState(false);
+	const [playerUpdateObj, setPlayerUpdateObj] = useState(false);
 
-	const [addPlayer, addPlayerLoading] = useQuery(addPlayerQuery(addPlayerObj));
+	const [foundPlayer, findPlayerLoading] = useQuery(findPlayersQuery(navigationContext.id));
+	const [updatedPlayer, updatePlayerLoading, updatePlayerError] = useQuery(updatePlayerQuery(playerUpdateObj));
 
-	const formValid = () => {
-		setNameError(name && name.trim().length > 0 ? false : "enter your name");
-		setEmailError(email && emailRegex.test(email.trim()) ? false : "enter a valid email");
+	const checkFormValid = () => {
+		setNameError((name || foundPlayer.fullName) && (name || foundPlayer.fullName).trim().length > 0 ? false : "enter your name");
+		setEmailError((email || foundPlayer.emailAddress) && emailRegex.test((email || foundPlayer.emailAddress).trim()) ? false : "enter a valid email");
 		return [nameError, emailError];
 	};
 
 	const onSubmit = () => {
-		const errors = formValid();
-		if (!errors.filter((item) => !!item).length) {
-			setPlayerObj({
-				fullName: name,
-				emailAddress: email,
+		checkFormValid();
+
+		if (((name || foundPlayer.fullName) && (name || foundPlayer.fullName).trim().length > 0)
+		&& ((email || foundPlayer.emailAddress) && emailRegex.test((email || foundPlayer.emailAddress).trim()))) {
+			setPlayerUpdated(false);
+			setPlayerUpdateObj({
+				id: navigationContext.id,
+				fullName: (name || foundPlayer.fullName),
+				emailAddress: (email || foundPlayer.emailAddress),
 				profilePhoto
 			});
-			if (addPlayer) {
-				return navigation.navigate("PlayerAdded", {
-					...navigationContext,
-					id: addPlayer.id,
-					name,
-					email,
-					profilePhoto
-				});
+			if (!updatePlayerError) {
+				setPlayerUpdated(true);
 			}
 		}
 
@@ -71,17 +74,35 @@ function AddNewPlayerScreen ({ navigation }) {
 	};
 
 	const ButtonLoading = () => {
-		if (addPlayerLoading) {
+		if (updatePlayerLoading) {
 			return (
-				<Text>Loading...</Text>
+				<ButtonPrimary
+					title="Updating..."
+				/>
+			);
+		} if (playerUpdated) {
+			return (
+				<ButtonPrimary
+					title="Done"
+					onPress={() => (navigation.goBack())}
+				/>
 			);
 		}
 		return (
 			<ButtonPrimary
-				title="Add Player"
+				title="Update"
 				onPress={onSubmit}
 			/>
 		);
+	};
+
+	const UpdateMessage = () => {
+		if (playerUpdated && !updatePlayerLoading) {
+			return (
+				<Text style={styles.playerUpdatedText}>Player updated.</Text>
+			);
+		}
+		return null;
 	};
 
 	const handleChoosePhoto = () => {
@@ -96,28 +117,36 @@ function AddNewPlayerScreen ({ navigation }) {
 			includeBase64: true
 		}).then((image) => {
 			if (image && image.mime && image.data) {
+				setPlayerUpdated(false);
 				setProfilePhoto(`data:${image.mime};base64,${image.data}`);
 			}
 		});
 	};
 
+	if (!foundPlayer || findPlayerLoading) {
+		return (
+			<BlankScreen />
+		);
+	}
+
 	return (
 		<BgImage>
-			<HeaderSm style={styles.title} headerTitle="Add New Player" />
-			<View style={styles.parent}>
+			<HeaderSm style={styles.title} headerTitle="Update Profile" />
+			<ScrollView style={styles.parent}>
 				<Form>
 					<View style={styles.container}>
 						<Text style={styles.text}>Full Name</Text>
 						<Item style={styles.item}>
 							<Input
 								style={nameError ? styles.error : styles.input}
-								onChangeText={(nameVal) => setName(nameVal)}
+								onChangeText={(nameVal) => { setPlayerUpdated(false); setName(nameVal); }}
 								placeholder="Max Power"
 								placeholderTextColor="#c2c2c2"
 								autoCapitalize="words"
 								textContentType="name"
 								autoCompleteType="name"
 								returnKeyType="done"
+								value={name || foundPlayer.fullName}
 							/>
 						</Item>
 					</View>
@@ -126,7 +155,7 @@ function AddNewPlayerScreen ({ navigation }) {
 						<Item style={styles.item}>
 							<Input
 								style={emailError ? styles.error : styles.input}
-								onChangeText={(emailVal) => setEmail(emailVal)}
+								onChangeText={(emailVal) => { setPlayerUpdated(false); setEmail(emailVal); }}
 								placeholder="Max.Power@insight.com"
 								placeholderTextColor="#c2c2c2"
 								autoCapitalize="none"
@@ -134,6 +163,7 @@ function AddNewPlayerScreen ({ navigation }) {
 								autoCompleteType="email"
 								keyboardType="email-address"
 								returnKeyType="done"
+								value={email || foundPlayer.emailAddress}
 							/>
 						</Item>
 					</View>
@@ -141,8 +171,8 @@ function AddNewPlayerScreen ({ navigation }) {
 						<Text style={styles.profText}>Profile Pic</Text>
 						<Image
 							style={styles.profile}
-							source={profilePhoto ? {
-								uri: profilePhoto
+							source={(profilePhoto || foundPlayer.profilePhoto) ? {
+								uri: (profilePhoto || foundPlayer.profilePhoto)
 							} : defaultProfilePhoto}
 						/>
 						<Button transparent onPress={handleChoosePhoto}>
@@ -151,6 +181,7 @@ function AddNewPlayerScreen ({ navigation }) {
 					</View>
 					<View style={styles.container}>
 						<ErrorMessage errors={[nameError, emailError]} />
+						<UpdateMessage />
 						<ButtonLoading />
 						<Button
 							style={styles.cancelButton}
@@ -161,7 +192,7 @@ function AddNewPlayerScreen ({ navigation }) {
 						</Button>
 					</View>
 				</Form>
-			</View>
+			</ScrollView>
 		</BgImage>
 	);
 }
@@ -234,7 +265,10 @@ const styles = StyleSheet.create({
 		backgroundColor: "rgba(256, 0, 0, 0.2)",
 		padding: 10,
 		marginBottom: 20
+	},
+	playerUpdatedText: {
+		marginBottom: 10
 	}
 });
 
-export default withNavigation(AddNewPlayerScreen);
+export default withNavigation(ProfileScreen);

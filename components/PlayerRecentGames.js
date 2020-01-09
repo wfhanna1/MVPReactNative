@@ -1,24 +1,39 @@
-import React from "react";
-import { StyleSheet, View } from "react-native";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "native-base";
+import { withNavigation } from "react-navigation";
 import PlayerImage from "./PlayerImage";
 import useQuery from "../hooks/useQuery";
 import findPlayersQuery from "../queries/findPlayers";
 import playerRatingQuery from "../queries/playerRating";
 import ResponsiveSize from "../config/getScreenDimensions";
 
-export default function PlayerRecentGames (playerData) {
-	const [player, playerLoading] = useQuery(findPlayersQuery(playerData.id));
-	const [playerRating, playerRatingLoading] = useQuery(playerRatingQuery(playerData.id));
+function PlayerRecentGames (data) {
+	const { navigation } = data;
+	const [player, playerLoading] = useQuery(findPlayersQuery(data.id));
+	const [playerRating, playerRatingLoading] = useQuery(playerRatingQuery(data.id));
+	const [playerName, setPlayerName] = useState(data.fullName);
+
+	useEffect(() => {
+		if (playerName.length >= 16) {
+			const truncatedName = `${playerName.substring(0, 12)}...`;
+			setPlayerName(truncatedName);
+		}
+	}, []);
 
 	return (
-		<View style={styles.playerComponent}>
-			<PlayerImage fullName={playerData.fullName} isWinner={playerData.isWinner} />
+		<TouchableOpacity
+			onPress={() => navigation.navigate("ProfileScreen", {
+				id: data.id
+			})}
+			style={styles.playerComponent}
+		>
+			<PlayerImage profilePhoto={data.profilePhoto ? data.profilePhoto : player ? player.profilePhoto : false} fullName={data.fullName} isWinner={data.isWinner} />
 			<View style={styles.stats}>
-				<Text style={styles.name}>{playerData.fullName ? playerData.fullName : playerLoading ? "..." : player ? player.fullName : "Player Name"}</Text>
+				<Text style={styles.name}>{playerName || (playerLoading ? "..." : player ? playerName : "Player Name")}</Text>
 				<Text style={styles.points}>{playerRatingLoading ? "..." : `Points: ${playerRating ? Math.floor(playerRating.score).toLocaleString() : "0"}`}</Text>
 			</View>
-		</View>
+		</TouchableOpacity>
 	);
 }
 
@@ -46,3 +61,5 @@ const styles = StyleSheet.create({
 		marginBottom: -5
 	}
 });
+
+export default withNavigation(PlayerRecentGames);
