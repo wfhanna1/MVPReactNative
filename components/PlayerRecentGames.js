@@ -8,11 +8,11 @@ import findPlayersQuery from "../queries/findPlayers";
 import playerRatingQuery from "../queries/playerRating";
 import ResponsiveSize from "../config/getScreenDimensions";
 
-function PlayerRecentGames (playerData) {
-	const { navigation } = playerData;
-	const [player, playerLoading] = useQuery(findPlayersQuery(playerData.id));
-	const [playerRating, playerRatingLoading] = useQuery(playerRatingQuery(playerData.id));
-	const [playerName, setPlayerName] = useState(playerData.fullName);
+function PlayerRecentGames (data) {
+	const { navigation } = data;
+	const [player, playerLoading] = useQuery(findPlayersQuery(data.id));
+	const [playerRating, playerRatingLoading] = useQuery(playerRatingQuery(data.id));
+	const [playerName, setPlayerName] = useState(data.fullName);
 
 	useEffect(() => {
 		if (playerName.length >= 16) {
@@ -24,11 +24,11 @@ function PlayerRecentGames (playerData) {
 	return (
 		<TouchableOpacity
 			onPress={() => navigation.navigate("ProfileScreen", {
-				id: playerData.id
+				id: data.id
 			})}
 			style={styles.playerComponent}
 		>
-			<PlayerImage profilePhoto={playerData.profilePhoto ? playerData.profilePhoto : player ? player.profilePhoto : false} fullName={playerData.fullName} isWinner={playerData.isWinner} />
+			<PlayerImage profilePhoto={data.profilePhoto ? data.profilePhoto : player ? player.profilePhoto : false} fullName={data.fullName} isWinner={data.isWinner} />
 			<View style={styles.stats}>
 				<Text style={styles.name}>{playerName || (playerLoading ? "..." : player ? playerName : "Player Name")}</Text>
 				<Text style={styles.points}>{playerRatingLoading ? "..." : `Points: ${playerRating ? Math.floor(playerRating.score).toLocaleString() : "0"}`}</Text>
