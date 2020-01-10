@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly with data - default 1`] = `
+<Image
+  source={
+    Object {
+      "uri": "foo",
+    }
+  }
+  style={
+    Array [
+      Object {
+        "borderColor": "#BEBEBB",
+        "borderRadius": 100,
+        "borderWidth": 3,
+        "height": 150,
+        "marginBottom": 5,
+        "width": 150,
+      },
+      Object {},
+      Object {},
+    ]
+  }
+/>
+`;
+
+exports[`renders correctly with data - large 1`] = `
+<Image
+  source={
+    Object {
+      "uri": "foo",
+    }
+  }
+  style={
+    Array [
+      Object {
+        "borderColor": "#BEBEBB",
+        "borderRadius": 100,
+        "borderWidth": 3,
+        "height": 150,
+        "marginBottom": 5,
+        "width": 150,
+      },
+      Object {
+        "borderRadius": 100,
+        "borderWidth": 7,
+        "height": 130,
+        "width": 130,
+      },
+      Object {},
+    ]
+  }
+/>
+`;
+
+exports[`renders correctly with data - winner 1`] = `
+<Image
+  source={
+    Object {
+      "uri": "foo",
+    }
+  }
+  style={
+    Array [
+      Object {
+        "borderColor": "#BEBEBB",
+        "borderRadius": 100,
+        "borderWidth": 3,
+        "height": 150,
+        "marginBottom": 5,
+        "width": 150,
+      },
+      Object {},
+      Object {
+        "borderColor": "#399D60",
+      },
+    ]
+  }
+/>
+`;
+
+exports[`renders correctly with data - winner large 1`] = `
+<Image
+  source={
+    Object {
+      "uri": "foo",
+    }
+  }
+  style={
+    Array [
+      Object {
+        "borderColor": "#BEBEBB",
+        "borderRadius": 100,
+        "borderWidth": 3,
+        "height": 150,
+        "marginBottom": 5,
+        "width": 150,
+      },
+      Object {
+        "borderRadius": 100,
+        "borderWidth": 7,
+        "height": 130,
+        "width": 130,
+      },
+      Object {
+        "borderColor": "#399D60",
+      },
+    ]
+  }
+/>
+`;
+
+exports[`snapshot renders correctly 1`] = `
+<Image
+  source={
+    Object {
+      "testUri": "../../../assets/icons/Default-user.png",
+    }
+  }
+  style={
+    Array [
+      Object {
+        "height": 75,
+        "resizeMode": "contain",
+        "width": 75,
+      },
+      Object {},
+    ]
+  }
+/>
+`;

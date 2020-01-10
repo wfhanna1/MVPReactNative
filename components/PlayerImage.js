@@ -4,63 +4,23 @@ import ResponsiveSize from "../config/getScreenDimensions";
 
 const defaultPlayerImage = require("../assets/icons/Default-user.png");
 
-function PlayerImage (playerData) {
-	if (playerData.profilePhoto) {
-		return (
-			<Image
-				style={playerData.large ? (playerData.isWinner ? styles.initialsContainerWinnerLarge : styles.initialsContainerLarge) : (playerData.isWinner ? styles.initialsContainerWinner : styles.initialsContainer)}
-				source={playerData.profilePhoto ? {
-					uri: playerData.profilePhoto
-				} : defaultPlayerImage}
-			/>
-		);
-	}
-	if (playerData.fullName) {
-		const nameData = playerData.fullName.toString().toUpperCase().split(" ");
-		const initials = nameData.map((word) => word.charAt(0)).join("");
-
-		return (
-			<View style={playerData.large ? (playerData.isWinner ? styles.initialsContainerWinnerLarge : styles.initialsContainerLarge) : (playerData.isWinner ? styles.initialsContainerWinner : styles.initialsContainer)}>
-				<Text style={playerData.large ? styles.initialsTextLarge : styles.initialsText}>{initials.substr(0, 2)}</Text>
-			</View>
-		);
-	}
-
-	return (
-		<Image style={playerData.isWinner ? styles.pictureWinner : styles.picture} source={defaultPlayerImage} />
-	);
-}
-
 const styles = StyleSheet.create({
-	initialsContainer: {
+	initials: {
 		height: ResponsiveSize(5),
 		width: ResponsiveSize(5),
 		borderWidth: 3,
-		borderColor: "#BEBEBB",
 		borderRadius: 100,
-		marginBottom: 5
+		marginBottom: 5,
+		borderColor: "#BEBEBB"
 	},
-	initialsContainerLarge: {
+	initialsLarge: {
 		height: 130,
 		width: 130,
 		borderWidth: 7,
-		borderColor: "#BEBEBB",
 		borderRadius: 100
 	},
-	initialsContainerWinner: {
-		height: 75,
-		width: 75,
-		borderWidth: 3,
-		borderColor: "#399D60",
-		borderRadius: 100,
-		marginBottom: 5
-	},
-	initialsContainerWinnerLarge: {
-		height: 130,
-		width: 130,
-		borderWidth: 7,
-		borderColor: "#399D60",
-		borderRadius: 100
+	initialsWinner: {
+		borderColor: "#399D60"
 	},
 	initialsText: {
 		fontFamily: "KlinicSlab-Bold",
@@ -80,13 +40,9 @@ const styles = StyleSheet.create({
 		})
 	},
 	initialsTextLarge: {
-		fontFamily: "KlinicSlab-Bold",
 		fontSize: 72,
-		letterSpacing: -0.63,
 		width: 130,
 		height: 130,
-		color: "#BEBEBB",
-		textAlign: "center",
 		marginHorizontal: -7,
 		...Platform.select({
 			ios: {
@@ -103,12 +59,50 @@ const styles = StyleSheet.create({
 		resizeMode: "contain"
 	},
 	pictureWinner: {
-		height: 75,
-		width: 75,
 		borderColor: "#399D60",
 		borderWidth: 5,
 		borderRadius: 100
 	}
 });
+
+function PlayerImage (playerData) {
+	if (playerData.profilePhoto) {
+		return (
+			<Image
+				style={[styles.initials, (playerData.large ? styles.initialsLarge : {
+				}), (playerData.isWinner ? styles.initialsWinner : {
+				})]}
+				source={playerData.profilePhoto ? {
+					uri: playerData.profilePhoto
+				} : defaultPlayerImage}
+			/>
+		);
+	}
+	if (playerData.fullName) {
+		const nameData = playerData.fullName.toString().toUpperCase().split(" ");
+		const initials = nameData.map((word) => word.charAt(0)).join("");
+
+		return (
+			<View style={[styles.initials, (playerData.large ? styles.initialsLarge : {
+			}), (playerData.isWinner ? styles.initialsWinner : {
+			})]}
+			>
+				<Text style={[styles.initialsText, (playerData.large ? styles.initialsTextLarge : {
+				})]}
+				>
+					{initials.substr(0, 2)}
+				</Text>
+			</View>
+		);
+	}
+
+	return (
+		<Image
+			style={[styles.picture, (playerData.isWinner ? styles.pictureWinner : {
+			})]}
+			source={defaultPlayerImage}
+		/>
+	);
+}
 
 export default PlayerImage;
