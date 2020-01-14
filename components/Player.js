@@ -5,12 +5,13 @@ import { withNavigation } from "react-navigation";
 import PlayerImage from "./PlayerImage";
 import ResponsiveSize from "../config/getScreenDimensions";
 
-function Player ({ navigation, id, name, points, rank, profilePhoto }) {
+function Player ({ navigation, id, name, points, rank, profilePhoto, updatePlayers }) {
 	return (
 		<View>
 			<TouchableOpacity
 				onPress={() => navigation.navigate("ProfileScreen", {
-					id
+					id,
+					updatePlayers
 				})}
 				style={styles.playerComponent}
 			>

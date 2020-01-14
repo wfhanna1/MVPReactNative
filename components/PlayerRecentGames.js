@@ -24,7 +24,8 @@ function PlayerRecentGames (data) {
 	return (
 		<TouchableOpacity
 			onPress={() => navigation.navigate("ProfileScreen", {
-				id: data.id
+				id: data.id,
+				updatePlayers: data.updatePlayers
 			})}
 			style={styles.playerComponent}
 		>
