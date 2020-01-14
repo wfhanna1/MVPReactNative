@@ -57,3 +57,45 @@ it("renders correctly with data - winner large", () => {
 	expect(tree.props.style[1].borderWidth).toEqual(7);
 	expect(tree.props.style[2].borderColor).toEqual("#399D60");
 });
+
+it("renders correctly with data - initials", () => {
+	const tree = renderer.create(<PlayerImage fullName="foo bar" />).toJSON();
+	expect(tree).toMatchSnapshot();
+	expect(tree.children[0].children[0]).toEqual("FB");
+	expect(tree.props.style[0].height).toEqual(ResponsiveSize(5));
+	expect(tree.props.style[0].width).toEqual(ResponsiveSize(5));
+	expect(tree.props.style[0].borderWidth).toEqual(3);
+});
+
+it("renders correctly with data - initials large", () => {
+	const tree = renderer.create(<PlayerImage fullName="foo bar" large />).toJSON();
+	expect(tree).toMatchSnapshot();
+	expect(tree.children[0].children[0]).toEqual("FB");
+	expect(tree.props.style[0].height).toEqual(150);
+	expect(tree.props.style[0].width).toEqual(150);
+	expect(tree.props.style[1].height).toEqual(130);
+	expect(tree.props.style[1].width).toEqual(130);
+	expect(tree.props.style[1].borderWidth).toEqual(7);
+});
+
+it("renders correctly with data - initials winner", () => {
+	const tree = renderer.create(<PlayerImage fullName="foo bar" isWinner />).toJSON();
+	expect(tree).toMatchSnapshot();
+	expect(tree.children[0].children[0]).toEqual("FB");
+	expect(tree.props.style[0].height).toEqual(ResponsiveSize(5));
+	expect(tree.props.style[0].width).toEqual(ResponsiveSize(5));
+	expect(tree.props.style[0].borderWidth).toEqual(3);
+	expect(tree.props.style[2].borderColor).toEqual("#399D60");
+});
+
+it("renders correctly with data - initials winner large", () => {
+	const tree = renderer.create(<PlayerImage fullName="foo bar" isWinner large />).toJSON();
+	expect(tree).toMatchSnapshot();
+	expect(tree.children[0].children[0]).toEqual("FB");
+	expect(tree.props.style[0].height).toEqual(150);
+	expect(tree.props.style[0].width).toEqual(150);
+	expect(tree.props.style[1].height).toEqual(130);
+	expect(tree.props.style[1].width).toEqual(130);
+	expect(tree.props.style[1].borderWidth).toEqual(7);
+	expect(tree.props.style[2].borderColor).toEqual("#399D60");
+});

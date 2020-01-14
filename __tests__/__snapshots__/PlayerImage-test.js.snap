@@ -24,6 +24,188 @@ exports[`renders correctly with data - default 1`] = `
 />
 `;
 
+exports[`renders correctly with data - initials 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "borderColor": "#BEBEBB",
+        "borderRadius": 100,
+        "borderWidth": 3,
+        "height": 150,
+        "marginBottom": 5,
+        "width": 150,
+      },
+      Object {},
+      Object {},
+    ]
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#BEBEBB",
+          "fontFamily": "KlinicSlab-Bold",
+          "fontSize": 72.11538461538461,
+          "height": 75,
+          "letterSpacing": -0.63,
+          "marginHorizontal": -3,
+          "marginVertical": 17,
+          "textAlign": "center",
+        },
+        Object {},
+      ]
+    }
+  >
+    FB
+  </Text>
+</View>
+`;
+
+exports[`renders correctly with data - initials large 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "borderColor": "#BEBEBB",
+        "borderRadius": 100,
+        "borderWidth": 3,
+        "height": 150,
+        "marginBottom": 5,
+        "width": 150,
+      },
+      Object {
+        "borderRadius": 100,
+        "borderWidth": 7,
+        "height": 130,
+        "width": 130,
+      },
+      Object {},
+    ]
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#BEBEBB",
+          "fontFamily": "KlinicSlab-Bold",
+          "fontSize": 72.11538461538461,
+          "height": 75,
+          "letterSpacing": -0.63,
+          "marginHorizontal": -3,
+          "marginVertical": 17,
+          "textAlign": "center",
+        },
+        Object {
+          "fontSize": 72,
+          "height": 130,
+          "marginHorizontal": -7,
+          "marginVertical": 22,
+          "width": 130,
+        },
+      ]
+    }
+  >
+    FB
+  </Text>
+</View>
+`;
+
+exports[`renders correctly with data - initials winner 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "borderColor": "#BEBEBB",
+        "borderRadius": 100,
+        "borderWidth": 3,
+        "height": 150,
+        "marginBottom": 5,
+        "width": 150,
+      },
+      Object {},
+      Object {
+        "borderColor": "#399D60",
+      },
+    ]
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#BEBEBB",
+          "fontFamily": "KlinicSlab-Bold",
+          "fontSize": 72.11538461538461,
+          "height": 75,
+          "letterSpacing": -0.63,
+          "marginHorizontal": -3,
+          "marginVertical": 17,
+          "textAlign": "center",
+        },
+        Object {},
+      ]
+    }
+  >
+    FB
+  </Text>
+</View>
+`;
+
+exports[`renders correctly with data - initials winner large 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "borderColor": "#BEBEBB",
+        "borderRadius": 100,
+        "borderWidth": 3,
+        "height": 150,
+        "marginBottom": 5,
+        "width": 150,
+      },
+      Object {
+        "borderRadius": 100,
+        "borderWidth": 7,
+        "height": 130,
+        "width": 130,
+      },
+      Object {
+        "borderColor": "#399D60",
+      },
+    ]
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#BEBEBB",
+          "fontFamily": "KlinicSlab-Bold",
+          "fontSize": 72.11538461538461,
+          "height": 75,
+          "letterSpacing": -0.63,
+          "marginHorizontal": -3,
+          "marginVertical": 17,
+          "textAlign": "center",
+        },
+        Object {
+          "fontSize": 72,
+          "height": 130,
+          "marginHorizontal": -7,
+          "marginVertical": 22,
+          "width": 130,
+        },
+      ]
+    }
+  >
+    FB
+  </Text>
+</View>
+`;
+
 exports[`renders correctly with data - large 1`] = `
 <Image
   source={
