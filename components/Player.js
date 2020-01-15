@@ -5,12 +5,13 @@ import { withNavigation } from "react-navigation";
 import PlayerImage from "./PlayerImage";
 import ResponsiveSize from "../config/getScreenDimensions";
 
-function Player ({ navigation, id, name, points, rank, profilePhoto }) {
+function Player ({ navigation, id, name, points, rank, profilePhoto, updatePlayers }) {
 	return (
 		<View>
 			<TouchableOpacity
 				onPress={() => navigation.navigate("ProfileScreen", {
-					id
+					id,
+					updatePlayers
 				})}
 				style={styles.playerComponent}
 			>
@@ -21,10 +22,7 @@ function Player ({ navigation, id, name, points, rank, profilePhoto }) {
 				<View>
 					<Text style={styles.game}>In All Games</Text>
 					<Text style={styles.name}>{name}</Text>
-					<Text style={styles.points}>
-						Points:&nbsp;
-						{points}
-					</Text>
+					<Text style={styles.points}>{`Points: ${points}`}</Text>
 				</View>
 			</TouchableOpacity>
 		</View>
