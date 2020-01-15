@@ -22,10 +22,7 @@ function Player ({ navigation, id, name, points, rank, profilePhoto, updatePlaye
 				<View>
 					<Text style={styles.game}>In All Games</Text>
 					<Text style={styles.name}>{name}</Text>
-					<Text style={styles.points}>
-						Points:&nbsp;
-						{points}
-					</Text>
+					<Text style={styles.points}>{`Points: ${points}`}</Text>
 				</View>
 			</TouchableOpacity>
 		</View>

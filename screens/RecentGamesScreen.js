@@ -43,6 +43,7 @@ export default function RecentGames () {
 				key={player.playerId}
 				id={player.playerId}
 				isWinner={player.isWinner}
+				score={Math.floor(player.score)}
 				updatePlayers={updatePlayers}
 			/>
 		)) : <Text style={styles.tieGame}>It&apos;s a tie! Everyone wins!</Text>;
@@ -116,6 +117,7 @@ export default function RecentGames () {
 										id={player.playerId}
 										isWinner={player.isWinner}
 										profilePhoto={player.profilePhoto}
+										score={Math.floor(player.score)}
 										updatePlayers={updatePlayers}
 									/>
 								))}

@@ -5,13 +5,11 @@ import { withNavigation } from "react-navigation";
 import PlayerImage from "./PlayerImage";
 import useQuery from "../hooks/useQuery";
 import findPlayersQuery from "../queries/findPlayers";
-import playerRatingQuery from "../queries/playerRating";
 import ResponsiveSize from "../config/getScreenDimensions";
 
 function PlayerRecentGames (data) {
 	const { navigation } = data;
 	const [player, playerLoading] = useQuery(findPlayersQuery(data.id));
-	const [playerRating, playerRatingLoading] = useQuery(playerRatingQuery(data.id));
 
 	return (
 		<TouchableOpacity
@@ -24,7 +22,7 @@ function PlayerRecentGames (data) {
 			<PlayerImage profilePhoto={data.profilePhoto ? data.profilePhoto : player ? player.profilePhoto : false} fullName={data.fullName} isWinner={data.isWinner} />
 			<View style={styles.stats}>
 				<Text style={styles.name}>{(playerLoading ? "..." : (data.fullName.length >= 16 ? `${data.fullName.substring(0, 12)}...` : data.fullName))}</Text>
-				<Text style={styles.points}>{playerRatingLoading ? "..." : `Points: ${playerRating ? Math.floor(playerRating.score).toLocaleString() : "0"}`}</Text>
+				<Text style={styles.points}>{`Points: ${data.score}`}</Text>
 			</View>
 		</TouchableOpacity>
 	);
