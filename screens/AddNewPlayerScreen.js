@@ -118,6 +118,7 @@ function AddNewPlayerScreen ({ navigation }) {
 								textContentType="name"
 								autoCompleteType="name"
 								returnKeyType="done"
+								maxFontSizeMultiplier={1}
 							/>
 						</Item>
 					</View>
@@ -134,6 +135,7 @@ function AddNewPlayerScreen ({ navigation }) {
 								autoCompleteType="email"
 								keyboardType="email-address"
 								returnKeyType="done"
+								maxFontSizeMultiplier={1}
 							/>
 						</Item>
 					</View>
