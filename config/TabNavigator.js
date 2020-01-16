@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from "react-navigation-tabs";
 import { createStackNavigator } from "react-navigation-stack";
 import Icon from "react-native-vector-icons/FontAwesome";
 import PlayersScreen from "../screens/HomeScreen";
+import SearchScreen from "../screens/SearchScreen";
 import GamesScreen from "../screens/RecentGamesScreen";
 import RecordMatchScreen from "../screens/RecordMatchScreen";
 import AddNewPlayerScreen from "../screens/AddNewPlayerScreen";
@@ -16,6 +17,51 @@ import ResponsiveSize from "./getScreenDimensions";
 const Players = createStackNavigator({
 	Players: {
 		screen: PlayersScreen,
+		navigationOptions: {
+			header: null
+		}
+	},
+	RecordMatch: {
+		screen: RecordMatchScreen,
+		navigationOptions: {
+			header: null
+		}
+	},
+	AddNewPlayer: {
+		screen: AddNewPlayerScreen,
+		navigationOptions: {
+			header: null
+		}
+	},
+	ProfileScreen: {
+		screen: ProfileScreen,
+		navigationOptions: {
+			header: null
+		}
+	},
+	MatchRecorded: {
+		screen: MatchRecordedScreen,
+		navigationOptions: {
+			header: null
+		}
+	},
+	Loading: {
+		screen: LoadingScreen,
+		navigationOptions: {
+			header: null
+		}
+	},
+	PlayerAdded: {
+		screen: PlayerAddedScreen,
+		navigationOptions: {
+			header: null
+		}
+	}
+});
+
+const Search = createStackNavigator({
+	Search: {
+		screen: SearchScreen,
 		navigationOptions: {
 			header: null
 		}
@@ -106,6 +152,7 @@ const Games = createStackNavigator({
 const Tab = createBottomTabNavigator(
 	{
 		Players,
+		Search,
 		Games
 	}, {
 		tabBarOptions: {
@@ -128,6 +175,8 @@ const Tab = createBottomTabNavigator(
 				let iconName;
 				if (routeName === "Players") {
 					iconName = "trophy";
+				} else if (routeName === "Search") {
+					iconName = "search";
 				} else if (routeName === "Games") {
 					iconName = "gamepad";
 				}
