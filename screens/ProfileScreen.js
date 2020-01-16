@@ -150,6 +150,7 @@ function ProfileScreen ({ navigation }) {
 								autoCompleteType="name"
 								returnKeyType="done"
 								value={name || foundPlayer.fullName}
+								maxFontSizeMultiplier={1}
 							/>
 						</Item>
 					</View>
@@ -167,6 +168,7 @@ function ProfileScreen ({ navigation }) {
 								keyboardType="email-address"
 								returnKeyType="done"
 								value={email || foundPlayer.emailAddress}
+								maxFontSizeMultiplier={1}
 							/>
 						</Item>
 					</View>
