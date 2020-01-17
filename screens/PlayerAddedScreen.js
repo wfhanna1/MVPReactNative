@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { withNavigation } from "react-navigation";
 import { Text } from "native-base";
 
+import useQuery from "../hooks/useQuery";
+import addPlayerQuery from "../queries/addPlayer";
+
+import BlankScreen from "./BlankScreen";
 import HeaderSm from "../components/HeaderSmall";
 import BgImage from "../components/backgroundImage";
 import ButtonPrimary from "../components/ButtonPrimary";
@@ -14,16 +18,32 @@ function PlayerAddedScreen ({ navigation }) {
 	};
 	const matchedPlayersData = navigationContext.matchedPlayers;
 
+	const [addPlayer, addPlayerLoading] = useQuery(addPlayerQuery({
+		fullName: navigationContext.name,
+		emailAddress: navigationContext.email,
+		profilePhoto: navigationContext.profilePhoto
+	}));
+
+	console.log("addPlayer", addPlayer);
+	console.log("addPlayerLoading", addPlayerLoading);
+	console.log("navigationContext", navigationContext);
+
+	if (!addPlayer || addPlayerLoading) {
+		return (
+			<BlankScreen />
+		);
+	}
+
 	return (
 		<BgImage>
 			<HeaderSm style={styles.title} headerTitle="Player Added!" />
 			<View style={styles.container}>
 				<View style={styles.picture}>
-					<PlayerImage profilePhoto={navigationContext.profilePhoto} fullName={(navigationContext.name ? navigationContext.name : false)} large />
+					<PlayerImage profilePhoto={addPlayer.profilePhoto} fullName={addPlayer.fullName} large />
 				</View>
 				<View style={styles.subContainer1}>
-					<Text style={styles.name}>{navigationContext.name}</Text>
-					<Text style={styles.game}>{navigationContext.email}</Text>
+					<Text style={styles.name}>{addPlayer.fullName}</Text>
+					<Text style={styles.game}>{addPlayer.email}</Text>
 				</View>
 				<ButtonPrimary
 					title="Record Match"
