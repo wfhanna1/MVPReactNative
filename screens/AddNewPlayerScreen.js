@@ -59,8 +59,7 @@ function AddNewPlayerScreen ({ navigation }) {
 	};
 
 	const handleChoosePhoto = () => {
-		ImagePicker.openCamera({
-			useFrontCamera: true,
+		ImagePicker.openPicker({
 			width: 400,
 			height: 400,
 			cropping: true,
