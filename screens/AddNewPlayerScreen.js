@@ -4,9 +4,6 @@ import { withNavigation } from "react-navigation";
 import ImagePicker from "react-native-image-crop-picker";
 import { Text, Item, Input, Form, Button } from "native-base";
 
-import useQuery from "../hooks/useQuery";
-import addPlayerQuery from "../queries/addPlayer";
-
 import HeaderSm from "../components/HeaderSmall";
 import BgImage from "../components/backgroundImage";
 import ButtonPrimary from "../components/ButtonPrimary";
@@ -25,33 +22,24 @@ function AddNewPlayerScreen ({ navigation }) {
 	const [profilePhoto, setProfilePhoto] = useState(undefined);
 	const [nameError, setNameError] = useState(undefined);
 	const [emailError, setEmailError] = useState(undefined);
-	const [addPlayerObj, setPlayerObj] = useState(undefined);
-
-	const [addPlayer, addPlayerLoading] = useQuery(addPlayerQuery(addPlayerObj));
 
 	const formValid = () => {
-		setNameError(name && name.trim().length > 0 ? false : "enter your name");
-		setEmailError(email && emailRegex.test(email.trim()) ? false : "enter a valid email");
-		return [nameError, emailError];
+		const nameErrorCheck = (name && name.trim().length > 0 ? false : "enter your name");
+		const emailErrorCheck = (email && emailRegex.test(email.trim()) ? false : "enter a valid email");
+		setNameError(nameErrorCheck);
+		setEmailError(emailErrorCheck);
+		return [nameErrorCheck, emailErrorCheck];
 	};
 
 	const onSubmit = () => {
 		const errors = formValid();
-		if (!errors.filter((item) => !!item).length) {
-			setPlayerObj({
-				fullName: name,
-				emailAddress: email,
-				profilePhoto
+		if (!errors.filter((item) => Boolean(item)).length) {
+			navigation.navigate("PlayerAdded", {
+				...navigationContext,
+				name,
+				email,
+				profilePhoto: (profilePhoto || false)
 			});
-			if (addPlayer) {
-				return navigation.navigate("PlayerAdded", {
-					...navigationContext,
-					id: addPlayer.id,
-					name,
-					email,
-					profilePhoto
-				});
-			}
 		}
 
 		return false;
@@ -70,22 +58,9 @@ function AddNewPlayerScreen ({ navigation }) {
 		return null;
 	};
 
-	const ButtonLoading = () => {
-		if (addPlayerLoading) {
-			return (
-				<Text>Loading...</Text>
-			);
-		}
-		return (
-			<ButtonPrimary
-				title="Add Player"
-				onPress={onSubmit}
-			/>
-		);
-	};
-
 	const handleChoosePhoto = () => {
-		ImagePicker.openPicker({
+		ImagePicker.openCamera({
+			useFrontCamera: true,
 			width: 400,
 			height: 400,
 			cropping: true,
@@ -153,7 +128,10 @@ function AddNewPlayerScreen ({ navigation }) {
 					</View>
 					<View style={styles.container}>
 						<ErrorMessage errors={[nameError, emailError]} />
-						<ButtonLoading />
+						<ButtonPrimary
+							title="Add Player"
+							onPress={onSubmit}
+						/>
 						<Button
 							style={styles.cancelButton}
 							transparent
