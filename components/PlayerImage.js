@@ -79,7 +79,7 @@ function PlayerImage (playerData) {
 		);
 	}
 	if (playerData.fullName) {
-		const nameData = playerData.fullName.toString().toUpperCase().split(" ");
+		const nameData = playerData.fullName.toString().replace(/[^a-zA-Z\d\s]/g, "").toUpperCase().split(" ");
 		const initials = nameData.map((word) => word.charAt(0)).join("");
 
 		return (
@@ -90,7 +90,8 @@ function PlayerImage (playerData) {
 				<Text style={[styles.initialsText, (playerData.large ? styles.initialsTextLarge : {
 				})]}
 				>
-					{initials.substr(0, 2)}
+					{initials[0]}
+					{initials[(initials.length - 1)]}
 				</Text>
 			</View>
 		);
