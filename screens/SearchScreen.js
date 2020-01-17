@@ -12,10 +12,18 @@ import AddNewPlayerButton from "../components/AddNewPlayerButton";
 import PlayerSearchResult from "../components/PlayerSearchResult";
 
 function SearchScreen () {
-	const [findPlayers, findPlayersLoading] = useQuery(findPlayersQuery());
+	const [findPlayers] = useQuery(findPlayersQuery());
 	const [query, setQuery] = useState("");
 
-	const updatePlayers = () => updateTopPlayers().then((data) => setTopPlayersData(data));
+	const updatePlayers = (playerUpdated) => {
+		const updateIndex = findPlayers.findIndex((player) => player.id === playerUpdated.id);
+		if (updateIndex >= 0) {
+			findPlayers[updateIndex] = {
+				...findPlayers[updateIndex], ...playerUpdated
+			};
+			setQuery(query);
+		}
+	};
 
 	const filterPlayers = () => {
 		if (query === "") {
@@ -25,8 +33,6 @@ function SearchScreen () {
 		const playerResults = findPlayers.filter((player) => player.fullName.search(regex) >= 0);
 		return playerResults;
 	};
-
-	const playersFound = filterPlayers(query);
 
 	CodePush.sync({
 		updateDialog: true,
@@ -51,7 +57,7 @@ function SearchScreen () {
 					listStyle={{
 						paddingTop: 20
 					}}
-					data={playersFound}
+					data={filterPlayers(query)}
 					defaultValue={query}
 					value={query}
 					onChangeText={(text) => { setQuery(text); }}
