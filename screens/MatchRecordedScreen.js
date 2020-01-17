@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, ScrollView } from "react-native";
-import { withNavigation } from "react-navigation";
+import { withNavigation, NavigationActions } from "react-navigation";
 
 import useQuery from "../hooks/useQuery";
 import recordMatchQuery from "../queries/recordMatch";
@@ -40,7 +40,9 @@ function RecordMatchScreen ({ navigation }) {
 				{losers.map((player) => <PlayerMatchRecorded id={player.playerId} gamePoints={`-${points}`} isWinner={false} pointsColor="red" />)}
 				<ButtonPrimary
 					title="Back to Home"
-					onPress={() => navigation.popToTop("Players")}
+					onPress={() => navigation.reset([NavigationActions.navigate({
+						routeName: "Players"
+					})], 0)}
 				/>
 			</ScrollView>
 		</BgImage>
