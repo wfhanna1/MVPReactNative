@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Image } from "react-native";
+import { ScrollView, StyleSheet, View, Image } from "react-native";
 import { withNavigation } from "react-navigation";
 import ImagePicker from "react-native-image-crop-picker";
 import { Text, Item, Input, Form, Button } from "native-base";
@@ -77,70 +77,72 @@ function AddNewPlayerScreen ({ navigation }) {
 
 	return (
 		<BgImage>
-			<HeaderSm style={styles.title} headerTitle="Add New Player" />
-			<View style={styles.parent}>
-				<Form>
-					<View style={styles.container}>
-						<Text style={styles.text}>Full Name</Text>
-						<Item style={styles.item}>
-							<Input
-								style={nameError ? styles.error : styles.input}
-								onChangeText={(nameVal) => setName(nameVal)}
-								placeholder="Max Power"
-								placeholderTextColor="#c2c2c2"
-								autoCapitalize="words"
-								textContentType="name"
-								autoCompleteType="name"
-								returnKeyType="done"
-								maxFontSizeMultiplier={1}
+			<ScrollView>
+				<HeaderSm style={styles.title} headerTitle="Add New Player" />
+				<View style={styles.parent}>
+					<Form>
+						<View style={styles.container}>
+							<Text style={styles.text}>Full Name</Text>
+							<Item style={styles.item}>
+								<Input
+									style={nameError ? styles.error : styles.input}
+									onChangeText={(nameVal) => setName(nameVal)}
+									placeholder="Max Power"
+									placeholderTextColor="#c2c2c2"
+									autoCapitalize="words"
+									textContentType="name"
+									autoCompleteType="name"
+									returnKeyType="done"
+									maxFontSizeMultiplier={1}
+								/>
+							</Item>
+						</View>
+						<View style={styles.container}>
+							<Text style={styles.text}>Email Address</Text>
+							<Item style={styles.item}>
+								<Input
+									style={emailError ? styles.error : styles.input}
+									onChangeText={(emailVal) => setEmail(emailVal)}
+									placeholder="Max.Power@insight.com"
+									placeholderTextColor="#c2c2c2"
+									autoCapitalize="none"
+									textContentType="emailAddress"
+									autoCompleteType="email"
+									keyboardType="email-address"
+									returnKeyType="done"
+									maxFontSizeMultiplier={1}
+								/>
+							</Item>
+						</View>
+						<View style={styles.photoContainer}>
+							<Text style={styles.profText}>Profile Pic</Text>
+							<Image
+								style={styles.profile}
+								source={profilePhoto ? {
+									uri: profilePhoto
+								} : defaultProfilePhoto}
 							/>
-						</Item>
-					</View>
-					<View style={styles.container}>
-						<Text style={styles.text}>Email Address</Text>
-						<Item style={styles.item}>
-							<Input
-								style={emailError ? styles.error : styles.input}
-								onChangeText={(emailVal) => setEmail(emailVal)}
-								placeholder="Max.Power@insight.com"
-								placeholderTextColor="#c2c2c2"
-								autoCapitalize="none"
-								textContentType="emailAddress"
-								autoCompleteType="email"
-								keyboardType="email-address"
-								returnKeyType="done"
-								maxFontSizeMultiplier={1}
+							<Button transparent onPress={handleChoosePhoto}>
+								<Text uppercase={false} style={styles.profileButton}>Add/Update</Text>
+							</Button>
+						</View>
+						<View style={styles.container}>
+							<ErrorMessage errors={[nameError, emailError]} />
+							<ButtonPrimary
+								title="Add Player"
+								onPress={onSubmit}
 							/>
-						</Item>
-					</View>
-					<View style={styles.photoContainer}>
-						<Text style={styles.profText}>Profile Pic</Text>
-						<Image
-							style={styles.profile}
-							source={profilePhoto ? {
-								uri: profilePhoto
-							} : defaultProfilePhoto}
-						/>
-						<Button transparent onPress={handleChoosePhoto}>
-							<Text uppercase={false} style={styles.profileButton}>Add/Update</Text>
-						</Button>
-					</View>
-					<View style={styles.container}>
-						<ErrorMessage errors={[nameError, emailError]} />
-						<ButtonPrimary
-							title="Add Player"
-							onPress={onSubmit}
-						/>
-						<Button
-							style={styles.cancelButton}
-							transparent
-							onPress={() => (navigation.goBack())}
-						>
-							<Text uppercase={false} style={styles.cancelText}>Cancel</Text>
-						</Button>
-					</View>
-				</Form>
-			</View>
+							<Button
+								style={styles.cancelButton}
+								transparent
+								onPress={() => (navigation.goBack())}
+							>
+								<Text uppercase={false} style={styles.cancelText}>Cancel</Text>
+							</Button>
+						</View>
+					</Form>
+				</View>
+			</ScrollView>
 		</BgImage>
 	);
 }
