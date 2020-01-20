@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Image } from "react-native";
+import { StyleSheet, View, ScrollView, Image } from "react-native";
 import { withNavigation } from "react-navigation";
 import ImagePicker from "react-native-image-crop-picker";
 import { Text, Item, Input, Form, Button } from "native-base";
@@ -103,7 +103,7 @@ function AddNewPlayerScreen ({ navigation }) {
 	return (
 		<BgImage>
 			<HeaderSm style={styles.title} headerTitle="Add New Player" />
-			<View style={styles.parent}>
+			<ScrollView style={styles.parent}>
 				<Form>
 					<View style={styles.container}>
 						<Text style={styles.text}>Full Name</Text>
@@ -211,7 +211,7 @@ function AddNewPlayerScreen ({ navigation }) {
 						</Button>
 					</ModalContent>
 				</BottomModal>
-			</View>
+			</ScrollView>
 		</BgImage>
 	);
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, View } from "react-native";
 import { withNavigation } from "react-navigation";
 import { Text } from "native-base";
@@ -18,19 +18,35 @@ function PlayerAddedScreen ({ navigation }) {
 	};
 	const matchedPlayersData = navigationContext.matchedPlayers;
 
-	const [addPlayer, addPlayerLoading] = useQuery(addPlayerQuery({
+	const [addPlayer, addPlayerLoading, addPlayerError] = useQuery(addPlayerQuery({
 		fullName: navigationContext.name,
 		emailAddress: navigationContext.email,
 		profilePhoto: navigationContext.profilePhoto
 	}));
 
-	console.log("addPlayer", addPlayer);
-	console.log("addPlayerLoading", addPlayerLoading);
-	console.log("navigationContext", navigationContext);
-
-	if (!addPlayer || addPlayerLoading) {
+	if ((!addPlayer && !addPlayerError) || addPlayerLoading) {
 		return (
 			<BlankScreen />
+		);
+	}
+
+	if (addPlayerError) {
+		return (
+			<BgImage>
+				<HeaderSm style={styles.title} headerTitle="Error!" />
+				<View style={[styles.container, styles.centeredContainer]}>
+					<Text style={[styles.name, styles.nameMargin]}>Player already exists!</Text>
+					<Text style={[styles.game, styles.gameMargin]}>
+            Emails can only be associated with one player.
+						{"\n"}
+						Please try again.
+					</Text>
+					<ButtonPrimary
+						title="Back"
+						onPress={() => navigation.goBack()}
+					/>
+				</View>
+			</BgImage>
 		);
 	}
 
@@ -65,6 +81,9 @@ const styles = StyleSheet.create({
 		justifyContent: "space-around",
 		marginTop: -30
 	},
+	centeredContainer: {
+		paddingTop: 160
+	},
 	subContainer1: {
 		alignItems: "center",
 		marginTop: "-5%"
@@ -82,11 +101,18 @@ const styles = StyleSheet.create({
 		letterSpacing: -0.63,
 		marginBottom: -7
 	},
+	nameMargin: {
+		marginBottom: 8
+	},
 	game: {
+		textAlign: "center",
 		fontSize: 16,
 		fontWeight: "bold",
 		color: "#6E645F",
 		letterSpacing: -0.57
+	},
+	gameMargin: {
+		marginBottom: 20
 	}
 });
 
