@@ -3,6 +3,7 @@ import { StyleSheet, View, Image } from "react-native";
 import { withNavigation } from "react-navigation";
 import ImagePicker from "react-native-image-crop-picker";
 import { Text, Item, Input, Form, Button } from "native-base";
+import { BottomModal, ModalContent } from "react-native-modals";
 
 import HeaderSm from "../components/HeaderSmall";
 import BgImage from "../components/backgroundImage";
@@ -22,6 +23,7 @@ function AddNewPlayerScreen ({ navigation }) {
 	const [profilePhoto, setProfilePhoto] = useState(undefined);
 	const [nameError, setNameError] = useState(undefined);
 	const [emailError, setEmailError] = useState(undefined);
+	const [showModal, setShowModal] = useState(false);
 
 	const formValid = () => {
 		const nameErrorCheck = (name && name.trim().length > 0 ? false : "enter your name");
@@ -75,6 +77,29 @@ function AddNewPlayerScreen ({ navigation }) {
 		});
 	};
 
+	const handleTakePhoto = () => {
+		ImagePicker.openCamera({
+			useFrontCamera: true,
+			width: 400,
+			height: 400,
+			cropping: true,
+			cropperCircleOverlay: true,
+			compressImageMaxWidth: 100,
+			compressImageMaxHeight: 100,
+			compressImageQuality: 0.25,
+			includeBase64: true
+		}).then((image) => {
+			if (image && image.mime && image.data) {
+				setProfilePhoto(`data:${image.mime};base64,${image.data}`);
+			}
+		});
+	};
+
+	const handleDeletePhoto = () => {
+		setProfilePhoto(undefined);
+		setShowModal(false);
+	};
+
 	return (
 		<BgImage>
 			<HeaderSm style={styles.title} headerTitle="Add New Player" />
@@ -121,7 +146,7 @@ function AddNewPlayerScreen ({ navigation }) {
 								uri: profilePhoto
 							} : defaultProfilePhoto}
 						/>
-						<Button transparent onPress={handleChoosePhoto}>
+						<Button transparent onPress={() => { setShowModal(true); }}>
 							<Text uppercase={false} style={styles.profileButton}>Add/Update</Text>
 						</Button>
 					</View>
@@ -140,6 +165,52 @@ function AddNewPlayerScreen ({ navigation }) {
 						</Button>
 					</View>
 				</Form>
+				<BottomModal
+					visible={showModal}
+					onTouchOutside={() => {
+						setShowModal(false);
+					}}
+					rounded={false}
+					modalStyle={{
+						backgroundColor: "transparent"
+					}}
+				>
+					<ModalContent>
+						<Button
+							text="Take Photo"
+							onPress={handleTakePhoto}
+							style={[styles.modalButton, {
+								borderTopLeftRadius: 10,
+								borderTopRightRadius: 10
+							}]}
+						>
+							<Text style={styles.modalButtonText}>Take Photo</Text>
+						</Button>
+						<Button
+							onPress={handleChoosePhoto}
+							style={styles.modalButton}
+						>
+							<Text style={styles.modalButtonText}>Choose From Library</Text>
+						</Button>
+						<Button
+							onPress={handleDeletePhoto}
+							style={[styles.modalButton, {
+								borderBottomLeftRadius: 10,
+								borderBottomRightRadius: 10
+							}]}
+						>
+							<Text style={styles.modalButtonText}>Delete Photo</Text>
+						</Button>
+						<Button
+							onPress={() => {
+								setShowModal(false);
+							}}
+							style={[styles.modalButton, styles.modalCancelButton]}
+						>
+							<Text style={styles.modalButtonText}>Cancel</Text>
+						</Button>
+					</ModalContent>
+				</BottomModal>
 			</View>
 		</BgImage>
 	);
@@ -213,6 +284,22 @@ const styles = StyleSheet.create({
 		backgroundColor: "rgba(256, 0, 0, 0.2)",
 		padding: 10,
 		marginBottom: 20
+	},
+	modalButton: {
+		justifyContent: "center",
+		alignItems: "center",
+		backgroundColor: "white",
+		borderRadius: 0
+	},
+	modalCancelButton: {
+		marginTop: 10,
+		borderTopWidth: 1,
+		borderColor: "#666666",
+		borderRadius: 10
+	},
+	modalButtonText: {
+		width: "100%",
+		textAlign: "center"
 	}
 });
 
