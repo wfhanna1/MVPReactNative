@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { ScrollView, StyleSheet, View, Image } from "react-native";
+import { StyleSheet, View, ScrollView, Image } from "react-native";
 import { withNavigation } from "react-navigation";
 import ImagePicker from "react-native-image-crop-picker";
 import { Text, Item, Input, Form, Button } from "native-base";
+import { BottomModal, ModalContent } from "react-native-modals";
 
 import HeaderSm from "../components/HeaderSmall";
 import BgImage from "../components/backgroundImage";
@@ -22,6 +23,7 @@ function AddNewPlayerScreen ({ navigation }) {
 	const [profilePhoto, setProfilePhoto] = useState(undefined);
 	const [nameError, setNameError] = useState(undefined);
 	const [emailError, setEmailError] = useState(undefined);
+	const [showModal, setShowModal] = useState(false);
 
 	const formValid = () => {
 		const nameErrorCheck = (name && name.trim().length > 0 ? false : "enter your name");
@@ -38,7 +40,7 @@ function AddNewPlayerScreen ({ navigation }) {
 				...navigationContext,
 				name,
 				email,
-				profilePhoto: (profilePhoto || false)
+				profilePhoto: (profilePhoto || "")
 			});
 		}
 
@@ -71,77 +73,146 @@ function AddNewPlayerScreen ({ navigation }) {
 		}).then((image) => {
 			if (image && image.mime && image.data) {
 				setProfilePhoto(`data:${image.mime};base64,${image.data}`);
+				setShowModal(false);
 			}
 		});
 	};
 
+	const handleTakePhoto = () => {
+		ImagePicker.openCamera({
+			useFrontCamera: true,
+			width: 400,
+			height: 400,
+			cropping: true,
+			cropperCircleOverlay: true,
+			compressImageMaxWidth: 100,
+			compressImageMaxHeight: 100,
+			compressImageQuality: 0.25,
+			includeBase64: true
+		}).then((image) => {
+			if (image && image.mime && image.data) {
+				setProfilePhoto(`data:${image.mime};base64,${image.data}`);
+				setShowModal(false);
+			}
+		});
+	};
+
+	const handleDeletePhoto = () => {
+		setProfilePhoto(undefined);
+		setShowModal(false);
+	};
+
 	return (
 		<BgImage>
-			<ScrollView>
-				<HeaderSm style={styles.title} headerTitle="Add New Player" />
-				<View style={styles.parent}>
-					<Form>
-						<View style={styles.container}>
-							<Text style={styles.text}>Full Name</Text>
-							<Item style={styles.item}>
-								<Input
-									style={nameError ? styles.error : styles.input}
-									onChangeText={(nameVal) => setName(nameVal)}
-									placeholder="Max Power"
-									placeholderTextColor="#c2c2c2"
-									autoCapitalize="words"
-									textContentType="name"
-									autoCompleteType="name"
-									returnKeyType="done"
-									maxFontSizeMultiplier={1}
-								/>
-							</Item>
-						</View>
-						<View style={styles.container}>
-							<Text style={styles.text}>Email Address</Text>
-							<Item style={styles.item}>
-								<Input
-									style={emailError ? styles.error : styles.input}
-									onChangeText={(emailVal) => setEmail(emailVal)}
-									placeholder="Max.Power@insight.com"
-									placeholderTextColor="#c2c2c2"
-									autoCapitalize="none"
-									textContentType="emailAddress"
-									autoCompleteType="email"
-									keyboardType="email-address"
-									returnKeyType="done"
-									maxFontSizeMultiplier={1}
-								/>
-							</Item>
-						</View>
-						<View style={styles.photoContainer}>
-							<Text style={styles.profText}>Profile Pic</Text>
-							<Image
-								style={styles.profile}
-								source={profilePhoto ? {
-									uri: profilePhoto
-								} : defaultProfilePhoto}
+			<HeaderSm style={styles.title} headerTitle="Add New Player" />
+			<ScrollView style={styles.parent}>
+				<Form>
+					<View style={styles.container}>
+						<Text style={styles.text}>Full Name</Text>
+						<Item style={styles.item}>
+							<Input
+								style={nameError ? styles.error : styles.input}
+								onChangeText={(nameVal) => setName(nameVal)}
+								placeholder="Max Power"
+								placeholderTextColor="#c2c2c2"
+								autoCapitalize="words"
+								textContentType="name"
+								autoCompleteType="name"
+								returnKeyType="done"
+								maxFontSizeMultiplier={1}
 							/>
-							<Button transparent onPress={handleChoosePhoto}>
-								<Text uppercase={false} style={styles.profileButton}>Add/Update</Text>
-							</Button>
-						</View>
-						<View style={styles.container}>
-							<ErrorMessage errors={[nameError, emailError]} />
-							<ButtonPrimary
-								title="Add Player"
-								onPress={onSubmit}
+						</Item>
+					</View>
+					<View style={styles.container}>
+						<Text style={styles.text}>Email Address</Text>
+						<Item style={styles.item}>
+							<Input
+								style={emailError ? styles.error : styles.input}
+								onChangeText={(emailVal) => setEmail(emailVal)}
+								placeholder="Max.Power@insight.com"
+								placeholderTextColor="#c2c2c2"
+								autoCapitalize="none"
+								textContentType="emailAddress"
+								autoCompleteType="email"
+								keyboardType="email-address"
+								returnKeyType="done"
+								maxFontSizeMultiplier={1}
 							/>
-							<Button
-								style={styles.cancelButton}
-								transparent
-								onPress={() => (navigation.goBack())}
-							>
-								<Text uppercase={false} style={styles.cancelText}>Cancel</Text>
-							</Button>
-						</View>
-					</Form>
-				</View>
+						</Item>
+					</View>
+					<View style={styles.photoContainer}>
+						<Text style={styles.profText}>Profile Pic</Text>
+						<Image
+							style={styles.profile}
+							source={profilePhoto ? {
+								uri: profilePhoto
+							} : defaultProfilePhoto}
+						/>
+						<Button transparent onPress={() => { setShowModal(true); }}>
+							<Text uppercase={false} style={styles.profileButton}>Add/Update</Text>
+						</Button>
+					</View>
+					<View style={styles.container}>
+						<ErrorMessage errors={[nameError, emailError]} />
+						<ButtonPrimary
+							title="Add Player"
+							onPress={onSubmit}
+						/>
+						<Button
+							style={styles.cancelButton}
+							transparent
+							onPress={() => (navigation.goBack())}
+						>
+							<Text uppercase={false} style={styles.cancelText}>Cancel</Text>
+						</Button>
+					</View>
+				</Form>
+				<BottomModal
+					visible={showModal}
+					onTouchOutside={() => {
+						setShowModal(false);
+					}}
+					rounded={false}
+					modalStyle={{
+						backgroundColor: "transparent"
+					}}
+				>
+					<ModalContent>
+						<Button
+							text="Take Photo"
+							onPress={handleTakePhoto}
+							style={[styles.modalButton, {
+								borderTopLeftRadius: 10,
+								borderTopRightRadius: 10
+							}]}
+						>
+							<Text style={styles.modalButtonText}>Take Photo</Text>
+						</Button>
+						<Button
+							onPress={handleChoosePhoto}
+							style={styles.modalButton}
+						>
+							<Text style={styles.modalButtonText}>Choose From Library</Text>
+						</Button>
+						<Button
+							onPress={handleDeletePhoto}
+							style={[styles.modalButton, {
+								borderBottomLeftRadius: 10,
+								borderBottomRightRadius: 10
+							}]}
+						>
+							<Text style={styles.modalButtonText}>Delete Photo</Text>
+						</Button>
+						<Button
+							onPress={() => {
+								setShowModal(false);
+							}}
+							style={[styles.modalButton, styles.modalCancelButton]}
+						>
+							<Text style={styles.modalButtonText}>Cancel</Text>
+						</Button>
+					</ModalContent>
+				</BottomModal>
 			</ScrollView>
 		</BgImage>
 	);
@@ -215,6 +286,22 @@ const styles = StyleSheet.create({
 		backgroundColor: "rgba(256, 0, 0, 0.2)",
 		padding: 10,
 		marginBottom: 20
+	},
+	modalButton: {
+		justifyContent: "center",
+		alignItems: "center",
+		backgroundColor: "white",
+		borderRadius: 0
+	},
+	modalCancelButton: {
+		marginTop: 10,
+		borderTopWidth: 1,
+		borderColor: "#666666",
+		borderRadius: 10
+	},
+	modalButtonText: {
+		width: "100%",
+		textAlign: "center"
 	}
 });
 

@@ -3,8 +3,9 @@ import { StyleSheet, View, Image } from "react-native";
 import { withNavigation } from "react-navigation";
 import ImagePicker from "react-native-image-crop-picker";
 import { Text, Item, Input, Form, Button } from "native-base";
-
 import { ScrollView } from "react-native-gesture-handler";
+import { BottomModal, ModalContent } from "react-native-modals";
+
 import useQuery from "../hooks/useQuery";
 import findPlayersQuery from "../queries/findPlayers";
 import updatePlayerQuery from "../queries/updatePlayer";
@@ -30,6 +31,7 @@ function ProfileScreen ({ navigation }) {
 	const [emailError, setEmailError] = useState(undefined);
 	const [playerUpdated, setPlayerUpdated] = useState(false);
 	const [playerUpdateObj, setPlayerUpdateObj] = useState(false);
+	const [showModal, setShowModal] = useState(false);
 
 	const [foundPlayer, findPlayerLoading] = useQuery(findPlayersQuery(navigationContext.id));
 	const [updatedPlayer, updatePlayerLoading, updatePlayerError] = useQuery(updatePlayerQuery(playerUpdateObj));
@@ -50,7 +52,7 @@ function ProfileScreen ({ navigation }) {
 				id: navigationContext.id,
 				fullName: (name || foundPlayer.fullName),
 				emailAddress: (email || foundPlayer.emailAddress),
-				profilePhoto
+				profilePhoto: (profilePhoto || "")
 			});
 			if (!updatePlayerError) {
 				setPlayerUpdated(true);
@@ -122,8 +124,35 @@ function ProfileScreen ({ navigation }) {
 			if (image && image.mime && image.data) {
 				setPlayerUpdated(false);
 				setProfilePhoto(`data:${image.mime};base64,${image.data}`);
+				setShowModal(false);
 			}
 		});
+	};
+
+	const handleTakePhoto = () => {
+		ImagePicker.openCamera({
+			useFrontCamera: true,
+			width: 400,
+			height: 400,
+			cropping: true,
+			cropperCircleOverlay: true,
+			compressImageMaxWidth: 100,
+			compressImageMaxHeight: 100,
+			compressImageQuality: 0.25,
+			includeBase64: true
+		}).then((image) => {
+			if (image && image.mime && image.data) {
+				setPlayerUpdated(false);
+				setProfilePhoto(`data:${image.mime};base64,${image.data}`);
+				setShowModal(false);
+			}
+		});
+	};
+
+	const handleDeletePhoto = () => {
+		setPlayerUpdated(false);
+		setProfilePhoto(false);
+		setShowModal(false);
 	};
 
 	if (!foundPlayer || findPlayerLoading) {
@@ -176,11 +205,11 @@ function ProfileScreen ({ navigation }) {
 						<Text style={styles.profText}>Profile Pic</Text>
 						<Image
 							style={styles.profile}
-							source={(profilePhoto || foundPlayer.profilePhoto) ? {
+							source={(profilePhoto === false ? defaultProfilePhoto : (profilePhoto || foundPlayer.profilePhoto) ? {
 								uri: (profilePhoto || foundPlayer.profilePhoto)
-							} : defaultProfilePhoto}
+							} : defaultProfilePhoto)}
 						/>
-						<Button transparent onPress={handleChoosePhoto}>
+						<Button transparent onPress={() => { setShowModal(true); }}>
 							<Text uppercase={false} style={styles.profileButton}>Add/Update</Text>
 						</Button>
 					</View>
@@ -197,6 +226,52 @@ function ProfileScreen ({ navigation }) {
 						</Button>
 					</View>
 				</Form>
+				<BottomModal
+					visible={showModal}
+					onTouchOutside={() => {
+						setShowModal(false);
+					}}
+					rounded={false}
+					modalStyle={{
+						backgroundColor: "transparent"
+					}}
+				>
+					<ModalContent>
+						<Button
+							text="Take Photo"
+							onPress={handleTakePhoto}
+							style={[styles.modalButton, {
+								borderTopLeftRadius: 10,
+								borderTopRightRadius: 10
+							}]}
+						>
+							<Text style={styles.modalButtonText}>Take Photo</Text>
+						</Button>
+						<Button
+							onPress={handleChoosePhoto}
+							style={styles.modalButton}
+						>
+							<Text style={styles.modalButtonText}>Choose From Library</Text>
+						</Button>
+						<Button
+							onPress={handleDeletePhoto}
+							style={[styles.modalButton, {
+								borderBottomLeftRadius: 10,
+								borderBottomRightRadius: 10
+							}]}
+						>
+							<Text style={styles.modalButtonText}>Delete Photo</Text>
+						</Button>
+						<Button
+							onPress={() => {
+								setShowModal(false);
+							}}
+							style={[styles.modalButton, styles.modalCancelButton]}
+						>
+							<Text style={styles.modalButtonText}>Cancel</Text>
+						</Button>
+					</ModalContent>
+				</BottomModal>
 			</ScrollView>
 		</BgImage>
 	);
@@ -273,6 +348,22 @@ const styles = StyleSheet.create({
 	},
 	playerUpdatedText: {
 		marginBottom: 10
+	},
+	modalButton: {
+		justifyContent: "center",
+		alignItems: "center",
+		backgroundColor: "white",
+		borderRadius: 0
+	},
+	modalCancelButton: {
+		marginTop: 10,
+		borderTopWidth: 1,
+		borderColor: "#666666",
+		borderRadius: 10
+	},
+	modalButtonText: {
+		width: "100%",
+		textAlign: "center"
 	}
 });
 
