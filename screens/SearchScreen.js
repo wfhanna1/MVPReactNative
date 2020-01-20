@@ -48,7 +48,8 @@ function SearchScreen () {
 			</View>
 			<View style={{
 				marginTop: 40,
-				marginHorizontal: 10
+				marginHorizontal: 10,
+				height: "50%"
 			}}
 			>
 				<Autocomplete
