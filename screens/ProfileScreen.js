@@ -85,7 +85,7 @@ function ProfileScreen ({ navigation }) {
 				<ButtonPrimary
 					title="Done"
 					onPress={() => {
-						navigationContext.updatePlayers();
+						navigationContext.updatePlayers(playerUpdateObj);
 						navigation.goBack();
 					}}
 				/>
