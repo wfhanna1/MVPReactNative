@@ -52,7 +52,7 @@ function ProfileScreen ({ navigation }) {
 				id: navigationContext.id,
 				fullName: (name || foundPlayer.fullName),
 				emailAddress: (email || foundPlayer.emailAddress),
-				profilePhoto
+				profilePhoto: (profilePhoto || "")
 			});
 			if (!updatePlayerError) {
 				setPlayerUpdated(true);
@@ -124,6 +124,7 @@ function ProfileScreen ({ navigation }) {
 			if (image && image.mime && image.data) {
 				setPlayerUpdated(false);
 				setProfilePhoto(`data:${image.mime};base64,${image.data}`);
+				setShowModal(false);
 			}
 		});
 	};
@@ -141,13 +142,16 @@ function ProfileScreen ({ navigation }) {
 			includeBase64: true
 		}).then((image) => {
 			if (image && image.mime && image.data) {
+				setPlayerUpdated(false);
 				setProfilePhoto(`data:${image.mime};base64,${image.data}`);
+				setShowModal(false);
 			}
 		});
 	};
 
 	const handleDeletePhoto = () => {
-		setProfilePhoto(undefined);
+		setPlayerUpdated(false);
+		setProfilePhoto(false);
 		setShowModal(false);
 	};
 
@@ -201,9 +205,9 @@ function ProfileScreen ({ navigation }) {
 						<Text style={styles.profText}>Profile Pic</Text>
 						<Image
 							style={styles.profile}
-							source={(profilePhoto || foundPlayer.profilePhoto) ? {
+							source={(profilePhoto === false ? defaultProfilePhoto : (profilePhoto || foundPlayer.profilePhoto) ? {
 								uri: (profilePhoto || foundPlayer.profilePhoto)
-							} : defaultProfilePhoto}
+							} : defaultProfilePhoto)}
 						/>
 						<Button transparent onPress={() => { setShowModal(true); }}>
 							<Text uppercase={false} style={styles.profileButton}>Add/Update</Text>

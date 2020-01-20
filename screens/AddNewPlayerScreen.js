@@ -40,7 +40,7 @@ function AddNewPlayerScreen ({ navigation }) {
 				...navigationContext,
 				name,
 				email,
-				profilePhoto: (profilePhoto || false)
+				profilePhoto: (profilePhoto || "")
 			});
 		}
 
@@ -73,6 +73,7 @@ function AddNewPlayerScreen ({ navigation }) {
 		}).then((image) => {
 			if (image && image.mime && image.data) {
 				setProfilePhoto(`data:${image.mime};base64,${image.data}`);
+				setShowModal(false);
 			}
 		});
 	};
@@ -91,6 +92,7 @@ function AddNewPlayerScreen ({ navigation }) {
 		}).then((image) => {
 			if (image && image.mime && image.data) {
 				setProfilePhoto(`data:${image.mime};base64,${image.data}`);
+				setShowModal(false);
 			}
 		});
 	};
