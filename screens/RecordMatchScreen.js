@@ -132,88 +132,6 @@ function RecordMatchScreen ({ navigation }) {
 		return null;
 	};
 
-	const PageContent = () => (
-		<ScrollView keyboardShouldPersistTaps="always">
-			<HeaderSm style={styles.title} headerTitle="Record Match" />
-			<View style={styles.parent}>
-				<Form>
-					<View style={styles.container}>
-						<Text style={styles.text}>Choose a game</Text>
-						<View style={styles.input}>
-							<View style={gameSelectError ? styles.error : null}>
-								<RNPickerSelect
-									style={gameSelectError ? {
-										...pickerSelectStylesError
-									} : {
-										...pickerSelectStyles
-									}}
-									placeholder={{
-										label: "Game name",
-										value: null
-									}}
-									onValueChange={(value) => { setGameSelected(value); setGameSelectError(false); }}
-									items={games.map((item) => (
-										{
-											label: item.name, value: item.id, key: item.id
-										}
-									))}
-								/>
-							</View>
-						</View>
-					</View>
-					<View style={styles.container}>
-						<Text style={styles.text}>Who played?</Text>
-						<View style={playersError ? styles.playerError : styles.item}>
-							<Autocomplete
-								autoCorrect={false}
-								inputContainerStyle={styles.autocompleteInput}
-								data={playersFound}
-								defaultValue={query}
-								value={query}
-								onChangeText={(text) => { setQuery(text); }}
-								autoCapitalize="words"
-								textContentType="name"
-								autoCompleteType="name"
-								returnKeyType="done"
-								placeholder="Search by name or email"
-								renderItem={({ item }) => (
-									<TouchableOpacity onPress={() => {
-										onAddItem(item);
-										setQuery("");
-									}}
-									>
-										<Text style={styles.itemText}>
-											{item.fullName}
-										</Text>
-									</TouchableOpacity>
-								)}
-							/>
-						</View>
-					</View>
-				</Form>
-				<View style={styles.button}>
-					<AddNewPlayerButton arrayData={matchedPlayersArray} />
-				</View>
-				<View style={styles.matchedContainer}>
-					{matchedPlayersArray.length > 0 ? <GrayHeading title="Match Players" /> : null}
-					{matchedPlayersArray.map((player) => <PlayerMatched player={player} setWinLossStatus={setWinLossStatus} removePlayer={removePlayer} key={player.playerId} />)}
-					<ErrorMessage errors={[gameSelectError, playersError, winnersError]} />
-					<ButtonPrimary
-						title="Record Match"
-						onPress={onRecordMatch}
-					/>
-					<Button
-						style={styles.cancelButton}
-						transparent
-						onPress={() => navigation.goBack() && setMatchedPlayersArray([])}
-					>
-						<Text style={styles.cancelText}>Cancel</Text>
-					</Button>
-				</View>
-			</View>
-		</ScrollView>
-	);
-
 	if (!games || gamesLoading || findPlayersLoading) {
 		return (
 			<BlankScreen />
@@ -231,7 +149,85 @@ function RecordMatchScreen ({ navigation }) {
 					enabled
 					keyboardVerticalOffset={100}
 				>
-					<PageContent />
+					<ScrollView keyboardShouldPersistTaps="always">
+						<HeaderSm style={styles.title} headerTitle="Record Match" />
+						<View style={styles.parent}>
+							<Form>
+								<View style={styles.container}>
+									<Text style={styles.text}>Choose a game</Text>
+									<View style={styles.input}>
+										<View style={gameSelectError ? styles.error : null}>
+											<RNPickerSelect
+												style={gameSelectError ? {
+													...pickerSelectStylesError
+												} : {
+													...pickerSelectStyles
+												}}
+												placeholder={{
+													label: "Game name",
+													value: null
+												}}
+												onValueChange={(value) => { setGameSelected(value); setGameSelectError(false); }}
+												items={games.map((item) => (
+													{
+														label: item.name, value: item.id, key: item.id
+													}
+												))}
+											/>
+										</View>
+									</View>
+								</View>
+								<View style={styles.container}>
+									<Text style={styles.text}>Who played?</Text>
+									<View style={playersError ? styles.playerError : styles.item}>
+										<Autocomplete
+											autoCorrect={false}
+											inputContainerStyle={styles.autocompleteInput}
+											data={playersFound}
+											defaultValue={query}
+											value={query}
+											onChangeText={(text) => { setQuery(text); }}
+											autoCapitalize="words"
+											textContentType="name"
+											autoCompleteType="name"
+											returnKeyType="done"
+											placeholder="Search by name or email"
+											renderItem={({ item }) => (
+												<TouchableOpacity onPress={() => {
+													onAddItem(item);
+													setQuery("");
+												}}
+												>
+													<Text style={styles.itemText}>
+														{item.fullName}
+													</Text>
+												</TouchableOpacity>
+											)}
+										/>
+									</View>
+								</View>
+							</Form>
+							<View style={styles.button}>
+								<AddNewPlayerButton arrayData={matchedPlayersArray} />
+							</View>
+							<View style={styles.matchedContainer}>
+								{matchedPlayersArray.length > 0 ? <GrayHeading title="Match Players" /> : null}
+								{matchedPlayersArray.map((player) => <PlayerMatched player={player} setWinLossStatus={setWinLossStatus} removePlayer={removePlayer} key={player.playerId} />)}
+								<ErrorMessage errors={[gameSelectError, playersError, winnersError]} />
+								<ButtonPrimary
+									title="Record Match"
+									onPress={onRecordMatch}
+								/>
+								<Button
+									style={styles.cancelButton}
+									transparent
+									onPress={() => navigation.goBack() && setMatchedPlayersArray([])}
+								>
+									<Text style={styles.cancelText}>Cancel</Text>
+								</Button>
+							</View>
+						</View>
+					</ScrollView>
 				</KeyboardAvoidingView>
 			</BgImage>
 		);
@@ -239,7 +235,85 @@ function RecordMatchScreen ({ navigation }) {
 
 	return (
 		<BgImage>
-			<PageContent />
+			<ScrollView keyboardShouldPersistTaps="always">
+				<HeaderSm style={styles.title} headerTitle="Record Match" />
+				<View style={styles.parent}>
+					<Form>
+						<View style={styles.container}>
+							<Text style={styles.text}>Choose a game</Text>
+							<View style={styles.input}>
+								<View style={gameSelectError ? styles.error : null}>
+									<RNPickerSelect
+										style={gameSelectError ? {
+											...pickerSelectStylesError
+										} : {
+											...pickerSelectStyles
+										}}
+										placeholder={{
+											label: "Game name",
+											value: null
+										}}
+										onValueChange={(value) => { setGameSelected(value); setGameSelectError(false); }}
+										items={games.map((item) => (
+											{
+												label: item.name, value: item.id, key: item.id
+											}
+										))}
+									/>
+								</View>
+							</View>
+						</View>
+						<View style={styles.container}>
+							<Text style={styles.text}>Who played?</Text>
+							<View style={playersError ? styles.playerError : styles.item}>
+								<Autocomplete
+									autoCorrect={false}
+									inputContainerStyle={styles.autocompleteInput}
+									data={playersFound}
+									defaultValue={query}
+									value={query}
+									onChangeText={(text) => { setQuery(text); }}
+									autoCapitalize="words"
+									textContentType="name"
+									autoCompleteType="name"
+									returnKeyType="done"
+									placeholder="Search by name or email"
+									renderItem={({ item }) => (
+										<TouchableOpacity onPress={() => {
+											onAddItem(item);
+											setQuery("");
+										}}
+										>
+											<Text style={styles.itemText}>
+												{item.fullName}
+											</Text>
+										</TouchableOpacity>
+									)}
+								/>
+							</View>
+						</View>
+					</Form>
+					<View style={styles.button}>
+						<AddNewPlayerButton arrayData={matchedPlayersArray} />
+					</View>
+					<View style={styles.matchedContainer}>
+						{matchedPlayersArray.length > 0 ? <GrayHeading title="Match Players" /> : null}
+						{matchedPlayersArray.map((player) => <PlayerMatched player={player} setWinLossStatus={setWinLossStatus} removePlayer={removePlayer} key={player.playerId} />)}
+						<ErrorMessage errors={[gameSelectError, playersError, winnersError]} />
+						<ButtonPrimary
+							title="Record Match"
+							onPress={onRecordMatch}
+						/>
+						<Button
+							style={styles.cancelButton}
+							transparent
+							onPress={() => navigation.goBack() && setMatchedPlayersArray([])}
+						>
+							<Text style={styles.cancelText}>Cancel</Text>
+						</Button>
+					</View>
+				</View>
+			</ScrollView>
 		</BgImage>
 	);
 }
