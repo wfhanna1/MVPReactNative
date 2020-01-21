@@ -92,8 +92,10 @@ function RecordMatchScreen ({ navigation }) {
 			isWinner: false,
 			profilePhoto: player.profilePhoto
 		};
-		setMatchedPlayersArray([addPlayer, ...matchedPlayersArray]);
-		setPlayersError(false);
+		if (!matchedPlayersArray.filter(({ id }) => id === player.id).length) {
+			setMatchedPlayersArray([addPlayer, ...matchedPlayersArray]);
+			setPlayersError(false);
+		}
 	}
 
 	const setWinLossStatus = (playerWinLossStatus, winLoss) => {
