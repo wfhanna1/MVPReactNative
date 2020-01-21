@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, ScrollView, Image } from "react-native";
+import { StyleSheet, View, ScrollView, Image, Platform } from "react-native";
 import { withNavigation } from "react-navigation";
 import ImagePicker from "react-native-image-crop-picker";
 import { Text, Item, Input, Form, Button } from "native-base";
@@ -301,7 +301,12 @@ const styles = StyleSheet.create({
 	},
 	modalButtonText: {
 		width: "100%",
-		textAlign: "center"
+		textAlign: "center",
+		...Platform.select({
+			android: {
+				color: "black"
+			}
+		})
 	}
 });
 
