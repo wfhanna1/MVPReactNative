@@ -82,8 +82,6 @@ function PlayerImage (playerData) {
 		const nameData = playerData.fullName.toString().replace(/[^a-zA-Z\d\s]/g, "").toUpperCase().split(" ");
 		const initials = nameData.map((word) => word.charAt(0)).join("");
 
-		console.log(initials);
-
 		return (
 			<View style={[styles.initials, (playerData.large ? styles.initialsLarge : {
 			}), (playerData.isWinner ? styles.initialsWinner : {
