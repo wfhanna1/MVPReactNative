@@ -363,7 +363,12 @@ const styles = StyleSheet.create({
 	},
 	modalButtonText: {
 		width: "100%",
-		textAlign: "center"
+		textAlign: "center",
+		...Platform.select({
+			android: {
+				color: "#007AFF"
+			}
+		})
 	}
 });
 
