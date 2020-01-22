@@ -73,6 +73,7 @@ function SearchScreen () {
 								name={item.fullName}
 								profilePhoto={item.profilePhoto}
 								updatePlayers={updatePlayers}
+								linkToProfile
 							/>
 						)}
 					/>
