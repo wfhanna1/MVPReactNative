@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
 		alignItems: "flex-start"
 	},
 	name: {
-		fontFamily: "KlinicSlab-Book",
+		fontFamily: "KlinicSlab-Medium",
 		fontSize: 26,
 		fontWeight: "500",
 		letterSpacing: -0.63,

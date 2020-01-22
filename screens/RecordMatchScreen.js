@@ -148,7 +148,7 @@ function RecordMatchScreen ({ navigation }) {
 					}}
 					behavior="padding"
 					enabled
-					keyboardVerticalOffset={100}
+					 keyboardVerticalOffset={100}
 				>
 					<ScrollView keyboardShouldPersistTaps="always">
 						<HeaderSm style={styles.title} headerTitle="Record Match" />
@@ -183,6 +183,10 @@ function RecordMatchScreen ({ navigation }) {
 									<View style={playersError ? styles.playerError : styles.item}>
 										<Autocomplete
 											autoCorrect={false}
+											listStyle={{
+												paddingTop: 10,
+												borderWidth: 0
+											}}
 											inputContainerStyle={styles.autocompleteInput}
 											data={playersFound}
 											defaultValue={query}
@@ -329,15 +333,12 @@ const styles = StyleSheet.create({
 		borderBottomColor: Colors.InsightFuschia,
 		borderBottomWidth: 2
 	},
-	descriptionContainer: {
-		flex: 1,
-		justifyContent: "center"
-	},
 	itemText: {
-		fontSize: 15,
-		paddingTop: 5,
-		paddingBottom: 5,
-		margin: 2
+		fontFamily: "KlinicSlab-Medium",
+		fontSize: 26,
+		fontWeight: "500",
+		letterSpacing: -0.63,
+		 paddingTop: 5
 	},
 	infoText: {
 		textAlign: "center",
