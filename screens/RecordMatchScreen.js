@@ -338,7 +338,7 @@ const styles = StyleSheet.create({
 		fontSize: 26,
 		fontWeight: "500",
 		letterSpacing: -0.63,
-		 paddingTop: 5
+		paddingTop: 5
 	},
 	infoText: {
 		textAlign: "center",
