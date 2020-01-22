@@ -11,7 +11,6 @@ import HeaderLg from "../components/HeaderLarge";
 import BgImage from "../components/backgroundImage";
 import ColorHeading from "../components/ColorHeading";
 import GrayHeading from "../components/GrayHeading";
-import AddNewPlayerButton from "../components/AddNewPlayerButton";
 import Player from "../components/Player";
 
 function HomeScreen () {
@@ -74,9 +73,6 @@ function HomeScreen () {
 				}
 			>
 				<BgImage>
-					<View style={styles.buttonContainer}>
-						<AddNewPlayerButton />
-					</View>
 					<ColorHeading title="Top Player" />
 					<TopPlayer />
 					<GrayHeading title="Ranked Players" />
@@ -98,11 +94,6 @@ function HomeScreen () {
 }
 
 const styles = StyleSheet.create({
-	buttonContainer: {
-		height: 18,
-		marginTop: -15,
-		alignItems: "center"
-	},
 	scrollView: {
 		marginBottom: 250
 	}

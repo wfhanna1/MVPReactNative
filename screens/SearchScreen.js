@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, StatusBar } from "react-native";
+import { View, StatusBar } from "react-native";
 import { withNavigation } from "react-navigation";
 import Autocomplete from "react-native-autocomplete-input";
 import CodePush from "react-native-code-push";
@@ -8,7 +8,6 @@ import useQuery from "../hooks/useQuery";
 import findPlayersQuery from "../queries/findPlayers";
 
 import HeaderLg from "../components/HeaderLarge";
-import AddNewPlayerButton from "../components/AddNewPlayerButton";
 import PlayerSearchResult from "../components/PlayerSearchResult";
 
 function SearchScreen () {
@@ -43,9 +42,6 @@ function SearchScreen () {
 		<View>
 		 <StatusBar barStyle="light-content" translucent />
 			<HeaderLg />
-			<View style={styles.buttonContainer}>
-				<AddNewPlayerButton />
-			</View>
 			<View style={{
 				marginTop: 40,
 				marginHorizontal: 10,
@@ -54,7 +50,6 @@ function SearchScreen () {
 			>
 				<Autocomplete
 					autoCorrect={false}
-					inputContainerStyle={styles.autocompleteInput}
 					listStyle={{
 						paddingTop: 20
 					}}
@@ -81,13 +76,5 @@ function SearchScreen () {
 		</View>
 	);
 }
-
-const styles = StyleSheet.create({
-	buttonContainer: {
-		height: 18,
-		marginTop: -15,
-		alignItems: "center"
-	}
-});
 
 export default withNavigation(SearchScreen);
