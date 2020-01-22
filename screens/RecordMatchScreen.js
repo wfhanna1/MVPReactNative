@@ -325,7 +325,9 @@ const styles = StyleSheet.create({
 		marginTop: "3%"
 	},
 	autocompleteInput: {
-		borderWidth: 0
+		borderWidth: 0,
+		borderBottomColor: Colors.InsightFuschia,
+		borderBottomWidth: 2
 	},
 	descriptionContainer: {
 		flex: 1,
@@ -345,8 +347,6 @@ const styles = StyleSheet.create({
 		marginTop: "-18%"
 	},
 	item: {
-		borderBottomColor: Colors.InsightFuschia,
-		borderBottomWidth: 2,
 		width: "80%"
 	},
 	input: {

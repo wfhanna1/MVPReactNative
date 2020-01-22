@@ -96,7 +96,7 @@ export default function RecentGames () {
 					<View style={styles.buttonContainer}>
 				  <AddNewPlayerButton />
 					</View>
-					<ColorHeading title="Recent Games" style={styles.header} />
+					<ColorHeading title="Recent Games" />
 					{(recentMatchesData || recentMatches).map((recentMatch) => (
 						<View style={styles.wrapper} key={recentMatch.matchId}>
 							<View style={styles.gameDateWrapper}>
