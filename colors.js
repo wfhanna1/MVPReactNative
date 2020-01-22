@@ -1,6 +1,6 @@
 const Colors = {
 	White: "#FFFFFF",
-	AlmostWhite: "F0F0F0",
+	AlmostWhite: "#F0F0F0",
 	LightGray: "#BEBEBB",
 	TabBarGray: "#9B9B9B",
 	MiddleGray: "#666666",
