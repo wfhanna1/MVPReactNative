@@ -10,7 +10,7 @@ import Colors from "../colors";
 import PlayerImage from "./PlayerImage";
 import ResponsiveSize from "../config/getScreenDimensions";
 
-function PlayerSearchResult ({ navigation, id, name, profilePhoto, updatePlayers }) {
+function PlayerSearchResult ({ navigation, id, name, profilePhoto, updatePlayers, linkToProfile }) {
 	const [playerRating, playerRatingLoading] = useQuery(playerRatingQuery(id));
 
 	const Rating = () => {
@@ -25,7 +25,7 @@ function PlayerSearchResult ({ navigation, id, name, profilePhoto, updatePlayers
 		}
 		return null;
 	};
-	return (
+	return linkToProfile ? (
 		<View>
 			<TouchableOpacity
 				onPress={() => navigation.navigate("ProfileScreen", {
@@ -42,6 +42,16 @@ function PlayerSearchResult ({ navigation, id, name, profilePhoto, updatePlayers
 					<Rating />
 				</View>
 			</TouchableOpacity>
+		</View>
+	) : (
+		<View style={styles.playerComponent}>
+			<View style={styles.picture}>
+				<PlayerImage profilePhoto={profilePhoto} fullName={name} />
+			</View>
+			<View>
+				<Text style={styles.name}>{name}</Text>
+				<Rating />
+			</View>
 		</View>
 	);
 }
