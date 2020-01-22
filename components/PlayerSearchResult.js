@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
 		flexDirection: "row"
 	},
 	numberOne: {
-		color: Colors.Fuschia
+		color: Colors.InsightFuschia
 	},
 	picture: {
 		marginTop: -10,

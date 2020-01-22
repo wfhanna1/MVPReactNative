@@ -345,7 +345,7 @@ const styles = StyleSheet.create({
 		marginTop: "-18%"
 	},
 	item: {
-		borderBottomColor: Colors.Fuschia,
+		borderBottomColor: Colors.InsightFuschia,
 		borderBottomWidth: 2,
 		width: "80%"
 	},
@@ -364,14 +364,6 @@ const styles = StyleSheet.create({
 		alignSelf: "flex-start",
 		marginLeft: "11%"
 	},
-	icon: {
-		color: Colors.Blue,
-		fontSize: 15,
-		position: "absolute",
-		marginTop: 15,
-		marginLeft: "95%",
-		zIndex: 10
-	},
 	button: {
 		marginLeft: "6%",
 		marginBottom: "2%",
@@ -383,7 +375,7 @@ const styles = StyleSheet.create({
 	cancelText: {
 		letterSpacing: -0.52,
 		fontWeight: "300",
-		color: Colors.Blue,
+		color: Colors.LinkBlue,
 		fontSize: ResponsiveSize(23.4),
 		marginLeft: -17
 	},
@@ -401,7 +393,7 @@ const styles = StyleSheet.create({
 	playerError: {
 		borderWidth: 2,
 		borderColor: Colors.Red,
-		borderBottomColor: Colors.Fuschia,
+		borderBottomColor: Colors.InsightFuschia,
 		borderBottomWidth: 2,
 		width: "80%"
 	},
@@ -423,7 +415,7 @@ const pickerSelectStyles = StyleSheet.create({
 		paddingHorizontal: 10,
 		marginTop: 12,
 		marginLeft: "11%",
-		borderBottomColor: Colors.Fuschia,
+		borderBottomColor: Colors.InsightFuschia,
 		color: Colors.Black
 	},
 	inputAndroid: {
@@ -443,7 +435,7 @@ const pickerSelectStylesError = StyleSheet.create({
 		borderBottomWidth: 2,
 		height: 46,
 		width: "100%",
-		borderBottomColor: Colors.Fuschia,
+		borderBottomColor: Colors.InsightFuschia,
 		color: Colors.Black
 	}
 });

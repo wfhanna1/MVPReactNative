@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 		fontSize: ResponsiveSize(8.3),
 		fontFamily: "KlinicSlab-Medium",
-		color: Colors.Fuschia,
+		color: Colors.InsightFuschia,
 		fontWeight: "500",
 		lineHeight: 54,
 		letterSpacing: -1.46

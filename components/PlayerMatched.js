@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
 	buttonText: {
 		letterSpacing: -0.52,
 		fontWeight: "300",
-		color: Colors.Blue,
+		color: Colors.LinkBlue,
 		fontSize: 16,
 		marginLeft: -17,
 		alignSelf: "flex-start"
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
 		fontWeight: "bold"
 	},
 	loserSelected: {
-		color: Colors.Fuschia,
+		color: Colors.InsightFuschia,
 		fontSize: 25,
 		fontWeight: "bold"
 	},

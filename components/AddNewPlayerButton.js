@@ -28,11 +28,11 @@ function AddNewPlayerButton ({ navigation, arrayData }) {
 
 const styles = StyleSheet.create({
 	text: {
-		color: Colors.Blue,
+		color: Colors.LinkBlue,
 		fontSize: ResponsiveSize(23.44)
 	},
 	icon: {
-		color: Colors.Blue,
+		color: Colors.LinkBlue,
 		fontSize: 15
 	}
 });
