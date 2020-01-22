@@ -3,6 +3,8 @@ import { StyleSheet } from "react-native";
 import { Text } from "native-base";
 import ResponsiveSize from "../config/getScreenDimensions";
 
+import Colors from "../colors";
+
 export default function ColorHeading ({ title }) {
 	return (
 		<Text style={styles.title}>
@@ -19,7 +21,7 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 		fontSize: ResponsiveSize(8.3),
 		fontFamily: "KlinicSlab-Medium",
-		color: "#B73491",
+		color: Colors.Fuschia,
 		fontWeight: "500",
 		lineHeight: 54,
 		letterSpacing: -1.46

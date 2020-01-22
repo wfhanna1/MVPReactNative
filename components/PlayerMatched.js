@@ -1,6 +1,8 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { Text, Button } from "native-base";
+
+import Colors from "../colors";
 import PlayerImage from "./PlayerImage";
 
 export default function PlayerMatched ({ player, setWinLossStatus, removePlayer }) {
@@ -71,30 +73,30 @@ const styles = StyleSheet.create({
 	},
 	points: {
 		fontSize: 16,
-		color: "#399D60",
+		color: Colors.Green,
 		letterSpacing: -0.7,
 		marginBottom: -5
 	},
 	buttonText: {
 		letterSpacing: -0.52,
 		fontWeight: "300",
-		color: "#4166AA",
+		color: Colors.Blue,
 		fontSize: 16,
 		marginLeft: -17,
 		alignSelf: "flex-start"
 	},
 	winnerSelected: {
-		color: "#399D60",
+		color: Colors.Green,
 		fontSize: 25,
 		fontWeight: "bold"
 	},
 	loserSelected: {
-		color: "#B73491",
+		color: Colors.Fuschia,
 		fontSize: 25,
 		fontWeight: "bold"
 	},
 	unselected: {
-		color: "#6E645F",
+		color: Colors.MiddleGray,
 		fontSize: 25,
 		fontWeight: "300"
 	}

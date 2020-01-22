@@ -5,6 +5,7 @@ import ImagePicker from "react-native-image-crop-picker";
 import { Text, Item, Input, Form, Button } from "native-base";
 import { BottomModal, ModalContent } from "react-native-modals";
 
+import Colors from "../colors";
 import HeaderSm from "../components/HeaderSmall";
 import BgImage from "../components/backgroundImage";
 import ButtonPrimary from "../components/ButtonPrimary";
@@ -174,7 +175,7 @@ function AddNewPlayerScreen ({ navigation }) {
 					}}
 					rounded={false}
 					modalStyle={{
-						backgroundColor: "transparent"
+						backgroundColor: Colors.Transparent
 					}}
 				>
 					<ModalContent>
@@ -233,7 +234,7 @@ const styles = StyleSheet.create({
 		borderRadius: 100
 	},
 	item: {
-		borderBottomColor: "#B73491",
+		borderBottomColor: Colors.Fuschia,
 		borderBottomWidth: 2,
 		width: "80%"
 	},
@@ -251,12 +252,12 @@ const styles = StyleSheet.create({
 	profText: {
 		fontFamily: "KlinicSlab-Medium",
 		fontSize: ResponsiveSize(14.4),
-		color: "#222222",
+		color: Colors.DarkGray,
 		fontWeight: "500",
 		letterSpacing: -0.63
 	},
 	profileButton: {
-		color: "#4166AA",
+		color: Colors.Blue,
 		fontSize: ResponsiveSize(24)
 	},
 	text: {
@@ -273,30 +274,30 @@ const styles = StyleSheet.create({
 	cancelText: {
 		letterSpacing: -0.52,
 		fontWeight: "300",
-		color: "#4166AA",
+		color: Colors.Blue,
 		fontSize: ResponsiveSize(23.4),
 		marginLeft: -17
 	},
 	error: {
 		borderWidth: 2,
-		borderColor: "red",
-		color: "red"
+		borderColor: Colors.Red,
+		color: Colors.Red
 	},
 	errorMessages: {
-		backgroundColor: "rgba(256, 0, 0, 0.2)",
+		backgroundColor: Colors.TransparentRed,
 		padding: 10,
 		marginBottom: 20
 	},
 	modalButton: {
 		justifyContent: "center",
 		alignItems: "center",
-		backgroundColor: "white",
+		backgroundColor: Colors.White,
 		borderRadius: 0
 	},
 	modalCancelButton: {
 		marginTop: 10,
 		borderTopWidth: 1,
-		borderColor: "#666666",
+		borderColor: Colors.MiddleGray,
 		borderRadius: 10
 	},
 	modalButtonText: {
@@ -304,7 +305,7 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 		...Platform.select({
 			android: {
-				color: "black"
+				color: Colors.Blue
 			}
 		})
 	}

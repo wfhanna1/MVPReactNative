@@ -6,6 +6,7 @@ import { Text } from "native-base";
 import useQuery from "../hooks/useQuery";
 import addPlayerQuery from "../queries/addPlayer";
 
+import Colors from "../colors";
 import BlankScreen from "./BlankScreen";
 import HeaderSm from "../components/HeaderSmall";
 import BgImage from "../components/backgroundImage";
@@ -108,7 +109,7 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 		fontSize: 16,
 		fontWeight: "bold",
-		color: "#6E645F",
+		color: Colors.MiddleGray,
 		letterSpacing: -0.57
 	},
 	gameMargin: {

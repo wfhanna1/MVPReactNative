@@ -6,6 +6,7 @@ import useQuery from "../hooks/useQuery";
 import recordMatchQuery from "../queries/recordMatch";
 import gamesQuery from "../queries/games";
 
+import Colors from "../colors";
 import BlankScreen from "./BlankScreen";
 import HeaderSm from "../components/HeaderSmall";
 import BgImage from "../components/backgroundImage";
@@ -72,7 +73,7 @@ const styles = StyleSheet.create({
 		alignItems: "center"
 	},
 	input: {
-		borderBottomColor: "red",
+		borderBottomColor: Colors.Red,
 		width: "80%"
 	},
 	text: {

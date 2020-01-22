@@ -1,6 +1,8 @@
 import React from "react";
 import { StyleSheet, ImageBackground, Image, View, Text } from "react-native";
 
+import Colors from "../colors";
+
 const bgImage = require("../assets/icons/Wave-Background.png");
 const trophyImage = require("../assets/icons/Icon-Trophy-Large.png");
 
@@ -37,7 +39,7 @@ const styles = StyleSheet.create({
 		fontWeight: "500",
 		letterSpacing: -1.4,
 		fontSize: 45,
-		color: "#FFFFFF",
+		color: Colors.White,
 		marginTop: "-30%",
 		alignSelf: "center"
 	}

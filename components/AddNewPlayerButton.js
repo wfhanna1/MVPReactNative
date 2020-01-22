@@ -4,6 +4,8 @@ import { Button, Text, Icon } from "native-base";
 import { withNavigation } from "react-navigation";
 import ResponsiveSize from "../config/getScreenDimensions";
 
+import Colors from "../colors";
+
 function AddNewPlayerButton ({ navigation, arrayData }) {
 	const navigationContext = navigation.state.params || {
 	};
@@ -26,11 +28,11 @@ function AddNewPlayerButton ({ navigation, arrayData }) {
 
 const styles = StyleSheet.create({
 	text: {
-		color: "#4166AA",
+		color: Colors.Blue,
 		fontSize: ResponsiveSize(23.44)
 	},
 	icon: {
-		color: "#4166AA",
+		color: Colors.Blue,
 		fontSize: 15
 	}
 });
