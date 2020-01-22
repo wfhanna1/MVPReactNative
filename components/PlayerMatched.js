@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
 		fontWeight: "bold"
 	},
 	loserSelected: {
-		color: Colors.Highlight,
+		color: Colors.InsightFuschia,
 		fontSize: 25,
 		fontWeight: "bold"
 	},

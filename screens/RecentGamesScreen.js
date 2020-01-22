@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
 	versus: {
 		fontFamily: "KlinicSlab-Medium",
 		fontSize: ResponsiveSize(8.3),
-		color: Colors.Highlight,
+		color: Colors.InsightFuschia,
 		position: "absolute",
 		top: 15
 	},
@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
 		fontSize: 20,
 		textDecorationLine: "line-through",
 		textDecorationStyle: "solid",
-		color: Colors.Highlight
+		color: Colors.InsightFuschia
 	},
 	gameSeparator: {
 		width: "90%",

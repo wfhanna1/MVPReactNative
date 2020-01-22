@@ -234,7 +234,7 @@ const styles = StyleSheet.create({
 		borderRadius: 100
 	},
 	item: {
-		borderBottomColor: Colors.Highlight,
+		borderBottomColor: Colors.InsightFuschia,
 		borderBottomWidth: 2,
 		width: "80%"
 	},

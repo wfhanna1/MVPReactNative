@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 		fontSize: 45,
 		fontFamily: "KlinicSlab-Book",
-		color: Colors.Highlight,
+		color: Colors.InsightFuschia,
 		fontWeight: "500",
 		lineHeight: 54,
 		letterSpacing: -1.46

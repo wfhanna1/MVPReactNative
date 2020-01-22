@@ -6,7 +6,7 @@ const Colors = {
 	DarkGray: "#222222",
 	Black: "#000000",
 
-	Highlight: "#B73491",
+	InsightFuschia: "#B73491",
 	LinkBlue: "#007AFF",
 	Green: "#399D60",
 	Red: "#EB1E45",

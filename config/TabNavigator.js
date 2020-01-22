@@ -179,7 +179,7 @@ const Tab = createBottomTabNavigator(
 				fontSize: 13,
 				margin: -10
 			},
-			activeTintColor: Colors.Highlight,
+			activeTintColor: Colors.InsightFuschia,
 			inactiveTintColor: Colors.LightGray,
 			showIcon: true
 		},
