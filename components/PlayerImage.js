@@ -2,6 +2,8 @@ import React from "react";
 import { View, Text, Image, StyleSheet, Platform } from "react-native";
 import ResponsiveSize from "../config/getScreenDimensions";
 
+import Colors from "../colors";
+
 const defaultPlayerImage = require("../assets/icons/Default-user.png");
 
 const styles = StyleSheet.create({
@@ -11,7 +13,7 @@ const styles = StyleSheet.create({
 		borderWidth: 3,
 		borderRadius: 100,
 		marginBottom: 5,
-		borderColor: "#BEBEBB"
+		borderColor: Colors.LightGray
 	},
 	initialsLarge: {
 		height: 130,
@@ -20,14 +22,14 @@ const styles = StyleSheet.create({
 		borderRadius: 100
 	},
 	initialsWinner: {
-		borderColor: "#399D60"
+		borderColor: Colors.Green
 	},
 	initialsText: {
 		fontFamily: "KlinicSlab-Bold",
 		fontSize: ResponsiveSize(10.4),
 		letterSpacing: -0.63,
 		height: 75,
-		color: "#BEBEBB",
+		color: Colors.LightGray,
 		textAlign: "center",
 		marginHorizontal: -3,
 		...Platform.select({
@@ -59,7 +61,7 @@ const styles = StyleSheet.create({
 		resizeMode: "contain"
 	},
 	pictureWinner: {
-		borderColor: "#399D60",
+		borderColor: Colors.Green,
 		borderWidth: 5,
 		borderRadius: 100
 	}

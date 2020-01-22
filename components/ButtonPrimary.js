@@ -5,6 +5,8 @@ import LinearGradient from "react-native-linear-gradient";
 import { withNavigation } from "react-navigation";
 import ResponsiveSize from "../config/getScreenDimensions";
 
+import Colors from "../colors";
+
 function ButtonPrimary ({ onPress, title }) {
 	return (
 		<View style={styles.container}>
@@ -30,7 +32,7 @@ function ButtonPrimary ({ onPress, title }) {
 const styles = StyleSheet.create({
 	container: {
 		alignItems: "center",
-		shadowColor: "rgba(0,0,0,0.3)",
+		shadowColor: Colors.TransparentBlack,
 		shadowOffset: {
 			width: 0, height: 1
 		},
@@ -56,7 +58,7 @@ const styles = StyleSheet.create({
 	},
 	button: {
 		alignItems: "center",
-		backgroundColor: "transparent",
+		backgroundColor: Colors.Transparent,
 		height: ResponsiveSize(6.9)
 	}
 });

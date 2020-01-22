@@ -3,6 +3,8 @@ import { StyleSheet } from "react-native";
 import { Text } from "native-base";
 import ResponsiveSize from "../config/getScreenDimensions";
 
+import Colors from "../colors";
+
 export default function GrayHeading ({ title }) {
 	return (
 		<Text style={styles.title}>
@@ -16,7 +18,7 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 		fontSize: ResponsiveSize(8.3),
 		fontFamily: "KlinicSlab-Medium",
-		color: "#6E645F",
+		color: Colors.MiddleGray,
 		fontWeight: "500",
 		letterSpacing: -1.46,
 		marginBottom: "4%"

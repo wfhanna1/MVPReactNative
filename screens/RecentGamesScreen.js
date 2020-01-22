@@ -6,6 +6,7 @@ import useQuery from "../hooks/useQuery";
 import recentMatchesQuery from "../queries/recentMatches";
 import updateRecentGames from "../queries/updateRecentMatches";
 
+import Colors from "../colors";
 import BlankScreen from "./BlankScreen";
 import HeaderLg from "../components/HeaderLarge";
 import BgImage from "../components/backgroundImage";
@@ -148,11 +149,11 @@ const styles = StyleSheet.create({
 	game: {
 		fontFamily: "KlinicSlab-Medium",
 		fontSize: ResponsiveSize(10.7),
-		color: "#222222",
+		color: Colors.DarkGray,
 		letterSpacing: -1.14
 	},
 	date: {
-		color: "#6E645F",
+		color: Colors.MiddleGray,
 		fontSize: ResponsiveSize(23.4),
 		letterSpacing: -0.57,
 		fontWeight: "bold",
@@ -174,7 +175,7 @@ const styles = StyleSheet.create({
 	versus: {
 		fontFamily: "KlinicSlab-Medium",
 		fontSize: ResponsiveSize(8.3),
-		color: "#B73491",
+		color: Colors.Fuschia,
 		position: "absolute",
 		top: 15
 	},
@@ -187,18 +188,18 @@ const styles = StyleSheet.create({
 		fontSize: 20,
 		textDecorationLine: "line-through",
 		textDecorationStyle: "solid",
-		color: "#B73491"
+		color: Colors.Fuschia
 	},
 	gameSeparator: {
 		width: "90%",
 		borderBottomWidth: 3,
-		borderBottomColor: "#BEBEBB",
+		borderBottomColor: Colors.LightGray,
 	  marginVertical: 30
 	},
 	tieGame: {
 		fontFamily: "KlinicSlab-Medium",
 		fontSize: 28,
-		color: "#399D60",
+		color: Colors.Green,
 		letterSpacing: -1.14,
 		width: "100%",
 		textAlign: "center",

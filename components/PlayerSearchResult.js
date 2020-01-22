@@ -6,6 +6,7 @@ import { withNavigation } from "react-navigation";
 import useQuery from "../hooks/useQuery";
 import playerRatingQuery from "../queries/playerRating";
 
+import Colors from "../colors";
 import PlayerImage from "./PlayerImage";
 import ResponsiveSize from "../config/getScreenDimensions";
 
@@ -52,23 +53,11 @@ const styles = StyleSheet.create({
 		flexDirection: "row"
 	},
 	numberOne: {
-		color: "#B73491"
-	},
-	number: {
-		fontFamily: "KlinicSlab-Medium",
-		fontSize: ResponsiveSize(8.3),
-		fontWeight: "500",
-		color: "#6E645F"
+		color: Colors.Fuschia
 	},
 	picture: {
 		marginTop: -10,
 		marginHorizontal: "4%"
-	},
-	game: {
-		fontSize: ResponsiveSize(23.4),
-		fontWeight: "bold",
-		color: "#6E645F",
-		letterSpacing: -0.57
 	},
 	name: {
 		fontFamily: "KlinicSlab-Medium",
@@ -78,7 +67,7 @@ const styles = StyleSheet.create({
 	},
 	points: {
 		fontSize: ResponsiveSize(23.4),
-		color: "#399D60",
+		color: Colors.Green,
 		letterSpacing: -0.7
 	}
 });
