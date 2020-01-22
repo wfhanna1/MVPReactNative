@@ -92,6 +92,12 @@ const Search = createStackNavigator({
 			header: null
 		}
 	},
+	Players: {
+		screen: PlayersScreen,
+		navigationOptions: {
+			header: null
+		}
+	},
 	Loading: {
 		screen: LoadingScreen,
 		navigationOptions: {
@@ -133,6 +139,12 @@ const Games = createStackNavigator({
 	},
 	MatchRecorded: {
 		screen: MatchRecordedScreen,
+		navigationOptions: {
+			header: null
+		}
+	},
+	Players: {
+		screen: PlayersScreen,
 		navigationOptions: {
 			header: null
 		}
