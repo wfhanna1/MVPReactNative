@@ -183,6 +183,10 @@ function RecordMatchScreen ({ navigation }) {
 									<View style={playersError ? styles.playerError : styles.item}>
 										<Autocomplete
 											autoCorrect={false}
+											listStyle={{
+												paddingTop: 10,
+												borderWidth: 0
+											}}
 											inputContainerStyle={styles.autocompleteInput}
 											data={playersFound}
 											defaultValue={query}
@@ -325,17 +329,16 @@ const styles = StyleSheet.create({
 		marginTop: "3%"
 	},
 	autocompleteInput: {
-		borderWidth: 0
-	},
-	descriptionContainer: {
-		flex: 1,
-		justifyContent: "center"
+		borderWidth: 0,
+		borderBottomColor: Colors.InsightFuschia,
+		borderBottomWidth: 2
 	},
 	itemText: {
-		fontSize: 15,
-		paddingTop: 5,
-		paddingBottom: 5,
-		margin: 2
+		fontFamily: "KlinicSlab-Medium",
+		fontSize: 26,
+		fontWeight: "500",
+		letterSpacing: -0.63,
+		paddingTop: 5
 	},
 	infoText: {
 		textAlign: "center",
@@ -345,8 +348,6 @@ const styles = StyleSheet.create({
 		marginTop: "-18%"
 	},
 	item: {
-		borderBottomColor: Colors.InsightFuschia,
-		borderBottomWidth: 2,
 		width: "80%"
 	},
 	input: {

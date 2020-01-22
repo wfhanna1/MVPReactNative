@@ -92,7 +92,7 @@ export default function RecentGames () {
 				}
 			>
 				<BgImage>
-					<ColorHeading title="Recent Games" style={styles.header} />
+					<ColorHeading title="Recent Games" />
 					{(recentMatchesData || recentMatches).map((recentMatch) => (
 						<View style={styles.wrapper} key={recentMatch.matchId}>
 							<View style={styles.gameDateWrapper}>
