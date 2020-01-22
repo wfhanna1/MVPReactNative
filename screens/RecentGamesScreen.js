@@ -53,7 +53,7 @@ export default function RecentGames () {
 		const { losers } = props;
 		const { winners } = props;
 
-		if ((losers.length === 1 && winners.length === 1) || (losers.length === 0 && winners.length <= 2)) {
+		if ((losers.length === 1 && winners.length === 1) || (losers.length === 0 && winners.length === 2)) {
 			return (
 			     <Text style={[styles.versus, styles.versusPadding]}>vs</Text>
 			);
