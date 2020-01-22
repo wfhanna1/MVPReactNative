@@ -148,7 +148,7 @@ function RecordMatchScreen ({ navigation }) {
 					}}
 					behavior="padding"
 					enabled
-					 keyboardVerticalOffset={100}
+					keyboardVerticalOffset={100}
 				>
 					<ScrollView keyboardShouldPersistTaps="always">
 						<HeaderSm style={styles.title} headerTitle="Record Match" />
