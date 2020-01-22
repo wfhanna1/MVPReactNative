@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
 		flexDirection: "row"
 	},
 	numberOne: {
-		color: Colors.Fuschia
+		color: Colors.Highlight
 	},
 	number: {
 		fontFamily: "KlinicSlab-Medium",

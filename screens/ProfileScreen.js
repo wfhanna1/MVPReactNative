@@ -293,7 +293,7 @@ const styles = StyleSheet.create({
 		borderRadius: 100
 	},
 	item: {
-		borderBottomColor: Colors.Fuschia,
+		borderBottomColor: Colors.Highlight,
 		borderBottomWidth: 2,
 		width: "80%"
 	},
@@ -316,7 +316,7 @@ const styles = StyleSheet.create({
 		letterSpacing: -0.63
 	},
 	profileButton: {
-		color: Colors.Blue,
+		color: Colors.LinkBlue,
 		fontSize: ResponsiveSize(24)
 	},
 	text: {
@@ -333,7 +333,7 @@ const styles = StyleSheet.create({
 	cancelText: {
 		letterSpacing: -0.52,
 		fontWeight: "300",
-		color: Colors.Blue,
+		color: Colors.LinkBlue,
 		fontSize: ResponsiveSize(23.4),
 		marginLeft: -17
 	},
@@ -367,7 +367,7 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 		...Platform.select({
 			android: {
-				color: Colors.Blue
+				color: Colors.LinkBlue
 			}
 		})
 	}
