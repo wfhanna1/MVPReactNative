@@ -68,6 +68,26 @@ const styles = StyleSheet.create({
 });
 
 function PlayerImage (playerData) {
+	const Initials = ({ initials }) => {
+		if (initials.length > 1) {
+			return (
+				<Text style={[styles.initialsText, (playerData.large ? styles.initialsTextLarge : {
+				})]}
+				>
+					{initials[0]}
+					{initials[(initials.length - 1)]}
+				</Text>
+			);
+		}
+		return (
+			<Text style={[styles.initialsText, (playerData.large ? styles.initialsTextLarge : {
+			})]}
+			>
+				{initials[0]}
+			</Text>
+		);
+	};
+
 	if (playerData.profilePhoto) {
 		return (
 			<Image
@@ -89,12 +109,7 @@ function PlayerImage (playerData) {
 			}), (playerData.isWinner ? styles.initialsWinner : {
 			})]}
 			>
-				<Text style={[styles.initialsText, (playerData.large ? styles.initialsTextLarge : {
-				})]}
-				>
-					{initials[0]}
-					{initials[(initials.length - 1)]}
-				</Text>
+				<Initials initials={initials} />
 			</View>
 		);
 	}

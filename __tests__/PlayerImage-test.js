@@ -8,6 +8,7 @@ import "react-native";
 import renderer from "react-test-renderer";
 import PlayerImage from "../components/PlayerImage";
 import ResponsiveSize from "../config/getScreenDimensions";
+import Colors from "../colors";
 
 it("renders correctly", () => {
 	renderer.create(<PlayerImage />);
@@ -44,7 +45,7 @@ it("renders correctly with data - winner", () => {
 	expect(tree.props.style[0].height).toEqual(ResponsiveSize(5));
 	expect(tree.props.style[0].width).toEqual(ResponsiveSize(5));
 	expect(tree.props.style[0].borderWidth).toEqual(3);
-	expect(tree.props.style[2].borderColor).toEqual("#399D60");
+	expect(tree.props.style[2].borderColor).toEqual(Colors.Green);
 });
 
 it("renders correctly with data - winner large", () => {
@@ -55,7 +56,7 @@ it("renders correctly with data - winner large", () => {
 	expect(tree.props.style[1].height).toEqual(130);
 	expect(tree.props.style[1].width).toEqual(130);
 	expect(tree.props.style[1].borderWidth).toEqual(7);
-	expect(tree.props.style[2].borderColor).toEqual("#399D60");
+	expect(tree.props.style[2].borderColor).toEqual(Colors.Green);
 });
 
 it("renders correctly with data - initials", () => {
@@ -88,7 +89,7 @@ it("renders correctly with data - initials winner", () => {
 	expect(tree.props.style[0].height).toEqual(ResponsiveSize(5));
 	expect(tree.props.style[0].width).toEqual(ResponsiveSize(5));
 	expect(tree.props.style[0].borderWidth).toEqual(3);
-	expect(tree.props.style[2].borderColor).toEqual("#399D60");
+	expect(tree.props.style[2].borderColor).toEqual(Colors.Green);
 });
 
 it("renders correctly with data - initials winner large", () => {
@@ -101,7 +102,7 @@ it("renders correctly with data - initials winner large", () => {
 	expect(tree.props.style[1].height).toEqual(130);
 	expect(tree.props.style[1].width).toEqual(130);
 	expect(tree.props.style[1].borderWidth).toEqual(7);
-	expect(tree.props.style[2].borderColor).toEqual("#399D60");
+	expect(tree.props.style[2].borderColor).toEqual(Colors.Green);
 });
 
 it("renders correctly with data - many initials", () => {
@@ -109,4 +110,10 @@ it("renders correctly with data - many initials", () => {
 	expect(tree).toMatchSnapshot();
 	expect(tree.children[0].children[0]).toEqual("F");
 	expect(tree.children[0].children[1]).toEqual("J");
+});
+
+it("renders correctly with data - single word", () => {
+	const tree = renderer.create(<PlayerImage fullName="foo" isWinner large />).toJSON();
+	expect(tree).toMatchSnapshot();
+	expect(tree.children[0].children).toEqual(["F"]);
 });
