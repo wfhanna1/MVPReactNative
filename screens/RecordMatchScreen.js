@@ -9,6 +9,7 @@ import useQuery from "../hooks/useQuery";
 import gamesQuery from "../queries/games";
 import findPlayersQuery from "../queries/findPlayers";
 
+import Colors from "../colors";
 import BlankScreen from "./BlankScreen";
 import HeaderSm from "../components/HeaderSmall";
 import BgImage from "../components/backgroundImage";
@@ -270,7 +271,7 @@ const styles = StyleSheet.create({
 		marginTop: "-18%"
 	},
 	item: {
-		borderBottomColor: "#B73491",
+		borderBottomColor: Colors.Fuschia,
 		borderBottomWidth: 2,
 		width: "80%"
 	},
@@ -290,7 +291,7 @@ const styles = StyleSheet.create({
 		marginLeft: "11%"
 	},
 	icon: {
-		color: "#4166AA",
+		color: Colors.Blue,
 		fontSize: 15,
 		position: "absolute",
 		marginTop: 15,
@@ -308,7 +309,7 @@ const styles = StyleSheet.create({
 	cancelText: {
 		letterSpacing: -0.52,
 		fontWeight: "300",
-		color: "#4166AA",
+		color: Colors.Blue,
 		fontSize: ResponsiveSize(23.4),
 		marginLeft: -17
 	},
@@ -320,18 +321,18 @@ const styles = StyleSheet.create({
 		width: "78%",
 		marginLeft: "11%",
 		borderWidth: 2,
-		borderColor: "red",
+		borderColor: Colors.Red,
 		marginTop: 12
 	},
 	playerError: {
 		borderWidth: 2,
-		borderColor: "red",
-		borderBottomColor: "#B73491",
+		borderColor: Colors.Red,
+		borderBottomColor: Colors.Fuschia,
 		borderBottomWidth: 2,
 		width: "80%"
 	},
 	errorMessages: {
-		backgroundColor: "rgba(256, 0, 0, 0.2)",
+		backgroundColor: Colors.TransparentRed,
 		padding: 10,
 		marginBottom: 20
 	}
@@ -348,8 +349,8 @@ const pickerSelectStyles = StyleSheet.create({
 		paddingHorizontal: 10,
 		marginTop: 12,
 		marginLeft: "11%",
-		borderBottomColor: "#B73491",
-		color: "black"
+		borderBottomColor: Colors.Fuschia,
+		color: Colors.Black
 	},
 	inputAndroid: {
 		marginTop: 10,
@@ -368,8 +369,8 @@ const pickerSelectStylesError = StyleSheet.create({
 		borderBottomWidth: 2,
 		height: 46,
 		width: "100%",
-		borderBottomColor: "#B73491",
-		color: "black"
+		borderBottomColor: Colors.Fuschia,
+		color: Colors.Black
 	}
 });
 

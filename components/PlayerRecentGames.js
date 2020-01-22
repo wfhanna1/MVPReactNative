@@ -2,10 +2,13 @@ import React from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "native-base";
 import { withNavigation } from "react-navigation";
-import PlayerImage from "./PlayerImage";
+
+import ResponsiveSize from "../config/getScreenDimensions";
 import useQuery from "../hooks/useQuery";
 import findPlayersQuery from "../queries/findPlayers";
-import ResponsiveSize from "../config/getScreenDimensions";
+
+import Colors from "../colors";
+import PlayerImage from "./PlayerImage";
 
 function PlayerRecentGames (data) {
 	const { navigation } = data;
@@ -47,7 +50,7 @@ const styles = StyleSheet.create({
 	},
 	points: {
 		fontSize: ResponsiveSize(23.4),
-		color: "#399D60",
+		color: Colors.Green,
 		letterSpacing: -0.7,
 		marginBottom: -5
 	}

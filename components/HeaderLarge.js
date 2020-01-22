@@ -4,6 +4,8 @@ import { withNavigation } from "react-navigation";
 import ResponsiveSize from "../config/getScreenDimensions";
 import ButtonPrimary from "./ButtonPrimary";
 
+import Colors from "../colors";
+
 const headerImageLg = require("../assets/icons/Header-Background-Large2x.png");
 
 function HeaderLg ({ navigation }) {
@@ -39,7 +41,8 @@ const styles = StyleSheet.create({
 		fontWeight: "400",
 		letterSpacing: -2.4,
 		fontSize: ResponsiveSize(5),
-		color: "#FFFFFF",
+		color: Colors.White,
+
 		marginTop: "-20%"
 	},
 	container: {

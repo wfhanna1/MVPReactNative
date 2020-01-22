@@ -3,6 +3,8 @@ import { createAppContainer } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { createStackNavigator } from "react-navigation-stack";
 import Icon from "react-native-vector-icons/FontAwesome";
+
+import Colors from "../colors";
 import PlayersScreen from "../screens/HomeScreen";
 import SearchScreen from "../screens/SearchScreen";
 import GamesScreen from "../screens/RecentGamesScreen";
@@ -157,16 +159,16 @@ const Tab = createBottomTabNavigator(
 	}, {
 		tabBarOptions: {
 			style: {
-				backgroundColor: "#F0F0F0",
-				borderTopColor: "transparent",
+				backgroundColor: Colors.AlmostWhite,
+				borderTopColor: Colors.Transparent,
 				height: 55
 			},
 			labelStyle: {
 				fontSize: 13,
 				margin: -10
 			},
-			activeTintColor: "#B73491",
-			inactiveTintColor: "#9B9B9B",
+			activeTintColor: Colors.Fuschia,
+			inactiveTintColor: Colors.TabBarGray,
 			showIcon: true
 		},
 		defaultNavigationOptions: ({ navigation }) => ({
