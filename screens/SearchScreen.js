@@ -56,7 +56,8 @@ function SearchScreen () {
 						inputContainerStyle={styles.autocompleteInput}
 						listStyle={{
 							paddingTop: 20,
-							borderWidth: 0
+							borderWidth: 0,
+							marginLeft: -20
 						}}
 						data={filterPlayers(query)}
 						defaultValue={query}

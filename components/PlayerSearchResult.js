@@ -10,7 +10,7 @@ import Colors from "../colors";
 import PlayerImage from "./PlayerImage";
 import ResponsiveSize from "../config/getScreenDimensions";
 
-function PlayerSearchResult ({ navigation, id, name, profilePhoto, updatePlayers, linkToProfile }) {
+function PlayerSearchResult ({ navigation, id, name, profilePhoto, updatePlayers, linkToProfile, onPress }) {
 	const [playerRating, playerRatingLoading] = useQuery(playerRatingQuery(id));
 
 	const Rating = () => {
@@ -44,15 +44,19 @@ function PlayerSearchResult ({ navigation, id, name, profilePhoto, updatePlayers
 			</TouchableOpacity>
 		</View>
 	) : (
-		<View style={styles.playerComponent}>
-			<View style={styles.picture}>
-				<PlayerImage profilePhoto={profilePhoto} fullName={name} />
+		<TouchableOpacity
+			onPress={onPress}
+		>
+			<View style={styles.playerComponent}>
+				<View style={styles.picture}>
+					<PlayerImage profilePhoto={profilePhoto} fullName={name} />
+				</View>
+				<View>
+					<Text style={styles.name}>{name}</Text>
+					<Rating />
+				</View>
 			</View>
-			<View>
-				<Text style={styles.name}>{name}</Text>
-				<Rating />
-			</View>
-		</View>
+		</TouchableOpacity>
 	);
 }
 
