@@ -10,7 +10,6 @@ import findPlayersQuery from "../queries/findPlayers";
 import Colors from "../colors";
 import HeaderLg from "../components/HeaderLarge";
 import ColorHeading from "../components/ColorHeading";
-import AddNewPlayerButton from "../components/AddNewPlayerButton";
 import PlayerSearchResult from "../components/PlayerSearchResult";
 
 function SearchScreen () {
@@ -83,11 +82,6 @@ function SearchScreen () {
 }
 
 const styles = StyleSheet.create({
-	buttonContainer: {
-		height: 18,
-		marginTop: -15,
-		alignItems: "center"
-	},
 	autocompleteInput: {
 		borderWidth: 0,
 		borderBottomColor: Colors.InsightFuschia,
