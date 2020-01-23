@@ -15,6 +15,7 @@ import HeaderSm from "../components/HeaderSmall";
 import BgImage from "../components/backgroundImage";
 import GrayHeading from "../components/GrayHeading";
 import AddNewPlayerButton from "../components/AddNewPlayerButton";
+import PlayerSearchResult from "../components/PlayerSearchResult";
 import ButtonPrimary from "../components/ButtonPrimary";
 import PlayerMatched from "../components/PlayerMatched";
 import ResponsiveSize from "../config/getScreenDimensions";
@@ -184,8 +185,9 @@ function RecordMatchScreen ({ navigation }) {
 										<Autocomplete
 											autoCorrect={false}
 											listStyle={{
-												paddingTop: 10,
-												borderWidth: 0
+											 paddingTop: 20,
+												borderWidth: 0,
+												marginLeft: -20
 											}}
 											inputContainerStyle={styles.autocompleteInput}
 											data={playersFound}
@@ -198,15 +200,17 @@ function RecordMatchScreen ({ navigation }) {
 											returnKeyType="done"
 											placeholder="Search by name or email"
 											renderItem={({ item }) => (
-												<TouchableOpacity onPress={() => {
-													onAddItem(item);
-													setQuery("");
-												}}
-												>
-													<Text style={styles.itemText}>
-														{item.fullName}
-													</Text>
-												</TouchableOpacity>
+												<PlayerSearchResult
+													onPress={() => {
+														onAddItem(item);
+														setQuery("");
+													}}
+													item={item}
+													 key={item.id}
+													 id={item.id}
+													 name={item.fullName}
+													profilePhoto={item.profilePhoto}
+												/>
 											)}
 										/>
 									</View>
@@ -273,6 +277,10 @@ function RecordMatchScreen ({ navigation }) {
 							<View style={playersError ? styles.playerError : styles.item}>
 								<Autocomplete
 									autoCorrect={false}
+									listStyle={{
+										 borderWidth: 0,
+										 marginLeft: -20
+									 }}
 									inputContainerStyle={styles.autocompleteInput}
 									data={playersFound}
 									defaultValue={query}
@@ -284,15 +292,17 @@ function RecordMatchScreen ({ navigation }) {
 									returnKeyType="done"
 									placeholder="Search by name or email"
 									renderItem={({ item }) => (
-										<TouchableOpacity onPress={() => {
-											onAddItem(item);
-											setQuery("");
-										}}
-										>
-											<Text style={styles.itemText}>
-												{item.fullName}
-											</Text>
-										</TouchableOpacity>
+										<PlayerSearchResult
+											onPress={() => {
+												onAddItem(item);
+												setQuery("");
+											}}
+											item={item}
+											 key={item.id}
+											 id={item.id}
+											 name={item.fullName}
+											profilePhoto={item.profilePhoto}
+										/>
 									)}
 								/>
 							</View>
