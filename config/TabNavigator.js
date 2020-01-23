@@ -196,7 +196,8 @@ const Tab = createBottomTabNavigator(
 				}
 				return <Icon name={iconName} size={ResponsiveSize(12.5)} color={tintColor} />;
 			}
-		})
+		}),
+		resetOnBlur: true
 	}
 );
 
