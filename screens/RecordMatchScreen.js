@@ -185,7 +185,7 @@ function RecordMatchScreen ({ navigation }) {
 										<Autocomplete
 											autoCorrect={false}
 											listStyle={{
-											  paddingTop: 20,
+												paddngTop: 20,
 												borderWidth: 0,
 												marginLeft: -20
 											}}
@@ -206,9 +206,9 @@ function RecordMatchScreen ({ navigation }) {
 														setQuery("");
 													}}
 													item={item}
-													 key={item.id}
-													 id={item.id}
-													 name={item.fullName}
+													key={item.id}
+													id={item.id}
+													name={item.fullName}
 													profilePhoto={item.profilePhoto}
 												/>
 											)}
@@ -278,8 +278,8 @@ function RecordMatchScreen ({ navigation }) {
 								<Autocomplete
 									autoCorrect={false}
 									listStyle={{
-										 borderWidth: 0,
-										 marginLeft: -20
+										borderWidth: 0,
+										marginLeft: -20
 									 }}
 									inputContainerStyle={styles.autocompleteInput}
 									data={playersFound}
@@ -298,9 +298,9 @@ function RecordMatchScreen ({ navigation }) {
 												setQuery("");
 											}}
 											item={item}
-											 key={item.id}
-											 id={item.id}
-											 name={item.fullName}
+											key={item.id}
+											id={item.id}
+											name={item.fullName}
 											profilePhoto={item.profilePhoto}
 										/>
 									)}
