@@ -375,6 +375,9 @@ const styles = StyleSheet.create({
 		alignSelf: "flex-start",
 		marginLeft: "11%"
 	},
+	button: {
+		zIndex: -1
+	},
 	cancelButton: {
 		alignSelf: "center"
 	},
