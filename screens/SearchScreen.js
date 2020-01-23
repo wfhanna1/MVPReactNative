@@ -42,10 +42,7 @@ function SearchScreen () {
 	});
 
 	return (
-		<View style={{
-			marginBottom: 500
-		}}
-		>
+		<View>
 		 <StatusBar barStyle="light-content" translucent />
 			<HeaderLg />
 			<View style={styles.container}>
