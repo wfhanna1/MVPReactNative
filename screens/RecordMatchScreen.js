@@ -185,7 +185,7 @@ function RecordMatchScreen ({ navigation }) {
 										<Autocomplete
 											autoCorrect={false}
 											listStyle={{
-												paddngTop: 20,
+												paddingTop: 20,
 												borderWidth: 0,
 												marginLeft: -20
 											}}
