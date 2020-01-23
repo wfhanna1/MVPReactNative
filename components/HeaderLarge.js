@@ -3,6 +3,7 @@ import { View, StyleSheet, Text, ImageBackground } from "react-native";
 import { withNavigation } from "react-navigation";
 import ResponsiveSize from "../config/getScreenDimensions";
 import ButtonPrimary from "./ButtonPrimary";
+import AddNewPlayerButton from "./AddNewPlayerButton";
 
 import Colors from "../colors";
 
@@ -30,6 +31,7 @@ function HeaderLg ({ navigation }) {
 						}
 					})}
 				/>
+				<AddNewPlayerButton />
 			</View>
 		</ImageBackground>
 	);

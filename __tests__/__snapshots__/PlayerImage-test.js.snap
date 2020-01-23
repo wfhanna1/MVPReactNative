@@ -10,7 +10,7 @@ exports[`renders correctly with data - default 1`] = `
   style={
     Array [
       Object {
-        "borderColor": "#BEBEBB",
+        "borderColor": "#9B9B9B",
         "borderRadius": 100,
         "borderWidth": 3,
         "height": 150,
@@ -29,7 +29,7 @@ exports[`renders correctly with data - initials 1`] = `
   style={
     Array [
       Object {
-        "borderColor": "#BEBEBB",
+        "borderColor": "#9B9B9B",
         "borderRadius": 100,
         "borderWidth": 3,
         "height": 150,
@@ -45,7 +45,7 @@ exports[`renders correctly with data - initials 1`] = `
     style={
       Array [
         Object {
-          "color": "#BEBEBB",
+          "color": "#9B9B9B",
           "fontFamily": "KlinicSlab-Bold",
           "fontSize": 72.11538461538461,
           "height": 75,
@@ -69,7 +69,7 @@ exports[`renders correctly with data - initials large 1`] = `
   style={
     Array [
       Object {
-        "borderColor": "#BEBEBB",
+        "borderColor": "#9B9B9B",
         "borderRadius": 100,
         "borderWidth": 3,
         "height": 150,
@@ -90,7 +90,7 @@ exports[`renders correctly with data - initials large 1`] = `
     style={
       Array [
         Object {
-          "color": "#BEBEBB",
+          "color": "#9B9B9B",
           "fontFamily": "KlinicSlab-Bold",
           "fontSize": 72.11538461538461,
           "height": 75,
@@ -120,7 +120,7 @@ exports[`renders correctly with data - initials winner 1`] = `
   style={
     Array [
       Object {
-        "borderColor": "#BEBEBB",
+        "borderColor": "#9B9B9B",
         "borderRadius": 100,
         "borderWidth": 3,
         "height": 150,
@@ -138,7 +138,7 @@ exports[`renders correctly with data - initials winner 1`] = `
     style={
       Array [
         Object {
-          "color": "#BEBEBB",
+          "color": "#9B9B9B",
           "fontFamily": "KlinicSlab-Bold",
           "fontSize": 72.11538461538461,
           "height": 75,
@@ -162,7 +162,7 @@ exports[`renders correctly with data - initials winner large 1`] = `
   style={
     Array [
       Object {
-        "borderColor": "#BEBEBB",
+        "borderColor": "#9B9B9B",
         "borderRadius": 100,
         "borderWidth": 3,
         "height": 150,
@@ -185,7 +185,7 @@ exports[`renders correctly with data - initials winner large 1`] = `
     style={
       Array [
         Object {
-          "color": "#BEBEBB",
+          "color": "#9B9B9B",
           "fontFamily": "KlinicSlab-Bold",
           "fontSize": 72.11538461538461,
           "height": 75,
@@ -220,7 +220,7 @@ exports[`renders correctly with data - large 1`] = `
   style={
     Array [
       Object {
-        "borderColor": "#BEBEBB",
+        "borderColor": "#9B9B9B",
         "borderRadius": 100,
         "borderWidth": 3,
         "height": 150,
@@ -244,7 +244,7 @@ exports[`renders correctly with data - many initials 1`] = `
   style={
     Array [
       Object {
-        "borderColor": "#BEBEBB",
+        "borderColor": "#9B9B9B",
         "borderRadius": 100,
         "borderWidth": 3,
         "height": 150,
@@ -267,7 +267,7 @@ exports[`renders correctly with data - many initials 1`] = `
     style={
       Array [
         Object {
-          "color": "#BEBEBB",
+          "color": "#9B9B9B",
           "fontFamily": "KlinicSlab-Bold",
           "fontSize": 72.11538461538461,
           "height": 75,
@@ -292,6 +292,58 @@ exports[`renders correctly with data - many initials 1`] = `
 </View>
 `;
 
+exports[`renders correctly with data - single word 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "borderColor": "#9B9B9B",
+        "borderRadius": 100,
+        "borderWidth": 3,
+        "height": 150,
+        "marginBottom": 5,
+        "width": 150,
+      },
+      Object {
+        "borderRadius": 100,
+        "borderWidth": 7,
+        "height": 130,
+        "width": 130,
+      },
+      Object {
+        "borderColor": "#399D60",
+      },
+    ]
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#9B9B9B",
+          "fontFamily": "KlinicSlab-Bold",
+          "fontSize": 72.11538461538461,
+          "height": 75,
+          "letterSpacing": -0.63,
+          "marginHorizontal": -3,
+          "marginVertical": 17,
+          "textAlign": "center",
+        },
+        Object {
+          "fontSize": 72,
+          "height": 130,
+          "marginHorizontal": -7,
+          "marginVertical": 22,
+          "width": 130,
+        },
+      ]
+    }
+  >
+    F
+  </Text>
+</View>
+`;
+
 exports[`renders correctly with data - winner 1`] = `
 <Image
   source={
@@ -302,7 +354,7 @@ exports[`renders correctly with data - winner 1`] = `
   style={
     Array [
       Object {
-        "borderColor": "#BEBEBB",
+        "borderColor": "#9B9B9B",
         "borderRadius": 100,
         "borderWidth": 3,
         "height": 150,
@@ -328,7 +380,7 @@ exports[`renders correctly with data - winner large 1`] = `
   style={
     Array [
       Object {
-        "borderColor": "#BEBEBB",
+        "borderColor": "#9B9B9B",
         "borderRadius": 100,
         "borderWidth": 3,
         "height": 150,

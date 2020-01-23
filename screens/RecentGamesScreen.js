@@ -11,7 +11,6 @@ import BlankScreen from "./BlankScreen";
 import HeaderLg from "../components/HeaderLarge";
 import BgImage from "../components/backgroundImage";
 import ColorHeading from "../components/ColorHeading";
-import AddNewPlayerButton from "../components/AddNewPlayerButton";
 import PlayerRecentGames from "../components/PlayerRecentGames";
 import ResponsiveSize from "../config/getScreenDimensions";
 
@@ -93,9 +92,6 @@ export default function RecentGames () {
 				}
 			>
 				<BgImage>
-					<View style={styles.buttonContainer}>
-				  <AddNewPlayerButton />
-					</View>
 					<ColorHeading title="Recent Games" />
 					{(recentMatchesData || recentMatches).map((recentMatch) => (
 						<View style={styles.wrapper} key={recentMatch.matchId}>
@@ -135,11 +131,6 @@ export default function RecentGames () {
 }
 
 const styles = StyleSheet.create({
-	buttonContainer: {
-		height: 18,
-		marginTop: -15,
-		alignItems: "center"
-	},
 	wrapper: {
 		alignItems: "center"
 	},

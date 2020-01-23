@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Button, Text, Icon } from "native-base";
 import { withNavigation } from "react-navigation";
 import ResponsiveSize from "../config/getScreenDimensions";
@@ -11,22 +11,27 @@ function AddNewPlayerButton ({ navigation, arrayData }) {
 	};
 
 	return (
-		<Button
-			transparent
-			onPress={() => navigation.navigate("AddNewPlayer", {
-				...navigationContext,
-				matchedPlayers: arrayData
-			})}
-		>
-			<Text uppercase={false} style={styles.text}>
+		<View style={styles.buttonContainer}>
+			<Button
+				transparent
+				onPress={() => navigation.navigate("AddNewPlayer", {
+					...navigationContext,
+					matchedPlayers: arrayData
+				})}
+			>
+				<Text uppercase={false} style={styles.text}>
         Add new player&nbsp;
-				<Icon type="FontAwesome" name="plus-circle" style={styles.icon} />
-			</Text>
-		</Button>
+					<Icon type="FontAwesome" name="plus-circle" style={styles.icon} />
+				</Text>
+			</Button>
+		</View>
 	);
 }
 
 const styles = StyleSheet.create({
+	buttonContainer: {
+		alignItems: "center"
+	},
 	text: {
 		color: Colors.LinkBlue,
 		fontSize: ResponsiveSize(23.44)

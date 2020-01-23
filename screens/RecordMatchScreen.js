@@ -376,8 +376,6 @@ const styles = StyleSheet.create({
 		marginLeft: "11%"
 	},
 	button: {
-		marginLeft: "6%",
-		marginBottom: "2%",
 		zIndex: -1
 	},
 	cancelButton: {
