@@ -37,7 +37,7 @@ function PlayerSearchResult ({ navigation, id, name, profilePhoto, updatePlayers
 				<View style={styles.picture}>
 					<PlayerImage profilePhoto={profilePhoto} fullName={name} />
 				</View>
-				<View>
+				<View style={styles.centeredText}>
 					<Text style={styles.name}>{name}</Text>
 					<Rating />
 				</View>
@@ -51,7 +51,7 @@ function PlayerSearchResult ({ navigation, id, name, profilePhoto, updatePlayers
 				<View style={styles.picture}>
 					<PlayerImage profilePhoto={profilePhoto} fullName={name} />
 				</View>
-				<View>
+				<View style={styles.centeredText}>
 					<Text style={styles.name}>{name}</Text>
 					<Rating />
 				</View>
@@ -65,6 +65,9 @@ const styles = StyleSheet.create({
 		marginLeft: "7%",
 		marginBottom: "7%",
 		flexDirection: "row"
+	},
+	centeredText: {
+		marginTop: 6
 	},
 	numberOne: {
 		color: Colors.InsightFuschia
