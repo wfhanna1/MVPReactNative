@@ -31,7 +31,10 @@ function AddNewPlayerButton ({ navigation, arrayData }) {
 
 const styles = StyleSheet.create({
 	buttonContainer: {
-		alignItems: "center"
+		alignItems: "center",
+		marginTop: -50,
+		position: "relative",
+		top: 50
 	},
 	button: {
 		backgroundColor: "rgba(255, 255, 255, 0.92)"

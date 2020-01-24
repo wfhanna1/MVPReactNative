@@ -123,7 +123,7 @@ function HomeScreen () {
 
 const styles = StyleSheet.create({
 	background: {
-		marginTop: -20,
+		marginTop: 60,
 		marginBottom: 300
 	}
 });

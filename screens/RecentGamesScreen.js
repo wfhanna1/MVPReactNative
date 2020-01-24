@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
 		alignItems: "center"
 	},
 	background: {
-		marginTop: -20
+		marginTop: 60
 	},
 	gameDateWrapper: {
 		alignItems: "center"

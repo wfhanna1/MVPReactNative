@@ -17,7 +17,11 @@ function HeaderLg ({ navigation }) {
 		<ImageBackground
 			source={headerImageLg}
 			style={{
-				width: "100%", height: ResponsiveSize(1.65), zIndex: 1
+				zIndex: 1
+			}}
+			imageStyle={{
+				width: "100%",
+				height: ResponsiveSize(1.65)
 			}}
 		>
 			<View style={styles.container}>
@@ -44,7 +48,7 @@ const styles = StyleSheet.create({
 		letterSpacing: -2.4,
 		fontSize: ResponsiveSize(7),
 		color: Colors.White,
-		marginTop: -80
+		marginTop: -100
 	},
 	container: {
 		alignItems: "center",
