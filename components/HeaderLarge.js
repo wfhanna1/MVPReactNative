@@ -17,7 +17,7 @@ function HeaderLg ({ navigation }) {
 		<ImageBackground
 			source={headerImageLg}
 			style={{
-				width: "100%", height: ResponsiveSize(1.6)
+				width: "100%", height: ResponsiveSize(1.6), zIndex: 1
 			}}
 		>
 			<View style={styles.container}>

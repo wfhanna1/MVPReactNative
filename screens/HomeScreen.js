@@ -72,7 +72,7 @@ function HomeScreen () {
 					<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
 				}
 			>
-				<BgImage>
+				<BgImage style={styles.background}>
 					<ColorHeading title="Top Player" />
 					<TopPlayer />
 					<GrayHeading title="Ranked Players" />
@@ -94,8 +94,12 @@ function HomeScreen () {
 }
 
 const styles = StyleSheet.create({
+	background: {
+		marginBottom: 300
+	},
 	scrollView: {
-		marginBottom: 250
+		marginTop: -65,
+		paddingTop: 65
 	}
 });
 

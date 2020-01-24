@@ -30,11 +30,15 @@ function AddNewPlayerButton ({ navigation, arrayData }) {
 
 const styles = StyleSheet.create({
 	buttonContainer: {
-		alignItems: "center"
+		alignItems: "center",
+		borderRadius: 50
 	},
 	text: {
 		color: Colors.LinkBlue,
-		fontSize: ResponsiveSize(23.44)
+		fontSize: ResponsiveSize(23.44),
+		backgroundColor: "rgba(255, 255, 255, 0.9)"
+
+
 	},
 	icon: {
 		color: Colors.LinkBlue,
