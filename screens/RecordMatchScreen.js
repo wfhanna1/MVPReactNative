@@ -216,7 +216,7 @@ function RecordMatchScreen ({ navigation }) {
 									</View>
 								</View>
 							</Form>
-							<View style={styles.button}>
+							<View>
 								<AddNewPlayerButton arrayData={matchedPlayersArray} />
 							</View>
 							<View style={styles.matchedContainer}>
@@ -308,7 +308,7 @@ function RecordMatchScreen ({ navigation }) {
 							</View>
 						</View>
 					</Form>
-					<View style={styles.button}>
+					<View>
 						<AddNewPlayerButton arrayData={matchedPlayersArray} />
 					</View>
 					<View style={styles.matchedContainer}>
@@ -374,9 +374,6 @@ const styles = StyleSheet.create({
 		marginTop: 30,
 		alignSelf: "flex-start",
 		marginLeft: "11%"
-	},
-	button: {
-		marginBottom: 50
 	},
 	cancelButton: {
 		alignSelf: "center"
