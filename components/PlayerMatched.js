@@ -62,7 +62,9 @@ const styles = StyleSheet.create({
 	},
 	stats: {
 		flex: 1,
-		alignItems: "flex-start"
+		alignItems: "flex-start",
+		marginLeft: -50,
+		marginTop: 6
 	},
 	name: {
 		fontFamily: "KlinicSlab-Medium",
