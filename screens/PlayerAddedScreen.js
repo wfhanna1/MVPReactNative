@@ -90,7 +90,8 @@ const styles = StyleSheet.create({
 		marginTop: "-5%"
 	},
 	subContainer2: {
-		marginTop: "-5%"
+		marginTop: "-5%",
+		marginBottom: 50
 	},
 	picture: {
 		height: "35%"
