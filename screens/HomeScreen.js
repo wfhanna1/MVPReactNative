@@ -4,7 +4,9 @@ import CodePush from "react-native-code-push";
 
 import useQuery from "../hooks/useQuery";
 import topPlayersQuery from "../queries/topPlayers";
+import bottomPlayersQuery from "../queries/bottomPlayers";
 import updateTopPlayers from "../queries/updateTopPlayers";
+import updateBottomPlayers from "../queries/updateBottomPlayers";
 
 import LoadingScreen from "./LoadingScreen";
 import HeaderLg from "../components/HeaderLarge";
@@ -15,10 +17,15 @@ import Player from "../components/Player";
 
 function HomeScreen () {
 	const [topPlayers, topPlayersLoading] = useQuery(topPlayersQuery());
+	const [bottomPlayers, bottomPlayersLoading] = useQuery(bottomPlayersQuery());
 	const [topPlayersData, setTopPlayersData] = useState(false);
+	const [bottomPlayersData, setBottomPlayersData] = useState(false);
 	const [refreshing, setRefreshing] = useState(false);
 
-	const updatePlayers = () => updateTopPlayers().then((data) => setTopPlayersData(data));
+	const updatePlayers = () => {
+		updateTopPlayers().then((data) => setTopPlayersData(data));
+		updateBottomPlayers().then((data) => setBottomPlayersData(data));
+	};
 
 	const TopPlayer = () => {
 		if (topPlayers.length || topPlayersData.length) {
@@ -37,6 +44,27 @@ function HomeScreen () {
 		return null;
 	};
 
+	const BottomPlayers = () => {
+		if (!bottomPlayersLoading && (bottomPlayersData || bottomPlayers)) {
+			return (
+				<View>
+					<GrayHeading title="Wall of Shame" />
+					{(bottomPlayersData || bottomPlayers).slice(0, 10).map((item, index) => (
+						<Player
+							key={item.id}
+							id={item.id}
+							rank={index + 1}
+							name={item.player[0].fullName}
+							points={Math.floor(item.average)}
+							profilePhoto={item.player[0].profilePhoto}
+							updatePlayers={updatePlayers}
+						/>
+					))}
+				</View>
+			);
+		}
+		return null;
+	};
 	const onRefresh = React.useCallback(() => {
 		setRefreshing(true);
 
@@ -87,6 +115,7 @@ function HomeScreen () {
 							updatePlayers={updatePlayers}
 						/>
 					))}
+					<BottomPlayers />
 				</BgImage>
 			</ScrollView>
 		</View>
