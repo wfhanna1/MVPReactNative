@@ -197,6 +197,7 @@ const styles = StyleSheet.create({
 		marginTop: 10
 	},
 	scrollView: {
-		marginBottom: 225
+		marginTop: -65,
+		paddingTop: 65
 	}
 });

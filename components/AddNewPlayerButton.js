@@ -13,7 +13,8 @@ function AddNewPlayerButton ({ navigation, arrayData }) {
 	return (
 		<View style={styles.buttonContainer}>
 			<Button
-				transparent
+			  style={styles.button}
+				rounded
 				onPress={() => navigation.navigate("AddNewPlayer", {
 					...navigationContext,
 					matchedPlayers: arrayData
@@ -30,15 +31,15 @@ function AddNewPlayerButton ({ navigation, arrayData }) {
 
 const styles = StyleSheet.create({
 	buttonContainer: {
-		alignItems: "center",
-		borderRadius: 50
+		alignItems: "center"
+	},
+	button: {
+		backgroundColor: "rgba(255, 255, 255, 0.92)"
+
 	},
 	text: {
 		color: Colors.LinkBlue,
-		fontSize: ResponsiveSize(23.44),
-		backgroundColor: "rgba(255, 255, 255, 0.9)"
-
-
+		fontSize: ResponsiveSize(23.44)
 	},
 	icon: {
 		color: Colors.LinkBlue,
