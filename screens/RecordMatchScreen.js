@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { KeyboardAvoidingView, ScrollView, Platform, StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import { KeyboardAvoidingView, ScrollView, Platform, StyleSheet, View, Text } from "react-native";
 import { withNavigation } from "react-navigation";
 import Autocomplete from "react-native-autocomplete-input";
 import RNPickerSelect from "react-native-picker-select";
@@ -185,7 +185,7 @@ function RecordMatchScreen ({ navigation }) {
 										<Autocomplete
 											autoCorrect={false}
 											listStyle={{
-												paddingTop: 20,
+												paddingTop: 60,
 												borderWidth: 0,
 												marginLeft: -20
 											}}
@@ -278,7 +278,7 @@ function RecordMatchScreen ({ navigation }) {
 								<Autocomplete
 									autoCorrect={false}
 									listStyle={{
-										borderWidth: 0,
+									  borderWidth: 0,
 										marginLeft: -20
 									 }}
 									inputContainerStyle={styles.autocompleteInput}
