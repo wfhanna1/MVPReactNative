@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
 	},
 	container: {
 		alignItems: "center",
-		marginTop: 60
+		marginTop: 80
 	},
 	item: {
 		width: "80%",
