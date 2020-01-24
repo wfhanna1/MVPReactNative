@@ -49,7 +49,7 @@ function HomeScreen () {
 			return (
 				<View>
 					<GrayHeading title="Wall of Shame" />
-					{(bottomPlayersData || bottomPlayers).slice(0, 10).map((item, index) => (
+					{(bottomPlayersData || bottomPlayers).map((item, index) => (
 						<Player
 							key={item.id}
 							id={item.id}
