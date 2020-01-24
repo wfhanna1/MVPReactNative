@@ -48,7 +48,8 @@ const styles = StyleSheet.create({
 		letterSpacing: -2.4,
 		fontSize: ResponsiveSize(7),
 		color: Colors.White,
-		marginTop: -100
+		marginTop: -80,
+		marginBottom: 15
 	},
 	container: {
 		alignItems: "center",
