@@ -95,7 +95,6 @@ function HomeScreen () {
 		 <StatusBar barStyle="light-content" translucent />
 			<HeaderLg />
 			<ScrollView
-				style={styles.scrollView}
 				refreshControl={
 					<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
 				}
@@ -124,11 +123,8 @@ function HomeScreen () {
 
 const styles = StyleSheet.create({
 	background: {
+		marginTop: -20,
 		marginBottom: 300
-	},
-	scrollView: {
-		marginTop: -65,
-		paddingTop: 65
 	}
 });
 

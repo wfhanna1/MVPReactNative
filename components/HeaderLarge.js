@@ -17,7 +17,7 @@ function HeaderLg ({ navigation }) {
 		<ImageBackground
 			source={headerImageLg}
 			style={{
-				width: "100%", height: ResponsiveSize(1.6), zIndex: 1
+				width: "100%", height: ResponsiveSize(1.65), zIndex: 1
 			}}
 		>
 			<View style={styles.container}>
@@ -42,10 +42,9 @@ const styles = StyleSheet.create({
 		fontFamily: "KlinicSlab-Book",
 		fontWeight: "400",
 		letterSpacing: -2.4,
-		fontSize: ResponsiveSize(5),
+		fontSize: ResponsiveSize(7),
 		color: Colors.White,
-
-		marginTop: "-20%"
+		marginTop: -80
 	},
 	container: {
 		alignItems: "center",

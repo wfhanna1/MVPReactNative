@@ -86,12 +86,11 @@ export default function RecentGames () {
 		<View>
 			<HeaderLg />
 			<ScrollView
-				style={styles.scrollView}
 				refreshControl={
 					<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
 				}
 			>
-				<BgImage>
+				<BgImage style={styles.background}>
 					<ColorHeading title="Recent Games" />
 					{(recentMatchesData || recentMatches).map((recentMatch) => (
 						<View style={styles.wrapper} key={recentMatch.matchId}>
@@ -133,6 +132,9 @@ export default function RecentGames () {
 const styles = StyleSheet.create({
 	wrapper: {
 		alignItems: "center"
+	},
+	background: {
+		marginTop: -20
 	},
 	gameDateWrapper: {
 		alignItems: "center"
@@ -195,9 +197,5 @@ const styles = StyleSheet.create({
 		width: "100%",
 		textAlign: "center",
 		marginTop: 10
-	},
-	scrollView: {
-		marginTop: -65,
-		paddingTop: 65
 	}
 });

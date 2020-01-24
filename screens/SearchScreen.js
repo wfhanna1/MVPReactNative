@@ -88,7 +88,8 @@ const styles = StyleSheet.create({
 		borderBottomWidth: 2
 	},
 	container: {
-		alignItems: "center"
+		alignItems: "center",
+		marginTop: -20
 	},
 	item: {
 		width: "80%",
