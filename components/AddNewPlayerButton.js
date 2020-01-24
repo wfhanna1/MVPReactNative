@@ -13,7 +13,7 @@ function AddNewPlayerButton ({ navigation, arrayData }) {
 	return (
 		<View style={styles.buttonContainer}>
 			<Button
-			  style={styles.button}
+				style={styles.button}
 				rounded
 				onPress={() => navigation.navigate("AddNewPlayer", {
 					...navigationContext,
