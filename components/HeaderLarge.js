@@ -35,7 +35,7 @@ function HeaderLg ({ navigation }) {
 						}
 					})}
 				/>
-				<AddNewPlayerButton />
+				<AddNewPlayerButton float />
 			</View>
 		</ImageBackground>
 	);

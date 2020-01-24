@@ -13,7 +13,8 @@ const Colors = {
 
 	Transparent: "transparent",
 	TransparentBlack: "rgba(0,0,0,0.3)",
-	TransparentRed: "rgba(256, 0, 0, 0.2)"
+	TransparentRed: "rgba(256, 0, 0, 0.2)",
+	TransparentWhite: "rgba(255, 255, 255, 0.92)"
 };
 
 module.exports = Colors;
