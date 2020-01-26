@@ -6,12 +6,12 @@ import ResponsiveSize from "../config/getScreenDimensions";
 
 import Colors from "../colors";
 
-function AddNewPlayerButton ({ navigation, arrayData }) {
+function AddNewPlayerButton ({ navigation, arrayData, float }) {
 	const navigationContext = navigation.state.params || {
 	};
 
 	return (
-		<View style={styles.buttonContainer}>
+		<View style={float ? styles.buttonContainerFloat : styles.buttonContainer}>
 			<Button
 				style={styles.button}
 				rounded
@@ -31,10 +31,17 @@ function AddNewPlayerButton ({ navigation, arrayData }) {
 
 const styles = StyleSheet.create({
 	buttonContainer: {
-		alignItems: "center"
+		alignItems: "center",
+		marginTop: 10
+	},
+	buttonContainerFloat: {
+		alignItems: "center",
+		marginTop: -40,
+		position: "relative",
+		top: 50
 	},
 	button: {
-		backgroundColor: "rgba(255, 255, 255, 0.92)"
+		backgroundColor: Colors.TransparentWhite
 
 	},
 	text: {
