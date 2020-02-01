@@ -151,7 +151,7 @@ function RecordMatchScreen ({ navigation }) {
 					enabled
 					keyboardVerticalOffset={100}
 				>
-					<ScrollView keyboardShouldPersistTaps="always">
+					{/* <ScrollView keyboardShouldPersistTaps="always"> */}
 						<HeaderSm style={styles.title} headerTitle="Record Match" />
 						<View style={styles.parent}>
 							<Form>
@@ -236,7 +236,7 @@ function RecordMatchScreen ({ navigation }) {
 								</Button>
 							</View>
 						</View>
-					</ScrollView>
+					{/* </ScrollView> */}
 				</KeyboardAvoidingView>
 			</BgImage>
 		);
@@ -311,6 +311,7 @@ function RecordMatchScreen ({ navigation }) {
 					<View>
 						<AddNewPlayerButton arrayData={matchedPlayersArray} />
 					</View>
+					<ScrollView keyboardShouldPersistTaps="always">
 					<View style={styles.matchedContainer}>
 						{matchedPlayersArray.length > 0 ? <GrayHeading title="Match Players" /> : null}
 						{matchedPlayersArray.map((player) => <PlayerMatched player={player} setWinLossStatus={setWinLossStatus} removePlayer={removePlayer} key={player.playerId} />)}
@@ -327,6 +328,7 @@ function RecordMatchScreen ({ navigation }) {
 							<Text style={styles.cancelText}>Cancel</Text>
 						</Button>
 					</View>
+					</ScrollView>
 				</View>
 			</ScrollView>
 		</BgImage>
