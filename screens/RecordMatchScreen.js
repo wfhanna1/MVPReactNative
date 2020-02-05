@@ -143,15 +143,15 @@ function RecordMatchScreen ({ navigation }) {
 	if (Platform.OS === "ios") {
 		return (
 			<BgImage>
-				<KeyboardAvoidingView
+				{/* <KeyboardAvoidingView
 					style={{
 						flex: 1, flexDirection: "column", justifyContent: "center"
 					}}
 					behavior="padding"
 					enabled
 					keyboardVerticalOffset={100}
-				>
-					{/* <ScrollView keyboardShouldPersistTaps="always"> */}
+				> */}
+					<ScrollView keyboardShouldPersistTaps="always">
 						<HeaderSm style={styles.title} headerTitle="Record Match" />
 						<View style={styles.parent}>
 							<Form>
@@ -236,8 +236,8 @@ function RecordMatchScreen ({ navigation }) {
 								</Button>
 							</View>
 						</View>
-					{/* </ScrollView> */}
-				</KeyboardAvoidingView>
+					</ScrollView>
+				{/* </KeyboardAvoidingView> */}
 			</BgImage>
 		);
 	}
