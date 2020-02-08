@@ -3,6 +3,11 @@ import { StyleSheet, View } from "react-native";
 import { withNavigation } from "react-navigation";
 import { Text } from "native-base";
 
+import useQuery from "../hooks/useQuery";
+import addPlayerQuery from "../queries/addPlayer";
+
+import Colors from "../colors";
+import BlankScreen from "./BlankScreen";
 import HeaderSm from "../components/HeaderSmall";
 import BgImage from "../components/backgroundImage";
 import ButtonPrimary from "../components/ButtonPrimary";
@@ -14,16 +19,48 @@ function PlayerAddedScreen ({ navigation }) {
 	};
 	const matchedPlayersData = navigationContext.matchedPlayers;
 
+	const [addPlayer, addPlayerLoading, addPlayerError] = useQuery(addPlayerQuery({
+		fullName: navigationContext.name,
+		emailAddress: navigationContext.email,
+		profilePhoto: navigationContext.profilePhoto
+	}));
+
+	if ((!addPlayer && !addPlayerError) || addPlayerLoading) {
+		return (
+			<BlankScreen />
+		);
+	}
+
+	if (addPlayerError) {
+		return (
+			<BgImage>
+				<HeaderSm style={styles.title} headerTitle="Error!" />
+				<View style={[styles.container, styles.centeredContainer]}>
+					<Text style={[styles.name, styles.nameMargin]}>Player already exists!</Text>
+					<Text style={[styles.game, styles.gameMargin]}>
+            Emails can only be associated with one player.
+						{"\n"}
+						Please try again.
+					</Text>
+					<ButtonPrimary
+						title="Back"
+						onPress={() => navigation.goBack()}
+					/>
+				</View>
+			</BgImage>
+		);
+	}
+
 	return (
 		<BgImage>
 			<HeaderSm style={styles.title} headerTitle="Player Added!" />
 			<View style={styles.container}>
 				<View style={styles.picture}>
-					<PlayerImage profilePhoto={navigationContext.profilePhoto} fullName={(navigationContext.name ? navigationContext.name : false)} large />
+					<PlayerImage profilePhoto={addPlayer.profilePhoto} fullName={addPlayer.fullName} large />
 				</View>
 				<View style={styles.subContainer1}>
-					<Text style={styles.name}>{navigationContext.name}</Text>
-					<Text style={styles.game}>{navigationContext.email}</Text>
+					<Text style={styles.name}>{addPlayer.fullName}</Text>
+					<Text style={styles.game}>{addPlayer.email}</Text>
 				</View>
 				<ButtonPrimary
 					title="Record Match"
@@ -45,6 +82,9 @@ const styles = StyleSheet.create({
 		justifyContent: "space-around",
 		marginTop: -30
 	},
+	centeredContainer: {
+		paddingTop: 160
+	},
 	subContainer1: {
 		alignItems: "center",
 		marginTop: "-5%"
@@ -62,11 +102,18 @@ const styles = StyleSheet.create({
 		letterSpacing: -0.63,
 		marginBottom: -7
 	},
+	nameMargin: {
+		marginBottom: 8
+	},
 	game: {
+		textAlign: "center",
 		fontSize: 16,
 		fontWeight: "bold",
-		color: "#6E645F",
+		color: Colors.MiddleGray,
 		letterSpacing: -0.57
+	},
+	gameMargin: {
+		marginBottom: 20
 	}
 });
 

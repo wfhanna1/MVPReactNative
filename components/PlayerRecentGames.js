@@ -2,10 +2,13 @@ import React from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "native-base";
 import { withNavigation } from "react-navigation";
-import PlayerImage from "./PlayerImage";
+
+import ResponsiveSize from "../config/getScreenDimensions";
 import useQuery from "../hooks/useQuery";
 import findPlayersQuery from "../queries/findPlayers";
-import ResponsiveSize from "../config/getScreenDimensions";
+
+import Colors from "../colors";
+import PlayerImage from "./PlayerImage";
 
 function PlayerRecentGames (data) {
 	const { navigation } = data;
@@ -21,7 +24,7 @@ function PlayerRecentGames (data) {
 		>
 			<PlayerImage profilePhoto={data.profilePhoto ? data.profilePhoto : player ? player.profilePhoto : false} fullName={data.fullName} isWinner={data.isWinner} />
 			<View style={styles.stats}>
-				<Text style={styles.name}>{(playerLoading ? "..." : (data.fullName.length >= 16 ? `${data.fullName.substring(0, 12)}...` : data.fullName))}</Text>
+				<Text style={styles.name}>{(playerLoading ? "..." : (data.fullName.length >= 15 ? `${data.fullName.substring(0, 12)}...` : data.fullName))}</Text>
 				<Text style={styles.points}>{`Points: ${data.score}`}</Text>
 			</View>
 		</TouchableOpacity>
@@ -47,7 +50,7 @@ const styles = StyleSheet.create({
 	},
 	points: {
 		fontSize: ResponsiveSize(23.4),
-		color: "#399D60",
+		color: Colors.Green,
 		letterSpacing: -0.7,
 		marginBottom: -5
 	}

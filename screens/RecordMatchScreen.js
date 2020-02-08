@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ScrollView, StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import { KeyboardAvoidingView, ScrollView, Platform, StyleSheet, View, Text } from "react-native";
 import { withNavigation } from "react-navigation";
 import Autocomplete from "react-native-autocomplete-input";
 import RNPickerSelect from "react-native-picker-select";
@@ -9,11 +9,13 @@ import useQuery from "../hooks/useQuery";
 import gamesQuery from "../queries/games";
 import findPlayersQuery from "../queries/findPlayers";
 
+import Colors from "../colors";
 import BlankScreen from "./BlankScreen";
 import HeaderSm from "../components/HeaderSmall";
 import BgImage from "../components/backgroundImage";
 import GrayHeading from "../components/GrayHeading";
 import AddNewPlayerButton from "../components/AddNewPlayerButton";
+import PlayerSearchResult from "../components/PlayerSearchResult";
 import ButtonPrimary from "../components/ButtonPrimary";
 import PlayerMatched from "../components/PlayerMatched";
 import ResponsiveSize from "../config/getScreenDimensions";
@@ -92,8 +94,10 @@ function RecordMatchScreen ({ navigation }) {
 			isWinner: false,
 			profilePhoto: player.profilePhoto
 		};
-		setMatchedPlayersArray([addPlayer, ...matchedPlayersArray]);
-		setPlayersError(false);
+		if (!matchedPlayersArray.filter(({ id }) => id === player.id).length) {
+			setMatchedPlayersArray([addPlayer, ...matchedPlayersArray]);
+			setPlayersError(false);
+		}
 	}
 
 	const setWinLossStatus = (playerWinLossStatus, winLoss) => {
@@ -136,6 +140,108 @@ function RecordMatchScreen ({ navigation }) {
 		);
 	}
 
+	if (Platform.OS === "ios") {
+		return (
+			<BgImage>
+				{/* <KeyboardAvoidingView
+					style={{
+						flex: 1, flexDirection: "column", justifyContent: "center"
+					}}
+					behavior="padding"
+					enabled
+					keyboardVerticalOffset={100}
+				> */}
+					<ScrollView keyboardShouldPersistTaps="always">
+						<HeaderSm style={styles.title} headerTitle="Record Match" />
+						<View style={styles.parent}>
+							<Form>
+								<View style={styles.container}>
+									<Text style={styles.text}>Choose a game</Text>
+									<View style={styles.input}>
+										<View style={gameSelectError ? styles.error : null}>
+											<RNPickerSelect
+												style={gameSelectError ? {
+													...pickerSelectStylesError
+												} : {
+													...pickerSelectStyles
+												}}
+												placeholder={{
+													label: "Game name",
+													value: null
+												}}
+												onValueChange={(value) => { setGameSelected(value); setGameSelectError(false); }}
+												items={games.map((item) => (
+													{
+														label: item.name, value: item.id, key: item.id
+													}
+												))}
+											/>
+										</View>
+									</View>
+								</View>
+								<View style={styles.container}>
+									<Text style={styles.text}>Who played?</Text>
+									<View style={playersError ? styles.playerError : styles.item}>
+										<Autocomplete
+											autoCorrect={false}
+											listStyle={{
+												paddingTop: 60,
+												borderWidth: 0,
+												marginLeft: -20
+											}}
+											inputContainerStyle={styles.autocompleteInput}
+											data={playersFound}
+											defaultValue={query}
+											value={query}
+											onChangeText={(text) => { setQuery(text); }}
+											autoCapitalize="words"
+											textContentType="name"
+											autoCompleteType="name"
+											returnKeyType="done"
+											placeholder="Search by name or email"
+											renderItem={({ item }) => (
+												<PlayerSearchResult
+													onPress={() => {
+														onAddItem(item);
+														setQuery("");
+													}}
+													item={item}
+													key={item.id}
+													id={item.id}
+													name={item.fullName}
+													profilePhoto={item.profilePhoto}
+												/>
+											)}
+										/>
+									</View>
+								</View>
+							</Form>
+							<View>
+								<AddNewPlayerButton arrayData={matchedPlayersArray} />
+							</View>
+							<View style={styles.matchedContainer}>
+								{matchedPlayersArray.length > 0 ? <GrayHeading title="Match Players" /> : null}
+								{matchedPlayersArray.map((player) => <PlayerMatched player={player} setWinLossStatus={setWinLossStatus} removePlayer={removePlayer} key={player.playerId} />)}
+								<ErrorMessage errors={[gameSelectError, playersError, winnersError]} />
+								<ButtonPrimary
+									title="Record Match"
+									onPress={onRecordMatch}
+								/>
+								<Button
+									style={styles.cancelButton}
+									transparent
+									onPress={() => navigation.goBack() && setMatchedPlayersArray([])}
+								>
+									<Text style={styles.cancelText}>Cancel</Text>
+								</Button>
+							</View>
+						</View>
+					</ScrollView>
+				{/* </KeyboardAvoidingView> */}
+			</BgImage>
+		);
+	}
+
 	return (
 		<BgImage>
 			<ScrollView keyboardShouldPersistTaps="always">
@@ -171,6 +277,10 @@ function RecordMatchScreen ({ navigation }) {
 							<View style={playersError ? styles.playerError : styles.item}>
 								<Autocomplete
 									autoCorrect={false}
+									listStyle={{
+										borderWidth: 0,
+										marginLeft: -20
+									 }}
 									inputContainerStyle={styles.autocompleteInput}
 									data={playersFound}
 									defaultValue={query}
@@ -182,23 +292,26 @@ function RecordMatchScreen ({ navigation }) {
 									returnKeyType="done"
 									placeholder="Search by name or email"
 									renderItem={({ item }) => (
-										<TouchableOpacity onPress={() => {
-											onAddItem(item);
-											setQuery("");
-										}}
-										>
-											<Text style={styles.itemText}>
-												{item.fullName}
-											</Text>
-										</TouchableOpacity>
+										<PlayerSearchResult
+											onPress={() => {
+												onAddItem(item);
+												setQuery("");
+											}}
+											item={item}
+											key={item.id}
+											id={item.id}
+											name={item.fullName}
+											profilePhoto={item.profilePhoto}
+										/>
 									)}
 								/>
 							</View>
 						</View>
 					</Form>
-					<View style={styles.button}>
+					<View>
 						<AddNewPlayerButton arrayData={matchedPlayersArray} />
 					</View>
+					<ScrollView keyboardShouldPersistTaps="always">
 					<View style={styles.matchedContainer}>
 						{matchedPlayersArray.length > 0 ? <GrayHeading title="Match Players" /> : null}
 						{matchedPlayersArray.map((player) => <PlayerMatched player={player} setWinLossStatus={setWinLossStatus} removePlayer={removePlayer} key={player.playerId} />)}
@@ -215,6 +328,7 @@ function RecordMatchScreen ({ navigation }) {
 							<Text style={styles.cancelText}>Cancel</Text>
 						</Button>
 					</View>
+					</ScrollView>
 				</View>
 			</ScrollView>
 		</BgImage>
@@ -227,17 +341,16 @@ const styles = StyleSheet.create({
 		marginTop: "3%"
 	},
 	autocompleteInput: {
-		borderWidth: 0
-	},
-	descriptionContainer: {
-		flex: 1,
-		justifyContent: "center"
+		borderWidth: 0,
+		borderBottomColor: Colors.InsightFuschia,
+		borderBottomWidth: 2
 	},
 	itemText: {
-		fontSize: 15,
-		paddingTop: 5,
-		paddingBottom: 5,
-		margin: 2
+		fontFamily: "KlinicSlab-Medium",
+		fontSize: 26,
+		fontWeight: "500",
+		letterSpacing: -0.63,
+		paddingTop: 5
 	},
 	infoText: {
 		textAlign: "center",
@@ -247,8 +360,6 @@ const styles = StyleSheet.create({
 		marginTop: "-18%"
 	},
 	item: {
-		borderBottomColor: "#B73491",
-		borderBottomWidth: 2,
 		width: "80%"
 	},
 	input: {
@@ -266,26 +377,13 @@ const styles = StyleSheet.create({
 		alignSelf: "flex-start",
 		marginLeft: "11%"
 	},
-	icon: {
-		color: "#4166AA",
-		fontSize: 15,
-		position: "absolute",
-		marginTop: 15,
-		marginLeft: "95%",
-		zIndex: 10
-	},
-	button: {
-		marginLeft: "6%",
-		marginBottom: "2%",
-		zIndex: -1
-	},
 	cancelButton: {
 		alignSelf: "center"
 	},
 	cancelText: {
 		letterSpacing: -0.52,
 		fontWeight: "300",
-		color: "#4166AA",
+		color: Colors.LinkBlue,
 		fontSize: ResponsiveSize(23.4),
 		marginLeft: -17
 	},
@@ -297,18 +395,18 @@ const styles = StyleSheet.create({
 		width: "78%",
 		marginLeft: "11%",
 		borderWidth: 2,
-		borderColor: "red",
+		borderColor: Colors.Red,
 		marginTop: 12
 	},
 	playerError: {
 		borderWidth: 2,
-		borderColor: "red",
-		borderBottomColor: "#B73491",
+		borderColor: Colors.Red,
+		borderBottomColor: Colors.InsightFuschia,
 		borderBottomWidth: 2,
 		width: "80%"
 	},
 	errorMessages: {
-		backgroundColor: "rgba(256, 0, 0, 0.2)",
+		backgroundColor: Colors.TransparentRed,
 		padding: 10,
 		marginBottom: 20
 	}
@@ -325,8 +423,8 @@ const pickerSelectStyles = StyleSheet.create({
 		paddingHorizontal: 10,
 		marginTop: 12,
 		marginLeft: "11%",
-		borderBottomColor: "#B73491",
-		color: "black"
+		borderBottomColor: Colors.InsightFuschia,
+		color: Colors.Black
 	},
 	inputAndroid: {
 		marginTop: 10,
@@ -345,8 +443,8 @@ const pickerSelectStylesError = StyleSheet.create({
 		borderBottomWidth: 2,
 		height: 46,
 		width: "100%",
-		borderBottomColor: "#B73491",
-		color: "black"
+		borderBottomColor: Colors.InsightFuschia,
+		color: Colors.Black
 	}
 });
 

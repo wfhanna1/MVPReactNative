@@ -3,6 +3,9 @@ import { View, StyleSheet, Text, ImageBackground } from "react-native";
 import { withNavigation } from "react-navigation";
 import ResponsiveSize from "../config/getScreenDimensions";
 import ButtonPrimary from "./ButtonPrimary";
+import AddNewPlayerButton from "./AddNewPlayerButton";
+
+import Colors from "../colors";
 
 const headerImageLg = require("../assets/icons/Header-Background-Large2x.png");
 
@@ -14,7 +17,11 @@ function HeaderLg ({ navigation }) {
 		<ImageBackground
 			source={headerImageLg}
 			style={{
-				width: "100%", height: ResponsiveSize(1.6)
+				zIndex: 1
+			}}
+			imageStyle={{
+				width: "100%",
+				height: ResponsiveSize(1.65)
 			}}
 		>
 			<View style={styles.container}>
@@ -28,6 +35,7 @@ function HeaderLg ({ navigation }) {
 						}
 					})}
 				/>
+				<AddNewPlayerButton float />
 			</View>
 		</ImageBackground>
 	);
@@ -38,9 +46,10 @@ const styles = StyleSheet.create({
 		fontFamily: "KlinicSlab-Book",
 		fontWeight: "400",
 		letterSpacing: -2.4,
-		fontSize: ResponsiveSize(5),
-		color: "#FFFFFF",
-		marginTop: "-20%"
+		fontSize: ResponsiveSize(7),
+		color: Colors.White,
+		marginTop: -80,
+		marginBottom: 15
 	},
 	container: {
 		alignItems: "center",

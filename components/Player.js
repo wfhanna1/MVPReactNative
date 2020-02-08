@@ -5,6 +5,8 @@ import { withNavigation } from "react-navigation";
 import PlayerImage from "./PlayerImage";
 import ResponsiveSize from "../config/getScreenDimensions";
 
+import Colors from "../colors";
+
 function Player ({ navigation, id, name, points, rank, profilePhoto, updatePlayers }) {
 	return (
 		<View>
@@ -36,13 +38,13 @@ const styles = StyleSheet.create({
 		flexDirection: "row"
 	},
 	numberOne: {
-		color: "#B73491"
+		color: Colors.InsightFuschia
 	},
 	number: {
 		fontFamily: "KlinicSlab-Medium",
 		fontSize: ResponsiveSize(8.3),
 		fontWeight: "500",
-		color: "#6E645F"
+		color: Colors.MiddleGray
 	},
 	picture: {
 		marginTop: -10,
@@ -51,7 +53,7 @@ const styles = StyleSheet.create({
 	game: {
 		fontSize: ResponsiveSize(23.4),
 		fontWeight: "bold",
-		color: "#6E645F",
+		color: Colors.MiddleGray,
 		letterSpacing: -0.57
 	},
 	name: {
@@ -62,7 +64,7 @@ const styles = StyleSheet.create({
 	},
 	points: {
 		fontSize: ResponsiveSize(23.4),
-		color: "#399D60",
+		color: Colors.Green,
 		letterSpacing: -0.7
 	}
 });

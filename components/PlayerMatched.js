@@ -1,6 +1,8 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { Text, Button } from "native-base";
+
+import Colors from "../colors";
 import PlayerImage from "./PlayerImage";
 
 export default function PlayerMatched ({ player, setWinLossStatus, removePlayer }) {
@@ -60,10 +62,12 @@ const styles = StyleSheet.create({
 	},
 	stats: {
 		flex: 1,
-		alignItems: "flex-start"
+		alignItems: "flex-start",
+		marginLeft: -50,
+		marginTop: 6
 	},
 	name: {
-		fontFamily: "KlinicSlab-Book",
+		fontFamily: "KlinicSlab-Medium",
 		fontSize: 26,
 		fontWeight: "500",
 		letterSpacing: -0.63,
@@ -71,30 +75,30 @@ const styles = StyleSheet.create({
 	},
 	points: {
 		fontSize: 16,
-		color: "#399D60",
+		color: Colors.Green,
 		letterSpacing: -0.7,
 		marginBottom: -5
 	},
 	buttonText: {
 		letterSpacing: -0.52,
 		fontWeight: "300",
-		color: "#4166AA",
+		color: Colors.LinkBlue,
 		fontSize: 16,
 		marginLeft: -17,
 		alignSelf: "flex-start"
 	},
 	winnerSelected: {
-		color: "#399D60",
+		color: Colors.Green,
 		fontSize: 25,
 		fontWeight: "bold"
 	},
 	loserSelected: {
-		color: "#B73491",
+		color: Colors.InsightFuschia,
 		fontSize: 25,
 		fontWeight: "bold"
 	},
 	unselected: {
-		color: "#6E645F",
+		color: Colors.MiddleGray,
 		fontSize: 25,
 		fontWeight: "300"
 	}

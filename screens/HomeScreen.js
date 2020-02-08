@@ -4,22 +4,28 @@ import CodePush from "react-native-code-push";
 
 import useQuery from "../hooks/useQuery";
 import topPlayersQuery from "../queries/topPlayers";
+import bottomPlayersQuery from "../queries/bottomPlayers";
 import updateTopPlayers from "../queries/updateTopPlayers";
+import updateBottomPlayers from "../queries/updateBottomPlayers";
 
 import LoadingScreen from "./LoadingScreen";
 import HeaderLg from "../components/HeaderLarge";
 import BgImage from "../components/backgroundImage";
 import ColorHeading from "../components/ColorHeading";
 import GrayHeading from "../components/GrayHeading";
-import AddNewPlayerButton from "../components/AddNewPlayerButton";
 import Player from "../components/Player";
 
 function HomeScreen () {
 	const [topPlayers, topPlayersLoading] = useQuery(topPlayersQuery());
+	const [bottomPlayers, bottomPlayersLoading] = useQuery(bottomPlayersQuery());
 	const [topPlayersData, setTopPlayersData] = useState(false);
+	const [bottomPlayersData, setBottomPlayersData] = useState(false);
 	const [refreshing, setRefreshing] = useState(false);
 
-	const updatePlayers = () => updateTopPlayers().then((data) => setTopPlayersData(data));
+	const updatePlayers = () => {
+		updateTopPlayers().then((data) => setTopPlayersData(data));
+		updateBottomPlayers().then((data) => setBottomPlayersData(data));
+	};
 
 	const TopPlayer = () => {
 		if (topPlayers.length || topPlayersData.length) {
@@ -38,6 +44,27 @@ function HomeScreen () {
 		return null;
 	};
 
+	const BottomPlayers = () => {
+		if (!bottomPlayersLoading && (bottomPlayersData || bottomPlayers)) {
+			return (
+				<View>
+					<GrayHeading title="Wall of Shame" />
+					{(bottomPlayersData || bottomPlayers).map((item, index) => (
+						<Player
+							key={item.id}
+							id={item.id}
+							rank={index + 1}
+							name={item.player[0].fullName}
+							points={Math.floor(item.average)}
+							profilePhoto={item.player[0].profilePhoto}
+							updatePlayers={updatePlayers}
+						/>
+					))}
+				</View>
+			);
+		}
+		return null;
+	};
 	const onRefresh = React.useCallback(() => {
 		setRefreshing(true);
 
@@ -68,15 +95,11 @@ function HomeScreen () {
 		 <StatusBar barStyle="light-content" translucent />
 			<HeaderLg />
 			<ScrollView
-				style={styles.scrollView}
 				refreshControl={
 					<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
 				}
 			>
-				<BgImage>
-					<View style={styles.buttonContainer}>
-						<AddNewPlayerButton />
-					</View>
+				<BgImage style={styles.background}>
 					<ColorHeading title="Top Player" />
 					<TopPlayer />
 					<GrayHeading title="Ranked Players" />
@@ -91,6 +114,7 @@ function HomeScreen () {
 							updatePlayers={updatePlayers}
 						/>
 					))}
+					<BottomPlayers />
 				</BgImage>
 			</ScrollView>
 		</View>
@@ -98,13 +122,9 @@ function HomeScreen () {
 }
 
 const styles = StyleSheet.create({
-	buttonContainer: {
-		height: 18,
-		marginTop: -15,
-		alignItems: "center"
-	},
-	scrollView: {
-		marginBottom: 250
+	background: {
+		marginTop: 60,
+		marginBottom: 160
 	}
 });
 

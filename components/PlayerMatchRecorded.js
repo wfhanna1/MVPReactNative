@@ -1,10 +1,13 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { Text } from "native-base";
-import PlayerImage from "./PlayerImage";
+
 import useQuery from "../hooks/useQuery";
 import findPlayersQuery from "../queries/findPlayers";
 import playerRatingQuery from "../queries/playerRating";
+
+import Colors from "../colors";
+import PlayerImage from "./PlayerImage";
 
 function PlayerMatchRecorded (playerData) {
 	const [player, playerLoading] = useQuery(findPlayersQuery(playerData.id));
@@ -43,7 +46,7 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 		fontSize: 45,
 		fontFamily: "KlinicSlab-Book",
-		color: "#B73491",
+		color: Colors.InsightFuschia,
 		fontWeight: "500",
 		lineHeight: 54,
 		letterSpacing: -1.46
@@ -53,24 +56,12 @@ const styles = StyleSheet.create({
 		marginBottom: "7%",
 		flexDirection: "row"
 	},
-	number: {
-		fontFamily: "KlinicSlab-Book",
-		fontSize: 45,
-		fontWeight: "500",
-		color: "#6E645F"
-	},
 	picture: {
 		height: 75,
 		resizeMode: "contain",
 		width: "30%",
 		marginTop: -10,
 		marginLeft: "4%"
-	},
-	game: {
-		fontSize: 16,
-		fontWeight: "bold",
-		color: "#6E645F",
-		letterSpacing: -0.57
 	},
 	name: {
 		fontFamily: "KlinicSlab-Book",
@@ -81,17 +72,17 @@ const styles = StyleSheet.create({
 	},
 	totalPoints: {
 		fontSize: 16,
-		color: "#399D60",
+		color: Colors.Green,
 		letterSpacing: -0.7
 	},
 	gamePoints: {
 		fontSize: 16,
-		color: "#EB1E45",
+		color: Colors.Red,
 		fontWeight: "bold",
 		letterSpacing: -0.57
 	},
 	greenGamePoints: {
-		color: "#399D60"
+		color: Colors.Green
 	}
 });
 

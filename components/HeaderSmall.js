@@ -6,6 +6,8 @@ import { View,
 	Platform } from "react-native";
 import ResponsiveSize from "../config/getScreenDimensions";
 
+import Colors from "../colors";
+
 const headerImageSm = require("../assets/icons/Header-Background-Small.png");
 
 function HeaderSm ({ headerTitle }) {
@@ -30,7 +32,7 @@ const styles = StyleSheet.create({
 		fontWeight: "400",
 		letterSpacing: -2.4,
 		fontSize: ResponsiveSize(8.3),
-		color: "#FFFFFF",
+		color: Colors.White,
 		...Platform.select({
 			ios: {
 				marginTop: "-35%"

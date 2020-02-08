@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Image } from "react-native";
+import { StyleSheet, View, ScrollView, Image, Platform } from "react-native";
 import { withNavigation } from "react-navigation";
 import ImagePicker from "react-native-image-crop-picker";
 import { Text, Item, Input, Form, Button } from "native-base";
+import { BottomModal, ModalContent } from "react-native-modals";
 
-import useQuery from "../hooks/useQuery";
-import addPlayerQuery from "../queries/addPlayer";
-
+import Colors from "../colors";
 import HeaderSm from "../components/HeaderSmall";
 import BgImage from "../components/backgroundImage";
 import ButtonPrimary from "../components/ButtonPrimary";
@@ -25,33 +24,25 @@ function AddNewPlayerScreen ({ navigation }) {
 	const [profilePhoto, setProfilePhoto] = useState(undefined);
 	const [nameError, setNameError] = useState(undefined);
 	const [emailError, setEmailError] = useState(undefined);
-	const [addPlayerObj, setPlayerObj] = useState(undefined);
-
-	const [addPlayer, addPlayerLoading] = useQuery(addPlayerQuery(addPlayerObj));
+	const [showModal, setShowModal] = useState(false);
 
 	const formValid = () => {
-		setNameError(name && name.trim().length > 0 ? false : "enter your name");
-		setEmailError(email && emailRegex.test(email.trim()) ? false : "enter a valid email");
-		return [nameError, emailError];
+		const nameErrorCheck = (name && name.trim().length > 0 ? false : "enter your name");
+		const emailErrorCheck = (email && emailRegex.test(email.trim()) ? false : "enter a valid email");
+		setNameError(nameErrorCheck);
+		setEmailError(emailErrorCheck);
+		return [nameErrorCheck, emailErrorCheck];
 	};
 
 	const onSubmit = () => {
 		const errors = formValid();
-		if (!errors.filter((item) => !!item).length) {
-			setPlayerObj({
-				fullName: name,
-				emailAddress: email,
-				profilePhoto
+		if (!errors.filter((item) => Boolean(item)).length) {
+			navigation.navigate("PlayerAdded", {
+				...navigationContext,
+				name,
+				email,
+				profilePhoto: (profilePhoto || "")
 			});
-			if (addPlayer) {
-				return navigation.navigate("PlayerAdded", {
-					...navigationContext,
-					id: addPlayer.id,
-					name,
-					email,
-					profilePhoto
-				});
-			}
 		}
 
 		return false;
@@ -70,20 +61,6 @@ function AddNewPlayerScreen ({ navigation }) {
 		return null;
 	};
 
-	const ButtonLoading = () => {
-		if (addPlayerLoading) {
-			return (
-				<Text>Loading...</Text>
-			);
-		}
-		return (
-			<ButtonPrimary
-				title="Add Player"
-				onPress={onSubmit}
-			/>
-		);
-	};
-
 	const handleChoosePhoto = () => {
 		ImagePicker.openPicker({
 			width: 400,
@@ -97,14 +74,39 @@ function AddNewPlayerScreen ({ navigation }) {
 		}).then((image) => {
 			if (image && image.mime && image.data) {
 				setProfilePhoto(`data:${image.mime};base64,${image.data}`);
+				setShowModal(false);
 			}
 		});
+	};
+
+	const handleTakePhoto = () => {
+		ImagePicker.openCamera({
+			useFrontCamera: true,
+			width: 400,
+			height: 400,
+			cropping: true,
+			cropperCircleOverlay: true,
+			compressImageMaxWidth: 100,
+			compressImageMaxHeight: 100,
+			compressImageQuality: 0.25,
+			includeBase64: true
+		}).then((image) => {
+			if (image && image.mime && image.data) {
+				setProfilePhoto(`data:${image.mime};base64,${image.data}`);
+				setShowModal(false);
+			}
+		});
+	};
+
+	const handleDeletePhoto = () => {
+		setProfilePhoto(undefined);
+		setShowModal(false);
 	};
 
 	return (
 		<BgImage>
 			<HeaderSm style={styles.title} headerTitle="Add New Player" />
-			<View style={styles.parent}>
+			<ScrollView style={styles.parent}>
 				<Form>
 					<View style={styles.container}>
 						<Text style={styles.text}>Full Name</Text>
@@ -147,13 +149,16 @@ function AddNewPlayerScreen ({ navigation }) {
 								uri: profilePhoto
 							} : defaultProfilePhoto}
 						/>
-						<Button transparent onPress={handleChoosePhoto}>
+						<Button transparent onPress={() => { setShowModal(true); }}>
 							<Text uppercase={false} style={styles.profileButton}>Add/Update</Text>
 						</Button>
 					</View>
 					<View style={styles.container}>
 						<ErrorMessage errors={[nameError, emailError]} />
-						<ButtonLoading />
+						<ButtonPrimary
+							title="Add Player"
+							onPress={onSubmit}
+						/>
 						<Button
 							style={styles.cancelButton}
 							transparent
@@ -163,7 +168,53 @@ function AddNewPlayerScreen ({ navigation }) {
 						</Button>
 					</View>
 				</Form>
-			</View>
+				<BottomModal
+					visible={showModal}
+					onTouchOutside={() => {
+						setShowModal(false);
+					}}
+					rounded={false}
+					modalStyle={{
+						backgroundColor: Colors.Transparent
+					}}
+				>
+					<ModalContent>
+						<Button
+							text="Take Photo"
+							onPress={handleTakePhoto}
+							style={[styles.modalButton, {
+								borderTopLeftRadius: 10,
+								borderTopRightRadius: 10
+							}]}
+						>
+							<Text style={styles.modalButtonText}>Take Photo</Text>
+						</Button>
+						<Button
+							onPress={handleChoosePhoto}
+							style={styles.modalButton}
+						>
+							<Text style={styles.modalButtonText}>Choose From Library</Text>
+						</Button>
+						<Button
+							onPress={handleDeletePhoto}
+							style={[styles.modalButton, {
+								borderBottomLeftRadius: 10,
+								borderBottomRightRadius: 10
+							}]}
+						>
+							<Text style={styles.modalButtonText}>Delete Photo</Text>
+						</Button>
+						<Button
+							onPress={() => {
+								setShowModal(false);
+							}}
+							style={[styles.modalButton, styles.modalCancelButton]}
+						>
+							<Text style={styles.modalButtonText}>Cancel</Text>
+						</Button>
+					</ModalContent>
+				</BottomModal>
+			</ScrollView>
 		</BgImage>
 	);
 }
@@ -183,7 +234,7 @@ const styles = StyleSheet.create({
 		borderRadius: 100
 	},
 	item: {
-		borderBottomColor: "#B73491",
+		borderBottomColor: Colors.InsightFuschia,
 		borderBottomWidth: 2,
 		width: "80%"
 	},
@@ -201,12 +252,12 @@ const styles = StyleSheet.create({
 	profText: {
 		fontFamily: "KlinicSlab-Medium",
 		fontSize: ResponsiveSize(14.4),
-		color: "#222222",
+		color: Colors.DarkGray,
 		fontWeight: "500",
 		letterSpacing: -0.63
 	},
 	profileButton: {
-		color: "#4166AA",
+		color: Colors.LinkBlue,
 		fontSize: ResponsiveSize(24)
 	},
 	text: {
@@ -223,19 +274,40 @@ const styles = StyleSheet.create({
 	cancelText: {
 		letterSpacing: -0.52,
 		fontWeight: "300",
-		color: "#4166AA",
+		color: Colors.LinkBlue,
 		fontSize: ResponsiveSize(23.4),
 		marginLeft: -17
 	},
 	error: {
 		borderWidth: 2,
-		borderColor: "red",
-		color: "red"
+		borderColor: Colors.Red,
+		color: Colors.Red
 	},
 	errorMessages: {
-		backgroundColor: "rgba(256, 0, 0, 0.2)",
+		backgroundColor: Colors.TransparentRed,
 		padding: 10,
 		marginBottom: 20
+	},
+	modalButton: {
+		justifyContent: "center",
+		alignItems: "center",
+		backgroundColor: Colors.White,
+		borderRadius: 0
+	},
+	modalCancelButton: {
+		marginTop: 10,
+		borderTopWidth: 1,
+		borderColor: Colors.MiddleGray,
+		borderRadius: 10
+	},
+	modalButtonText: {
+		width: "100%",
+		textAlign: "center",
+		...Platform.select({
+			android: {
+				color: Colors.LinkBlue
+			}
+		})
 	}
 });
 

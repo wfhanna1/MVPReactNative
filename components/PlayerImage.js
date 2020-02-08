@@ -2,6 +2,8 @@ import React from "react";
 import { View, Text, Image, StyleSheet, Platform } from "react-native";
 import ResponsiveSize from "../config/getScreenDimensions";
 
+import Colors from "../colors";
+
 const defaultPlayerImage = require("../assets/icons/Default-user.png");
 
 const styles = StyleSheet.create({
@@ -11,7 +13,7 @@ const styles = StyleSheet.create({
 		borderWidth: 3,
 		borderRadius: 100,
 		marginBottom: 5,
-		borderColor: "#BEBEBB"
+		borderColor: Colors.LightGray
 	},
 	initialsLarge: {
 		height: 130,
@@ -20,14 +22,14 @@ const styles = StyleSheet.create({
 		borderRadius: 100
 	},
 	initialsWinner: {
-		borderColor: "#399D60"
+		borderColor: Colors.Green
 	},
 	initialsText: {
 		fontFamily: "KlinicSlab-Bold",
 		fontSize: ResponsiveSize(10.4),
 		letterSpacing: -0.63,
 		height: 75,
-		color: "#BEBEBB",
+		color: Colors.LightGray,
 		textAlign: "center",
 		marginHorizontal: -3,
 		...Platform.select({
@@ -59,13 +61,33 @@ const styles = StyleSheet.create({
 		resizeMode: "contain"
 	},
 	pictureWinner: {
-		borderColor: "#399D60",
+		borderColor: Colors.Green,
 		borderWidth: 5,
 		borderRadius: 100
 	}
 });
 
 function PlayerImage (playerData) {
+	const Initials = ({ initials }) => {
+		if (initials.length > 1) {
+			return (
+				<Text style={[styles.initialsText, (playerData.large ? styles.initialsTextLarge : {
+				})]}
+				>
+					{initials[0]}
+					{initials[(initials.length - 1)]}
+				</Text>
+			);
+		}
+		return (
+			<Text style={[styles.initialsText, (playerData.large ? styles.initialsTextLarge : {
+			})]}
+			>
+				{initials[0]}
+			</Text>
+		);
+	};
+
 	if (playerData.profilePhoto) {
 		return (
 			<Image
@@ -79,7 +101,7 @@ function PlayerImage (playerData) {
 		);
 	}
 	if (playerData.fullName) {
-		const nameData = playerData.fullName.toString().toUpperCase().split(" ");
+		const nameData = playerData.fullName.toString().replace(/[^a-zA-Z\d\s]/g, "").toUpperCase().split(" ");
 		const initials = nameData.map((word) => word.charAt(0)).join("");
 
 		return (
@@ -87,11 +109,7 @@ function PlayerImage (playerData) {
 			}), (playerData.isWinner ? styles.initialsWinner : {
 			})]}
 			>
-				<Text style={[styles.initialsText, (playerData.large ? styles.initialsTextLarge : {
-				})]}
-				>
-					{initials.substr(0, 2)}
-				</Text>
+				<Initials initials={initials} />
 			</View>
 		);
 	}
