@@ -368,6 +368,9 @@ const styles = StyleSheet.create({
 		...Platform.select({
 			android: {
 				color: Colors.LinkBlue
+			},
+			ios: {
+				color: Colors.LinkBlue
 			}
 		})
 	}
